@@ -1,18 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace LicentaAPI.Persistence.Models
 {
     /// <summary>
-    ///This class holds information about an user of the app.
+    /// This class holds information about an user of the app.
     /// </summary>
-    public class AppUser
+    public class AppUser : IdentityUser
     {
-        public string ID { get; set; }
-
-        [Required]
-        public string Email { get; set; }
-
         [Required]
         public string FirstName { get; set; }
 
@@ -30,8 +26,5 @@ namespace LicentaAPI.Persistence.Models
         public string Sex { get; set; }
 
         public DateTime LastOnline { get; set; }
-
-        [Required]
-        public string password { get; set; }
     }
 }
