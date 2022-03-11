@@ -5,6 +5,9 @@ namespace LicentaAPI.Persistence.Models
 {
     public class ReviewFilm
     {
+        /// <summary>
+        /// This class holds information about a <see cref="Film"/> review and/or grade given by an <see cref="AppUser"/>.
+        /// </summary>
         [Key]
         public string ID { get; set; }
 

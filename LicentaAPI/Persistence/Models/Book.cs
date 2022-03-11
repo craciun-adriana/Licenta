@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LicentaAPI.Persistence.Models
 {
+    /// <summary>
+    ///This class holds information about a book.
+    /// </summary>
     public class Book
     {
         [Key]
@@ -14,6 +17,9 @@ namespace LicentaAPI.Persistence.Models
 
         [Required]
         public string Author { get; set; }
+
+        [Required]
+        public string Description { get; set; }
 
         [Required]
         public DateTime RelaseDate { get; set; }

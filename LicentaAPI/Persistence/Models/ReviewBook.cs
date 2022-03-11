@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LicentaAPI.Persistence.Models
 {
+    /// <summary>
+    /// This class holds information about a <see cref="Book"/> review and/or grade given by an <see cref="AppUser"/>.
+    /// </summary>
     public class ReviewBook
     {
         [Key]

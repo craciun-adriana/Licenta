@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LicentaAPI.Persistence.Models
 {
+    /// <summary>
+    /// This class holds information about the friendship of 2 <see cref="AppUser"/>.
+    /// </summary>
     public class Friendship
     {
         [Key]

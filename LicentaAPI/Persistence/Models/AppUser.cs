@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LicentaAPI.Persistence.Models
 {
+    /// <summary>
+    ///This class holds information about an user of the app.
+    /// </summary>
     public class AppUser
     {
         public string ID { get; set; }

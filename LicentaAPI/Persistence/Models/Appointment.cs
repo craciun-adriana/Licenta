@@ -4,11 +4,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LicentaAPI.Persistence.Models
 {
+    /// <summary>
+    /// This class holds details about an appointment created by a <see cref="Group"/>.
+    /// </summary>
     public class Appointment
     {
         [Key]
         public string ID { get; set; }
 
+        /// <summary>
+        /// This attribute represents the time and date when the appointment is set.
+        /// </summary>
         [Required]
         public DateTime TimeAppointment { get; set; }
 

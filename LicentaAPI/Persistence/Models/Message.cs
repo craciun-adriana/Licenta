@@ -4,6 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LicentaAPI.Persistence.Models
 {
+    /// <summary>
+    /// This class holds the information about the messages sent in <see cref="Group"/>s or to a certain <see cref="AppUser"/>.
+    ///
+    /// When sending messages to a <see cref="Group"/>, <see cref="IdReceiver"/> is null and <see cref="IdGroup"/> holds the group's Id.
+    /// And when sending messages to an <see cref="AppUser"/>, <see cref="IdGroup"/> is null and <see cref="IdReceiver"/> holds the user's Id.
+    /// </summary>
     public class Message
     {
         [Key]

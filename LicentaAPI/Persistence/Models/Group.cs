@@ -2,6 +2,9 @@
 
 namespace LicentaAPI.Persistence.Models
 {
+    /// <summary>
+    /// This class holds information about a group.
+    /// </summary>
     public class Group
     {
         [Key]
