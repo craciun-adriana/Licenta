@@ -12,7 +12,7 @@ namespace LicentaAPI.AppServices.Books
         /// Creates a book.
         /// </summary>
         /// <param name="bookCreate">Details about a book.</param>
-        /// <returns>the created book or null if it was not created.</returns>
+        /// <returns>The created book or null if it was not created.</returns>
         public Book CreateBook(BookCreate bookCreate);
     }
 }

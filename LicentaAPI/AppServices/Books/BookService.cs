@@ -3,9 +3,6 @@ using LicentaAPI.Infrastructure.Mapper;
 using LicentaAPI.Persistence.Models;
 using LicentaAPI.Persistence.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LicentaAPI.AppServices.Books
 {
