@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using LicentaAPI.AppServices.Appointments.Model;
 using LicentaAPI.AppServices.Books.Models;
+using LicentaAPI.AppServices.Films.Models;
+using LicentaAPI.AppServices.Serieses.Models;
 using LicentaAPI.Persistence.Models;
 using System;
 using System.Collections.Generic;
@@ -26,7 +29,13 @@ namespace LicentaAPI.Infrastructure.Mapper
         {
             return new MapperConfiguration(cfg =>
             {
+                cfg.CreateMap<AppointmentCreate, Appointment>()
+                    .ForMember(dest => dest.ID, opt => opt.Ignore());
                 cfg.CreateMap<BookCreate, Book>()
+                    .ForMember(dest => dest.ID, opt => opt.Ignore());
+                cfg.CreateMap<FilmCreate, Film>()
+                    .ForMember(dest => dest.ID, opt => opt.Ignore());
+                cfg.CreateMap<SeriesCreate, Series>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
             });
         }

@@ -15,7 +15,6 @@ namespace LicentaAPI.Infrastructure.Mapper
         /// <param name="source">The object to map.</param>
         /// <returns>The mapped object.</returns>
         TDest Map<TSource, TDest>(TSource source);
-        object Map<T1, T2>(object seriesCreate);
 
         /// <summary>
         /// Maps an enumeration of objects to another enumeration of objects.
