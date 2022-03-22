@@ -7,7 +7,7 @@ using System;
 namespace LicentaAPI.AppServices.Films
 {
     /// <summary>
-    /// Concrete implementation of <see cref="IFilmService"/>
+    /// Concrete implementation of <see cref="IFilmService"/>.
     /// </summary>
     public class FilmService : IFilmService
     {

@@ -2,74 +2,78 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace LicentaAPI.Persistence.Repositories
 {
-    public class EFAppointmentRepository : IAppointmentRepo
+    public class EFFriendshipRepository : IFriendshipRepo
     {
         private AppDbContext _dbContext;
 
-        public EFAppointmentRepository(AppDbContext dbContext)
+        public EFFriendshipRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
         ///<inheritdoc/>
-        public void Add(Appointment entity)
+        public void Add(Friendship entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
-            _dbContext.Appointments.Add(entity);
+
+            _dbContext.Friendships.Add(entity);
             _dbContext.SaveChanges();
         }
 
         ///<inheritdoc/>
-        public void Delete(Appointment entity)
+        public void Delete(Friendship entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
-            _dbContext.Appointments.Remove(entity);
+            _dbContext.Friendships.Remove(entity);
             _dbContext.SaveChanges();
         }
 
         ///<inheritdoc/>
-        public IEnumerable<Appointment> FindAppointmentByDate(DateTime date)
+        public IEnumerable<Friendship> FindFriendshipByIdReceiver(string idReceiver)
         {
-            if (date == DateTime.MinValue)
+            if (string.IsNullOrEmpty(idReceiver))
             {
-                throw new ArgumentNullException(nameof(date));
+                throw new ArgumentNullException(idReceiver);
             }
-            return _dbContext.Appointments.Where(appointment => appointment.TimeAppointment.Equals(date));
+            return _dbContext.Friendships.Where(friendship => friendship.IdReceiver.Equals(idReceiver))
+                                         .Where(friendship => friendship.Status == FriendshipStatus.Pending);
         }
 
         ///<inheritdoc/>
-        public Appointment GetById(string id)
+        public Friendship GetById(string id)
         {
             if (string.IsNullOrEmpty(id))
             {
                 throw new ArgumentNullException(nameof(id));
             }
-            return _dbContext.Appointments.FirstOrDefault(appointment => appointment.ID.Equals(id));
+
+            return _dbContext.Friendships.FirstOrDefault(friendship => friendship.ID.Equals(id));
         }
 
         ///<inheritdoc/>
-        public IEnumerable<Appointment> Query(PaginationQuery paginationQuery)
+        public IEnumerable<Friendship> Query(PaginationQuery paginationQuery)
         {
             throw new NotImplementedException();
         }
 
         ///<inheritdoc/>
-        public void Update(Appointment entity)
+        public void Update(Friendship entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
-            _dbContext.Update(entity);
+            _dbContext.Friendships.Update(entity);
         }
     }
 }
