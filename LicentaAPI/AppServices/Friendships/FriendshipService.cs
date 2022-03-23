@@ -11,8 +11,8 @@ namespace LicentaAPI.AppServices.Friendships
     /// </summary>
     public class FriendshipService : IFriendshipService
     {
-        private IFriendshipRepo _friendshipRepo;
-        private IMappingCoordinator _mapper;
+        private readonly IFriendshipRepo _friendshipRepo;
+        private readonly IMappingCoordinator _mapper;
 
         public FriendshipService(IFriendshipRepo friendshipRepo, IMappingCoordinator mapper)
         {
@@ -24,6 +24,8 @@ namespace LicentaAPI.AppServices.Friendships
         public Friendship CreateFriendship(FriendshipCreate friendshipCreate)
         {
             var friendship = _mapper.Map<FriendshipCreate, Friendship>(friendshipCreate);
+            friendship.Status = FriendshipStatus.Pending;
+            friendship.LastUpdate = DateTime.UtcNow;
             try
             {
                 _friendshipRepo.Add(friendship);

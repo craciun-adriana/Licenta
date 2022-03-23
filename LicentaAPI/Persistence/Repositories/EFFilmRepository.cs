@@ -72,7 +72,7 @@ namespace LicentaAPI.Persistence.Repositories
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            _dbContext.Update(entity);
+            _dbContext.Films.Update(entity);
             _dbContext.SaveChanges();
         }
     }

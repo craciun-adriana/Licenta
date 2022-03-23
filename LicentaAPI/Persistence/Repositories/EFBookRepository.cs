@@ -75,7 +75,7 @@ namespace LicentaAPI.Persistence.Repositories
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            _dbContext.Update(entity);
+            _dbContext.Books.Update(entity);
         }
     }
 }

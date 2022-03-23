@@ -2,6 +2,7 @@
 using LicentaAPI.AppServices.Appointments.Model;
 using LicentaAPI.AppServices.Books.Models;
 using LicentaAPI.AppServices.Films.Models;
+using LicentaAPI.AppServices.Friendships.Model;
 using LicentaAPI.AppServices.Serieses.Models;
 using LicentaAPI.Persistence.Models;
 using System;
@@ -34,6 +35,10 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<BookCreate, Book>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
                 cfg.CreateMap<FilmCreate, Film>()
+                    .ForMember(dest => dest.ID, opt => opt.Ignore());
+                cfg.CreateMap<FriendshipCreate, Friendship>()
+                    .ForMember(dest => dest.Status, opt => opt.Ignore())
+                    .ForMember(dest => dest.LastUpdate, opt => opt.Ignore())
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
                 cfg.CreateMap<SeriesCreate, Series>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
