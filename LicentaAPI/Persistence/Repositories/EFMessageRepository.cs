@@ -48,15 +48,16 @@ namespace LicentaAPI.Persistence.Repositories
             {
                 throw new ArgumentNullException(nameof(idUser1));
             }
-            else
+
+            if (string.IsNullOrEmpty(idUser2))
             {
-                if (string.IsNullOrEmpty(idUser2))
-                {
-                    throw new ArgumentNullException(nameof(idUser2));
-                }
+                throw new ArgumentNullException(nameof(idUser2));
             }
 
-            return _dbContext.Messages.Where(message => message.IdReceiver.Equals(idUser1) && message.IdSender.Equals(idUser2) || message.IdReceiver.Equals(idUser2) && message.IdSender.Equals(idUser1));
+            return _dbContext.Messages.Where(message =>
+                (message.IdReceiver.Equals(idUser1) && message.IdSender.Equals(idUser2))
+                || (message.IdReceiver.Equals(idUser2) && message.IdSender.Equals(idUser1))
+            );
         }
 
         /// <inheritdoc/>
