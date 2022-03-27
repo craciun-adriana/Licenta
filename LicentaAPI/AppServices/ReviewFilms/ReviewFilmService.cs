@@ -3,9 +3,6 @@ using LicentaAPI.Infrastructure.Mapper;
 using LicentaAPI.Persistence.Models;
 using LicentaAPI.Persistence.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LicentaAPI.AppServices.ReviewFilms
 {
@@ -23,7 +20,7 @@ namespace LicentaAPI.AppServices.ReviewFilms
             _mapper = mapper;
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public ReviewFilm CreateReviewFilm(ReviewFilmCreate reviewFilmCreate)
         {
             var reviewFilm = _mapper.Map<ReviewFilmCreate, ReviewFilm>(reviewFilmCreate);

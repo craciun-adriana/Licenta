@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace LicentaAPI.Persistence.Repositories
 {
     /// <summary>
-    /// Interface provading contracts for <see cref="Group"/> repository.
+    /// Interface providing contracts for <see cref="Group"/> repository.
     /// </summary>
     public interface IGroupRepo : IGenericRepo<Group>
     {
@@ -12,7 +12,7 @@ namespace LicentaAPI.Persistence.Repositories
         /// Retrieves groups that have the given name.
         /// </summary>
         /// <param name="name">The name of the group that user is searching for.</param>
-        /// <returns></returns>
+        /// <returns>All groups that have the given string in name.</returns>
         public IEnumerable<Group> FindGroupByName(string name);
     }
 }

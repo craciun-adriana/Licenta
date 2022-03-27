@@ -12,7 +12,7 @@ namespace LicentaAPI.Persistence.Repositories
         /// Retrieves the friendship that have the given idReceiver.
         /// </summary>
         /// <param name="idReceiver">The IdReceiver of the friendship that user is searching for.</param>
-        /// <returns></returns>
+        /// <returns>A list of friendships that have the given idReceiver.</returns>
         public IEnumerable<Friendship> FindFriendshipByIdReceiver(string idReceiver);
     }
 }

@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LicentaAPI.Persistence.Repositories
 {
+    /// <summary>
+    /// Concrete implementation of <see cref="Friendship"/> using Entity Framework.
+    /// </summary>
     public class EFFriendshipRepository : IFriendshipRepo
     {
         private AppDbContext _dbContext;
@@ -15,7 +17,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Add(Friendship entity)
         {
             if (entity == null)
@@ -27,7 +29,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Delete(Friendship entity)
         {
             if (entity == null)
@@ -38,18 +40,17 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public IEnumerable<Friendship> FindFriendshipByIdReceiver(string idReceiver)
         {
             if (string.IsNullOrEmpty(idReceiver))
             {
                 throw new ArgumentNullException(idReceiver);
             }
-            return _dbContext.Friendships.Where(friendship => friendship.IdReceiver.Equals(idReceiver))
-                                         .Where(friendship => friendship.Status == FriendshipStatus.Pending);
+            return _dbContext.Friendships.Where(friendship => friendship.IdReceiver.Equals(idReceiver) && friendship.Status == FriendshipStatus.Pending).ToList();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public Friendship GetById(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -60,13 +61,13 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.Friendships.FirstOrDefault(friendship => friendship.ID.Equals(id));
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public IEnumerable<Friendship> Query(PaginationQuery paginationQuery)
         {
             throw new NotImplementedException();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Update(Friendship entity)
         {
             if (entity == null)

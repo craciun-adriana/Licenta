@@ -12,7 +12,7 @@ namespace LicentaAPI.Persistence.Repositories
         /// Retrieves the ReviewSeries that have the given idSeries.
         /// </summary>
         /// <param name="idSeries">The id of the series that user is searching for.</param>
-        /// <returns></returns>
+        /// <returns>All reviews received by a Series with given idSeries.</returns>
         public IEnumerable<ReviewSeries> FindReviewSeriesByIdSeries(string idSeries);
     }
 }

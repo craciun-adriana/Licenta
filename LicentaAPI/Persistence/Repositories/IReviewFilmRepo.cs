@@ -12,7 +12,7 @@ namespace LicentaAPI.Persistence.Repositories
         ///Retrieves the ReviewFilm that have the given idFilm.
         /// </summary>
         /// <param name="idFilm">The id of the film that user is searching for.</param>
-        /// <returns></returns>
+        /// <returns>All reviews received by a film with given idFilm.</returns>
         public IEnumerable<ReviewFilm> FindReviewFilmByIdFilm(string idFilm);
     }
 }

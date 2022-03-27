@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace LicentaAPI.Persistence.Repositories
 {
+    /// <summary>
+    /// Concrete implementation of <see cref="Appointment"/> using Entity Framework.
+    /// </summary>
     public class EFAppointmentRepository : IAppointmentRepo
     {
         private AppDbContext _dbContext;
@@ -14,7 +17,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Add(Appointment entity)
         {
             if (entity == null)
@@ -25,7 +28,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Delete(Appointment entity)
         {
             if (entity == null)
@@ -36,7 +39,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public IEnumerable<Appointment> FindAppointmentByDate(DateTime date)
         {
             if (date == DateTime.MinValue)
@@ -46,7 +49,7 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.Appointments.Where(appointment => appointment.TimeAppointment.Equals(date));
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public Appointment GetById(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -56,13 +59,13 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.Appointments.FirstOrDefault(appointment => appointment.ID.Equals(id));
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public IEnumerable<Appointment> Query(PaginationQuery paginationQuery)
         {
             throw new NotImplementedException();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Update(Appointment entity)
         {
             if (entity == null)

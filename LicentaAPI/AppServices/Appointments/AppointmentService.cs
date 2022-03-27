@@ -20,7 +20,7 @@ namespace LicentaAPI.AppServices.Appointments
             _mapper = mapper;
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public Appointment CreateAppointment(AppointmentCreate appointmentCreate)
         {
             var appointment = _mapper.Map<AppointmentCreate, Appointment>(appointmentCreate);

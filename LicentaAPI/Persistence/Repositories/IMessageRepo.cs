@@ -13,14 +13,14 @@ namespace LicentaAPI.Persistence.Repositories
         /// </summary>
         /// <param name="idUser1">The id of the first user.</param>
         /// <param name="idUser2">The id of the second user.</param>
-        /// <returns></returns>
+        /// <returns>All messages sent between 2 users that have the given idUser.</returns>
         public IEnumerable<Message> FindMessagesBetweenUsers(string idUser1, string idUser2);
 
         /// <summary>
         /// Retrieves messages that have the given idGroup.
         /// </summary>
         /// <param name="idGroup">The id of the group.</param>
-        /// <returns></returns>
+        /// <returns>All messages sent in the group with given idGroup.</returns>
         public IEnumerable<Message> FindMessagesInGroup(string idGroup);
     }
 }

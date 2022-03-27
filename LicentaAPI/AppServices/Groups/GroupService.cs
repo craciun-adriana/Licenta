@@ -20,7 +20,7 @@ namespace LicentaAPI.AppServices.Groups
             _mapper = mapper;
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public Group CreateGroup(GroupCreate groupCreate)
         {
             var group = _mapper.Map<GroupCreate, Group>(groupCreate);

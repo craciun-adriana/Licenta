@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace LicentaAPI.Persistence.Repositories
 {
+    /// <summary>
+    /// Concrete implementation of <see cref="GroupMember"/> using Entity Framework.
+    /// </summary>
     public class EFGroupMemberRepository : IGroupMemberRepo
     {
         private AppDbContext _dbContext;
@@ -14,7 +17,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Add(GroupMember entity)
         {
             if (entity == null)
@@ -26,7 +29,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Delete(GroupMember entity)
         {
             if (entity == null)
@@ -38,7 +41,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public IEnumerable<GroupMember> FindGroupMembersByIdGroup(string idGroup)
         {
             if (string.IsNullOrEmpty(idGroup))
@@ -49,7 +52,7 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.GroupMembers.Where(groupMember => groupMember.IdGroup.Equals(idGroup)).ToList();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public GroupMember GetById(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -60,13 +63,13 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.GroupMembers.FirstOrDefault(groupMember => groupMember.ID.Equals(id));
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public IEnumerable<GroupMember> Query(PaginationQuery paginationQuery)
         {
             throw new NotImplementedException();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Update(GroupMember entity)
         {
             if (entity == null)

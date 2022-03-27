@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LicentaAPI.Persistence.Repositories
 {
+    /// <summary>
+    /// Concrete implementation of <see cref="Group"/> using Entity Framework.
+    /// </summary>
     public class EFGroupRepository : IGroupRepo
     {
         private AppDbContext _dbContext;
@@ -15,7 +17,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Add(Group entity)
         {
             if (entity == null)
@@ -27,7 +29,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Delete(Group entity)
         {
             if (entity == null)
@@ -39,7 +41,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public IEnumerable<Group> FindGroupByName(string name)
         {
             if (string.IsNullOrEmpty(name))
@@ -47,10 +49,10 @@ namespace LicentaAPI.Persistence.Repositories
                 throw new ArgumentNullException(nameof(name));
             }
 
-            return _dbContext.Groups.Where(group => group.Name.Contains(name)).ToList();
+            return _dbContext.Groups.Where(group => group.Name.ToLower().Contains(name.ToLower())).ToList();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public Group GetById(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -61,13 +63,13 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.Groups.FirstOrDefault(group => group.ID.Equals(id));
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public IEnumerable<Group> Query(PaginationQuery paginationQuery)
         {
             throw new NotImplementedException();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Update(Group entity)
         {
             if (entity == null)
@@ -76,6 +78,7 @@ namespace LicentaAPI.Persistence.Repositories
             }
 
             _dbContext.Groups.Update(entity);
+            _dbContext.SaveChanges();
         }
     }
 }

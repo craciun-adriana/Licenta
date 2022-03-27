@@ -9,7 +9,7 @@ namespace LicentaAPI.AppServices.Appointments
     public interface IAppointmentService
     {
         /// <summary>
-        ///
+        /// Create an appointment.
         /// </summary>
         /// <param name="appointmentCreate"></param>
         /// <returns> The created appointment or null if it was not created.</returns>

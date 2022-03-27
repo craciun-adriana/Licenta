@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LicentaAPI.Persistence.Repositories
 {
+    /// <summary>
+    /// Concrete implementation of <see cref="ReviewFilm"/> using Entity Framework.
+    /// </summary>
     public class EFReviewFilmRepository : IReviewFilmRepo
     {
         private AppDbContext _dbContext;
@@ -15,7 +17,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Add(ReviewFilm entity)
         {
             if (entity == null)
@@ -27,7 +29,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Delete(ReviewFilm entity)
         {
             if (entity == null)
@@ -39,7 +41,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public IEnumerable<ReviewFilm> FindReviewFilmByIdFilm(string idFilm)
         {
             if (string.IsNullOrEmpty(idFilm))
@@ -50,7 +52,7 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.ReviewFilms.Where(reviewFilm => reviewFilm.IdFilm.Equals(idFilm));
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public ReviewFilm GetById(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -61,13 +63,13 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.ReviewFilms.FirstOrDefault(reviewFilm => reviewFilm.ID.Equals(id));
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public IEnumerable<ReviewFilm> Query(PaginationQuery paginationQuery)
         {
             throw new NotImplementedException();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Update(ReviewFilm entity)
         {
             if (entity == null)

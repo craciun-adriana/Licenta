@@ -3,14 +3,11 @@ using LicentaAPI.Infrastructure.Mapper;
 using LicentaAPI.Persistence.Models;
 using LicentaAPI.Persistence.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LicentaAPI.AppServices.ReviewSerieses
 {
     /// <summary>
-    /// Concrete implemnetation of <see cref="IReviewSeriesService"/>.
+    /// Concrete implementation of <see cref="IReviewSeriesService"/>.
     /// </summary>
     public class ReviewSeriesService : IReviewSeriesService
     {
@@ -23,7 +20,7 @@ namespace LicentaAPI.AppServices.ReviewSerieses
             _mapper = mapper;
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public ReviewSeries CreateReviewSeries(ReviewSeriesCreate reviewSeriesCreate)
         {
             var reviewSeries = _mapper.Map<ReviewSeriesCreate, ReviewSeries>(reviewSeriesCreate);

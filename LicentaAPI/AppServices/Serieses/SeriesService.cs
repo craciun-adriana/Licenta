@@ -20,7 +20,7 @@ namespace LicentaAPI.AppServices.Serieses
             _mapper = mapper;
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public Series CreateSeries(SeriesCreate seriesCreate)
         {
             var series = _mapper.Map<SeriesCreate, Series>(seriesCreate);

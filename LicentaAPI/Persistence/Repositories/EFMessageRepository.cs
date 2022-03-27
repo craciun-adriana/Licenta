@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace LicentaAPI.Persistence.Repositories
 {
+    /// <summary>
+    /// Concrete implementation of <see cref="Message"/> using Entity Framework.
+    /// </summary>
     public class EFMessageRepository : IMessageRepo
     {
         public AppDbContext _dbContext;

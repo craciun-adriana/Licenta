@@ -1,6 +1,5 @@
 ﻿using LicentaAPI.AppServices.Serieses.Models;
 using LicentaAPI.Persistence.Models;
-using LicentaAPI.Persistence.Repositories;
 
 namespace LicentaAPI.AppServices.Serieses
 {
@@ -13,7 +12,7 @@ namespace LicentaAPI.AppServices.Serieses
         /// Create a series.
         /// </summary>
         /// <param name="seriesCreate">Details about a series.</param>
-        /// <returns></returns>
+        /// <returns>The created series or null if it was not created.</returns>
         public Series CreateSeries(SeriesCreate seriesCreate);
     }
 }

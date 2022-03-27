@@ -20,7 +20,7 @@ namespace LicentaAPI.AppServices.ReviewBooks
             _mapper = mapper;
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public ReviewBook CreateReviewBook(ReviewBookCreate reviewBookCreate)
         {
             var reviewBook = _mapper.Map<ReviewBookCreate, ReviewBook>(reviewBookCreate);

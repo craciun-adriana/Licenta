@@ -4,7 +4,7 @@ using System;
 namespace LicentaAPI.AppServices.Serieses.Models
 {
     /// <summary>
-    /// Class coinaining information needed to create a <see cref="Series"/>
+    /// Class containing information needed to create a <see cref="Series"/>
     /// </summary>
     public class SeriesCreate
     {

@@ -3,7 +3,7 @@ using LicentaAPI.Persistence.Models;
 
 namespace LicentaAPI.AppServices.ReviewSerieses
 {   /// <summary>
-    /// Interface providing contracts fos <see cref="ReviewSeries"/> related operations.
+    /// Interface providing contracts for <see cref="ReviewSeries"/> related operations.
     /// </summary>
     public interface IReviewSeriesService
     {

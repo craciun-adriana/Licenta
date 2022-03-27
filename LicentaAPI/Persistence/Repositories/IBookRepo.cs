@@ -12,7 +12,7 @@ namespace LicentaAPI.Persistence.Repositories
         /// Retrieves books that have the given title.
         /// </summary>
         /// <param name="title">The title of the book that the user is searching for.</param>
-        /// <returns></returns>
+        /// <returns>A list of books that contain the given string in title.</returns>
         public IEnumerable<Book> FindBookByTitle(string title);
     }
 }

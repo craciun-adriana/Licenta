@@ -11,7 +11,7 @@ namespace LicentaAPI.AppServices.ReviewFilms
         /// <summary>
         /// Create a reviewFilm.
         /// </summary>
-        /// <param name="reviewFilmCreate"></param>
+        /// <param name="reviewFilmCreate">Details about a reviewFilm.</param>
         /// <returns>The created ReviewFilm or null if it was not created.</returns>
         public ReviewFilm CreateReviewFilm(ReviewFilmCreate reviewFilmCreate);
     }

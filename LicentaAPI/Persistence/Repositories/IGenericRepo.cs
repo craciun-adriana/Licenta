@@ -14,14 +14,14 @@ namespace LicentaAPI.Persistence.Repositories
         /// </summary>
         /// <param name="id">The id of the entity to be retrieved.</param>
         /// <returns>The found entity or null if it was not found.</returns>
-        /// <exception cref="System.ArgumentNullException">Trown when id is null or empty.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when id is null or empty.</exception>
         T GetById(string id);
 
         /// <summary>
         /// Adds an entity to the database.
         /// </summary>
         /// <param name="entity">The entity that will be added to the database.</param>
-        /// <exception cref="System.ArgumentNullException">Trown when entity is null.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when entity is null.</exception>
         void Add(T entity);
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace LicentaAPI.Persistence.Repositories
         /// Deletes an entity from the database.
         /// </summary>
         /// <param name="entity">The entity that will be deleted from the database.</param>
-        /// <exception cref="System.ArgumentNullException">Trown when entity is null.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when entity is null.</exception>
         void Delete(T entity);
 
         /// <summary>

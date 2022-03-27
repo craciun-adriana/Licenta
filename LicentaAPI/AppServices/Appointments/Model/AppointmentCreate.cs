@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LicentaAPI.AppServices.Appointments.Model
 {
+    /// <summary>
+    /// Class contains information needed to create a <see cref="Appointment"/>
+    /// </summary>
     public class AppointmentCreate
     {
         public DateTime TimeAppointment { get; set; }

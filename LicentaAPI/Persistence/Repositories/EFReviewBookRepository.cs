@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace LicentaAPI.Persistence.Repositories
 {
+    /// <summary>
+    /// Concrete implementation of <see cref="ReviewBook"/> using Entity Framework.
+    /// </summary>
     public class EFReviewBookRepository : IReviewBookRepo
     {
         private AppDbContext _dbContext;
@@ -14,7 +17,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Add(ReviewBook entity)
         {
             if (entity == null)
@@ -26,7 +29,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Delete(ReviewBook entity)
         {
             if (entity == null)
@@ -38,7 +41,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public IEnumerable<ReviewBook> FindReviewBookByIdBook(string idBook)
         {
             if (string.IsNullOrEmpty(idBook))
@@ -49,7 +52,7 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.ReviewBooks.Where(reviewBook => reviewBook.IdBook.Equals(idBook));
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public ReviewBook GetById(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -60,13 +63,13 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.ReviewBooks.FirstOrDefault(reviewBook => reviewBook.ID.Equals(id));
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public IEnumerable<ReviewBook> Query(PaginationQuery paginationQuery)
         {
             throw new NotImplementedException();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Update(ReviewBook entity)
         {
             if (entity == null)

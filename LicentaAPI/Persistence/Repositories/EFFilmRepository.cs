@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LicentaAPI.Persistence.Repositories
 {
+    /// <summary>
+    /// Concrete implementation of <see cref="Film"/> using Entity Framework.
+    /// </summary>
     public class EFFilmRepository : IFilmRepo
     {
         private AppDbContext _dbContext;
@@ -15,7 +17,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Add(Film entity)
         {
             if (entity == null)
@@ -26,7 +28,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Delete(Film entity)
         {
             if (entity == null)
@@ -37,7 +39,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public IEnumerable<Film> FindFilmByTitle(string title)
         {
             if (string.IsNullOrEmpty(title))
@@ -48,7 +50,7 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.Films.Where(film => film.Title.Contains(title)).ToList();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public Film GetById(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -58,13 +60,13 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.Films.FirstOrDefault(film => film.ID.Equals(id));
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public IEnumerable<Film> Query(PaginationQuery paginationQuery)
         {
             throw new NotImplementedException();
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public void Update(Film entity)
         {
             if (entity == null)

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace LicentaAPI.Persistence.Models
 {
     /// <summary>
-    /// This class holds information about which users are in a group and if they are admins.
+    /// This class holds information about which users are in a group and if they are admin.
     /// </summary>
     public class GroupMember
     {

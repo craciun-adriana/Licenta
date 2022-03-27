@@ -20,7 +20,7 @@ namespace LicentaAPI.AppServices.Friendships
             _mapper = mapper;
         }
 
-        ///<inheritdoc/>
+        /// <inheritdoc/>
         public Friendship CreateFriendship(FriendshipCreate friendshipCreate)
         {
             var friendship = _mapper.Map<FriendshipCreate, Friendship>(friendshipCreate);

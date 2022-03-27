@@ -2,6 +2,9 @@
 
 namespace LicentaAPI.AppServices.ReviewSerieses.Model
 {
+    /// <summary>
+    /// Contains information needed to create a <see cref="ReviewSeries"/>
+    /// </summary>
     public class ReviewSeriesCreate
     {
         public string IdUser { get; set; }

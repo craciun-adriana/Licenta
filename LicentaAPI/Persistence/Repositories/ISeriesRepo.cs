@@ -12,7 +12,7 @@ namespace LicentaAPI.Persistence.Repositories
     public interface ISeriesRepo : IGenericRepo<Series>
     {
         /// <summary>
-        /// Retrieves serieses that have the given title.
+        /// Retrieves series that have the given title.
         /// </summary>
         /// <param name="title">The title of the series that the user is searching for.</param>
         /// <returns></returns>
