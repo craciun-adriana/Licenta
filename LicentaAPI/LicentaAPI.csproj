@@ -4,6 +4,10 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\adric\Desktop\FSEGA\Licenta\App\LicentaAPI\LicentaAPI.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
@@ -16,10 +20,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.3.0" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.18" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

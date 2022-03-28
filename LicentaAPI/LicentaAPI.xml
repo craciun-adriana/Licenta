@@ -1,0 +1,878 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LicentaAPI</name>
+    </assembly>
+    <members>
+        <member name="T:LicentaAPI.AppServices.Appointments.AppointmentService">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.AppServices.Appointments.IAppointmentService"/>.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Appointments.AppointmentService.CreateAppointment(LicentaAPI.AppServices.Appointments.Model.AppointmentCreate)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Appointments.IAppointmentService">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Appointment"/> related operations.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Appointments.IAppointmentService.CreateAppointment(LicentaAPI.AppServices.Appointments.Model.AppointmentCreate)">
+            <summary>
+            Create an appointment.
+            </summary>
+            <param name="appointmentCreate"></param>
+            <returns> The created appointment or null if it was not created.</returns>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Appointments.Model.AppointmentCreate">
+            <summary>
+            Class contains information needed to create a <see cref="!:Appointment"/>
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Books.BookService">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.AppServices.Books.IBookService"/>.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Books.BookService.CreateBook(LicentaAPI.AppServices.Books.Models.BookCreate)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Books.IBookService">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Book"/> related operations.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Books.IBookService.CreateBook(LicentaAPI.AppServices.Books.Models.BookCreate)">
+            <summary>
+            Creates a book.
+            </summary>
+            <param name="bookCreate">Details about a book.</param>
+            <returns>The created book or null if it was not created.</returns>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Books.Models.BookCreate">
+            <summary>
+            Class containing information needed to create a <see cref="T:LicentaAPI.Persistence.Models.Book"/>.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Films.FilmService">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.AppServices.Films.IFilmService"/>.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Films.FilmService.CreateFilm(LicentaAPI.AppServices.Films.Models.FilmCreate)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Films.IFilmService">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Film"/> related operations.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Films.IFilmService.CreateFilm(LicentaAPI.AppServices.Films.Models.FilmCreate)">
+            <summary>
+            Create a film.
+            </summary>
+            <param name="filmCreate">Details about a film.</param>
+            <returns>The created film or null if it was not created.</returns>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Films.Models.FilmCreate">
+            <summary>
+            Class containing information needed to create a <see cref="T:LicentaAPI.Persistence.Models.Film"/>
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Friendships.FriendshipService">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.AppServices.Friendships.IFriendshipService"/>.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Friendships.FriendshipService.CreateFriendship(LicentaAPI.AppServices.Friendships.Model.FriendshipCreate)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Friendships.IFriendshipService">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Friendship"/> related opeartion.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Friendships.IFriendshipService.CreateFriendship(LicentaAPI.AppServices.Friendships.Model.FriendshipCreate)">
+            <summary>
+            Create a friendship.
+            </summary>
+            <param name="friendshipCreate">Details about a friendship.</param>
+            <returns>The created friendship or null if it was not created.</returns>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Friendships.Model.FriendshipCreate">
+            <summary>
+            Information needed to create a <see cref="!:Friendship"/>.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.AppServices.GroupMembers.GroupMemberService">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.AppServices.GroupMembers.IGroupMemberService"/>.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.GroupMembers.GroupMemberService.CreateGroupMember(LicentaAPI.AppServices.GroupMembers.Model.GroupMemberCreate)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.AppServices.GroupMembers.IGroupMemberService">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.GroupMember"/> related operations.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.GroupMembers.IGroupMemberService.CreateGroupMember(LicentaAPI.AppServices.GroupMembers.Model.GroupMemberCreate)">
+            <summary>
+            Create a GroupMember.
+            </summary>
+            <param name="groupMemberCreate">Details about a GroupMemeber.</param>
+            <returns>The created GroupMember or null if it was not created.</returns>
+        </member>
+        <member name="T:LicentaAPI.AppServices.GroupMembers.Model.GroupMemberCreate">
+             <summary>
+            Class containing information about a <see cref="!:GroupMember"/>
+             </summary>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Groups.GroupService">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.AppServices.Groups.IGroupService"/>.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Groups.GroupService.CreateGroup(LicentaAPI.AppServices.Groups.Model.GroupCreate)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Groups.IGroupService">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Group"/> related operations.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Groups.IGroupService.CreateGroup(LicentaAPI.AppServices.Groups.Model.GroupCreate)">
+            <summary>
+            Create a group.
+            </summary>
+            <param name="groupCreate">Details about a group.</param>
+            <returns>The created group or null if it was not created.</returns>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Groups.Model.GroupCreate">
+            <summary>
+            Class containing information needed to create a <see cref="!:Group"/>.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Messages.IMessageService">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Message"/> related operations.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Messages.IMessageService.CreateMessage(LicentaAPI.AppServices.Messages.Model.MessageCreate)">
+            <summary>
+            Create a group.
+            </summary>
+            <param name="messageCreate">Contains details about a message.</param>
+            <returns>The created message or null if it was not created.</returns>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Messages.MessageService">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.AppServices.Messages.IMessageService"/>.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Messages.MessageService.CreateMessage(LicentaAPI.AppServices.Messages.Model.MessageCreate)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Messages.Model.MessageCreate">
+            <summary>
+            Class contains details about a <see cref="!:Message"/>
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.AppServices.ReviewBooks.IReviewBookService">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.ReviewBook"/> related operations.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.ReviewBooks.IReviewBookService.CreateReviewBook(LicentaAPI.AppServices.ReviewBooks.Model.ReviewBookCreate)">
+            <summary>
+            Create a ReviewBook.
+            </summary>
+            <param name="reviewBookCreate">Details about a reviewBook.</param>
+            <returns>The created ReviewBook or null if it was not created.</returns>
+        </member>
+        <member name="T:LicentaAPI.AppServices.ReviewBooks.Model.ReviewBookCreate">
+            <summary>
+            Class containing information needed to create a <see cref="T:LicentaAPI.Persistence.Models.ReviewBook"/>.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.AppServices.ReviewBooks.ReviewBookService">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.AppServices.ReviewBooks.IReviewBookService"/>.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.ReviewBooks.ReviewBookService.CreateReviewBook(LicentaAPI.AppServices.ReviewBooks.Model.ReviewBookCreate)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.AppServices.ReviewFilms.IReviewFilmService">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.ReviewFilm"/> related operations.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.ReviewFilms.IReviewFilmService.CreateReviewFilm(LicentaAPI.AppServices.ReviewFilms.Model.ReviewFilmCreate)">
+            <summary>
+            Create a reviewFilm.
+            </summary>
+            <param name="reviewFilmCreate">Details about a reviewFilm.</param>
+            <returns>The created ReviewFilm or null if it was not created.</returns>
+        </member>
+        <member name="T:LicentaAPI.AppServices.ReviewFilms.Model.ReviewFilmCreate">
+             <summary>
+            Class containing information needed to create a <see cref="T:LicentaAPI.Persistence.Models.ReviewFilm"/>
+             </summary>
+        </member>
+        <member name="T:LicentaAPI.AppServices.ReviewFilms.ReviewFilmService">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.AppServices.ReviewFilms.IReviewFilmService"/>
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.ReviewFilms.ReviewFilmService.CreateReviewFilm(LicentaAPI.AppServices.ReviewFilms.Model.ReviewFilmCreate)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.AppServices.ReviewSerieses.IReviewSeriesService">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.ReviewSeries"/> related operations.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.ReviewSerieses.IReviewSeriesService.CreateReviewSeries(LicentaAPI.AppServices.ReviewSerieses.Model.ReviewSeriesCreate)">
+            <summary>
+            Create a ReviewSeries.
+            </summary>
+            <param name="reviewSeriesCreate">Details about a ReviewSeries.</param>
+            <returns>The created ReviewSeries or null if it was not created.</returns>
+        </member>
+        <member name="T:LicentaAPI.AppServices.ReviewSerieses.Model.ReviewSeriesCreate">
+            <summary>
+            Contains information needed to create a <see cref="T:LicentaAPI.Persistence.Models.ReviewSeries"/>
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.AppServices.ReviewSerieses.ReviewSeriesService">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.AppServices.ReviewSerieses.IReviewSeriesService"/>.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.ReviewSerieses.ReviewSeriesService.CreateReviewSeries(LicentaAPI.AppServices.ReviewSerieses.Model.ReviewSeriesCreate)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Serieses.ISeriesService">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Series"/> related operation.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Serieses.ISeriesService.CreateSeries(LicentaAPI.AppServices.Serieses.Models.SeriesCreate)">
+            <summary>
+            Create a series.
+            </summary>
+            <param name="seriesCreate">Details about a series.</param>
+            <returns>The created series or null if it was not created.</returns>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Serieses.Models.SeriesCreate">
+            <summary>
+            Class containing information needed to create a <see cref="T:LicentaAPI.Persistence.Models.Series"/>
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Serieses.SeriesService">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.AppServices.Serieses.ISeriesService"/>
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Serieses.SeriesService.CreateSeries(LicentaAPI.AppServices.Serieses.Models.SeriesCreate)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.Controllers.Models.RegisterRequest">
+            <summary>
+            All information that is needed to register a user.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.Infrastructure.Mapper.IMappingCoordinator">
+            <summary>
+            Interface providing contracts for mapping.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Infrastructure.Mapper.IMappingCoordinator.Map``2(``0)">
+            <summary>
+            Maps an object to another object.
+            </summary>
+            <typeparam name="TSource">The source type.</typeparam>
+            <typeparam name="TDest">The destination type.</typeparam>
+            <param name="source">The object to map.</param>
+            <returns>The mapped object.</returns>
+        </member>
+        <member name="M:LicentaAPI.Infrastructure.Mapper.IMappingCoordinator.Map``2(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Maps an enumeration of objects to another enumeration of objects.
+            </summary>
+            <typeparam name="TSource">The source type.</typeparam>
+            <typeparam name="TDest">The destination type.</typeparam>
+            <param name="source">The enumeration to map.</param>
+            <returns>The mapped enumeration.</returns>
+        </member>
+        <member name="M:LicentaAPI.Infrastructure.Mapper.IMappingCoordinator.Map``2(``0,``1)">
+            <summary>
+            Maps an object to another object.
+            </summary>
+            <typeparam name="TSource">The source type.</typeparam>
+            <typeparam name="TDest">The destination type.</typeparam>
+            <param name="source">The object to map.</param>
+            <param name="dest">The mapping destination object.</param>
+            <returns>The mapped object.</returns>
+        </member>
+        <member name="T:LicentaAPI.Infrastructure.Mapper.MappingCoordinator">
+            <summary>
+            Specific implementation of <see cref="T:LicentaAPI.Infrastructure.Mapper.IMappingCoordinator"/>.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Infrastructure.Mapper.MappingCoordinator.Map``2(``0)">
+            <inheritdoc />
+        </member>
+        <member name="M:LicentaAPI.Infrastructure.Mapper.MappingCoordinator.Map``2(System.Collections.Generic.IEnumerable{``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:LicentaAPI.Infrastructure.Mapper.MappingCoordinator.Map``2(``0,``1)">
+            <inheritdoc />
+        </member>
+        <member name="T:LicentaAPI.Persistence.AppDbContext">
+            <summary>
+            Class used to connect database to API with <see cref="T:LicentaAPI.Persistence.Models.AppUser"/> as the Identity class.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Models.Appointment">
+            <summary>
+            This class holds details about an appointment created by a <see cref="T:LicentaAPI.Persistence.Models.Group"/>.
+            </summary>
+        </member>
+        <member name="P:LicentaAPI.Persistence.Models.Appointment.TimeAppointment">
+            <summary>
+            This attribute represents the time and date when the appointment is set.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Models.AppUser">
+            <summary>
+            This class holds information about an user of the app.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Models.Book">
+             <summary>
+            This class holds information about a book.
+             </summary>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Models.Film">
+            <summary>
+            This class holds information about a film.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Models.Friendship">
+            <summary>
+            This class holds information about the friendship of 2 <see cref="T:LicentaAPI.Persistence.Models.AppUser"/>.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Models.Group">
+            <summary>
+            This class holds information about a group.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Models.GroupMember">
+            <summary>
+            This class holds information about which users are in a group and if they are admin.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Models.Message">
+             <summary>
+             This class holds the information about the messages sent in <see cref="T:LicentaAPI.Persistence.Models.Group"/>s or to a certain <see cref="T:LicentaAPI.Persistence.Models.AppUser"/>.
+            
+             When sending messages to a <see cref="T:LicentaAPI.Persistence.Models.Group"/>, <see cref="P:LicentaAPI.Persistence.Models.Message.IdReceiver"/> is null and <see cref="P:LicentaAPI.Persistence.Models.Message.IdGroup"/> holds the group's Id.
+             And when sending messages to an <see cref="T:LicentaAPI.Persistence.Models.AppUser"/>, <see cref="P:LicentaAPI.Persistence.Models.Message.IdGroup"/> is null and <see cref="P:LicentaAPI.Persistence.Models.Message.IdReceiver"/> holds the user's Id.
+             </summary>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Models.ReviewBook">
+            <summary>
+            This class holds information about a <see cref="T:LicentaAPI.Persistence.Models.Book"/> review and/or grade given by an <see cref="T:LicentaAPI.Persistence.Models.AppUser"/>.
+            </summary>
+        </member>
+        <member name="P:LicentaAPI.Persistence.Models.ReviewFilm.ID">
+            <summary>
+            This class holds information about a <see cref="T:LicentaAPI.Persistence.Models.Film"/> review and/or grade given by an <see cref="T:LicentaAPI.Persistence.Models.AppUser"/>.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Models.ReviewSeries">
+            <summary>
+            This class holds information about a <see cref="T:LicentaAPI.Persistence.Models.Series"/> review and/or grade given by an <see cref="T:LicentaAPI.Persistence.Models.AppUser"/>.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Models.Series">
+            <summary>
+            This class hold information about a series.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.EFAppointmentRepository">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.Persistence.Models.Appointment"/> using Entity Framework.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.Add(LicentaAPI.Persistence.Models.Appointment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.Delete(LicentaAPI.Persistence.Models.Appointment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.FindAppointmentByDate(System.DateTime)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.GetById(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.Update(LicentaAPI.Persistence.Models.Appointment)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.EFBookRepository">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.Persistence.Models.Book"/> using Entity Framework.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFBookRepository.Add(LicentaAPI.Persistence.Models.Book)">
+            <inheritdoc />
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFBookRepository.Delete(LicentaAPI.Persistence.Models.Book)">
+            <inheritdoc />
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFBookRepository.FindBookByTitle(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFBookRepository.GetById(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFBookRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+            <inheritdoc />
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFBookRepository.Update(LicentaAPI.Persistence.Models.Book)">
+            <inheritdoc />
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.EFFilmRepository">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.Persistence.Models.Film"/> using Entity Framework.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFilmRepository.Add(LicentaAPI.Persistence.Models.Film)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFilmRepository.Delete(LicentaAPI.Persistence.Models.Film)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFilmRepository.FindFilmByTitle(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFilmRepository.GetById(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFilmRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFilmRepository.Update(LicentaAPI.Persistence.Models.Film)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.EFFriendshipRepository">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.Persistence.Models.Friendship"/> using Entity Framework.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFriendshipRepository.Add(LicentaAPI.Persistence.Models.Friendship)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFriendshipRepository.Delete(LicentaAPI.Persistence.Models.Friendship)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFriendshipRepository.FindFriendshipByIdReceiver(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFriendshipRepository.GetById(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFriendshipRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFriendshipRepository.Update(LicentaAPI.Persistence.Models.Friendship)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.EFGroupMemberRepository">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.Persistence.Models.GroupMember"/> using Entity Framework.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupMemberRepository.Add(LicentaAPI.Persistence.Models.GroupMember)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupMemberRepository.Delete(LicentaAPI.Persistence.Models.GroupMember)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupMemberRepository.FindGroupMembersByIdGroup(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupMemberRepository.GetById(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupMemberRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupMemberRepository.Update(LicentaAPI.Persistence.Models.GroupMember)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.EFGroupRepository">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.Persistence.Models.Group"/> using Entity Framework.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.Add(LicentaAPI.Persistence.Models.Group)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.Delete(LicentaAPI.Persistence.Models.Group)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.FindGroupByName(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.GetById(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.Update(LicentaAPI.Persistence.Models.Group)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.EFMessageRepository">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.Persistence.Models.Message"/> using Entity Framework.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFMessageRepository.Add(LicentaAPI.Persistence.Models.Message)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFMessageRepository.Delete(LicentaAPI.Persistence.Models.Message)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFMessageRepository.FindMessagesBetweenUsers(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFMessageRepository.FindMessagesInGroup(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFMessageRepository.GetById(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFMessageRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFMessageRepository.Update(LicentaAPI.Persistence.Models.Message)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.EFReviewBookRepository">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.Persistence.Models.ReviewBook"/> using Entity Framework.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewBookRepository.Add(LicentaAPI.Persistence.Models.ReviewBook)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewBookRepository.Delete(LicentaAPI.Persistence.Models.ReviewBook)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewBookRepository.FindReviewBookByIdBook(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewBookRepository.GetById(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewBookRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewBookRepository.Update(LicentaAPI.Persistence.Models.ReviewBook)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.EFReviewFilmRepository">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.Persistence.Models.ReviewFilm"/> using Entity Framework.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewFilmRepository.Add(LicentaAPI.Persistence.Models.ReviewFilm)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewFilmRepository.Delete(LicentaAPI.Persistence.Models.ReviewFilm)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewFilmRepository.FindReviewFilmByIdFilm(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewFilmRepository.GetById(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewFilmRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewFilmRepository.Update(LicentaAPI.Persistence.Models.ReviewFilm)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.EFReviewSeriesRepository">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.Persistence.Models.ReviewSeries"/> using Entity Framework.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewSeriesRepository.Add(LicentaAPI.Persistence.Models.ReviewSeries)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewSeriesRepository.Delete(LicentaAPI.Persistence.Models.ReviewSeries)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewSeriesRepository.FindReviewSeriesByIdSeries(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewSeriesRepository.GetById(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewSeriesRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewSeriesRepository.Update(LicentaAPI.Persistence.Models.ReviewSeries)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.EFSeriesRepository">
+            <summary>
+            Concrete implementation of <see cref="T:LicentaAPI.Persistence.Models.Series"/> using Entity Framework.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFSeriesRepository.Add(LicentaAPI.Persistence.Models.Series)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFSeriesRepository.Delete(LicentaAPI.Persistence.Models.Series)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFSeriesRepository.FindSeriesByTitle(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFSeriesRepository.GetById(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFSeriesRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFSeriesRepository.Update(LicentaAPI.Persistence.Models.Series)">
+            <inheritdoc/>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.IAppointmentRepo">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Appointment"/> repository.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IAppointmentRepo.FindAppointmentByDate(System.DateTime)">
+            <summary>
+            Retrieves the appointments that have the given date.
+            </summary>
+            <param name="date">The date of the appointment that the user is searching for.</param>
+            <returns></returns>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.IBookRepo">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Book"/> repository.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IBookRepo.FindBookByTitle(System.String)">
+            <summary>
+            Retrieves books that have the given title.
+            </summary>
+            <param name="title">The title of the book that the user is searching for.</param>
+            <returns>A list of books that contain the given string in title.</returns>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.IFilmRepo">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Film"/> repository.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IFilmRepo.FindFilmByTitle(System.String)">
+            <summary>
+            Retrieves films that have the given title.
+            </summary>
+            <param name="title">The title of the film that the user is searching for.</param>
+            <returns>A list of films that contain the given string in title.</returns>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.IFriendshipRepo">
+            <summary>
+            Providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Friendship"/> repository.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IFriendshipRepo.FindFriendshipByIdReceiver(System.String)">
+            <summary>
+            Retrieves the friendship that have the given idReceiver.
+            </summary>
+            <param name="idReceiver">The IdReceiver of the friendship that user is searching for.</param>
+            <returns>A list of friendships that have the given idReceiver.</returns>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.IGenericRepo`1">
+            <summary>
+            Interface providing generic contracts for a repository.
+            </summary>
+            <typeparam name="T">The type of the entity(class) to be stored in the database.</typeparam>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IGenericRepo`1.GetById(System.String)">
+            <summary>
+            Retrieves a single entity from the database with the given id.
+            If no entity was found, null is returned.
+            </summary>
+            <param name="id">The id of the entity to be retrieved.</param>
+            <returns>The found entity or null if it was not found.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when id is null or empty.</exception>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IGenericRepo`1.Add(`0)">
+            <summary>
+            Adds an entity to the database.
+            </summary>
+            <param name="entity">The entity that will be added to the database.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when entity is null.</exception>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IGenericRepo`1.Update(`0)">
+            <summary>
+            Updates an entity from the database.
+            </summary>
+            <param name="entity">The entity that will be updated from the database.</param>
+            <exception cref="T:System.ArgumentNullException">Trown when entity is null.</exception>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IGenericRepo`1.Delete(`0)">
+            <summary>
+            Deletes an entity from the database.
+            </summary>
+            <param name="entity">The entity that will be deleted from the database.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when entity is null.</exception>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IGenericRepo`1.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+            <summary>
+            Queries entities from the database.
+            </summary>
+            <param name="paginationQuery">The query to be used.</param>
+            <returns>All elements that match the query.</returns>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.IGroupMemberRepo">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.GroupMember"/>.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IGroupMemberRepo.FindGroupMembersByIdGroup(System.String)">
+            <summary>
+            Retrieves the group members that have the given id group.
+            </summary>
+            <param name="idGroup">The id of the group that user is searching for.</param>
+            <returns>A list of group members that have the given idGroup.</returns>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.IGroupRepo">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Group"/> repository.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IGroupRepo.FindGroupByName(System.String)">
+            <summary>
+            Retrieves groups that have the given name.
+            </summary>
+            <param name="name">The name of the group that user is searching for.</param>
+            <returns>All groups that have the given string in name.</returns>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.IMessageRepo">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Message"/> repository.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IMessageRepo.FindMessagesBetweenUsers(System.String,System.String)">
+            <summary>
+            Retrieves messages that have the given idUsers.
+            </summary>
+            <param name="idUser1">The id of the first user.</param>
+            <param name="idUser2">The id of the second user.</param>
+            <returns>All messages sent between 2 users that have the given idUser.</returns>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IMessageRepo.FindMessagesInGroup(System.String)">
+            <summary>
+            Retrieves messages that have the given idGroup.
+            </summary>
+            <param name="idGroup">The id of the group.</param>
+            <returns>All messages sent in the group with given idGroup.</returns>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.IReviewBookRepo">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.ReviewBook"/>
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IReviewBookRepo.FindReviewBookByIdBook(System.String)">
+            <summary>
+            Retrieves the ReviewBook that have the given idBook.
+            </summary>
+            <param name="idBook">The id of the book that user is searching for.</param>
+            <returns>All reviews received by a book with given idBook.</returns>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.IReviewFilmRepo">
+             <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.ReviewFilm"/>
+             </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IReviewFilmRepo.FindReviewFilmByIdFilm(System.String)">
+             <summary>
+            Retrieves the ReviewFilm that have the given idFilm.
+             </summary>
+             <param name="idFilm">The id of the film that user is searching for.</param>
+             <returns>All reviews received by a film with given idFilm.</returns>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.IReviewSeriesRepo">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.ReviewSeries"/>
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IReviewSeriesRepo.FindReviewSeriesByIdSeries(System.String)">
+            <summary>
+            Retrieves the ReviewSeries that have the given idSeries.
+            </summary>
+            <param name="idSeries">The id of the series that user is searching for.</param>
+            <returns>All reviews received by a Series with given idSeries.</returns>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.ISeriesRepo">
+            <summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Series"/> repository.
+            </summary>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.ISeriesRepo.FindSeriesByTitle(System.String)">
+            <summary>
+            Retrieves series that have the given title.
+            </summary>
+            <param name="title">The title of the series that the user is searching for.</param>
+            <returns></returns>
+        </member>
+        <member name="T:LicentaAPI.Persistence.Repositories.PaginationQuery">
+            <summary>
+            Query to be used by repositories.
+            </summary>
+        </member>
+        <member name="P:LicentaAPI.Persistence.Repositories.PaginationQuery.Skip">
+            <summary>
+            The number of entities that are skipped in the result.
+            </summary>
+        </member>
+        <member name="P:LicentaAPI.Persistence.Repositories.PaginationQuery.Take">
+            <summary>
+            The maxim number of entities that can be returned in the result.
+            </summary>
+        </member>
+        <member name="P:LicentaAPI.Persistence.Repositories.PaginationQuery.Filter">
+            <summary>
+            The filter that will be applied.
+            </summary>
+            <example>"Title = \"Eternals\""</example>
+        </member>
+        <member name="P:LicentaAPI.Persistence.Repositories.PaginationQuery.OrderBy">
+            <summary>
+            The property by which entities will be ordered by.
+            </summary>
+        </member>
+        <member name="P:LicentaAPI.Persistence.Repositories.PaginationQuery.OrderByDescending">
+            <summary>
+            If the ordering should be ascending or descending.
+            </summary>
+        </member>
+    </members>
+</doc>
