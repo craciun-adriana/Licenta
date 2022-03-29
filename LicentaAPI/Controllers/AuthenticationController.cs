@@ -34,7 +34,8 @@ namespace LicentaAPI.Controllers
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 DateOfBirth = request.DateOfBirth.Value,
-                Sex = request.Sex
+                Sex = request.Sex,
+                IsAdmin = false
             };
 
             // The password is taken separately to encrypt.

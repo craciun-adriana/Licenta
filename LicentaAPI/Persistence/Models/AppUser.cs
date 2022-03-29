@@ -26,5 +26,7 @@ namespace LicentaAPI.Persistence.Models
         public string Sex { get; set; }
 
         public DateTime LastOnline { get; set; }
+
+        public bool IsAdmin { get; set; } = false;
     }
 }
