@@ -43,11 +43,25 @@ namespace LicentaAPI.Controllers
 
             if (registerResult.Succeeded)
             {
-                // TODO: return created.
-                return Ok();
+                return NoContent();
             }
 
+            // Means that the user entered wrong data.
             return BadRequest(registerResult.Errors);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public async Task<IActionResult> LoginUserAsync(LoginRequest request)
+        {
+            var loginResult = await _signInManager.PasswordSignInAsync(request.UserName, request.Password, request.RememberMe, false);
+
+            if (loginResult.Succeeded)
+            {
+                return NoContent();
+            }
+
+            return NotFound(new { Error = "No account found with given details." });
         }
     }
 }

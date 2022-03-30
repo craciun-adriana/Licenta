@@ -279,6 +279,11 @@
         <member name="M:LicentaAPI.AppServices.Serieses.SeriesService.CreateSeries(LicentaAPI.AppServices.Serieses.Models.SeriesCreate)">
             <inheritdoc/>
         </member>
+        <member name="T:LicentaAPI.Controllers.Models.LoginRequest">
+            <summary>
+            All information needed to login a user.
+            </summary>
+        </member>
         <member name="T:LicentaAPI.Controllers.Models.RegisterRequest">
             <summary>
             All information that is needed to register a user.
