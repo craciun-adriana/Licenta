@@ -4,6 +4,7 @@ using LicentaAPI.Persistence.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Threading.Tasks;
 
 namespace LicentaAPI.Controllers
@@ -25,6 +26,8 @@ namespace LicentaAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
+        [SwaggerResponse(204, "User is new registered.")]
+        [SwaggerResponse(400, "Invalid input.")]
         public async Task<IActionResult> RegisterUserAsync(RegisterRequest request)
         {
             var user = new AppUser
@@ -52,6 +55,8 @@ namespace LicentaAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
+        [SwaggerResponse(204, "User is logged in.")]
+        [SwaggerResponse(404, "No user found with given details.")]
         public async Task<IActionResult> LoginUserAsync(LoginRequest request)
         {
             var loginResult = await _signInManager.PasswordSignInAsync(request.UserName, request.Password, request.RememberMe, false);
@@ -66,6 +71,8 @@ namespace LicentaAPI.Controllers
 
         [Authorize]
         [HttpPost("logout")]
+        [SwaggerResponse(204, "User is logged out.")]
+        [SwaggerResponse(404, "No user is logged id.")]
         public async Task<IActionResult> LogoutUserAsync()
         {
             await _signInManager.SignOutAsync();
