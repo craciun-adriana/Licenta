@@ -63,5 +63,13 @@ namespace LicentaAPI.Controllers
 
             return NotFound(new { Error = "No account found with given details." });
         }
+
+        [Authorize]
+        [HttpPost("logout")]
+        public async Task<IActionResult> LogoutUserAsync()
+        {
+            await _signInManager.SignOutAsync();
+            return NoContent();
+        }
     }
 }
