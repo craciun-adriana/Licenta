@@ -49,9 +49,41 @@
             <param name="bookCreate">Details about a book.</param>
             <returns>The created book or null if it was not created.</returns>
         </member>
+        <member name="M:LicentaAPI.AppServices.Books.IBookService.GetBookById(System.String)">
+            <summary>
+            Returns a book with the given id.
+            </summary>
+            <param name="idBook">The id of the book.</param>
+            <returns>A book with the given id or null if it was not found.</returns>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Books.IBookService.DeleteBook(System.String)">
+            <summary>
+            Deletes a book with the given id.
+            </summary>
+            <param name="idBook">The id of the book to be deleted.</param>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Books.IBookService.FindBookByTitle(System.String)">
+            <summary>
+            Returns books that have the given string in the title.
+            </summary>
+            <param name="title">The title of the book that the user is searching for.</param>
+            <returns>A list of books that contain the given string in title.</returns>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Books.IBookService.UpdateBook(LicentaAPI.AppServices.Books.Models.BookUpdate)">
+            <summary>
+            Updates a book.
+            </summary>
+            <param name="bookUpdate">The book that contains the new details.</param>
+            <returns>The updated book or null if it was not updated and the error.</returns>
+        </member>
         <member name="T:LicentaAPI.AppServices.Books.Models.BookCreate">
             <summary>
             Class containing information needed to create a <see cref="T:LicentaAPI.Persistence.Models.Book"/>.
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Books.Models.BookUpdate">
+            <summary>
+            Class containing information needed to update a <see cref="T:LicentaAPI.Persistence.Models.Book"/>
             </summary>
         </member>
         <member name="T:LicentaAPI.AppServices.Films.FilmService">
@@ -73,6 +105,33 @@
             </summary>
             <param name="filmCreate">Details about a film.</param>
             <returns>The created film or null if it was not created.</returns>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Films.IFilmService.GetFilmById(System.String)">
+            <summary>
+            Returns a film with the given id.
+            </summary>
+            <param name="idFilm">The id of the film.</param>
+            <returns>A film with the given id or null if it was not found.</returns>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Films.IFilmService.DeleteBook(System.String)">
+            <summary>
+            Deletes a film with the given id.
+            </summary>
+            <param name="idFilm">The id of the film to be deleted.</param>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Films.IFilmService.FindFilmByTitle(System.String)">
+            <summary>
+            Returns films that have the given string in the title.
+            </summary>
+            <param name="title">The title of the film that the user is searching for.</param>
+            <returns>A list of films that contain the given string in title.</returns>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Films.IFilmService.UpdateFilm(LicentaAPI.AppServices.Films.Models.FilmUpdate)">
+            <summary>
+            Updates a film.
+            </summary>
+            <param name="filmUpdate">The film that contains the new details.</param>
+            <returns>The updated film or null if it was not updated and the error.</returns>
         </member>
         <member name="T:LicentaAPI.AppServices.Films.Models.FilmCreate">
             <summary>
@@ -266,7 +325,39 @@
             <param name="seriesCreate">Details about a series.</param>
             <returns>The created series or null if it was not created.</returns>
         </member>
+        <member name="M:LicentaAPI.AppServices.Serieses.ISeriesService.GetSeriesById(System.String)">
+            <summary>
+            Returns a series with the given id.
+            </summary>
+            <param name="idSeries">The id of the series.</param>
+            <returns>A series with the given id or null if it was not found.</returns>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Serieses.ISeriesService.DeleteSeries(System.String)">
+            <summary>
+            Deletes a series with the given id.
+            </summary>
+            <param name="idSeries">The id of the series to be deleted.</param>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Serieses.ISeriesService.FindSeriesByTitle(System.String)">
+            <summary>
+            Returns series that have the given string in the title.
+            </summary>
+            <param name="title">The title of the series that the user is searching for.</param>
+            <returns>A list of series that contain the given string in title.</returns>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Serieses.ISeriesService.UpdateSeries(LicentaAPI.AppServices.Serieses.Models.SeriesUpdate)">
+            <summary>
+            Updates a series.
+            </summary>
+            <param name="seriesUpdate">The series that contains the new details.</param>
+            <returns>The updated series or null if it was not updated and the error.</returns>
+        </member>
         <member name="T:LicentaAPI.AppServices.Serieses.Models.SeriesCreate">
+            <summary>
+            Class containing information needed to create a <see cref="T:LicentaAPI.Persistence.Models.Series"/>
+            </summary>
+        </member>
+        <member name="T:LicentaAPI.AppServices.Serieses.Models.SeriesUpdate">
             <summary>
             Class containing information needed to create a <see cref="T:LicentaAPI.Persistence.Models.Series"/>
             </summary>
@@ -277,6 +368,18 @@
             </summary>
         </member>
         <member name="M:LicentaAPI.AppServices.Serieses.SeriesService.CreateSeries(LicentaAPI.AppServices.Serieses.Models.SeriesCreate)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Serieses.SeriesService.DeleteSeries(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Serieses.SeriesService.FindSeriesByTitle(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Serieses.SeriesService.GetSeriesById(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Serieses.SeriesService.UpdateSeries(LicentaAPI.AppServices.Serieses.Models.SeriesUpdate)">
             <inheritdoc/>
         </member>
         <member name="T:LicentaAPI.Controllers.Models.LoginRequest">
