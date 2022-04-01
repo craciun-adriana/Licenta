@@ -24,6 +24,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 namespace LicentaAPI
 {
@@ -150,7 +151,8 @@ namespace LicentaAPI
                 });
             });
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
         }
 
         private static void AddSwagger(IServiceCollection services)

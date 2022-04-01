@@ -38,6 +38,13 @@ namespace LicentaAPI.Controllers
             return CreatedAtRoute("", new { series.ID }, series);
         }
 
+        [Authorize]
+        [HttpGet("get-all-series")]
+        public IActionResult GetAllSeries()
+        {
+            return Ok(_seriesService.GetAllSeries());
+        }
+
         private IActionResult CreateResponse<T>(int statusCode, T content)
         {
             if (statusCode >= 400)

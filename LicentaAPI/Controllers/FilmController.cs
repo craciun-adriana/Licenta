@@ -38,6 +38,13 @@ namespace LicentaAPI.Controllers
             return CreatedAtRoute("", new { film.ID }, film);
         }
 
+        [Authorize]
+        [HttpGet("get-all-films")]
+        public IActionResult GetAllFilms()
+        {
+            return Ok(_filmService.GetAllFilms());
+        }
+
         private IActionResult CreateResponse<T>(int statusCode, T content)
         {
             if (statusCode >= 400)

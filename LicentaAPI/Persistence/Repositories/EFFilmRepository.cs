@@ -51,6 +51,12 @@ namespace LicentaAPI.Persistence.Repositories
         }
 
         /// <inheritdoc/>
+        public IEnumerable<Film> GetAll()
+        {
+            return _dbContext.Films.ToList();
+        }
+
+        /// <inheritdoc/>
         public Film GetById(string id)
         {
             if (string.IsNullOrEmpty(id))

@@ -51,6 +51,12 @@ namespace LicentaAPI.Persistence.Repositories
         }
 
         /// <inheritdoc/>
+        public IEnumerable<Friendship> GetAll()
+        {
+            return _dbContext.Friendships.ToList();
+        }
+
+        /// <inheritdoc/>
         public Friendship GetById(string id)
         {
             if (string.IsNullOrEmpty(id))

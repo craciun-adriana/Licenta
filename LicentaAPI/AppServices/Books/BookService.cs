@@ -77,5 +77,11 @@ namespace LicentaAPI.AppServices.Books
                 UpdatedBook = book
             };
         }
+
+        /// <inheritdoc/>
+        public IEnumerable<Book> GetAllBooks()
+        {
+            return _bookRepo.GetAll();
+        }
     }
 }

@@ -53,6 +53,12 @@ namespace LicentaAPI.Persistence.Repositories
         }
 
         /// <inheritdoc/>
+        public IEnumerable<Group> GetAll()
+        {
+            return _dbContext.Groups.ToList();
+        }
+
+        /// <inheritdoc/>
         public Group GetById(string id)
         {
             if (string.IsNullOrEmpty(id))

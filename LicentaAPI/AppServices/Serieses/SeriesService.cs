@@ -55,6 +55,11 @@ namespace LicentaAPI.AppServices.Serieses
             return _seriesRepo.FindSeriesByTitle(title);
         }
 
+        public IEnumerable<Series> GetAllSeries()
+        {
+            return _seriesRepo.GetAll();
+        }
+
         ///<inheritdoc/>
         public Series GetSeriesById(string idSeries)
         {

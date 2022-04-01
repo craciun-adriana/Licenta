@@ -50,6 +50,12 @@ namespace LicentaAPI.Persistence.Repositories
         }
 
         /// <inheritdoc/>
+        public IEnumerable<Appointment> GetAll()
+        {
+            return _dbContext.Appointments.ToList();
+        }
+
+        /// <inheritdoc/>
         public Appointment GetById(string id)
         {
             if (string.IsNullOrEmpty(id))

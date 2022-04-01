@@ -17,6 +17,12 @@ namespace LicentaAPI.AppServices.Films
         public Film CreateFilm(FilmCreate filmCreate);
 
         /// <summary>
+        /// Gets all films from database.
+        /// </summary>
+        /// <returns>All books from database.</returns>
+        public IEnumerable<Film> GetAllFilms();
+
+        /// <summary>
         /// Returns a film with the given id.
         /// </summary>
         /// <param name="idFilm">The id of the film.</param>

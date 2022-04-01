@@ -52,6 +52,12 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.Books.Where(book => book.Title.Contains(title)).ToList();
         }
 
+        /// <inheritdoc/>
+        public IEnumerable<Book> GetAll()
+        {
+            return _dbContext.Books.ToList();
+        }
+
         /// <inheritdoc />
         public Book GetById(string id)
         {

@@ -28,7 +28,7 @@ namespace LicentaAPI.Persistence.Repositories
         /// Updates an entity from the database.
         /// </summary>
         /// <param name="entity">The entity that will be updated from the database.</param>
-        /// <exception cref="System.ArgumentNullException">Trown when entity is null.</exception>
+        /// <exception cref="System.ArgumentNullException">Thrown when entity is null.</exception>
         void Update(T entity);
 
         /// <summary>
@@ -44,5 +44,11 @@ namespace LicentaAPI.Persistence.Repositories
         /// <param name="paginationQuery">The query to be used.</param>
         /// <returns>All elements that match the query.</returns>
         IEnumerable<T> Query(PaginationQuery paginationQuery);
+
+        /// <summary>
+        /// Gets all entities from database.
+        /// </summary>
+        /// <returns>All entities from database.</returns>
+        IEnumerable<T> GetAll();
     }
 }

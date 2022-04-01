@@ -53,6 +53,12 @@ namespace LicentaAPI.Persistence.Repositories
         }
 
         /// <inheritdoc/>
+        public IEnumerable<ReviewSeries> GetAll()
+        {
+            return _dbContext.ReviewSeries.ToList();
+        }
+
+        /// <inheritdoc/>
         public ReviewSeries GetById(string id)
         {
             if (string.IsNullOrEmpty(id))

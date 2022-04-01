@@ -52,6 +52,11 @@ namespace LicentaAPI.AppServices.Films
             return _filmRepo.FindFilmByTitle(title);
         }
 
+        public IEnumerable<Film> GetAllFilms()
+        {
+            return _filmRepo.GetAll();
+        }
+
         public Film GetFilmById(string idFilm)
         {
             return _filmRepo.GetById(idFilm);

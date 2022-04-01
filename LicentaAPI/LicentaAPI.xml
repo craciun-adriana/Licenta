@@ -37,6 +37,9 @@
         <member name="M:LicentaAPI.AppServices.Books.BookService.CreateBook(LicentaAPI.AppServices.Books.Models.BookCreate)">
             <inheritdoc/>
         </member>
+        <member name="M:LicentaAPI.AppServices.Books.BookService.GetAllBooks">
+            <inheritdoc/>
+        </member>
         <member name="T:LicentaAPI.AppServices.Books.IBookService">
             <summary>
             Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Book"/> related operations.
@@ -48,6 +51,12 @@
             </summary>
             <param name="bookCreate">Details about a book.</param>
             <returns>The created book or null if it was not created.</returns>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Books.IBookService.GetAllBooks">
+            <summary>
+            Gets all books from database.
+            </summary>
+            <returns>All books from database.</returns>
         </member>
         <member name="M:LicentaAPI.AppServices.Books.IBookService.GetBookById(System.String)">
             <summary>
@@ -105,6 +114,12 @@
             </summary>
             <param name="filmCreate">Details about a film.</param>
             <returns>The created film or null if it was not created.</returns>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Films.IFilmService.GetAllFilms">
+            <summary>
+            Gets all films from database.
+            </summary>
+            <returns>All books from database.</returns>
         </member>
         <member name="M:LicentaAPI.AppServices.Films.IFilmService.GetFilmById(System.String)">
             <summary>
@@ -325,6 +340,12 @@
             <param name="seriesCreate">Details about a series.</param>
             <returns>The created series or null if it was not created.</returns>
         </member>
+        <member name="M:LicentaAPI.AppServices.Serieses.ISeriesService.GetAllSeries">
+            <summary>
+            Gets all series from database.
+            </summary>
+            <returns>All series from database.</returns>
+        </member>
         <member name="M:LicentaAPI.AppServices.Serieses.ISeriesService.GetSeriesById(System.String)">
             <summary>
             Returns a series with the given id.
@@ -526,6 +547,9 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.FindAppointmentByDate(System.DateTime)">
             <inheritdoc/>
         </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.GetAll">
+            <inheritdoc/>
+        </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
@@ -549,6 +573,9 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFBookRepository.FindBookByTitle(System.String)">
             <inheritdoc />
         </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFBookRepository.GetAll">
+            <inheritdoc/>
+        </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFBookRepository.GetById(System.String)">
             <inheritdoc />
         </member>
@@ -570,6 +597,9 @@
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFFilmRepository.FindFilmByTitle(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFilmRepository.GetAll">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFFilmRepository.GetById(System.String)">
@@ -595,6 +625,9 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFFriendshipRepository.FindFriendshipByIdReceiver(System.String)">
             <inheritdoc/>
         </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFriendshipRepository.GetAll">
+            <inheritdoc/>
+        </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFFriendshipRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
@@ -618,6 +651,9 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFGroupMemberRepository.FindGroupMembersByIdGroup(System.String)">
             <inheritdoc/>
         </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupMemberRepository.GetAll">
+            <inheritdoc/>
+        </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFGroupMemberRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
@@ -639,6 +675,9 @@
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.FindGroupByName(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.GetAll">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.GetById(System.String)">
@@ -667,6 +706,9 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFMessageRepository.FindMessagesInGroup(System.String)">
             <inheritdoc/>
         </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFMessageRepository.GetAll">
+            <inheritdoc/>
+        </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFMessageRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
@@ -688,6 +730,9 @@
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFReviewBookRepository.FindReviewBookByIdBook(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewBookRepository.GetAll">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFReviewBookRepository.GetById(System.String)">
@@ -713,6 +758,9 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFReviewFilmRepository.FindReviewFilmByIdFilm(System.String)">
             <inheritdoc/>
         </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewFilmRepository.GetAll">
+            <inheritdoc/>
+        </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFReviewFilmRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
@@ -736,6 +784,9 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFReviewSeriesRepository.FindReviewSeriesByIdSeries(System.String)">
             <inheritdoc/>
         </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewSeriesRepository.GetAll">
+            <inheritdoc/>
+        </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFReviewSeriesRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
@@ -757,6 +808,9 @@
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFSeriesRepository.FindSeriesByTitle(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFSeriesRepository.GetAll">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFSeriesRepository.GetById(System.String)">
@@ -843,7 +897,7 @@
             Updates an entity from the database.
             </summary>
             <param name="entity">The entity that will be updated from the database.</param>
-            <exception cref="T:System.ArgumentNullException">Trown when entity is null.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when entity is null.</exception>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.IGenericRepo`1.Delete(`0)">
             <summary>
@@ -858,6 +912,12 @@
             </summary>
             <param name="paginationQuery">The query to be used.</param>
             <returns>All elements that match the query.</returns>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IGenericRepo`1.GetAll">
+            <summary>
+            Gets all entities from database.
+            </summary>
+            <returns>All entities from database.</returns>
         </member>
         <member name="T:LicentaAPI.Persistence.Repositories.IGroupMemberRepo">
             <summary>

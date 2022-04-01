@@ -44,6 +44,13 @@ namespace LicentaAPI.Controllers
             return CreatedAtRoute("", new { book.ID }, book);
         }
 
+        [Authorize]
+        [HttpGet("get-all-books")]
+        public IActionResult GetAllBooks()
+        {
+            return Ok(_bookService.GetAllBooks());
+        }
+
         private IActionResult CreateResponse<T>(int statusCode, T content)
         {
             if (statusCode >= 400)

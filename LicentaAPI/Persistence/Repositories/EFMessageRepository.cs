@@ -71,6 +71,12 @@ namespace LicentaAPI.Persistence.Repositories
         }
 
         /// <inheritdoc/>
+        public IEnumerable<Message> GetAll()
+        {
+            return _dbContext.Messages.ToList();
+        }
+
+        /// <inheritdoc/>
         public Message GetById(string id)
         {
             if (string.IsNullOrEmpty(id))

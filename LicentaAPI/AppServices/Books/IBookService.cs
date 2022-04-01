@@ -17,6 +17,12 @@ namespace LicentaAPI.AppServices.Books
         public Book CreateBook(BookCreate bookCreate);
 
         /// <summary>
+        /// Gets all books from database.
+        /// </summary>
+        /// <returns>All books from database.</returns>
+        public IEnumerable<Book> GetAllBooks();
+
+        /// <summary>
         /// Returns a book with the given id.
         /// </summary>
         /// <param name="idBook">The id of the book.</param>

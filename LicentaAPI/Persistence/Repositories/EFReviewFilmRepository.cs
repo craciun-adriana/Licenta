@@ -53,6 +53,12 @@ namespace LicentaAPI.Persistence.Repositories
         }
 
         /// <inheritdoc/>
+        public IEnumerable<ReviewFilm> GetAll()
+        {
+            return _dbContext.ReviewFilms.ToList();
+        }
+
+        /// <inheritdoc/>
         public ReviewFilm GetById(string id)
         {
             if (string.IsNullOrEmpty(id))

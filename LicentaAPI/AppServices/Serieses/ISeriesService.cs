@@ -17,6 +17,12 @@ namespace LicentaAPI.AppServices.Serieses
         public Series CreateSeries(SeriesCreate seriesCreate);
 
         /// <summary>
+        /// Gets all series from database.
+        /// </summary>
+        /// <returns>All series from database.</returns>
+        public IEnumerable<Series> GetAllSeries();
+
+        /// <summary>
         /// Returns a series with the given id.
         /// </summary>
         /// <param name="idSeries">The id of the series.</param>
