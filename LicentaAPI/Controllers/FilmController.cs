@@ -22,7 +22,7 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("create-film")]
+        [HttpPost("create")]
         [SwaggerResponse(201, "Film was created.")]
         [SwaggerResponse(404, "Film can't be created.")]
         public IActionResult CreateFilm(FilmCreateRequest request)
@@ -39,10 +39,20 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpGet("get-all-films")]
+        [HttpGet("get-all")]
+        [SwaggerResponse(200, "All the films from the database.")]
         public IActionResult GetAllFilms()
         {
             return Ok(_filmService.GetAllFilms());
+        }
+
+        [Authorize]
+        [HttpGet("get/{id}")]
+        [SwaggerResponse(200, "Film with the given id.")]
+        [SwaggerResponse(404, "Film was not found.")]
+        public IActionResult GetFilmById(string id)
+        {
+            return Ok(_filmService.GetFilmById(id));
         }
 
         private IActionResult CreateResponse<T>(int statusCode, T content)

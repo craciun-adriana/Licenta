@@ -22,7 +22,7 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("create-series")]
+        [HttpPost("create")]
         [SwaggerResponse(201, "Series was created.")]
         [SwaggerResponse(404, "Series can't be created.")]
         public IActionResult CreateSeries(SeriesCreateRequest request)
@@ -39,10 +39,20 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpGet("get-all-series")]
+        [HttpGet("get-all")]
+        [SwaggerResponse(200, "All series from the database.")]
         public IActionResult GetAllSeries()
         {
             return Ok(_seriesService.GetAllSeries());
+        }
+
+        [Authorize]
+        [HttpGet("get/{id}")]
+        [SwaggerResponse(200, "Series with the given id.")]
+        [SwaggerResponse(404, "Series was not found.")]
+        public IActionResult GetSeriesById(string id)
+        {
+            return Ok(_seriesService.GetSeriesById(id));
         }
 
         private IActionResult CreateResponse<T>(int statusCode, T content)

@@ -2,14 +2,9 @@
 using LicentaAPI.AppServices.Books.Models;
 using LicentaAPI.Controllers.Models;
 using LicentaAPI.Infrastructure.Mapper;
-using LicentaAPI.Persistence.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LicentaAPI.Controllers
 {
@@ -27,7 +22,7 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("create-book")]
+        [HttpPost("create")]
         [SwaggerResponse(201, "Book was created.")]
         [SwaggerResponse(404, "Book can't be created.")]
         public IActionResult CreateBook(BookCreateRequest request)
@@ -45,10 +40,20 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpGet("get-all-books")]
+        [HttpGet("get-all")]
+        [SwaggerResponse(200, "All the book from the database.")]
         public IActionResult GetAllBooks()
         {
             return Ok(_bookService.GetAllBooks());
+        }
+
+        [Authorize]
+        [HttpGet("get/{id}")]
+        [SwaggerResponse(200, "Book with the given id.")]
+        [SwaggerResponse(404, "Book was not fount .")]
+        public IActionResult GetBookById(string id)
+        {
+            return Ok(_bookService.GetBookById(id));
         }
 
         private IActionResult CreateResponse<T>(int statusCode, T content)
