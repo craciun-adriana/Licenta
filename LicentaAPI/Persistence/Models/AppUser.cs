@@ -28,5 +28,7 @@ namespace LicentaAPI.Persistence.Models
         public DateTime LastOnline { get; set; }
 
         public bool IsAdmin { get; set; } = false;
+
+        public int Rank { get; set; } = 0;
     }
 }
