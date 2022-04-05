@@ -2,20 +2,23 @@
 using LicentaAPI.AppServices.Serieses.Models;
 using LicentaAPI.Controllers.Models;
 using LicentaAPI.Infrastructure.Mapper;
+using LicentaAPI.Persistence.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Threading.Tasks;
 
 namespace LicentaAPI.Controllers
 {
     [ApiController]
     [Route("licenta/series")]
-    public class SeriesController : ControllerBase
+    public class SeriesController : BaseController
     {
         public readonly ISeriesService _seriesService;
         public readonly IMappingCoordinator _mapper;
 
-        public SeriesController(ISeriesService seriesService, IMappingCoordinator mapper)
+        public SeriesController(ISeriesService seriesService, UserManager<AppUser> userManager, IMappingCoordinator mapper) : base(userManager)
         {
             _seriesService = seriesService;
             _mapper = mapper;
@@ -25,8 +28,13 @@ namespace LicentaAPI.Controllers
         [HttpPost("create")]
         [SwaggerResponse(201, "Series was created.")]
         [SwaggerResponse(404, "Series can't be created.")]
-        public IActionResult CreateSeries(SeriesCreateRequest request)
+        public async Task<IActionResult> CreateSeriesAsync(SeriesCreateRequest request)
         {
+            if (!await UserIsAdminAsync())
+            {
+                return Unauthorized();
+            }
+
             var seriesCreate = _mapper.Map<SeriesCreateRequest, SeriesCreate>(request);
             var series = _seriesService.CreateSeries(seriesCreate);
 
@@ -53,20 +61,6 @@ namespace LicentaAPI.Controllers
         public IActionResult GetSeriesById(string id)
         {
             return Ok(_seriesService.GetSeriesById(id));
-        }
-
-        private IActionResult CreateResponse<T>(int statusCode, T content)
-        {
-            if (statusCode >= 400)
-            {
-                var errorResponse = BadRequest(content);
-                errorResponse.StatusCode = statusCode;
-                return errorResponse;
-            }
-
-            var response = Ok(content);
-            response.StatusCode = statusCode;
-            return response;
         }
     }
 }

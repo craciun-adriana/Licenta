@@ -2,20 +2,23 @@
 using LicentaAPI.AppServices.Books.Models;
 using LicentaAPI.Controllers.Models;
 using LicentaAPI.Infrastructure.Mapper;
+using LicentaAPI.Persistence.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Threading.Tasks;
 
 namespace LicentaAPI.Controllers
 {
     [ApiController]
     [Route("licenta/book")]
-    public class BookController : ControllerBase
+    public class BookController : BaseController
     {
         private readonly IBookService _bookService;
         private readonly IMappingCoordinator _mapper;
 
-        public BookController(IBookService bookService, IMappingCoordinator mapper)
+        public BookController(IBookService bookService, UserManager<AppUser> userManager, IMappingCoordinator mapper) : base(userManager)
         {
             _bookService = bookService;
             _mapper = mapper;
@@ -25,10 +28,14 @@ namespace LicentaAPI.Controllers
         [HttpPost("create")]
         [SwaggerResponse(201, "Book was created.")]
         [SwaggerResponse(404, "Book can't be created.")]
-        public IActionResult CreateBook(BookCreateRequest request)
+        public async Task<IActionResult> CreateBook(BookCreateRequest request)
         {
-            var bookCreate = _mapper.Map<BookCreateRequest, BookCreate>(request);
+            if (!await UserIsAdminAsync())
+            {
+                return Unauthorized();
+            }
 
+            var bookCreate = _mapper.Map<BookCreateRequest, BookCreate>(request);
             var book = _bookService.CreateBook(bookCreate);
 
             if (book == null)
@@ -54,20 +61,6 @@ namespace LicentaAPI.Controllers
         public IActionResult GetBookById(string id)
         {
             return Ok(_bookService.GetBookById(id));
-        }
-
-        private IActionResult CreateResponse<T>(int statusCode, T content)
-        {
-            if (statusCode >= 400)
-            {
-                var errorResponse = BadRequest(content);
-                errorResponse.StatusCode = statusCode;
-                return errorResponse;
-            }
-
-            var response = Ok(content);
-            response.StatusCode = statusCode;
-            return response;
         }
     }
 }
