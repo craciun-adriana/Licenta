@@ -39,11 +39,11 @@ namespace LicentaAPI.Persistence.Repositories
         void Delete(T entity);
 
         /// <summary>
-        /// Queries entities from the database.
+        /// Filters entities from the database.
         /// </summary>
         /// <param name="paginationQuery">The query to be used.</param>
         /// <returns>All elements that match the query.</returns>
-        IEnumerable<T> Query(PaginationQuery paginationQuery);
+        IEnumerable<T> Filter(PaginationQuery paginationQuery);
 
         /// <summary>
         /// Gets all entities from database.

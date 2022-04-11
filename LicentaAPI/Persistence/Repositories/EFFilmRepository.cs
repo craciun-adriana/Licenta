@@ -67,7 +67,7 @@ namespace LicentaAPI.Persistence.Repositories
         }
 
         /// <inheritdoc/>
-        public IEnumerable<Film> Query(PaginationQuery paginationQuery)
+        public IEnumerable<Film> Filter(PaginationQuery paginationQuery)
         {
             throw new NotImplementedException();
         }

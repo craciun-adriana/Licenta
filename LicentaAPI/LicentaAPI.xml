@@ -553,7 +553,7 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+        <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.Filter(LicentaAPI.Persistence.Repositories.PaginationQuery)">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.Update(LicentaAPI.Persistence.Models.Appointment)">
@@ -579,7 +579,7 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFBookRepository.GetById(System.String)">
             <inheritdoc />
         </member>
-        <member name="M:LicentaAPI.Persistence.Repositories.EFBookRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+        <member name="M:LicentaAPI.Persistence.Repositories.EFBookRepository.Filter(LicentaAPI.Persistence.Repositories.PaginationQuery)">
             <inheritdoc />
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFBookRepository.Update(LicentaAPI.Persistence.Models.Book)">
@@ -605,7 +605,7 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFFilmRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:LicentaAPI.Persistence.Repositories.EFFilmRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFilmRepository.Filter(LicentaAPI.Persistence.Repositories.PaginationQuery)">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFFilmRepository.Update(LicentaAPI.Persistence.Models.Film)">
@@ -631,7 +631,7 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFFriendshipRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:LicentaAPI.Persistence.Repositories.EFFriendshipRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+        <member name="M:LicentaAPI.Persistence.Repositories.EFFriendshipRepository.Filter(LicentaAPI.Persistence.Repositories.PaginationQuery)">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFFriendshipRepository.Update(LicentaAPI.Persistence.Models.Friendship)">
@@ -657,7 +657,7 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFGroupMemberRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupMemberRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupMemberRepository.Filter(LicentaAPI.Persistence.Repositories.PaginationQuery)">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFGroupMemberRepository.Update(LicentaAPI.Persistence.Models.GroupMember)">
@@ -683,7 +683,7 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.Filter(LicentaAPI.Persistence.Repositories.PaginationQuery)">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.Update(LicentaAPI.Persistence.Models.Group)">
@@ -712,7 +712,7 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFMessageRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:LicentaAPI.Persistence.Repositories.EFMessageRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+        <member name="M:LicentaAPI.Persistence.Repositories.EFMessageRepository.Filter(LicentaAPI.Persistence.Repositories.PaginationQuery)">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFMessageRepository.Update(LicentaAPI.Persistence.Models.Message)">
@@ -738,7 +738,7 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFReviewBookRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewBookRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewBookRepository.Filter(LicentaAPI.Persistence.Repositories.PaginationQuery)">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFReviewBookRepository.Update(LicentaAPI.Persistence.Models.ReviewBook)">
@@ -764,7 +764,7 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFReviewFilmRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewFilmRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewFilmRepository.Filter(LicentaAPI.Persistence.Repositories.PaginationQuery)">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFReviewFilmRepository.Update(LicentaAPI.Persistence.Models.ReviewFilm)">
@@ -790,7 +790,7 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFReviewSeriesRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewSeriesRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+        <member name="M:LicentaAPI.Persistence.Repositories.EFReviewSeriesRepository.Filter(LicentaAPI.Persistence.Repositories.PaginationQuery)">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFReviewSeriesRepository.Update(LicentaAPI.Persistence.Models.ReviewSeries)">
@@ -816,7 +816,7 @@
         <member name="M:LicentaAPI.Persistence.Repositories.EFSeriesRepository.GetById(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:LicentaAPI.Persistence.Repositories.EFSeriesRepository.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+        <member name="M:LicentaAPI.Persistence.Repositories.EFSeriesRepository.Filter(LicentaAPI.Persistence.Repositories.PaginationQuery)">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFSeriesRepository.Update(LicentaAPI.Persistence.Models.Series)">
@@ -906,9 +906,9 @@
             <param name="entity">The entity that will be deleted from the database.</param>
             <exception cref="T:System.ArgumentNullException">Thrown when entity is null.</exception>
         </member>
-        <member name="M:LicentaAPI.Persistence.Repositories.IGenericRepo`1.Query(LicentaAPI.Persistence.Repositories.PaginationQuery)">
+        <member name="M:LicentaAPI.Persistence.Repositories.IGenericRepo`1.Filter(LicentaAPI.Persistence.Repositories.PaginationQuery)">
             <summary>
-            Queries entities from the database.
+            Filters entities from the database.
             </summary>
             <param name="paginationQuery">The query to be used.</param>
             <returns>All elements that match the query.</returns>

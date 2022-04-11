@@ -88,7 +88,7 @@ namespace LicentaAPI.Persistence.Repositories
         }
 
         /// <inheritdoc/>
-        public IEnumerable<Message> Query(PaginationQuery paginationQuery)
+        public IEnumerable<Message> Filter(PaginationQuery paginationQuery)
         {
             throw new NotImplementedException();
         }
