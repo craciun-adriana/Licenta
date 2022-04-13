@@ -10,19 +10,24 @@
 
 <h1>Welcome to ...!</h1>
 
-<div class="content">
-    <span>UserName</span>
-    <input>
-</div>
+<form method="post">
+    <div class="content">
+        <span>UserName</span>
+        <input type="text" asp-for="LoginUserModel.UserName">
+    </div>
 
-<div class="content" id="pass">
-    <span>Password</span>
-    <input>
-</div>
-
-<div id="logincontent">
-    <button id="login">Login</button>
-</div>
+    <div class="content" id="pass">
+        <span>Password</span>
+        <input type="text" asp-for="LoginUserModel.Password">
+    </div>
+    <div class="content">
+        <span>Remember me</span>
+        <input type="checkbox" asp-for="LoginUserModel.RememberMe" />
+    </div>
+    <div id="logincontent">
+        <button id="login" type="submit">Login</button>
+    </div>
+</form>
 
 <div class="content" id="register">
     <a> Don't have an account yet? Register</a>

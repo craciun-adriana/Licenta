@@ -81,19 +81,23 @@ body {
 }
 
 .buttons {
-    padding-right: 1cm;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .menu {
     font-size: 1.1em;
-    float: right;
-    margin-left: 0.5cm;
-    margin-top: 0.4cm;
     font-size: 14px;
     height: 25px;
+    margin: 0 10px
+}
+
+.menu-container{
+    margin-right:40px;
 }
 
 #title {
-    padding-top: 40px;
-    padding-t: 30px;
+    margin-left:40px;
 }
