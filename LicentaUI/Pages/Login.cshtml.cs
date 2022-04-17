@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LicentaUI.HttpClients;
 using LicentaUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,15 +14,32 @@ namespace LicentaUI.Pages
         [BindProperty]
         public LoginUserModel LoginUserModel { get; set; }
 
+        [TempData]
+        public string ErrorMessage { get; set; }
+
+        private LicentaApiHttpClient _licentaApiHttpClient;
+
+        public LoginModel(LicentaApiHttpClient licentaApiHttpClient)
+        {
+            _licentaApiHttpClient = licentaApiHttpClient;
+        }
+
         public void OnGet()
         {
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
             if (ModelState.IsValid)
             {
-                //face login
+                var isLoggedIn = await _licentaApiHttpClient.LoginUserAsync(LoginUserModel);
+                if (!isLoggedIn)
+                {
+                    ErrorMessage = "Could not login.";
+                    return Page();
+                }
+                ErrorMessage = "";
+                return Redirect("/Index");
             }
             return Page();
         }

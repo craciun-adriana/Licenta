@@ -14,11 +14,15 @@
     <div class="content">
         <span>UserName</span>
         <input type="text" asp-for="LoginUserModel.UserName">
+        <br />
+        <span class="text-danger" asp-validation-for="LoginUserModel.UserName"></span>
     </div>
 
     <div class="content" id="pass">
         <span>Password</span>
         <input type="text" asp-for="LoginUserModel.Password">
+        <br />
+        <span class="text-danger" asp-validation-for="LoginUserModel.Password"></span>
     </div>
     <div class="content">
         <span>Remember me</span>
@@ -27,8 +31,9 @@
     <div id="logincontent">
         <button id="login" type="submit">Login</button>
     </div>
+    <span>@Model.ErrorMessage</span>
 </form>
 
 <div class="content" id="register">
-    <a> Don't have an account yet? Register</a>
+    <a asp-page="/Register"> Don't have an account yet? Register</a>
 </div>
