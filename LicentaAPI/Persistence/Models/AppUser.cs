@@ -23,7 +23,7 @@ namespace LicentaAPI.Persistence.Models
         public string Description { get; set; }
 
         [Required]
-        public string Sex { get; set; }
+        public Sex Sex { get; set; }
 
         public DateTime LastOnline { get; set; }
 
