@@ -1,0 +1,62 @@
+﻿@page
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Register.css" />
+}
+
+@model LicentaUI.Pages.RegisterModel
+@{
+}
+
+<h1>Register</h1>
+
+<form method="post">
+    <div class="content">
+        <span>First Name:</span>
+        <input type="text" asp-for="RegisterUserModel.FirstName">
+        <br />
+        <span class="text-danger" asp-validation-for="RegisterUserModel.FirstName"></span>
+    </div>
+    <div class="content">
+        <span>Last Name:</span>
+        <input type="text" asp-for="RegisterUserModel.LastName">
+        <br />
+        <span class="text-danger" asp-validation-for="RegisterUserModel.LastName"></span>
+    </div>
+    <div class="content">
+        <span>Email:</span>
+        <input type="text" asp-for="RegisterUserModel.Email">
+        <br />
+        <span class="text-danger" asp-validation-for="RegisterUserModel.Email"></span>
+    </div>
+    <div class="content">
+        <span>User Name:</span>
+        <input type="text" asp-for="RegisterUserModel.UserName">
+        <br />
+        <span class="text-danger" asp-validation-for="RegisterUserModel.UserName"></span>
+    </div>
+    <div class="content">
+        <span>Password:</span>
+        <input type="text" asp-for="RegisterUserModel.Password">
+        <br />
+        <span class="text-danger" asp-validation-for="RegisterUserModel.Password"></span>
+    </div>
+    <div class="content">
+        <span>Date of birth:</span>
+        <input type="date" asp-for="RegisterUserModel.DateOfBirth">
+        <br />
+        <span class="text-danger" asp-validation-for="RegisterUserModel.DateOfBirth"></span>
+    </div>
+    <div class="content">
+        <span>Sex</span>
+        <select asp-for="RegisterUserModel.Sex" asp-items="Html.GetEnumSelectList<LicentaUI.Models.Sex>()">
+            <option selected="selected" value="">Please select</option>
+        </select>
+        <br />
+        <span class="text-danger" asp-validation-for="RegisterUserModel.FirstName"></span>
+    </div>
+    <div id="registercontent">
+        <button id="register" type="submit">Register</button>
+    </div>
+    <span>@Model.ErrorMessage</span>
+</form>

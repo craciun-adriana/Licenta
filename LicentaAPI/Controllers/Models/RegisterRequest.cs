@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LicentaAPI.Persistence.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace LicentaAPI.Controllers.Models
@@ -29,6 +30,6 @@ namespace LicentaAPI.Controllers.Models
         public DateTime? DateOfBirth { get; set; }
 
         [Required]
-        public string Sex { get; set; }
+        public Sex Sex { get; set; }
     }
 }
