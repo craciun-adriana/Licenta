@@ -3,6 +3,8 @@ using LicentaAPI.AppServices.Appointments.Model;
 using LicentaAPI.AppServices.Books.Models;
 using LicentaAPI.AppServices.Films.Models;
 using LicentaAPI.AppServices.Friendships.Model;
+using LicentaAPI.AppServices.GroupMembers.Model;
+using LicentaAPI.AppServices.Groups.Model;
 using LicentaAPI.AppServices.Serieses.Models;
 using LicentaAPI.Controllers.Models;
 using LicentaAPI.Persistence.Models;
@@ -31,6 +33,7 @@ namespace LicentaAPI.Infrastructure.Mapper
         {
             return new MapperConfiguration(cfg =>
             {
+                cfg.CreateMap<AppointmentCreateRequest, AppointmentCreate>();
                 cfg.CreateMap<AppointmentCreate, Appointment>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
 
@@ -41,9 +44,18 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<FilmCreateRequest, FilmCreate>();
                 cfg.CreateMap<FilmCreate, Film>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
+
                 cfg.CreateMap<FriendshipCreate, Friendship>()
                     .ForMember(dest => dest.Status, opt => opt.Ignore())
                     .ForMember(dest => dest.LastUpdate, opt => opt.Ignore())
+                    .ForMember(dest => dest.ID, opt => opt.Ignore());
+
+                cfg.CreateMap<GroupCreateRequest, GroupCreate>();
+                cfg.CreateMap<GroupCreate, Group>()
+                    .ForMember(dest => dest.ID, opt => opt.Ignore());
+
+                cfg.CreateMap<GroupMemberCreateRequest, GroupMemberCreate>();
+                cfg.CreateMap<GroupMemberCreate, GroupMember>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
 
                 cfg.CreateMap<SeriesCreateRequest, SeriesCreate>();
@@ -52,19 +64,19 @@ namespace LicentaAPI.Infrastructure.Mapper
             });
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public TDest Map<TSource, TDest>(TSource source)
         {
             return Mapper.Map<TSource, TDest>(source);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public IEnumerable<TDest> Map<TSource, TDest>(IEnumerable<TSource> source)
         {
             return Mapper.Map<IEnumerable<TSource>, IEnumerable<TDest>>(source);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public TDest Map<TSource, TDest>(TSource source, TDest dest)
         {
             return Mapper.Map(source, dest);

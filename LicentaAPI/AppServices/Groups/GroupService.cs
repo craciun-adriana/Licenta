@@ -24,6 +24,7 @@ namespace LicentaAPI.AppServices.Groups
         public Group CreateGroup(GroupCreate groupCreate)
         {
             var group = _mapper.Map<GroupCreate, Group>(groupCreate);
+            group.ID = Guid.NewGuid().ToString();
             try
             {
                 _groupRepo.Add(group);

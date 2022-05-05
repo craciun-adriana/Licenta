@@ -53,6 +53,19 @@ namespace LicentaAPI.Persistence.Repositories
         }
 
         /// <inheritdoc/>
+        public IEnumerable<Group> FindGroupsByMemberId(string idMember)
+        {
+            if (idMember == null)
+            {
+                throw new ArgumentNullException(nameof(idMember));
+            }
+            return _dbContext.GroupMembers
+                .Where(groupMember => groupMember.IdUser.Equals(idMember))
+                .Select(groupMember => groupMember.IdGroup)
+                .Select(idGroup => _dbContext.Groups.First(group => group.ID.Equals(idGroup)));
+        }
+
+        /// <inheritdoc/>
         public IEnumerable<Group> GetAll()
         {
             return _dbContext.Groups.ToList();
