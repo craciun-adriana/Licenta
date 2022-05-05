@@ -24,6 +24,7 @@ namespace LicentaAPI.AppServices.GroupMembers
         public GroupMember CreateGroupMember(GroupMemberCreate groupMemberCreate)
         {
             var groupMember = _mapper.Map<GroupMemberCreate, GroupMember>(groupMemberCreate);
+            groupMember.ID = Guid.NewGuid().ToString();
             try
             {
                 _groupMemberRepo.Add(groupMember);
