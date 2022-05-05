@@ -1,5 +1,6 @@
 ﻿using LicentaAPI.AppServices.Appointments.Model;
 using LicentaAPI.Persistence.Models;
+using System.Collections.Generic;
 
 namespace LicentaAPI.AppServices.Appointments
 {
@@ -12,7 +13,13 @@ namespace LicentaAPI.AppServices.Appointments
         /// Create an appointment.
         /// </summary>
         /// <param name="appointmentCreate"></param>
-        /// <returns> The created appointment or null if it was not created.</returns>
+        /// <returns>The created appointment or null if it was not created.</returns>
         public Appointment CreateAppointment(AppointmentCreate appointmentCreate);
+
+        /// <summary>
+        /// </summary>
+        /// <param name="idMember"></param>
+        /// <returns></returns>
+        public IEnumerable<Appointment> GetAllAppointmentsForUser(string idMember);
     }
 }

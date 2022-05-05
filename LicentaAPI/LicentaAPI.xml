@@ -22,7 +22,13 @@
             Create an appointment.
             </summary>
             <param name="appointmentCreate"></param>
-            <returns> The created appointment or null if it was not created.</returns>
+            <returns>The created appointment or null if it was not created.</returns>
+        </member>
+        <member name="M:LicentaAPI.AppServices.Appointments.IAppointmentService.GetAllAppoitmentsForUser(System.String)">
+            <summary>
+            </summary>
+            <param name="idMember"></param>
+            <returns></returns>
         </member>
         <member name="T:LicentaAPI.AppServices.Appointments.Model.AppointmentCreate">
             <summary>
@@ -403,6 +409,11 @@
         <member name="M:LicentaAPI.AppServices.Serieses.SeriesService.UpdateSeries(LicentaAPI.AppServices.Serieses.Models.SeriesUpdate)">
             <inheritdoc/>
         </member>
+        <member name="P:LicentaAPI.Controllers.Models.AppointmentCreateRequest.TimeAppointment">
+            <summary>
+            This attribute represents the time and date when the appointment is set.
+            </summary>
+        </member>
         <member name="T:LicentaAPI.Controllers.Models.LoginRequest">
             <summary>
             All information needed to login a user.
@@ -452,13 +463,13 @@
             </summary>
         </member>
         <member name="M:LicentaAPI.Infrastructure.Mapper.MappingCoordinator.Map``2(``0)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Infrastructure.Mapper.MappingCoordinator.Map``2(System.Collections.Generic.IEnumerable{``0})">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Infrastructure.Mapper.MappingCoordinator.Map``2(``0,``1)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="T:LicentaAPI.Persistence.AppDbContext">
             <summary>
@@ -545,6 +556,9 @@
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.FindAppointmentByDate(System.DateTime)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.FindAppointmentByGroupId(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFAppointmentRepository.GetAll">
@@ -675,6 +689,9 @@
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.FindGroupByName(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.FindGroupsByMemberId(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:LicentaAPI.Persistence.Repositories.EFGroupRepository.GetAll">
@@ -834,6 +851,13 @@
             <param name="date">The date of the appointment that the user is searching for.</param>
             <returns></returns>
         </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IAppointmentRepo.FindAppointmentByGroupId(System.String)">
+            <summary>
+            Retrieves all appointments that a certain group have.
+            </summary>
+            <param name="idGroup">The group id we are locking for appointments.</param>
+            <returns>All appointments that given group have.</returns>
+        </member>
         <member name="T:LicentaAPI.Persistence.Repositories.IBookRepo">
             <summary>
             Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Book"/> repository.
@@ -942,6 +966,13 @@
             </summary>
             <param name="name">The name of the group that user is searching for.</param>
             <returns>All groups that have the given string in name.</returns>
+        </member>
+        <member name="M:LicentaAPI.Persistence.Repositories.IGroupRepo.FindGroupsByMemberId(System.String)">
+            <summary>
+            Retrieves groups that have the given idMember.
+            </summary>
+            <param name="idMember"></param>
+            <returns>All groups in which a user is a member.</returns>
         </member>
         <member name="T:LicentaAPI.Persistence.Repositories.IMessageRepo">
             <summary>
