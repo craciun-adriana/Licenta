@@ -15,5 +15,12 @@ namespace LicentaAPI.Persistence.Repositories
         /// <param name="date">The date of the appointment that the user is searching for.</param>
         /// <returns></returns>
         public IEnumerable<Appointment> FindAppointmentByDate(DateTime date);
+
+        /// <summary>
+        /// Retrieves all appointments that a certain group have.
+        /// </summary>
+        /// <param name="idGroup">The group id we are locking for appointments.</param>
+        /// <returns>All appointments that given group have.</returns>
+        public IEnumerable<Appointment> FindAppointmentByGroupId(string idGroup);
     }
 }

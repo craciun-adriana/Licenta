@@ -50,6 +50,16 @@ namespace LicentaAPI.Persistence.Repositories
         }
 
         /// <inheritdoc/>
+        public IEnumerable<Appointment> FindAppointmentByGroupId(string idGroup)
+        {
+            if (idGroup == null)
+            {
+                throw new ArgumentNullException(nameof(idGroup));
+            }
+            return _dbContext.Appointments.Where(appointment => appointment.IdGroup.Equals(idGroup));
+        }
+
+        /// <inheritdoc/>
         public IEnumerable<Appointment> GetAll()
         {
             return _dbContext.Appointments.ToList();
