@@ -46,7 +46,7 @@ namespace LicentaAPI.Controllers
             return CreatedAtRoute("", new { series.ID }, series);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet("get-all")]
         [SwaggerResponse(200, "All series from the database.")]
         public IActionResult GetAllSeries()
@@ -60,7 +60,12 @@ namespace LicentaAPI.Controllers
         [SwaggerResponse(404, "Series was not found.")]
         public IActionResult GetSeriesById(string id)
         {
-            return Ok(_seriesService.GetSeriesById(id));
+            var series = _seriesService.GetSeriesById(id);
+            if (series != null)
+            {
+                return Ok(series);
+            }
+            return NotFound();
         }
     }
 }

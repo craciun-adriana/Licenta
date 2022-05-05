@@ -28,7 +28,7 @@ namespace LicentaAPI.Controllers
         [HttpPost("create")]
         [SwaggerResponse(201, "Book was created.")]
         [SwaggerResponse(404, "Book can't be created.")]
-        public async Task<IActionResult> CreateBook(BookCreateRequest request)
+        public async Task<IActionResult> CreateBookAsync(BookCreateRequest request)
         {
             if (!await UserIsAdminAsync())
             {
@@ -46,7 +46,7 @@ namespace LicentaAPI.Controllers
             return CreatedAtRoute("", new { book.ID }, book);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet("get-all")]
         [SwaggerResponse(200, "All the book from the database.")]
         public IActionResult GetAllBooks()
@@ -57,10 +57,15 @@ namespace LicentaAPI.Controllers
         [Authorize]
         [HttpGet("get/{id}")]
         [SwaggerResponse(200, "Book with the given id.")]
-        [SwaggerResponse(404, "Book was not fount .")]
+        [SwaggerResponse(404, "Book was not found.")]
         public IActionResult GetBookById(string id)
         {
-            return Ok(_bookService.GetBookById(id));
+            var book = _bookService.GetBookById(id);
+            if(book!=null)
+            {
+                return Ok(book);
+            }
+            return NotFound();
         }
     }
 }

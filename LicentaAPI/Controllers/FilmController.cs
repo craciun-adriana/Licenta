@@ -28,7 +28,7 @@ namespace LicentaAPI.Controllers
         [HttpPost("create")]
         [SwaggerResponse(201, "Film was created.")]
         [SwaggerResponse(404, "Film can't be created.")]
-        public async Task<IActionResult> CreateFilm(FilmCreateRequest request)
+        public async Task<IActionResult> CreateFilmAsync(FilmCreateRequest request)
         {
             if (!await UserIsAdminAsync())
             {
@@ -46,7 +46,7 @@ namespace LicentaAPI.Controllers
             return CreatedAtRoute("", new { film.ID }, film);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet("get-all")]
         [SwaggerResponse(200, "All the films from the database.")]
         public IActionResult GetAllFilms()
@@ -60,7 +60,12 @@ namespace LicentaAPI.Controllers
         [SwaggerResponse(404, "Film was not found.")]
         public IActionResult GetFilmById(string id)
         {
-            return Ok(_filmService.GetFilmById(id));
+            var film = _filmService.GetFilmById(id);
+            if (film != null)
+            {
+                return Ok(film);
+            }
+            return NotFound();
         }
     }
 }
