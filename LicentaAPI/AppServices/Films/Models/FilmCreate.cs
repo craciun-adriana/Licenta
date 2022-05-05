@@ -21,5 +21,9 @@ namespace LicentaAPI.AppServices.Films.Models
         public string SequelID { get; set; }
 
         public Genre Genre { get; set; }
+
+        public Rating Rating { get; set; }
+
+        public int Length { get; set; }
     }
 }

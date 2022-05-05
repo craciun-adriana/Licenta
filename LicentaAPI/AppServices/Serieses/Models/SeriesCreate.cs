@@ -21,5 +21,9 @@ namespace LicentaAPI.AppServices.Serieses.Models
         public string SequelID { get; set; }
 
         public Genre Genre { get; set; }
+
+        public Rating Rating { get; set; }
+
+        public int NrEps { get; set; }
     }
 }
