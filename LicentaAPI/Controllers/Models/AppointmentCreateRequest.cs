@@ -8,6 +8,8 @@ namespace LicentaAPI.Controllers.Models
 {
     public class AppointmentCreateRequest
     {
+        public string Name { get; set; }
+
         /// <summary>
         /// This attribute represents the time and date when the appointment is set.
         /// </summary>

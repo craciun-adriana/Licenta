@@ -6,7 +6,8 @@ namespace LicentaAPI.Persistence.Models
     public class ReviewFilm
     {
         /// <summary>
-        /// This class holds information about a <see cref="Film"/> review and/or grade given by an <see cref="AppUser"/>.
+        /// This class holds information about a <see cref="Film"/> review and/or grade given by an
+        /// <see cref="AppUser"/>.
         /// </summary>
         [Key]
         public string ID { get; set; }
@@ -19,7 +20,7 @@ namespace LicentaAPI.Persistence.Models
         [ForeignKey(nameof(Film))]
         public string IdFilm { get; set; }
 
-        public int Grade { get; set; }
+        public int? Grade { get; set; }
 
         public string Review { get; set; }
 

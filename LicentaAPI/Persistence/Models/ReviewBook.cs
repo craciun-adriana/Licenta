@@ -19,7 +19,7 @@ namespace LicentaAPI.Persistence.Models
         [ForeignKey(nameof(Book))]
         public string IdBook { get; set; }
 
-        public int Grade { get; set; }
+        public int? Grade { get; set; }
 
         public string Review { get; set; }
 

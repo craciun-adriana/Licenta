@@ -7,6 +7,8 @@ namespace LicentaAPI.AppServices.Appointments.Model
     /// </summary>
     public class AppointmentCreate
     {
+        public string Name { get; set; }
+
         public DateTime TimeAppointment { get; set; }
 
         public string IdBook { get; set; }

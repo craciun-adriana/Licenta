@@ -12,6 +12,9 @@ namespace LicentaAPI.Persistence.Models
         [Key]
         public string ID { get; set; }
 
+        [Required]
+        public string Name { get; set; }
+
         /// <summary>
         /// This attribute represents the time and date when the appointment is set.
         /// </summary>

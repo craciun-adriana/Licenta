@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace LicentaAPI.Persistence.Models
 {
     /// <summary>
-    /// This class holds information about a <see cref="Series"/> review and/or grade given by an <see cref="AppUser"/>.
+    /// This class holds information about a <see cref="Series"/> review and/or grade given by an
+    /// <see cref="AppUser"/>.
     /// </summary>
     public class ReviewSeries
     {
@@ -19,7 +20,7 @@ namespace LicentaAPI.Persistence.Models
         [ForeignKey(nameof(Series))]
         public string IdSeries { get; set; }
 
-        public int Grade { get; set; }
+        public int? Grade { get; set; }
 
         public string Review { get; set; }
 
