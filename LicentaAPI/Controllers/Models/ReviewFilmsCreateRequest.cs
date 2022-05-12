@@ -1,14 +1,18 @@
 ﻿using LicentaAPI.Persistence.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace LicentaAPI.AppServices.ReviewFilms.Model
+namespace LicentaAPI.Controllers.Models
 {
-    /// <summary>
-    ///Class containing information needed to create a <see cref="ReviewFilm"/>
-    /// </summary>
-    public class ReviewFilmCreate
+    public class ReviewFilmsCreateRequest
     {
+        [Required]
         public string IdUser { get; set; }
 
+        [Required]
         public string IdFilm { get; set; }
 
         public int? Grade { get; set; }

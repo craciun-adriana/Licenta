@@ -24,6 +24,7 @@ namespace LicentaAPI.AppServices.ReviewFilms
         public ReviewFilm CreateReviewFilm(ReviewFilmCreate reviewFilmCreate)
         {
             var reviewFilm = _mapper.Map<ReviewFilmCreate, ReviewFilm>(reviewFilmCreate);
+            reviewFilm.ID= Guid.NewGuid().ToString();
             try
             {
                 _reviewFilmRepo.Add(reviewFilm);

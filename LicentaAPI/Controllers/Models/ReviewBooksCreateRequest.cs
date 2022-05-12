@@ -1,14 +1,18 @@
 ﻿using LicentaAPI.Persistence.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace LicentaAPI.AppServices.ReviewBooks.Model
+namespace LicentaAPI.Controllers.Models
 {
-    /// <summary>
-    /// Class containing information needed to create a <see cref="ReviewBook"/>.
-    /// </summary>
-    public class ReviewBookCreate
+    public class ReviewBooksCreateRequest
     {
+        [Required]
         public string IdUser { get; set; }
 
+        [Required]
         public string IdBook { get; set; }
 
         public int? Grade { get; set; }

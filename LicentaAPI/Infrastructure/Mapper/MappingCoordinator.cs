@@ -5,6 +5,9 @@ using LicentaAPI.AppServices.Films.Models;
 using LicentaAPI.AppServices.Friendships.Model;
 using LicentaAPI.AppServices.GroupMembers.Model;
 using LicentaAPI.AppServices.Groups.Model;
+using LicentaAPI.AppServices.ReviewBooks.Model;
+using LicentaAPI.AppServices.ReviewFilms.Model;
+using LicentaAPI.AppServices.ReviewSerieses.Model;
 using LicentaAPI.AppServices.Serieses.Models;
 using LicentaAPI.Controllers.Models;
 using LicentaAPI.Persistence.Models;
@@ -57,6 +60,18 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<GroupMemberCreateRequest, GroupMemberCreate>();
                 cfg.CreateMap<GroupMemberCreate, GroupMember>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
+
+                cfg.CreateMap<ReviewBooksCreateRequest, ReviewBookCreate>();
+                cfg.CreateMap<ReviewBookCreate, ReviewBook>()
+                .ForMember(dest => dest.ID, opt => opt.Ignore());
+
+                cfg.CreateMap<ReviewFilmsCreateRequest, ReviewFilmCreate>();
+                cfg.CreateMap<ReviewFilmCreate, ReviewFilm>()
+                .ForMember(dest => dest.ID, opt => opt.Ignore());
+
+                cfg.CreateMap<ReviewSeriesCreateRequest, ReviewSeriesCreate>();
+                cfg.CreateMap<ReviewSeriesCreate, ReviewSeries>()
+                .ForMember(dest => dest.ID, opt => opt.Ignore());
 
                 cfg.CreateMap<SeriesCreateRequest, SeriesCreate>();
                 cfg.CreateMap<SeriesCreate, Series>()
