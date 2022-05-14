@@ -14,5 +14,7 @@ namespace LicentaAPI.Persistence.Repositories
         /// <param name="idBook">The id of the book that user is searching for.</param>
         /// <returns>All reviews received by a book with given idBook.</returns>
         public IEnumerable<ReviewBook> FindReviewBookByIdBook(string idBook);
+
+        public IEnumerable<ReviewBook> GetByStatus(Status status);
     }
 }

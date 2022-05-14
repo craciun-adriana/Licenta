@@ -1,5 +1,6 @@
 ﻿using LicentaAPI.AppServices.ReviewBooks.Model;
 using LicentaAPI.Persistence.Models;
+using System.Collections.Generic;
 
 namespace LicentaAPI.AppServices.ReviewBooks
 {
@@ -14,5 +15,7 @@ namespace LicentaAPI.AppServices.ReviewBooks
         /// <param name="reviewBookCreate">Details about a reviewBook.</param>
         /// <returns>The created ReviewBook or null if it was not created.</returns>
         public ReviewBook CreateReviewBook(ReviewBookCreate reviewBookCreate);
+
+        public IEnumerable<ReviewBook> GetByStatus(Status status);
     }
 }

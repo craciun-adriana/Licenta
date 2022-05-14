@@ -22,10 +22,8 @@ namespace LicentaAPI.Controllers.Models
         [Required]
         public DateTime RelaseDate { get; set; }
 
-        [ForeignKey(nameof(Film))]
         public string PrequelID { get; set; }
 
-        [ForeignKey(nameof(Film))]
         public string SequelID { get; set; }
 
         [Required]

@@ -3,6 +3,7 @@ using LicentaAPI.Infrastructure.Mapper;
 using LicentaAPI.Persistence.Models;
 using LicentaAPI.Persistence.Repositories;
 using System;
+using System.Collections.Generic;
 
 namespace LicentaAPI.AppServices.ReviewBooks
 {
@@ -35,6 +36,11 @@ namespace LicentaAPI.AppServices.ReviewBooks
             }
 
             return reviewBook;
+        }
+
+        public IEnumerable<ReviewBook> GetByStatus(Status status)
+        {
+            return _reviewBookRepo.GetByStatus(status);
         }
     }
 }

@@ -3,6 +3,7 @@ using LicentaAPI.Infrastructure.Mapper;
 using LicentaAPI.Persistence.Models;
 using LicentaAPI.Persistence.Repositories;
 using System;
+using System.Collections.Generic;
 
 namespace LicentaAPI.AppServices.ReviewSerieses
 {
@@ -24,6 +25,7 @@ namespace LicentaAPI.AppServices.ReviewSerieses
         public ReviewSeries CreateReviewSeries(ReviewSeriesCreate reviewSeriesCreate)
         {
             var reviewSeries = _mapper.Map<ReviewSeriesCreate, ReviewSeries>(reviewSeriesCreate);
+            reviewSeries.ID = Guid.NewGuid().ToString();
             try
             {
                 _reviewSeriesRepo.Add(reviewSeries);
@@ -34,6 +36,11 @@ namespace LicentaAPI.AppServices.ReviewSerieses
             }
 
             return reviewSeries;
+        }
+
+        public IEnumerable<ReviewSeries> GetByStatus(Status status)
+        {
+            return _reviewSeriesRepo.GetByStatus(status);
         }
     }
 }

@@ -7,10 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LicentaAPI.Controllers
 {
@@ -41,6 +38,20 @@ namespace LicentaAPI.Controllers
                 return CreateResponse(500, "DB error.");
             }
             return CreatedAtRoute("", new { reviewSeries.ID }, reviewSeries);
+        }
+
+        [Authorize]
+        [HttpGet("get-by-status/{status}")]
+        [SwaggerResponse(200, "ReviewSeries with the given status.")]
+        [SwaggerResponse(404, "ReviewSeries can't be found.")]
+        public IActionResult GetReviewBookByStatus(Status status)
+        {
+            var reviewSeries = _reviewSeriesService.GetByStatus(status);
+            if (reviewSeries.Any())
+            {
+                return Ok(reviewSeries);
+            }
+            return NotFound();
         }
     }
 }

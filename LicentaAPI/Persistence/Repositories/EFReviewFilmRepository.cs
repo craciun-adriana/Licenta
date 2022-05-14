@@ -69,6 +69,11 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.ReviewFilms.FirstOrDefault(reviewFilm => reviewFilm.ID.Equals(id));
         }
 
+        public IEnumerable<ReviewFilm> GetByStatus(Status status)
+        {
+            return _dbContext.ReviewFilms.Where(reviewFilm => reviewFilm.Status.Equals(status)).ToList();
+        }
+
         /// <inheritdoc/>
         public IEnumerable<ReviewFilm> Filter(PaginationQuery paginationQuery)
         {

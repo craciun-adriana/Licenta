@@ -3,6 +3,7 @@ using LicentaAPI.Infrastructure.Mapper;
 using LicentaAPI.Persistence.Models;
 using LicentaAPI.Persistence.Repositories;
 using System;
+using System.Collections.Generic;
 
 namespace LicentaAPI.AppServices.ReviewFilms
 {
@@ -24,7 +25,7 @@ namespace LicentaAPI.AppServices.ReviewFilms
         public ReviewFilm CreateReviewFilm(ReviewFilmCreate reviewFilmCreate)
         {
             var reviewFilm = _mapper.Map<ReviewFilmCreate, ReviewFilm>(reviewFilmCreate);
-            reviewFilm.ID= Guid.NewGuid().ToString();
+            reviewFilm.ID = Guid.NewGuid().ToString();
             try
             {
                 _reviewFilmRepo.Add(reviewFilm);
@@ -35,6 +36,11 @@ namespace LicentaAPI.AppServices.ReviewFilms
             }
 
             return reviewFilm;
+        }
+
+        public IEnumerable<ReviewFilm> GetByStatus(Status status)
+        {
+            return _reviewFilmRepo.GetByStatus(status);
         }
     }
 }

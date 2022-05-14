@@ -1,5 +1,6 @@
 ﻿using LicentaAPI.AppServices.ReviewFilms.Model;
 using LicentaAPI.Persistence.Models;
+using System.Collections.Generic;
 
 namespace LicentaAPI.AppServices.ReviewFilms
 {
@@ -14,5 +15,7 @@ namespace LicentaAPI.AppServices.ReviewFilms
         /// <param name="reviewFilmCreate">Details about a reviewFilm.</param>
         /// <returns>The created ReviewFilm or null if it was not created.</returns>
         public ReviewFilm CreateReviewFilm(ReviewFilmCreate reviewFilmCreate);
+
+        public IEnumerable<ReviewFilm> GetByStatus(Status status);
     }
 }
