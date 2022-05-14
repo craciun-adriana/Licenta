@@ -5,6 +5,7 @@ using LicentaAPI.AppServices.Films.Models;
 using LicentaAPI.AppServices.Friendships.Model;
 using LicentaAPI.AppServices.GroupMembers.Model;
 using LicentaAPI.AppServices.Groups.Model;
+using LicentaAPI.AppServices.Messages.Model;
 using LicentaAPI.AppServices.ReviewBooks.Model;
 using LicentaAPI.AppServices.ReviewFilms.Model;
 using LicentaAPI.AppServices.ReviewSerieses.Model;
@@ -60,6 +61,10 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<GroupMemberCreateRequest, GroupMemberCreate>();
                 cfg.CreateMap<GroupMemberCreate, GroupMember>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
+
+                cfg.CreateMap<MessageCreateRequest, MessageCreate>();
+                cfg.CreateMap<MessageCreate, Message>()
+                .ForMember(dest => dest.ID, opt => opt.Ignore());
 
                 cfg.CreateMap<ReviewBooksCreateRequest, ReviewBookCreate>();
                 cfg.CreateMap<ReviewBookCreate, ReviewBook>()
