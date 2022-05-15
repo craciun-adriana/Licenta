@@ -46,6 +46,16 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
+        [HttpGet("conversation/{amount}")]
+        [SwaggerResponse(201, "Message was created.")]
+        [SwaggerResponse(404, "Message can't be created.")]
+        public IActionResult GetLastConversationUser(int amount)
+        {
+            var idUser = _userManager.GetUserId(HttpContext.User);
+            return Ok(_messageService.GetAllConversationUsers(idUser, amount));
+        }
+
+        [Authorize]
         [HttpPost("conversation/{idOtherUser}")]
         [SwaggerResponse(201, "Message was created.")]
         [SwaggerResponse(404, "Message can't be created.")]

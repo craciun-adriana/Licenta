@@ -1,4 +1,5 @@
-﻿using LicentaAPI.Persistence.Models;
+﻿using LicentaAPI.AppServices.Models;
+using LicentaAPI.Persistence.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -104,6 +105,18 @@ namespace LicentaAPI.Persistence.Repositories
 
             _dbContext.Messages.Update(entity);
             _dbContext.SaveChanges();
+        }
+
+        public IEnumerable<string> GetLastConversationUsers(string idUser, int amount)
+        {
+            return _dbContext.Messages
+                .Where(mess => (mess.IdSender.Equals(idUser)) || (mess.IdReceiver.Equals(idUser)))
+                .OrderByDescending(mess => mess.SendTime)
+                .ToList()
+                .Select(mess => (mess.IdSender == idUser) ? mess.IdReceiver : mess.IdSender)
+                .Distinct()
+                .Where(idUser => !string.IsNullOrEmpty(idUser))
+                .Take(amount);
         }
     }
 }

@@ -77,5 +77,14 @@ namespace LicentaAPI.Controllers
             await _signInManager.SignOutAsync();
             return NoContent();
         }
+
+        [Authorize]
+        [HttpGet("is-logged-in")]
+        [SwaggerResponse(204, "User is logged out.")]
+        [SwaggerResponse(404, "No user is logged id.")]
+        public IActionResult IsLogged()
+        {
+            return Ok(_userManager.GetUserId(HttpContext.User));
+        }
     }
 }

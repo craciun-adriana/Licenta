@@ -38,6 +38,11 @@ namespace LicentaAPI.AppServices.Messages
             return message;
         }
 
+        public IEnumerable<string> GetAllConversationUsers(string idUser, int amount)
+        {
+            return _messageRepo.GetLastConversationUsers(idUser, amount);
+        }
+
         public IEnumerable<Message> GetAllMessagesBetweenUsers(string idUser1, string idUser2)
         {
             return _messageRepo.FindMessagesBetweenUsers(idUser1, idUser2);

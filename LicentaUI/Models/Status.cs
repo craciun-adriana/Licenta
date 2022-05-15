@@ -1,4 +1,4 @@
-﻿namespace LicentaAPI.Persistence.Models
+﻿namespace LicentaUI.Models
 {
     public enum Status
     {

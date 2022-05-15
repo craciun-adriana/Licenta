@@ -1,0 +1,175 @@
+﻿@page
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Home.css" />
+}
+
+@model LicentaUI.Pages.HomeModel
+@{
+}
+
+<h1>List of what we have to offer you :)</h1>
+<div>
+    <table class="tables">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Books[0].Title)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Books)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="tables">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Films[0].Title)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Films)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="tables">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Series[0].Title)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Series)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments[0].IdBook)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments[0].IdFilm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments[0].IdSeries)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments[0].IdGroup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Appointments[0].Location)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Appointments)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdBook)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdFilm)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdSeries)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdGroup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReviewBooks[0].IdBook)>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ReviewBooks)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdBook)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReviewFilms[0].IdFilm)>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ReviewFilms)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdFilm)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReviewSeries[0].IdSeries)>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ReviewSeries)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdSeries)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

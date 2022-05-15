@@ -32,12 +32,13 @@ namespace LicentaUI.Pages
         {
             if (ModelState.IsValid)
             {
-                var isLoggedIn = await _licentaApiHttpClient.LoginUserAsync(LoginUserModel);
-                if (!isLoggedIn)
+                var cookies = await _licentaApiHttpClient.LoginUserAsync(LoginUserModel);
+                if (!cookies.Any())
                 {
                     ErrorMessage = "Could not login.";
                     return Page();
                 }
+                Response.Cookies.Append(cookies.First().Split("=")[0], cookies.First().Split("=")[1]);
                 ErrorMessage = "";
                 return Redirect("/Index");
             }

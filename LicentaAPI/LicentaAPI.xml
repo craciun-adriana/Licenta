@@ -24,7 +24,7 @@
             <param name="appointmentCreate"></param>
             <returns>The created appointment or null if it was not created.</returns>
         </member>
-        <member name="M:LicentaAPI.AppServices.Appointments.IAppointmentService.GetAllAppoitmentsForUser(System.String)">
+        <member name="M:LicentaAPI.AppServices.Appointments.IAppointmentService.GetAllAppointmentsForUser(System.String)">
             <summary>
             </summary>
             <param name="idMember"></param>
@@ -167,9 +167,12 @@
         <member name="M:LicentaAPI.AppServices.Friendships.FriendshipService.CreateFriendship(LicentaAPI.AppServices.Friendships.Model.FriendshipCreate)">
             <inheritdoc/>
         </member>
+        <member name="M:LicentaAPI.AppServices.Friendships.FriendshipService.FindFriendshipByIdReceiver(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:LicentaAPI.AppServices.Friendships.IFriendshipService">
             <summary>
-            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Friendship"/> related opeartion.
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.Friendship"/> related operation.
             </summary>
         </member>
         <member name="M:LicentaAPI.AppServices.Friendships.IFriendshipService.CreateFriendship(LicentaAPI.AppServices.Friendships.Model.FriendshipCreate)">
@@ -311,8 +314,7 @@
         </member>
         <member name="T:LicentaAPI.AppServices.ReviewSerieses.IReviewSeriesService">
             <summary>
-            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.ReviewSeries"/> related operations.
-            </summary>
+            Interface providing contracts for <see cref="T:LicentaAPI.Persistence.Models.ReviewSeries"/> related operations. </summary>
         </member>
         <member name="M:LicentaAPI.AppServices.ReviewSerieses.IReviewSeriesService.CreateReviewSeries(LicentaAPI.AppServices.ReviewSerieses.Model.ReviewSeriesCreate)">
             <summary>
@@ -531,12 +533,14 @@
         </member>
         <member name="P:LicentaAPI.Persistence.Models.ReviewFilm.ID">
             <summary>
-            This class holds information about a <see cref="T:LicentaAPI.Persistence.Models.Film"/> review and/or grade given by an <see cref="T:LicentaAPI.Persistence.Models.AppUser"/>.
+            This class holds information about a <see cref="T:LicentaAPI.Persistence.Models.Film"/> review and/or grade given by an
+            <see cref="T:LicentaAPI.Persistence.Models.AppUser"/>.
             </summary>
         </member>
         <member name="T:LicentaAPI.Persistence.Models.ReviewSeries">
             <summary>
-            This class holds information about a <see cref="T:LicentaAPI.Persistence.Models.Series"/> review and/or grade given by an <see cref="T:LicentaAPI.Persistence.Models.AppUser"/>.
+            This class holds information about a <see cref="T:LicentaAPI.Persistence.Models.Series"/> review and/or grade given by an
+            <see cref="T:LicentaAPI.Persistence.Models.AppUser"/>.
             </summary>
         </member>
         <member name="T:LicentaAPI.Persistence.Models.Series">
