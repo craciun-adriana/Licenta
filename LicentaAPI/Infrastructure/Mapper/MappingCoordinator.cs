@@ -49,6 +49,8 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<FilmCreate, Film>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
 
+                cfg.CreateMap<FriendshipCreateRequest, FriendshipCreate>()
+                    .ForMember(dest => dest.IdSender, opt => opt.Ignore());
                 cfg.CreateMap<FriendshipCreate, Friendship>()
                     .ForMember(dest => dest.Status, opt => opt.Ignore())
                     .ForMember(dest => dest.LastUpdate, opt => opt.Ignore())
@@ -62,21 +64,25 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<GroupMemberCreate, GroupMember>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
 
-                cfg.CreateMap<MessageCreateRequest, MessageCreate>();
+                cfg.CreateMap<MessageCreateRequest, MessageCreate>()
+                    .ForMember(dest => dest.IdSender, opt => opt.Ignore());
                 cfg.CreateMap<MessageCreate, Message>()
-                .ForMember(dest => dest.ID, opt => opt.Ignore());
+                    .ForMember(dest => dest.ID, opt => opt.Ignore());
 
-                cfg.CreateMap<ReviewBooksCreateRequest, ReviewBookCreate>();
+                cfg.CreateMap<ReviewBooksCreateRequest, ReviewBookCreate>()
+                    .ForMember(dest => dest.IdUser, opt => opt.Ignore());
                 cfg.CreateMap<ReviewBookCreate, ReviewBook>()
-                .ForMember(dest => dest.ID, opt => opt.Ignore());
+                    .ForMember(dest => dest.ID, opt => opt.Ignore());
 
-                cfg.CreateMap<ReviewFilmsCreateRequest, ReviewFilmCreate>();
+                cfg.CreateMap<ReviewFilmsCreateRequest, ReviewFilmCreate>()
+                    .ForMember(dest => dest.IdUser, opt => opt.Ignore());
                 cfg.CreateMap<ReviewFilmCreate, ReviewFilm>()
-                .ForMember(dest => dest.ID, opt => opt.Ignore());
+                    .ForMember(dest => dest.ID, opt => opt.Ignore());
 
-                cfg.CreateMap<ReviewSeriesCreateRequest, ReviewSeriesCreate>();
+                cfg.CreateMap<ReviewSeriesCreateRequest, ReviewSeriesCreate>()
+                    .ForMember(dest => dest.IdUser, opt => opt.Ignore());
                 cfg.CreateMap<ReviewSeriesCreate, ReviewSeries>()
-                .ForMember(dest => dest.ID, opt => opt.Ignore());
+                    .ForMember(dest => dest.ID, opt => opt.Ignore());
 
                 cfg.CreateMap<SeriesCreateRequest, SeriesCreate>();
                 cfg.CreateMap<SeriesCreate, Series>()

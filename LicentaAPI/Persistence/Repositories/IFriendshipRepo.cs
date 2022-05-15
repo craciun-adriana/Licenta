@@ -14,5 +14,7 @@ namespace LicentaAPI.Persistence.Repositories
         /// <param name="idReceiver">The IdReceiver of the friendship that user is searching for.</param>
         /// <returns>A list of friendships that have the given idReceiver.</returns>
         public IEnumerable<Friendship> FindFriendshipByIdReceiver(string idReceiver);
+
+        public Friendship GetFriendshipBetweenUsers(string idUser1, string idUser2);
     }
 }

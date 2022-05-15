@@ -1,12 +1,14 @@
 ﻿using LicentaAPI.AppServices.Friendships.Model;
+using LicentaAPI.AppServices.Models;
 using LicentaAPI.Persistence.Models;
+using System.Collections.Generic;
 
 namespace LicentaAPI.AppServices.Friendships
 {
     /// <summary>
-    /// Interface providing contracts for <see cref="Friendship"/> related opeartion.
+    /// Interface providing contracts for <see cref="Friendship"/> related operation.
     /// </summary>
-    internal interface IFriendshipService
+    public interface IFriendshipService
     {
         /// <summary>
         /// Create a friendship.
@@ -14,5 +16,11 @@ namespace LicentaAPI.AppServices.Friendships
         /// <param name="friendshipCreate">Details about a friendship.</param>
         /// <returns>The created friendship or null if it was not created.</returns>
         public Friendship CreateFriendship(FriendshipCreate friendshipCreate);
+
+        public IEnumerable<Friendship> FindFriendshipByIdReceiver(string idReceiver);
+
+        public Error AcceptFriendship(string idFriendship, string idReceiver);
+
+        public Error BlockFriendship(string idFriendship, string idReceiver);
     }
 }

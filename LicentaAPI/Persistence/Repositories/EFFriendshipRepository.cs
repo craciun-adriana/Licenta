@@ -81,6 +81,13 @@ namespace LicentaAPI.Persistence.Repositories
                 throw new ArgumentNullException(nameof(entity));
             }
             _dbContext.Friendships.Update(entity);
+            _dbContext.SaveChanges();
+        }
+
+        public Friendship GetFriendshipBetweenUsers(string idUser1, string idUser2)
+        {
+            return _dbContext.Friendships.FirstOrDefault(f =>
+            (f.IdSender == idUser1 && f.IdReceiver == idUser2) || (f.IdSender == idUser2 && f.IdReceiver == idUser1));
         }
     }
 }
