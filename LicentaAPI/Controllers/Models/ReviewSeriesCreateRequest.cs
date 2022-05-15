@@ -5,10 +5,6 @@ namespace LicentaAPI.Controllers.Models
 {
     public class ReviewSeriesCreateRequest
     {
-
-        [Required]
-        public string IdUser { get; set; }
-
         [Required]
         public string IdSeries { get; set; }
 

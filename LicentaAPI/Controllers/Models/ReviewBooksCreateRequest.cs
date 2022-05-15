@@ -10,9 +10,6 @@ namespace LicentaAPI.Controllers.Models
     public class ReviewBooksCreateRequest
     {
         [Required]
-        public string IdUser { get; set; }
-
-        [Required]
         public string IdBook { get; set; }
 
         public int? Grade { get; set; }

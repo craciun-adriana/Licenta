@@ -31,6 +31,7 @@ namespace LicentaAPI.Controllers
         public IActionResult CreateReviewBooks(ReviewFilmsCreateRequest request)
         {
             var reviewFilmsCreate = _mapper.Map<ReviewFilmsCreateRequest, ReviewFilmCreate>(request);
+            reviewFilmsCreate.IdUser = _userManager.GetUserId(HttpContext.User);
             var reviewFilm = _reviewFilmsService.CreateReviewFilm(reviewFilmsCreate);
 
             if (reviewFilm == null)

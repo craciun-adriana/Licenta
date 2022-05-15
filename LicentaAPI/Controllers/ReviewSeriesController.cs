@@ -31,6 +31,7 @@ namespace LicentaAPI.Controllers
         public IActionResult CreateReviewBooks(ReviewSeriesCreateRequest request)
         {
             var reviewSeriesCreate = _mapper.Map<ReviewSeriesCreateRequest, ReviewSeriesCreate>(request);
+            reviewSeriesCreate.IdUser = _userManager.GetUserId(HttpContext.User);
             var reviewSeries = _reviewSeriesService.CreateReviewSeries(reviewSeriesCreate);
 
             if (reviewSeries == null)

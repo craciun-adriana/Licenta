@@ -10,9 +10,6 @@ namespace LicentaAPI.Controllers.Models
     public class ReviewFilmsCreateRequest
     {
         [Required]
-        public string IdUser { get; set; }
-
-        [Required]
         public string IdFilm { get; set; }
 
         public int? Grade { get; set; }
