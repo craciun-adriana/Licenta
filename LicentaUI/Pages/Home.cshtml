@@ -76,13 +76,16 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Appointments[0].IdBook)
+                    @Html.DisplayNameFor(model => model.Appointments[0].Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Appointments[0].IdFilm)
+                    @Html.DisplayNameFor(model => model.Appointments[0].TitleBook)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Appointments[0].IdSeries)
+                    @Html.DisplayNameFor(model => model.Appointments[0].TitleFilm)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointments[0].TitleSeries)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Appointments[0].IdGroup)
@@ -97,13 +100,16 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IdBook)
+                        @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IdFilm)
+                        @Html.DisplayFor(modelItem => item.TitleBook)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IdSeries)
+                        @Html.DisplayFor(modelItem => item.TitleFilm)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TitleSeries)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.IdGroup)

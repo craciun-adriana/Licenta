@@ -15,12 +15,18 @@ namespace LicentaAPI.AppServices.Appointments
     {
         private IAppointmentRepo _appointmentRepo;
         private IGroupRepo _groupRepo;
+        private readonly IBookRepo _bookRepo;
+        private readonly IFilmRepo _filmRepo;
+        private readonly ISeriesRepo _seriesRepo;
         private IMappingCoordinator _mapper;
 
-        public AppointmentService(IAppointmentRepo appointmentRepo, IGroupRepo groupRepo, IMappingCoordinator mapper)
+        public AppointmentService(IAppointmentRepo appointmentRepo, IBookRepo bookRepo, IFilmRepo filmRepo, ISeriesRepo seriesRepo, IGroupRepo groupRepo, IMappingCoordinator mapper)
         {
             _appointmentRepo = appointmentRepo;
             _groupRepo = groupRepo;
+            _bookRepo = bookRepo;
+            _filmRepo = filmRepo;
+            _seriesRepo = seriesRepo;
             _mapper = mapper;
         }
 
@@ -41,17 +47,44 @@ namespace LicentaAPI.AppServices.Appointments
             return appointment;
         }
 
-        public IEnumerable<Appointment> GetAllAppointmentsForUser(string idMember)
+        public IEnumerable<AppointmentDTO> GetAllAppointmentsForUser(string idMember)
         {
             var groups = _groupRepo.FindGroupsByMemberId(idMember).ToList();
-            var appointmentList = new List<Appointment>();
+            var appointmentList = new List<AppointmentDTO>();
             foreach (var group in groups)
             {
-                appointmentList.AddRange(_appointmentRepo.FindAppointmentByGroupId(group.ID));
+                _appointmentRepo.FindAppointmentByGroupId(group.ID)
+                    .ToList()
+                    .ForEach(a =>
+                    {
+                        var appointmentDto = new AppointmentDTO
+                        {
+                            IdAppointment = a.ID,
+                            IdBook = a.IdBook,
+                            IdFilm = a.IdFilm,
+                            IdSeries = a.IdSeries,
+                            IdGroup = a.IdGroup,
+                            Location = a.Location,
+                            Name = a.Name,
+                            TimeAppointment = a.TimeAppointment,
+                        };
+
+                        if (!string.IsNullOrEmpty(a.IdFilm))
+                        {
+                            appointmentDto.TitleFilm = _filmRepo.GetById(a.IdFilm).Title;
+                        }
+                        if (!string.IsNullOrEmpty(a.IdBook))
+                        {
+                            appointmentDto.TitleBook = _bookRepo.GetById(a.IdBook).Title;
+                        }
+                        if (!string.IsNullOrEmpty(a.IdSeries))
+                        {
+                            appointmentDto.TitleSeries = _seriesRepo.GetById(a.IdSeries).Title;
+                        }
+                        appointmentList.Add(appointmentDto);
+                    });
             }
             return appointmentList;
         }
-
-        //get all app
     }
 }

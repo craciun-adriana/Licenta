@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace LicentaUI.Models
+namespace LicentaAPI.AppServices.Appointments.Model
 {
-    public class AppointmentModel
+    public class AppointmentDTO
     {
         public string IdAppointment { get; set; }
 

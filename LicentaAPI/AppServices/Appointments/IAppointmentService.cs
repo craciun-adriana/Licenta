@@ -20,6 +20,6 @@ namespace LicentaAPI.AppServices.Appointments
         /// </summary>
         /// <param name="idMember"></param>
         /// <returns></returns>
-        public IEnumerable<Appointment> GetAllAppointmentsForUser(string idMember);
+        public IEnumerable<AppointmentDTO> GetAllAppointmentsForUser(string idMember);
     }
 }
