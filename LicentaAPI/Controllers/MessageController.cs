@@ -33,15 +33,35 @@ namespace LicentaAPI.Controllers
         [SwaggerResponse(404, "Message can't be created.")]
         public IActionResult CreateMessage(MessageCreateRequest request)
         {
-            var bookCreate = _mapper.Map<MessageCreateRequest, MessageCreate>(request);
-            var book = _messageService.CreateMessage(bookCreate);
+            var messageCreate = _mapper.Map<MessageCreateRequest, MessageCreate>(request);
+            messageCreate.IdSender = _userManager.GetUserId(HttpContext.User);
+            var message = _messageService.CreateMessage(messageCreate);
 
-            if (book == null)
+            if (message == null)
             {
                 return CreateResponse(500, new { Error = "DB Error." });
             }
 
-            return CreatedAtRoute("", new { book.ID }, book);
+            return CreatedAtRoute("", new { message.ID }, message);
+        }
+
+        [Authorize]
+        [HttpPost("conversation/{idOtherUser}")]
+        [SwaggerResponse(201, "Message was created.")]
+        [SwaggerResponse(404, "Message can't be created.")]
+        public IActionResult GetAllMessagesBetweenUsers(string idOtherUser)
+        {
+            var idUser = _userManager.GetUserId(HttpContext.User);
+            return Ok(_messageService.GetAllMessagesBetweenUsers(idUser, idOtherUser));
+        }
+
+        [Authorize]
+        [HttpPost("conversation/{idGroup}")]
+        [SwaggerResponse(201, "Message was created.")]
+        [SwaggerResponse(404, "Message can't be created.")]
+        public IActionResult GetAllMessagesInGroup(string idGroup)
+        {
+            return Ok(_messageService.GetAllMessagesInGroup(idGroup));
         }
     }
 }

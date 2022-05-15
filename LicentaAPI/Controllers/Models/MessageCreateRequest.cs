@@ -5,9 +5,6 @@ namespace LicentaAPI.Controllers.Models
 {
     public class MessageCreateRequest
     {
-        [Required]
-        public string IdSender { get; set; }
-
         public string IdReceiver { get; set; }
 
         public string IdGroup { get; set; }

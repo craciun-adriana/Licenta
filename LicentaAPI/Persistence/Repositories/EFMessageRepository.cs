@@ -55,9 +55,9 @@ namespace LicentaAPI.Persistence.Repositories
             }
 
             return _dbContext.Messages.Where(message =>
-                (message.IdReceiver.Equals(idUser1) && message.IdSender.Equals(idUser2))
-                || (message.IdReceiver.Equals(idUser2) && message.IdSender.Equals(idUser1))
-            );
+                    (message.IdReceiver.Equals(idUser1) && message.IdSender.Equals(idUser2))
+                    || (message.IdReceiver.Equals(idUser2) && message.IdSender.Equals(idUser1)))
+                .OrderByDescending(message => message.SendTime);
         }
 
         /// <inheritdoc/>
@@ -67,7 +67,8 @@ namespace LicentaAPI.Persistence.Repositories
             {
                 throw new ArgumentNullException(nameof(idGroup));
             }
-            return _dbContext.Messages.Where(message => message.IdGroup.Equals(idGroup));
+            return _dbContext.Messages.Where(message => message.IdGroup.Equals(idGroup))
+                .OrderByDescending(message => message.SendTime);
         }
 
         /// <inheritdoc/>

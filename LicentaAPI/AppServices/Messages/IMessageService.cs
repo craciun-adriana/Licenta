@@ -1,5 +1,6 @@
 ﻿using LicentaAPI.AppServices.Messages.Model;
 using LicentaAPI.Persistence.Models;
+using System.Collections.Generic;
 
 namespace LicentaAPI.AppServices.Messages
 {
@@ -14,5 +15,9 @@ namespace LicentaAPI.AppServices.Messages
         /// <param name="messageCreate">Contains details about a message.</param>
         /// <returns>The created message or null if it was not created.</returns>
         public Message CreateMessage(MessageCreate messageCreate);
+
+        public IEnumerable<Message> GetAllMessagesBetweenUsers(string idUser1, string idUser2);
+
+        public IEnumerable<Message> GetAllMessagesInGroup(string idGroup);
     }
 }
