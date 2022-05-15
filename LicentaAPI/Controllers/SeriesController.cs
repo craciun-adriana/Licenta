@@ -46,7 +46,7 @@ namespace LicentaAPI.Controllers
             return CreatedAtRoute("", new { series.ID }, series);
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet("get-all")]
         [SwaggerResponse(200, "All series from the database.")]
         public IActionResult GetAllSeries()

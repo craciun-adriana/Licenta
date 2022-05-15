@@ -40,7 +40,7 @@ namespace LicentaAPI.Controllers
             return CreatedAtRoute("", new { appointment.ID }, appointment);
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet("get-appointment-for-user")]
         [SwaggerResponse(200, "All the user appointments.")]
         public IActionResult GetAllApointmentForUser()

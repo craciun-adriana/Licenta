@@ -24,7 +24,7 @@ namespace LicentaAPI.Controllers
             _mapper = mapper;
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpPost("create")]
         [SwaggerResponse(201, "Friendship was created.")]
         [SwaggerResponse(404, "Friendship can't be created.")]

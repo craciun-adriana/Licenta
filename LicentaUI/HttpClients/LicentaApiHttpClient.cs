@@ -58,10 +58,12 @@ namespace LicentaUI.HttpClients
             return false;
         }
 
-        public async Task<IEnumerable<BookModel>> GetAllBooksAsync()
+        public async Task<IEnumerable<BookModel>> GetAllBooksAsync(string cookie)
         {
             var url = new Uri(_baseAddress, "licenta/book/get-all");
-            var response = await _client.GetAsync(url);
+            var message = new HttpRequestMessage(HttpMethod.Get, url);
+            message.Headers.Add("Cookie", ".AspNetCore.Identity.Application=" + cookie);
+            var response = await _client.SendAsync(message);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -71,10 +73,12 @@ namespace LicentaUI.HttpClients
             throw new Exception(response.StatusCode.ToString());
         }
 
-        public async Task<IEnumerable<FilmModel>> GetAllFilmsAsync()
+        public async Task<IEnumerable<FilmModel>> GetAllFilmsAsync(string cookie)
         {
             var url = new Uri(_baseAddress, "licenta/film/get-all");
-            var response = await _client.GetAsync(url);
+            var message = new HttpRequestMessage(HttpMethod.Get, url);
+            message.Headers.Add("Cookie", ".AspNetCore.Identity.Application=" + cookie);
+            var response = await _client.SendAsync(message);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -84,10 +88,12 @@ namespace LicentaUI.HttpClients
             throw new Exception(response.StatusCode.ToString());
         }
 
-        public async Task<IEnumerable<SeriesModel>> GetAllSeriesAsync()
+        public async Task<IEnumerable<SeriesModel>> GetAllSeriesAsync(string cookie)
         {
             var url = new Uri(_baseAddress, "licenta/series/get-all");
-            var response = await _client.GetAsync(url);
+            var message = new HttpRequestMessage(HttpMethod.Get, url);
+            message.Headers.Add("Cookie", ".AspNetCore.Identity.Application=" + cookie);
+            var response = await _client.SendAsync(message);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -97,10 +103,12 @@ namespace LicentaUI.HttpClients
             throw new Exception(response.StatusCode.ToString());
         }
 
-        public async Task<IEnumerable<AppointmentModel>> GetAllApointmentForUser()
+        public async Task<IEnumerable<AppointmentModel>> GetAllApointmentForUser(string cookie)
         {
             var url = new Uri(_baseAddress, "licenta/appointment/get-appointment-for-user");
-            var response = await _client.GetAsync(url);
+            var message = new HttpRequestMessage(HttpMethod.Get, url);
+            message.Headers.Add("Cookie", ".AspNetCore.Identity.Application=" + cookie);
+            var response = await _client.SendAsync(message);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -110,10 +118,12 @@ namespace LicentaUI.HttpClients
             throw new Exception(response.StatusCode.ToString());
         }
 
-        public async Task<IEnumerable<ReviewBookModel>> GetReviewBookByStatus(Status status)
+        public async Task<IEnumerable<ReviewBookModel>> GetReviewBookByStatus(Status status, string cookie)
         {
-            var url = new Uri(_baseAddress, "licenta/review-book/get-by-status/" + status);
-            var response = await _client.GetAsync(url);
+            var url = new Uri(_baseAddress, "licenta/review-books/get-by-status/" + status);
+            var message = new HttpRequestMessage(HttpMethod.Get, url);
+            message.Headers.Add("Cookie", ".AspNetCore.Identity.Application=" + cookie);
+            var response = await _client.SendAsync(message);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -123,10 +133,12 @@ namespace LicentaUI.HttpClients
             throw new Exception(response.StatusCode.ToString());
         }
 
-        public async Task<IEnumerable<ReviewFilmModel>> GetReviewFilmByStatus(Status status)
+        public async Task<IEnumerable<ReviewFilmModel>> GetReviewFilmByStatus(Status status, string cookie)
         {
-            var url = new Uri(_baseAddress, "licenta/review-film/get-by-status/" + status);
-            var response = await _client.GetAsync(url);
+            var url = new Uri(_baseAddress, "licenta/review-films/get-by-status/" + status);
+            var message = new HttpRequestMessage(HttpMethod.Get, url);
+            message.Headers.Add("Cookie", ".AspNetCore.Identity.Application=" + cookie);
+            var response = await _client.SendAsync(message);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -136,10 +148,12 @@ namespace LicentaUI.HttpClients
             throw new Exception(response.StatusCode.ToString());
         }
 
-        public async Task<IEnumerable<ReviewSeriesModel>> GetReviewSeriesByStatus(Status status)
+        public async Task<IEnumerable<ReviewSeriesModel>> GetReviewSeriesByStatus(Status status, string cookie)
         {
             var url = new Uri(_baseAddress, "licenta/review-series/get-by-status/" + status);
-            var response = await _client.GetAsync(url);
+            var message = new HttpRequestMessage(HttpMethod.Get, url);
+            message.Headers.Add("Cookie", ".AspNetCore.Identity.Application=" + cookie);
+            var response = await _client.SendAsync(message);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {

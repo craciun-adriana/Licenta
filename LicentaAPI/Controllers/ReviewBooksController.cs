@@ -44,15 +44,10 @@ namespace LicentaAPI.Controllers
         [Authorize]
         [HttpGet("get-by-status/{status}")]
         [SwaggerResponse(200, "ReviewBook with the given status.")]
-        [SwaggerResponse(404, "ReviewBook can't be found.")]
         public IActionResult GetReviewBookByStatus(Status status)
         {
             var reviewBook = _reviewBooksService.GetByStatus(status);
-            if (reviewBook.Any())
-            {
-                return Ok(reviewBook);
-            }
-            return NotFound();
+            return Ok(reviewBook);
         }
     }
 }

@@ -46,7 +46,7 @@ namespace LicentaAPI.Controllers
             return CreatedAtRoute("", new { film.ID }, film);
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet("get-all")]
         [SwaggerResponse(200, "All the films from the database.")]
         public IActionResult GetAllFilms()

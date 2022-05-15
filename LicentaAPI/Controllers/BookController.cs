@@ -46,7 +46,7 @@ namespace LicentaAPI.Controllers
             return CreatedAtRoute("", new { book.ID }, book);
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet("get-all")]
         [SwaggerResponse(200, "All the book from the database.")]
         public IActionResult GetAllBooks()
@@ -61,7 +61,7 @@ namespace LicentaAPI.Controllers
         public IActionResult GetBookById(string id)
         {
             var book = _bookService.GetBookById(id);
-            if(book!=null)
+            if (book != null)
             {
                 return Ok(book);
             }
