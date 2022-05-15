@@ -14,6 +14,6 @@ namespace LicentaAPI.AppServices.ReviewSerieses
         /// <returns>The created ReviewSeries or null if it was not created.</returns>
         public ReviewSeries CreateReviewSeries(ReviewSeriesCreate reviewSeriesCreate);
 
-        public IEnumerable<ReviewSeries> GetByStatus(Status status);
+        public IEnumerable<ReviewSeriesDTO> GetByStatus(Status status);
     }
 }

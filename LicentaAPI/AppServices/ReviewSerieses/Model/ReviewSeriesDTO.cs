@@ -1,14 +1,18 @@
-﻿using System;
+﻿using LicentaAPI.Persistence.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace LicentaUI.Models
+namespace LicentaAPI.AppServices.ReviewSerieses.Model
 {
-    public class ReviewFilmModel
+    public class ReviewSeriesDTO
     {
         public string IdReview { get; set; }
 
         public string IdUser { get; set; }
 
-        public string IdFilm { get; set; }
+        public string IdSeries { get; set; }
 
         public int? Grade { get; set; }
 
@@ -18,7 +22,7 @@ namespace LicentaUI.Models
 
         public string Title { get; set; }
 
-        public string Author { get; set; }
+        public string Director { get; set; }
 
         public string Description { get; set; }
 
@@ -29,5 +33,9 @@ namespace LicentaUI.Models
         public string SequelID { get; set; }
 
         public Genre Genre { get; set; }
+
+        public Rating Rating { get; set; }
+
+        public int NrEps { get; set; }
     }
 }

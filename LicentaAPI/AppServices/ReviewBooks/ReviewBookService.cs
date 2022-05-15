@@ -4,6 +4,7 @@ using LicentaAPI.Persistence.Models;
 using LicentaAPI.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LicentaAPI.AppServices.ReviewBooks
 {
@@ -13,11 +14,13 @@ namespace LicentaAPI.AppServices.ReviewBooks
     public class ReviewBookService : IReviewBookService
     {
         private readonly IReviewBookRepo _reviewBookRepo;
+        private readonly IBookRepo _bookRepo;
         private readonly IMappingCoordinator _mapper;
 
-        public ReviewBookService(IReviewBookRepo reviewBookRepo, IMappingCoordinator mapper)
+        public ReviewBookService(IReviewBookRepo reviewBookRepo, IBookRepo bookRepo, IMappingCoordinator mapper)
         {
             _reviewBookRepo = reviewBookRepo;
+            _bookRepo = bookRepo;
             _mapper = mapper;
         }
 
@@ -38,9 +41,29 @@ namespace LicentaAPI.AppServices.ReviewBooks
             return reviewBook;
         }
 
-        public IEnumerable<ReviewBook> GetByStatus(Status status)
+        public IEnumerable<ReviewBookDTO> GetByStatus(Status status)
         {
-            return _reviewBookRepo.GetByStatus(status);
+            return _reviewBookRepo.GetByStatus(status)
+                .Select(rb =>
+                {
+                    var book = _bookRepo.GetById(rb.IdBook);
+                    return new ReviewBookDTO
+                    {
+                        IdBook = rb.IdBook,
+                        Author = book.Author,
+                        Description = book.Description,
+                        Genre = book.Genre,
+                        Grade = rb.Grade,
+                        IdReview = rb.ID,
+                        IdUser = rb.IdUser,
+                        PrequelID = book.PrequelID,
+                        RelaseDate = book.RelaseDate,
+                        Review = rb.Review,
+                        SequelID = book.SequelID,
+                        Status = rb.Status,
+                        Title = book.Title
+                    };
+                });
         }
     }
 }

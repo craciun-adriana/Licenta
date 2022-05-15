@@ -16,8 +16,11 @@ namespace LicentaUI.Pages
         public List<SeriesModel> Series { get; set; }
         public List<AppointmentModel> Appointments { get; set; }
         public List<ReviewBookModel> ReviewBooks { get; set; }
+        public List<ReviewBookModel> ReviewBooksO { get; set; }
         public List<ReviewFilmModel> ReviewFilms { get; set; }
+        public List<ReviewFilmModel> ReviewFilmsO { get; set; }
         public List<ReviewSeriesModel> ReviewSeries { get; set; }
+        public List<ReviewSeriesModel> ReviewSeriesO { get; set; }
 
         private LicentaApiHttpClient _licentaApiHttpClient;
 
@@ -28,13 +31,18 @@ namespace LicentaUI.Pages
 
         public async Task<IActionResult> OnGetAsync()
         {
-            Books = (await _licentaApiHttpClient.GetAllBooksAsync()).ToList();
-            Films = (await _licentaApiHttpClient.GetAllFilmsAsync()).ToList();
-            Series = (await _licentaApiHttpClient.GetAllSeriesAsync()).ToList();
-            Appointments = (await _licentaApiHttpClient.GetAllApointmentForUser()).ToList();
-            ReviewBooks = (await _licentaApiHttpClient.GetReviewBookByStatus(Status.Planning)).ToList();
-            ReviewFilms = (await _licentaApiHttpClient.GetReviewFilmByStatus(Status.Planning)).ToList();
-            ReviewSeries = (await _licentaApiHttpClient.GetReviewSeriesByStatus(Status.Planning)).ToList();
+            var cookie = Request.Cookies[".AspNetCore.Identity.Application"] ?? "";
+
+            Books = (await _licentaApiHttpClient.GetAllBooksAsync(cookie)).ToList();
+            Films = (await _licentaApiHttpClient.GetAllFilmsAsync(cookie)).ToList();
+            Series = (await _licentaApiHttpClient.GetAllSeriesAsync(cookie)).ToList();
+            Appointments = (await _licentaApiHttpClient.GetAllApointmentForUser(cookie)).ToList();
+            ReviewBooks = (await _licentaApiHttpClient.GetReviewBookByStatus(Status.Planning, cookie)).ToList();
+            ReviewFilms = (await _licentaApiHttpClient.GetReviewFilmByStatus(Status.Planning, cookie)).ToList();
+            ReviewSeries = (await _licentaApiHttpClient.GetReviewSeriesByStatus(Status.Planning, cookie)).ToList();
+            ReviewBooksO = (await _licentaApiHttpClient.GetReviewBookByStatus(Status.Ongoing, cookie)).ToList();
+            ReviewFilmsO = (await _licentaApiHttpClient.GetReviewFilmByStatus(Status.Ongoing, cookie)).ToList();
+            ReviewSeriesO = (await _licentaApiHttpClient.GetReviewSeriesByStatus(Status.Ongoing, cookie)).ToList();
 
             return Page();
         }

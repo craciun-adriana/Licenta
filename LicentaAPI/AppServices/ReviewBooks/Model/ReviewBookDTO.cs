@@ -1,14 +1,15 @@
-﻿using System;
+﻿using LicentaAPI.Persistence.Models;
+using System;
 
-namespace LicentaUI.Models
+namespace LicentaAPI.AppServices.ReviewBooks.Model
 {
-    public class ReviewFilmModel
+    public class ReviewBookDTO
     {
         public string IdReview { get; set; }
 
         public string IdUser { get; set; }
 
-        public string IdFilm { get; set; }
+        public string IdBook { get; set; }
 
         public int? Grade { get; set; }
 

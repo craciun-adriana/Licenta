@@ -70,55 +70,59 @@
         </tbody>
     </table>
 </div>
-<table>
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointments[0].IdBook)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointments[0].IdFilm)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointments[0].IdSeries)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointments[0].IdGroup)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Appointments[0].Location)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Appointments)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdBook)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdFilm)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdSeries)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdGroup)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location)
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 <div>
+    <h1>Your appointments!</h1>
     <table>
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.ReviewBooks[0].IdBook)>
+                    @Html.DisplayNameFor(model => model.Appointments[0].IdBook)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointments[0].IdFilm)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointments[0].IdSeries)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointments[0].IdGroup)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Appointments[0].Location)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Appointments)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdBook)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdFilm)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdSeries)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdGroup)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <h1>You want to see or read this: </h1>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReviewBooks[0].Title)>
                 </th>
             </tr>
         </thead>
@@ -127,7 +131,7 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IdBook)
+                        @Html.DisplayFor(modelItem => item.Title)
                     </td>
                 </tr>
             }
@@ -138,7 +142,7 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.ReviewFilms[0].IdFilm)>
+                    @Html.DisplayNameFor(model => model.ReviewFilms[0].Title)
                 </th>
             </tr>
         </thead>
@@ -147,17 +151,18 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IdFilm)
+                        @Html.DisplayFor(modelItem => item.Title)
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+
     <table>
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.ReviewSeries[0].IdSeries)>
+                    @Html.DisplayNameFor(model => model.ReviewSeries[0].Title)>
                 </th>
             </tr>
         </thead>
@@ -166,7 +171,70 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IdSeries)
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h1>But first finish this: </h1>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReviewBooks[0].Title)>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ReviewBooks)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReviewFilms[0].Title)>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ReviewFilms)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReviewSeries[0].Title)>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ReviewSeries)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
                     </td>
                 </tr>
             }

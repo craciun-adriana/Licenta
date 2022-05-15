@@ -4,6 +4,7 @@ using LicentaAPI.Persistence.Models;
 using LicentaAPI.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LicentaAPI.AppServices.ReviewFilms
 {
@@ -13,11 +14,13 @@ namespace LicentaAPI.AppServices.ReviewFilms
     public class ReviewFilmService : IReviewFilmService
     {
         private readonly IReviewFilmRepo _reviewFilmRepo;
+        private readonly IFilmRepo _filmRepo;
         private readonly IMappingCoordinator _mapper;
 
-        public ReviewFilmService(IReviewFilmRepo reviewFilmRepo, IMappingCoordinator mapper)
+        public ReviewFilmService(IReviewFilmRepo reviewFilmRepo, IFilmRepo filmRepo, IMappingCoordinator mapper)
         {
             _reviewFilmRepo = reviewFilmRepo;
+            _filmRepo = filmRepo;
             _mapper = mapper;
         }
 
@@ -38,9 +41,31 @@ namespace LicentaAPI.AppServices.ReviewFilms
             return reviewFilm;
         }
 
-        public IEnumerable<ReviewFilm> GetByStatus(Status status)
+        public IEnumerable<ReviewFilmDTO> GetByStatus(Status status)
         {
-            return _reviewFilmRepo.GetByStatus(status);
+            return _reviewFilmRepo.GetByStatus(status)
+                .Select(rb =>
+            {
+                var film = _filmRepo.GetById(rb.IdFilm);
+                return new ReviewFilmDTO
+                {
+                    IdFilm = rb.IdFilm,
+                    Director = film.Director,
+                    Description = film.Description,
+                    Genre = film.Genre,
+                    Grade = rb.Grade,
+                    IdReview = rb.ID,
+                    IdUser = rb.IdUser,
+                    PrequelID = film.PrequelID,
+                    RelaseDate = film.RelaseDate,
+                    Review = rb.Review,
+                    SequelID = film.SequelID,
+                    Status = rb.Status,
+                    Title = film.Title,
+                    Rating = film.Rating,
+                    Length = film.Length
+                };
+            });
         }
     }
 }

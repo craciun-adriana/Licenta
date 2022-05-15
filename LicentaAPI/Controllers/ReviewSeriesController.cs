@@ -48,11 +48,8 @@ namespace LicentaAPI.Controllers
         public IActionResult GetReviewBookByStatus(Status status)
         {
             var reviewSeries = _reviewSeriesService.GetByStatus(status);
-            if (reviewSeries.Any())
-            {
-                return Ok(reviewSeries);
-            }
-            return NotFound();
+              return Ok(reviewSeries);
+            
         }
     }
 }

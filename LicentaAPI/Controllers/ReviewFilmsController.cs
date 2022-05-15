@@ -48,11 +48,9 @@ namespace LicentaAPI.Controllers
         public IActionResult GetReviewBookByStatus(Status status)
         {
             var reviewFilm = _reviewFilmsService.GetByStatus(status);
-            if (reviewFilm.Any())
-            {
+            
                 return Ok(reviewFilm);
-            }
-            return NotFound();
+                       
         }
     }
 }
