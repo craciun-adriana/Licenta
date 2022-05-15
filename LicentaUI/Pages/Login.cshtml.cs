@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LicentaUI.HttpClients;
 using LicentaUI.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -40,7 +41,7 @@ namespace LicentaUI.Pages
                 }
                 Response.Cookies.Append(cookies.First().Split("=")[0], cookies.First().Split("=")[1]);
                 ErrorMessage = "";
-                return Redirect("/Index");
+                return Redirect("/Home");
             }
             return Page();
         }
