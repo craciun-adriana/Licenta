@@ -1,0 +1,38 @@
+﻿body {
+    background-color: #f0e9ed;
+    margin: 0;
+}
+
+.item1 {
+    grid-area: nameConversation;
+    text-align: center;
+}
+
+.item2 {
+    grid-area: LastConversations;
+    text-align: center;
+}
+
+.item3 {
+    grid-area: Chat;
+}
+
+.item4 {
+    grid-area: WriteMessage;
+    /* text-align: center; */
+}
+
+.item5 {
+    grid-area: SendMessage;
+    /* text-align: center; */
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas: 'nameConversation nameConversation nameConversation nameConversation'
+        'LastConversations Chat Chat Chat'
+        'LastConversations WriteMessage WriteMessage SendMessage';
+    gap: 10px;
+    padding: 10px;
+    background-color:;
+}
