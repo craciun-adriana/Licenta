@@ -46,24 +46,25 @@ namespace LicentaAPI.AppServices.ReviewSerieses
             return _reviewSeriesRepo.GetByStatus(status)
                  .Select(rb =>
                  {
-                     var film = _seriesRepo.GetById(rb.IdSeries);
+                     var series = _seriesRepo.GetById(rb.IdSeries);
                      return new ReviewSeriesDTO
                      {
                          IdSeries = rb.IdSeries,
-                         Director = film.Director,
-                         Description = film.Description,
-                         Genre = film.Genre,
+                         Director = series.Director,
+                         Description = series.Description,
+                         Genre = series.Genre,
                          Grade = rb.Grade,
                          IdReview = rb.ID,
                          IdUser = rb.IdUser,
-                         PrequelID = film.PrequelID,
-                         RelaseDate = film.RelaseDate,
+                         PrequelID = series.PrequelID,
+                         RelaseDate = series.RelaseDate,
                          Review = rb.Review,
-                         SequelID = film.SequelID,
+                         SequelID = series.SequelID,
                          Status = rb.Status,
-                         Title = film.Title,
-                         Rating = film.Rating,
-                         NrEps = film.NrEps
+                         Title = series.Title,
+                         Rating = series.Rating,
+                         NrEps = series.NrEps,
+                         Picture = series.Picture
                      };
                  });
         }

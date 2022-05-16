@@ -63,7 +63,8 @@ namespace LicentaAPI.AppServices.ReviewFilms
                     Status = rb.Status,
                     Title = film.Title,
                     Rating = film.Rating,
-                    Length = film.Length
+                    Length = film.Length,
+                    Picture = film.Picture
                 };
             });
         }

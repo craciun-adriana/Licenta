@@ -38,5 +38,8 @@ namespace LicentaAPI.Persistence.Models
 
         [Required]
         public int NrEps { get; set; }
+
+        [Required]
+        public string Picture { get; set; }
     }
 }

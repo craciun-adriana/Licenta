@@ -24,5 +24,7 @@ namespace LicentaAPI.AppServices.Films.Models
         public Rating Rating { get; set; }
 
         public int Length { get; set; }
+
+        public string Picture { get; set; }
     }
 }

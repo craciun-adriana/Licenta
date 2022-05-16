@@ -61,7 +61,8 @@ namespace LicentaAPI.AppServices.ReviewBooks
                         Review = rb.Review,
                         SequelID = book.SequelID,
                         Status = rb.Status,
-                        Title = book.Title
+                        Title = book.Title,
+                        Picture = book.Picture
                     };
                 });
         }

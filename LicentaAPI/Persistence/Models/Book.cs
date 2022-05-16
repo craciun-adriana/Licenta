@@ -32,5 +32,8 @@ namespace LicentaAPI.Persistence.Models
 
         [Required]
         public Genre Genre { get; set; }
+
+        [Required]
+        public string Picture { get; set; }
     }
 }
