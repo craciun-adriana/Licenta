@@ -24,5 +24,7 @@ namespace LicentaUI.Models
         public string SequelID { get; set; }
 
         public Genre Genre { get; set; }
+
+        public string Picture { get; set; }
     }
 }

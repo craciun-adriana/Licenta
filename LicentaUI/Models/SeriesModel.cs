@@ -25,5 +25,7 @@ namespace LicentaUI.Models
         public Rating Rating { get; set; }
 
         public int NrEps { get; set; }
+
+        public string Picture { get; set; }
     }
 }
