@@ -1,4 +1,5 @@
 ﻿using LicentaAPI.AppServices.Messages.Model;
+using LicentaAPI.AppServices.Models;
 using LicentaAPI.Infrastructure.Mapper;
 using LicentaAPI.Persistence.Models;
 using LicentaAPI.Persistence.Repositories;
@@ -13,11 +14,13 @@ namespace LicentaAPI.AppServices.Messages
     public class MessageService : IMessageService
     {
         private readonly IMessageRepo _messageRepo;
+        private readonly IUserRepo _userRepo;
         private readonly IMappingCoordinator _mapper;
 
-        public MessageService(IMessageRepo messageRepo, IMappingCoordinator mapper)
+        public MessageService(IMessageRepo messageRepo, IUserRepo userRepo, IMappingCoordinator mapper)
         {
             _messageRepo = messageRepo;
+            _userRepo = userRepo;
             _mapper = mapper;
         }
 
@@ -38,9 +41,11 @@ namespace LicentaAPI.AppServices.Messages
             return message;
         }
 
-        public IEnumerable<string> GetAllConversationUsers(string idUser, int amount)
+        public IEnumerable<PublicUserDetails> GetAllConversationUsers(string idUser, int amount)
         {
-            return _messageRepo.GetLastConversationUsers(idUser, amount);
+            var userIds = _messageRepo.GetLastConversationUsers(idUser, amount);
+            var users = _userRepo.GetUsersByIds(userIds);
+            return _mapper.Map<AppUser, PublicUserDetails>(users);
         }
 
         public IEnumerable<Message> GetAllMessagesBetweenUsers(string idUser1, string idUser2)

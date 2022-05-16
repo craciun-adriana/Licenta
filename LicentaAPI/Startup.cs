@@ -121,6 +121,7 @@ namespace LicentaAPI
             services.AddScoped<IReviewFilmRepo, EFReviewFilmRepository>();
             services.AddScoped<IReviewSeriesRepo, EFReviewSeriesRepository>();
             services.AddScoped<ISeriesRepo, EFSeriesRepository>();
+            services.AddScoped<IUserRepo, EFUserRepository>();
         }
 
         private static void AddServices(IServiceCollection services)

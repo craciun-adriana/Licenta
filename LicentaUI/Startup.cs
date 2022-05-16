@@ -28,12 +28,12 @@ namespace LicentaUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            //    .AddCookie(options =>
-            //    {
-            //        options.Cookie = new CookieBuilder() { Name = ".AspNetCore.Identity.Application" };
-            //    });
-            //services.AddSingleton<LicentaApiHttpClient>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.Cookie = new CookieBuilder() { Name = ".AspNetCore.Identity.Application" };
+                });
+            services.AddSingleton<LicentaApiHttpClient>();
             services.AddRazorPages();
         }
 
@@ -57,6 +57,7 @@ namespace LicentaUI
 
             app.UseRouting();
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,38 +1,53 @@
-﻿body {
-    background-color: #f0e9ed;
-    margin: 0;
-}
-
-.item1 {
+﻿.item1 {
     grid-area: nameConversation;
+    border: 1px solid black;
     text-align: center;
 }
 
 .item2 {
+    background-color: beige;
     grid-area: LastConversations;
+    border: 1px solid black;
     text-align: center;
 }
 
 .item3 {
     grid-area: Chat;
+    height: 2cm;
+    border: 1px solid black;
 }
 
 .item4 {
     grid-area: WriteMessage;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid black;
     /* text-align: center; */
 }
 
-.item5 {
-    grid-area: SendMessage;
-    /* text-align: center; */
+#message {
+    height: 50px;
+    flex-grow: 100;
 }
 
+#submit {
+    height: 50%;
+    margin-left: 10px;
+}
+
+img {
+    object-fit: cover;
+}
 .grid-container {
     display: grid;
-    grid-template-areas: 'nameConversation nameConversation nameConversation nameConversation'
-        'LastConversations Chat Chat Chat'
-        'LastConversations WriteMessage WriteMessage SendMessage';
-    gap: 10px;
+    grid-template-areas:
+        'LastConversations nameConversation nameConversation'
+        'LastConversations Chat Chat'
+        'LastConversations WriteMessage WriteMessage';
+    gap: 5px;
     padding: 10px;
-    background-color:;
+    background-color: bisque;
+    font-family: Arial, Helvetica, sans-serif;
 }

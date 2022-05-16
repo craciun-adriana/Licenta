@@ -19,7 +19,6 @@ namespace LicentaUI.Pages
 
         public void OnGet()
         {
-
         }
     }
 }

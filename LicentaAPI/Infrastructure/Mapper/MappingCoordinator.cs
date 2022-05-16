@@ -6,6 +6,7 @@ using LicentaAPI.AppServices.Friendships.Model;
 using LicentaAPI.AppServices.GroupMembers.Model;
 using LicentaAPI.AppServices.Groups.Model;
 using LicentaAPI.AppServices.Messages.Model;
+using LicentaAPI.AppServices.Models;
 using LicentaAPI.AppServices.ReviewBooks.Model;
 using LicentaAPI.AppServices.ReviewFilms.Model;
 using LicentaAPI.AppServices.ReviewSerieses.Model;
@@ -87,6 +88,8 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<SeriesCreateRequest, SeriesCreate>();
                 cfg.CreateMap<SeriesCreate, Series>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
+
+                cfg.CreateMap<AppUser, PublicUserDetails>();
             });
         }
 

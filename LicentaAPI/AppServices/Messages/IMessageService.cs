@@ -1,4 +1,5 @@
 ﻿using LicentaAPI.AppServices.Messages.Model;
+using LicentaAPI.AppServices.Models;
 using LicentaAPI.Persistence.Models;
 using System.Collections.Generic;
 
@@ -20,6 +21,6 @@ namespace LicentaAPI.AppServices.Messages
 
         public IEnumerable<Message> GetAllMessagesInGroup(string idGroup);
 
-        public IEnumerable<string> GetAllConversationUsers(string iduser, int amound);
+        public IEnumerable<PublicUserDetails> GetAllConversationUsers(string iduser, int amound);
     }
 }

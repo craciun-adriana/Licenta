@@ -47,8 +47,7 @@ namespace LicentaAPI.Controllers
 
         [Authorize]
         [HttpGet("conversation/{amount}")]
-        [SwaggerResponse(201, "Message was created.")]
-        [SwaggerResponse(404, "Message can't be created.")]
+        [SwaggerResponse(201, "Conversations was uploaded.")]
         public IActionResult GetLastConversationUser(int amount)
         {
             var idUser = _userManager.GetUserId(HttpContext.User);
@@ -56,9 +55,8 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("conversation/{idOtherUser}")]
-        [SwaggerResponse(201, "Message was created.")]
-        [SwaggerResponse(404, "Message can't be created.")]
+        [HttpGet("conversation/user/{idOtherUser}")]
+        [SwaggerResponse(201, "All messages between 2 users.")]
         public IActionResult GetAllMessagesBetweenUsers(string idOtherUser)
         {
             var idUser = _userManager.GetUserId(HttpContext.User);
@@ -66,9 +64,8 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("conversation/{idGroup}")]
-        [SwaggerResponse(201, "Message was created.")]
-        [SwaggerResponse(404, "Message can't be created.")]
+        [HttpGet("conversation/group/{idGroup}")]
+        [SwaggerResponse(201, "All group's messages.")]
         public IActionResult GetAllMessagesInGroup(string idGroup)
         {
             return Ok(_messageService.GetAllMessagesInGroup(idGroup));
