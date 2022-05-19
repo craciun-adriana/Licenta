@@ -9,5 +9,7 @@ namespace LicentaAPI.Persistence.Repositories
     public interface IUserRepo
     {
         public IEnumerable<AppUser> GetUsersByIds(IEnumerable<string> Ids);
+
+        public IEnumerable<AppUser> FindUsersByUsername(string username);
     }
 }

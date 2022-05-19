@@ -9,6 +9,7 @@ using LicentaAPI.AppServices.ReviewBooks;
 using LicentaAPI.AppServices.ReviewFilms;
 using LicentaAPI.AppServices.ReviewSerieses;
 using LicentaAPI.AppServices.Serieses;
+using LicentaAPI.AppServices.Users;
 using LicentaAPI.Infrastructure.Mapper;
 using LicentaAPI.Persistence;
 using LicentaAPI.Persistence.Models;
@@ -137,6 +138,7 @@ namespace LicentaAPI
             services.AddScoped<IReviewFilmService, ReviewFilmService>();
             services.AddScoped<IReviewSeriesService, ReviewSeriesService>();
             services.AddScoped<ISeriesService, SeriesService>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         private static void ConfigureControllers(IServiceCollection services)
