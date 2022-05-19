@@ -67,5 +67,14 @@ namespace LicentaAPI.Controllers
             }
             return NotFound();
         }
+
+        [Authorize]
+        [HttpGet("delete/{id}")]
+        [SwaggerResponse(200, "Book with the given id was deleted.")]
+        public IActionResult DeleteBookById(string id)
+        {
+            _bookService.DeleteBook(id);
+            return Ok();
+        }
     }
 }

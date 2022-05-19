@@ -38,7 +38,7 @@ namespace LicentaAPI.AppServices.Films
             return film;
         }
 
-        public void DeleteBook(string idFilm)
+        public void DeleteFilm(string idFilm)
         {
             var film = _filmRepo.GetById(idFilm);
             if (film != null)

@@ -33,7 +33,7 @@ namespace LicentaAPI.AppServices.Films
         /// Deletes a film with the given id.
         /// </summary>
         /// <param name="idFilm">The id of the film to be deleted.</param>
-        public void DeleteBook(string idFilm);
+        public void DeleteFilm(string idFilm);
 
         /// <summary>
         /// Returns films that have the given string in the title.

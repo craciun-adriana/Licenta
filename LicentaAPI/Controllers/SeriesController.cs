@@ -67,5 +67,14 @@ namespace LicentaAPI.Controllers
             }
             return NotFound();
         }
+
+        [Authorize]
+        [HttpGet("delete/{id}")]
+        [SwaggerResponse(200, "Series with the given id was deleted.")]
+        public IActionResult DeleteSeriesById(string id)
+        {
+            _seriesService.DeleteSeries(id);
+            return Ok();
+        }
     }
 }

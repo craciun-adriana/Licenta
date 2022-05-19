@@ -67,5 +67,14 @@ namespace LicentaAPI.Controllers
             }
             return NotFound();
         }
+
+        [Authorize]
+        [HttpGet("delete/{id}")]
+        [SwaggerResponse(200, "Film with the given id was deleted.")]
+        public IActionResult DeleteFilmById(string id)
+        {
+            _filmService.DeleteFilm(id);
+            return Ok();
+        }
     }
 }
