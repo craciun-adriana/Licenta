@@ -11,7 +11,11 @@ namespace LicentaUI.Pages
 {
     public class ChatModel : PageModel
     {
-        public List<PublicUserDetails> UserDetails { get; set; }
+        [BindProperty]
+        public string UserName { get; set; }
+
+        public List<PublicUserDetails> UserDetails { get; set; } = new();
+        public List<PublicUserDetails> UsersFind { get; set; } = new();
         public string ErrorMessage { get; set; }
 
         private LicentaApiHttpClient _licentaApiHttpClient;
@@ -33,8 +37,14 @@ namespace LicentaUI.Pages
         /// <summary>
         /// cand apas send
         /// </summary>
-        public void OnPost()
+        public async Task<IActionResult> OnPost()
         {
+            var cookie = Request.Cookies[".AspNetCore.Identity.Application"] ?? "";
+
+            UserDetails = (await _licentaApiHttpClient.GetLastConversationsForUser(cookie)).ToList();
+            UsersFind = (await _licentaApiHttpClient.FindUsersByUsername(UserName, cookie)).ToList();
+
+            return Page();
         }
     }
 }

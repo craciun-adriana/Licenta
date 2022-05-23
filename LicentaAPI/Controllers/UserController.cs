@@ -27,7 +27,8 @@ namespace LicentaAPI.Controllers
         [SwaggerResponse(200, "Users with the given string in userName.")]
         public IActionResult FindUsersByUsername(string userName)
         {
-            return Ok(_userService.FindUsersByUsername(userName));
+            var loggedInUserId = _userManager.GetUserId(HttpContext.User);
+            return Ok(_userService.FindUsersByUsername(userName, loggedInUserId));
         }
     }
 }

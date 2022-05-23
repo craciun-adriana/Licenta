@@ -20,9 +20,10 @@ namespace LicentaAPI.AppServices.Users
             _mapper = mapper;
         }
 
-        public IEnumerable<PublicUserDetails> FindUsersByUsername(string username)
+        public IEnumerable<PublicUserDetails> FindUsersByUsername(string username, string loggedInUserId)
         {
-            var users = _userRepo.FindUsersByUsername(username);
+            var users = _userRepo.FindUsersByUsername(username)
+                .Where(u => u.Id != loggedInUserId);
             return _mapper.Map<AppUser, PublicUserDetails>(users);
         }
     }

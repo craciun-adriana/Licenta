@@ -9,8 +9,11 @@
 }
 
 <h1>Chat</h1>
+
 <div class="grid-container">
-    <div class="item1">Name</div>
+    <div class="item1">
+        <span>Model.UserDetails.</span>
+    </div>
     <div class="item2">
 
         @foreach (var item in Model.UserDetails)
@@ -20,31 +23,6 @@
                 <span>@item.UserName</span>
             </div>
         }
-        @*<table>
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.UserDetails[0].ProfilePicture)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.UserDetails[0].UserName)
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.UserDetails)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ProfilePicture)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UserName)
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>*@
     </div>
     <div class="item3">
         Message
@@ -52,5 +30,19 @@
     <div class="item4">
         <input id="message" name="message">
         <button id="submit" type="submit">Send</button>
+    </div>
+</div>
+<div id="search-bar">
+    <form method="post">
+        <input id="search-text" type="text" asp-for="UserName" />
+        <input type="submit" value="Submit">
+    </form>
+    <div>
+        @foreach (var item in Model.UsersFind)
+        {
+            <div>
+                <span>@item.UserName</span>
+            </div>
+        }
     </div>
 </div>
