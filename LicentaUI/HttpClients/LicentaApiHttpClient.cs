@@ -192,5 +192,35 @@ namespace LicentaUI.HttpClients
             }
             throw new Exception(response.StatusCode.ToString());
         }
+
+        public async Task<IEnumerable<MessageModel>> GetAllMessagesBetweenUsers(string otherId, string cookie)
+        {
+            var url = new Uri(_baseAddress, "licenta/conversation/user" + otherId);
+            var message = new HttpRequestMessage(HttpMethod.Get, url);
+            message.Headers.Add("Cookie", ".AspNetCore.Identity.Application=" + cookie);
+            var response = await _client.SendAsync(message);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<IEnumerable<MessageModel>>(content, jsonOptions);
+            }
+            throw new Exception(response.StatusCode.ToString());
+        }
+
+        public async Task<PublicUserDetails> GetUserById(string idUser, string cookie)
+        {
+            var url = new Uri(_baseAddress, "licenta/user/get" + idUser);
+            var message = new HttpRequestMessage(HttpMethod.Get, url);
+            message.Headers.Add("Cookie", ".AspNetCore.Identity.Application=" + cookie);
+            var response = await _client.SendAsync(message);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<PublicUserDetails>(content, jsonOptions);
+            }
+            throw new Exception(response.StatusCode.ToString());
+        }
     }
 }

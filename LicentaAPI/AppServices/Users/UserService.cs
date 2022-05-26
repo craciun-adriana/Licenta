@@ -26,5 +26,10 @@ namespace LicentaAPI.AppServices.Users
                 .Where(u => u.Id != loggedInUserId);
             return _mapper.Map<AppUser, PublicUserDetails>(users);
         }
+
+        public IEnumerable<AppUser> GetUserById(string userId)
+        {
+            return _userRepo.GetUserById(userId);
+        }
     }
 }

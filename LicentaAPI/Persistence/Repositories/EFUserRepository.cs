@@ -24,5 +24,10 @@ namespace LicentaAPI.Persistence.Repositories
         {
             return _dbContext.Users.Where(user => user.UserName.Contains(username));
         }
+
+        public IEnumerable<AppUser> GetUserById(string idUser)
+        {
+            return _dbContext.Users.Where(user => user.Id.Equals(idUser));
+        }
     }
 }

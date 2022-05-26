@@ -10,5 +10,7 @@ namespace LicentaAPI.AppServices.Users
     public interface IUserService
     {
         public IEnumerable<PublicUserDetails> FindUsersByUsername(string username, string loggedInUserId);
+
+        public IEnumerable<AppUser> GetUserById(string userId);
     }
 }

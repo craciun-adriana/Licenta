@@ -30,5 +30,19 @@ namespace LicentaAPI.Controllers
             var loggedInUserId = _userManager.GetUserId(HttpContext.User);
             return Ok(_userService.FindUsersByUsername(userName, loggedInUserId));
         }
+
+        [Authorize]
+        [HttpGet("get/{id}")]
+        [SwaggerResponse(200, "User with the given id.")]
+        [SwaggerResponse(404, "User was not found.")]
+        public IActionResult GetUserById(string idUser)
+        {
+            var user = _userService.GetUserById(idUser);
+            if (user != null)
+            {
+                return Ok(user);
+            }
+            return NotFound();
+        }
     }
 }

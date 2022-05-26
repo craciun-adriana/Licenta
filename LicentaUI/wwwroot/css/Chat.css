@@ -1,23 +1,23 @@
-﻿.item1 {
+﻿.nameConv {
     grid-area: nameConversation;
     border: 1px solid black;
     text-align: center;
 }
 
-.item2 {
+.userList {
     background-color: beige;
     grid-area: LastConversations;
     border: 1px solid black;
     text-align: center;
 }
 
-.item3 {
+.showMess {
     grid-area: Chat;
     height: 2cm;
     border: 1px solid black;
 }
 
-.item4 {
+.createMess {
     grid-area: WriteMessage;
     display: flex;
     flex-direction: row;
@@ -40,6 +40,7 @@
 img {
     object-fit: cover;
 }
+
 .grid-container {
     display: grid;
     grid-template-areas:

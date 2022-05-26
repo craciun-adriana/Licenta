@@ -4,17 +4,22 @@
     <link rel="stylesheet" href="~/css/Chat.css" />
 }
 
+@section JavaScript {
+    <script type="text/javascript" src="~/js/chat.js"></script>
+}
+
 @model LicentaUI.Pages.ChatModel
 @{
+
 }
 
 <h1>Chat</h1>
 
 <div class="grid-container">
-    <div class="item1">
-        <span>Model.UserDetails.</span>
+    <div class="nameConv">
+        <span>Model.UserDetails.UserName</span>
     </div>
-    <div class="item2">
+    <div class="userList">
 
         @foreach (var item in Model.UserDetails)
         {
@@ -24,10 +29,17 @@
             </div>
         }
     </div>
-    <div class="item3">
-        Message
+    <div class="showMess">
+        <ul>
+            @foreach (var item in Model.Messages)
+            {
+                <li>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </li>
+            }
+        </ul>
     </div>
-    <div class="item4">
+    <div class="createMess">
         <input id="message" name="message">
         <button id="submit" type="submit">Send</button>
     </div>
@@ -40,7 +52,7 @@
     <div>
         @foreach (var item in Model.UsersFind)
         {
-            <div>
+            <div onclick="GetMessages('@item.Id')">
                 <span>@item.UserName</span>
             </div>
         }
