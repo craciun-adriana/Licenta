@@ -11,6 +11,7 @@ import { LicentaService } from './services/licenta-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogoutPageComponent } from './components/logout-page/logout-page.component';
+import { ChatPageComponent } from './components/chat-page/chat-page.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { LogoutPageComponent } from './components/logout-page/logout-page.compon
         ToolbarComponent,
         LoginPageComponent,
         HomePageComponent,
-        LogoutPageComponent
+        LogoutPageComponent,
+        ChatPageComponent
     ],
     imports: [
         BrowserModule,
