@@ -16,6 +16,7 @@ using LicentaAPI.Persistence.Models;
 using LicentaAPI.Persistence.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +27,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace LicentaAPI
 {
@@ -106,6 +108,11 @@ namespace LicentaAPI
                 options.LoginPath = "/Identity/Account/Login";
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
+                options.Events.OnRedirectToLogin = context =>
+                {
+                    context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                    return Task.CompletedTask;
+                };
             });
         }
 

@@ -1,0 +1,30 @@
+<h1>Welcome to ToREWatch!</h1>
+
+<form [formGroup]="loginForm">
+    <div class="content">
+        <span>UserName</span>
+        <input type="text" formControlName="userName" id="userName">
+    </div>
+
+    <div class="content">
+        <span>Password</span>
+        <input type="password" formControlName="password" id="password">
+    </div>
+
+    <div class="content">
+        <span>Remember me</span>
+        <input type="checkbox" formControlName="rememberMe" id="rememberMe">
+    </div>
+
+    <div class="login-button-container">
+        <button (click)="clickLogin()" id="loginButton">Login</button>
+    </div>
+
+    <div class="content" *ngIf="showErrorMessage">
+        <span class="error">Could not login user.</span>
+    </div>
+</form>
+
+<div class="content" id="register">
+    <a>Don't have an account yet? Register</a>
+</div>

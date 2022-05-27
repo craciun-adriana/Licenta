@@ -84,7 +84,11 @@ namespace LicentaAPI.Controllers
         [SwaggerResponse(404, "No user is logged id.")]
         public IActionResult IsLogged()
         {
-            return Ok(_userManager.GetUserId(HttpContext.User));
+            var response = new IsLoggedInResponse
+            {
+                UserId = _userManager.GetUserId(HttpContext.User)
+            };
+            return Ok(response);
         }
     }
 }

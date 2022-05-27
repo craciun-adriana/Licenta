@@ -1,0 +1,69 @@
+<h1>List of what we have to offer you :)</h1>
+
+<div class="tables">
+    <table>
+        <thead>
+            <tr>
+                <th>Book Titles</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of books">
+                <td>{{book.title}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Film Titles</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let film of films">
+                <td>{{film.title}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Series Titles</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let series of serieses">
+                <td>{{series.title}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <h1>Your appointments!</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>TitleBook</th>
+                <th>TitleFilm</th>
+                <th>TitleSeries</th>
+                <th>IdGroup</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let appointment of appointments">
+                <td>{{appointment.name}}</td>
+                <td>{{appointment.titleBook}}</td>
+                <td>{{appointment.titleFilm}}</td>
+                <td>{{appointment.titleSeries}}</td>
+                <td>{{appointment.idGroup}}</td>
+                <td>{{appointment.location}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
