@@ -2,14 +2,15 @@
     <a [routerLink]="'/home'" routerLinkActive="active">Licenta</a>
 
     <div class="buttons-container">
-        <a [routerLink]="'/login'" routerLinkActive="active">Login</a>
-        <a href="#">Profile</a>
-        <a href="#">Friends</a>
-        <a href="#">Chat</a>
-        <a href="#">Books</a>
-        <a href="#">Films</a>
-        <a href="#">Series</a>
-        <a href="#">Settings</a>
-        <a [routerLink]="'/logout'">Logout</a>
+        <a *ngIf="!isLoggedIn" href="#">Register</a>
+        <a *ngIf="!isLoggedIn" [routerLink]="'/login'" routerLinkActive="active">Login</a>
+        <a *ngIf="isLoggedIn" href="#">Profile</a>
+        <a *ngIf="isLoggedIn" href="#">Friends</a>
+        <a *ngIf="isLoggedIn" href="#">Chat</a>
+        <a *ngIf="isLoggedIn" href="#">Books</a>
+        <a *ngIf="isLoggedIn" href="#">Films</a>
+        <a *ngIf="isLoggedIn" href="#">Series</a>
+        <a *ngIf="isLoggedIn" href="#">Settings</a>
+        <a *ngIf="isLoggedIn" [routerLink]="'/logout'">Logout</a>
     </div>
 </div>

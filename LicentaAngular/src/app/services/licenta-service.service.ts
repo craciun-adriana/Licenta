@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, EMPTY, map, Observable, of, pipe } from 'rxjs';
-import { BookModel } from '../models/book-model';
+import { catchError, map, Observable, of } from 'rxjs';
 import { LoginRequest } from '../models/login-request';
 
 @Injectable({

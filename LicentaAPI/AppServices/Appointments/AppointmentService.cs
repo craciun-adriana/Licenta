@@ -20,7 +20,13 @@ namespace LicentaAPI.AppServices.Appointments
         private readonly ISeriesRepo _seriesRepo;
         private IMappingCoordinator _mapper;
 
-        public AppointmentService(IAppointmentRepo appointmentRepo, IBookRepo bookRepo, IFilmRepo filmRepo, ISeriesRepo seriesRepo, IGroupRepo groupRepo, IMappingCoordinator mapper)
+        public AppointmentService(
+            IAppointmentRepo appointmentRepo,
+            IBookRepo bookRepo,
+            IFilmRepo filmRepo,
+            ISeriesRepo seriesRepo,
+            IGroupRepo groupRepo,
+            IMappingCoordinator mapper)
         {
             _appointmentRepo = appointmentRepo;
             _groupRepo = groupRepo;

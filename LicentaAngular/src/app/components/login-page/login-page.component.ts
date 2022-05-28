@@ -29,7 +29,7 @@ export class LoginPageComponent {
             userName: this.loginForm.get('userName')?.value,
             password: this.loginForm.get('password')?.value,
             rememberMe: this.loginForm.get('rememberMe')?.value ? true : false
-        }
+        };
 
         this.licentaService.loginUser(loginDetails).subscribe(response => {
             if (response === false) {
