@@ -2,7 +2,7 @@
     <a [routerLink]="'/home'" routerLinkActive="active">Licenta</a>
 
     <div class="buttons-container">
-        <a *ngIf="!isLoggedIn" href="#">Register</a>
+        <a *ngIf="!isLoggedIn" [routerLink]="'/register'" routerLinkActive="active">Register</a>
         <a *ngIf="!isLoggedIn" [routerLink]="'/login'" routerLinkActive="active">Login</a>
         <a *ngIf="isLoggedIn" href="#">Profile</a>
         <a *ngIf="isLoggedIn" href="#">Friends</a>

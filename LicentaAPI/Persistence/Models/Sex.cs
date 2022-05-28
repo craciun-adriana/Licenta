@@ -7,8 +7,8 @@ namespace LicentaAPI.Persistence.Models
 {
     public enum Sex
     {
-        Other,
-        Female,
-        Male
+        Other = 0,
+        Female = 1,
+        Male = 2
     }
 }

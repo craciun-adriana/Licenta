@@ -1,1 +1,45 @@
-<p>chat-page works!</p>
+<h1>Chat</h1>
+
+<div class="grid-container">
+    <div class="nameConv">
+        <span>UserName</span>
+    </div>
+    <div class="userList">
+
+        @foreach (let item in )
+        {
+            <div>
+                <img src="@item.ProfilePicture" alt="Profile picture" width="100" height="100" />
+                <span>@item.UserName</span>
+            </div>
+        }
+    </div>
+    <div class="showMess">
+        <ul>
+            @foreach (var item in Model.Messages)
+            {
+                <li>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="createMess">
+        <input id="message" name="message">
+        <button id="submit" type="submit">Send</button>
+    </div>
+</div>
+<div id="search-bar">
+    <form method="post">
+        <input id="search-text" type="text" asp-for="UserName" />
+        <input type="submit" value="Submit">
+    </form>
+    <div>
+        @foreach (var item in Model.UsersFind)
+        {
+            <div onclick="GetMessages('@item.Id')">
+                <span>@item.UserName</span>
+            </div>
+        }
+    </div>
+</div>

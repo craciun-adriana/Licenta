@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogoutPageComponent } from './components/logout-page/logout-page.component';
 import { ChatPageComponent } from './components/chat-page/chat-page.component';
+import { RegisterPageComponent } from './components/register-page/register-page.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { ChatPageComponent } from './components/chat-page/chat-page.component';
         LoginPageComponent,
         HomePageComponent,
         LogoutPageComponent,
-        ChatPageComponent
+        ChatPageComponent,
+        RegisterPageComponent
     ],
     imports: [
         BrowserModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginRequest } from 'src/app/models/login-request';
+import { LoginDetails } from 'src/app/models/login-details';
 import { LicentaService } from 'src/app/services/licenta-service.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class LoginPageComponent {
     ) { }
 
     clickLogin(): void {
-        const loginDetails: LoginRequest = {
+        const loginDetails: LoginDetails = {
             userName: this.loginForm.get('userName')?.value,
             password: this.loginForm.get('password')?.value,
             rememberMe: this.loginForm.get('rememberMe')?.value ? true : false

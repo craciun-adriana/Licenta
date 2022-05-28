@@ -42,7 +42,7 @@ export class HomePageComponent implements OnInit {
         this.licentaService.getAllSeries().subscribe((response: SeriesModel[]) => {
             this.serieses = response;
         });
-        this.licentaService.getAllAppointmens().subscribe((response: AppointmentModel[]) => {
+        this.licentaService.getAllAppointmensForUser().subscribe((response: AppointmentModel[]) => {
             this.appointments = response;
         });
     }

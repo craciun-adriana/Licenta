@@ -1,0 +1,42 @@
+<h1>Register</h1>
+
+<form [formGroup]="registerForm">
+    <div class="content">
+        <span>First Name:</span>
+        <input type="text" formControlName="firstName">
+    </div>
+    <div class="content">
+        <span>Last Name:</span>
+        <input type="text" formControlName="lastName">
+    </div>
+    <div class="content">
+        <span>Email:</span>
+        <input type="text" formControlName="email">
+    </div>
+    <div class="content">
+        <span>User Name:</span>
+        <input type="text" formControlName="userName">
+    </div>
+    <div class="content">
+        <span>Password:</span>
+        <input type="password" formControlName="password">
+    </div>
+    <div class="content">
+        <span>Date of birth:</span>
+        <input type="date" formControlName="dateOfBirth">
+    </div>
+    <div class="content">
+        <span>Sex</span>
+        <select formControlName="sex">
+            <option selected="true" value="Other">Other</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+        </select>
+    </div>
+    <div id="registercontent">
+        <button id="register" (click)="clickRegister()">Register</button>
+    </div>
+    <div class="content" *ngIf="showErrorMessage">
+        <span class="error">Could not register user.</span>
+    </div>
+</form>
