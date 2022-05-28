@@ -14,8 +14,6 @@ namespace LicentaAPI.Controllers.Models
         [Required]
         public string Text { get; set; }
 
-        public string Picture { get; set; }
-
         [Required]
         public DateTime SendTime { get; set; }
     }
