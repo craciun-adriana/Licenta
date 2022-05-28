@@ -10,6 +10,6 @@ export interface UserDetails {
     description: string;
     sex: Sex;
     lastOnline: Date;
-    IsAdmin: boolean;
-    Rank: number;
+    isAdmin: boolean;
+    rank: number;
 }

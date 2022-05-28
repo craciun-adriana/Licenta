@@ -45,12 +45,11 @@ namespace LicentaAPI.Controllers
         [HttpGet("get-by-status/{status}")]
         [SwaggerResponse(200, "ReviewFilm with the given status.")]
         [SwaggerResponse(404, "ReviewFilm can't be found.")]
-        public IActionResult GetReviewBookByStatus(Status status)
+        public IActionResult GetReviewFilmByStatus(Status status)
         {
             var reviewFilm = _reviewFilmsService.GetByStatus(status);
-            
-                return Ok(reviewFilm);
-                       
+
+            return Ok(reviewFilm);
         }
     }
 }

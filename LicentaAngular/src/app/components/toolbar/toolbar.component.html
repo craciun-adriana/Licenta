@@ -6,7 +6,7 @@
         <a *ngIf="!isLoggedIn" [routerLink]="'/login'" routerLinkActive="active">Login</a>
         <a *ngIf="isLoggedIn" href="#">Profile</a>
         <a *ngIf="isLoggedIn" href="#">Friends</a>
-        <a *ngIf="isLoggedIn" href="#">Chat</a>
+        <a *ngIf="isLoggedIn" [routerLink]="'/chat'" routerLinkActive="active">Chat</a>
         <a *ngIf="isLoggedIn" href="#">Books</a>
         <a *ngIf="isLoggedIn" href="#">Films</a>
         <a *ngIf="isLoggedIn" href="#">Series</a>

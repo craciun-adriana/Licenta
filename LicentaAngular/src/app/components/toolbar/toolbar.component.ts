@@ -17,7 +17,7 @@ export class ToolbarComponent implements OnInit {
     ngOnInit(): void {
         interval(5000).subscribe(_ => {
             this.licentaService.isUserLoggedIn().subscribe(response => {
-                this.isLoggedIn = response;
+                this.isLoggedIn = (response !== "");
             });
         });
     }

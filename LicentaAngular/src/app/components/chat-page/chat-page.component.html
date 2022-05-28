@@ -6,22 +6,16 @@
     </div>
     <div class="userList">
 
-        @foreach (let item in )
-        {
-            <div>
-                <img src="@item.ProfilePicture" alt="Profile picture" width="100" height="100" />
-                <span>@item.UserName</span>
-            </div>
-        }
+        <div *ngFor="let user of lastConversation" (click)="openChatWithUser(user.id)">
+            <img alt="Profile picture" [src]="user.profilePicture" width="80" height="80" />
+            <span>{{user.userName}}</span>
+        </div>
     </div>
     <div class="showMess">
         <ul>
-            @foreach (var item in Model.Messages)
-            {
-                <li>
-                    @Html.DisplayFor(modelItem => item.Text)
-                </li>
-            }
+            <li *ngFor="let message of messages">
+                {{message.text}}
+            </li>
         </ul>
     </div>
     <div class="createMess">
@@ -35,11 +29,8 @@
         <input type="submit" value="Submit">
     </form>
     <div>
-        @foreach (var item in Model.UsersFind)
-        {
-            <div onclick="GetMessages('@item.Id')">
-                <span>@item.UserName</span>
-            </div>
-        }
+        <div>
+            <span></span>
+        </div>
     </div>
 </div>

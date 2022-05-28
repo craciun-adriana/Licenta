@@ -14,17 +14,17 @@ export class LicentaService {
         private http: HttpClient
     ) { }
 
-    isUserLoggedIn(): Observable<boolean> {
+    isUserLoggedIn(): Observable<string> {
         return this.http.get('licenta/auth/is-logged-in')
             .pipe(
                 catchError(err => {
                     return of(false);
                 }),
-                map(response => {
+                map((response: any) => {
                     if (response === false) {
-                        return false;
+                        return "";
                     }
-                    return true;
+                    return response.userId;
                 })
             );
     }
@@ -156,7 +156,7 @@ export class LicentaService {
     }
 
     getAllMessagesBetweenUsers(otherId: string): Observable<any> {
-        return this.http.get('/licenta/conversation/user' + otherId)
+        return this.http.get('/licenta/message/conversation/user/' + otherId)
             .pipe(
                 catchError(err => {
                     return of([]);
@@ -166,7 +166,7 @@ export class LicentaService {
     }
 
     getUserById(idUser: string): Observable<any> {
-        return this.http.get('/licenta/user/get' + idUser)
+        return this.http.get('/licenta/user/get/' + idUser)
             .pipe(
                 catchError(err => {
                     return of([]);
