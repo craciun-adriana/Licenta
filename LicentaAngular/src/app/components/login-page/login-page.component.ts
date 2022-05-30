@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginDetails } from 'src/app/models/login-details';
-import { LicentaService } from 'src/app/services/licenta-service.service';
+import { LoginDetails } from '../../models/login-details';
+import { LicentaService } from '../../services/licenta-service.service';
 
 @Component({
     selector: 'app-login-page',

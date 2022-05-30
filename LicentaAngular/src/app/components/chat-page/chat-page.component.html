@@ -2,7 +2,7 @@
 
 <div class="grid-container">
     <div class="nameConv">
-        <span>{{chatUser}}</span>
+        <span>{{chatUser?.userName ?? ''}}</span>
     </div>
     <div class="userList">
 
@@ -19,12 +19,14 @@
         </ul>
     </div>
     <div class="createMess">
-        <input id="message" name="message">
-        <button id="submit" type="submit">Send</button>
+        <input #userMessageInput id="message" name="message"
+            (keyup.enter)="sendMessageToUser(userMessageInput.value); userMessageInput.value=''">
+        <button id="submit" type="submit"
+            (click)="sendMessageToUser(userMessageInput.value); userMessageInput.value=''">Send</button>
     </div>
 </div>
 <div id="search-bar">
-    <form >
+    <form>
         <input #friendSearchInput id="search-text" type="text" />
         <input type="submit" (click)="findFriendsByUsername(friendSearchInput.value)" value="Submit">
     </form>

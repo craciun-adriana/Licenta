@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { LoginDetails } from '../models/login-details';
+import { CreateMessageModel } from '../models/messages-model';
 import { RegisterDetails } from '../models/register-details';
 import { Status } from '../models/status';
 
@@ -181,6 +182,15 @@ export class LicentaService {
                     return of(null);
                 })
             );
+    }
+
+    sendMessage(message: CreateMessageModel): Observable<any> {
+        return this.http.post('/licenta/message/create', message)
+            .pipe(
+                catchError(err => {
+                    return of(null);
+                })
+            )
     }
 
 }
