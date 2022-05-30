@@ -70,6 +70,7 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<MessageCreateRequest, MessageCreate>()
                     .ForMember(dest => dest.IdSender, opt => opt.Ignore());
                 cfg.CreateMap<MessageCreate, Message>()
+                    .ForMember(dest => dest.SendTime, opt => opt.Ignore())
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
 
                 cfg.CreateMap<ReviewBooksCreateRequest, ReviewBookCreate>()
