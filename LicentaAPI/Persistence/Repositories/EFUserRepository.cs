@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LicentaAPI.Persistence.Repositories
 {
@@ -15,19 +14,31 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext = dbContext;
         }
 
+        ///<inheritdoc/>
         public IEnumerable<AppUser> GetUsersByIds(IEnumerable<string> ids)
         {
             return _dbContext.Users.Where(user => ids.Contains(user.Id));
         }
 
+        ///<inheritdoc/>
         public IEnumerable<AppUser> FindUsersByUsername(string username)
         {
             return _dbContext.Users.Where(user => user.UserName.Contains(username));
         }
 
-        public IEnumerable<AppUser> GetUserById(string idUser)
+        ///<inheritdoc/>
+        public AppUser GetUserById(string idUser)
         {
-            return _dbContext.Users.Where(user => user.Id.Equals(idUser));
+            return _dbContext.Users.FirstOrDefault(user => user.Id.Equals(idUser));
+        }
+
+        ///<inheritdoc/>
+        public IEnumerable<AppUser> FindFriendsByUsername(string username, IEnumerable<string> listFriendsId)
+        {
+            return _dbContext.Users
+                .Where(user => listFriendsId.Contains(user.Id))
+                .Where(user => user.UserName.ToUpper().Contains(username.ToUpper()))
+                .ToList();
         }
     }
 }

@@ -7,8 +7,10 @@ namespace LicentaAPI.Persistence.Repositories
     {
         public IEnumerable<AppUser> GetUsersByIds(IEnumerable<string> ids);
 
-        public IEnumerable<AppUser> GetUserById(string idUser);
+        public AppUser GetUserById(string idUser);
 
         public IEnumerable<AppUser> FindUsersByUsername(string username);
+
+        public IEnumerable<AppUser> FindFriendsByUsername(string username, IEnumerable<string> listfiendsId);
     }
 }

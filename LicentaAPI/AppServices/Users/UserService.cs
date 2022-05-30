@@ -2,6 +2,7 @@
 using LicentaAPI.Infrastructure.Mapper;
 using LicentaAPI.Persistence.Models;
 using LicentaAPI.Persistence.Repositories;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,21 @@ namespace LicentaAPI.AppServices.Users
     public class UserService : IUserService
     {
         private readonly IUserRepo _userRepo;
+        private readonly IFriendshipRepo _friendshipRepo;
         private readonly IMappingCoordinator _mapper;
 
-        public UserService(IUserRepo userRepo, IMappingCoordinator mapper)
+        public UserService(IUserRepo userRepo, IFriendshipRepo friendshipRepo, IMappingCoordinator mapper)
         {
             _userRepo = userRepo;
+            _friendshipRepo = friendshipRepo;
             _mapper = mapper;
+        }
+
+        public IEnumerable<PublicUserDetails> FindFriendsByUsername(string username, string loggedInUserId)
+        {
+            var listFriendsId = _friendshipRepo.GetFriendsIdForUser(loggedInUserId);
+            var friends = _userRepo.FindFriendsByUsername(username, listFriendsId);
+            return _mapper.Map<AppUser, PublicUserDetails>(friends);
         }
 
         public IEnumerable<PublicUserDetails> FindUsersByUsername(string username, string loggedInUserId)
@@ -27,9 +37,10 @@ namespace LicentaAPI.AppServices.Users
             return _mapper.Map<AppUser, PublicUserDetails>(users);
         }
 
-        public IEnumerable<AppUser> GetUserById(string userId)
+        public PublicUserDetails GetUserById(string userId)
         {
-            return _userRepo.GetUserById(userId);
+            var user = _userRepo.GetUserById(userId);
+            return _mapper.Map<AppUser, PublicUserDetails>(user);
         }
     }
 }

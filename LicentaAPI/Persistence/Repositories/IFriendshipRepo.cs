@@ -16,5 +16,7 @@ namespace LicentaAPI.Persistence.Repositories
         public IEnumerable<Friendship> FindFriendshipByIdReceiver(string idReceiver);
 
         public Friendship GetFriendshipBetweenUsers(string idUser1, string idUser2);
+
+        public IEnumerable<string> GetFriendsIdForUser(string idUser);
     }
 }

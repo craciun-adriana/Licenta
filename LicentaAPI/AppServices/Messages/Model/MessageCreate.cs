@@ -17,8 +17,6 @@ namespace LicentaAPI.AppServices.Messages.Model
 
         public string Text { get; set; }
 
-        public string Picture { get; set; }
-
         public DateTime SendTime { get; set; }
     }
 }

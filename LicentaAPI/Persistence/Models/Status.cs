@@ -2,10 +2,10 @@
 {
     public enum Status
     {
-        Planning,
-        Completed,
-        Ongoing,
-        OnHold,
-        Dropped,
+        Planning = 0,
+        Completed = 1,
+        Ongoing = 2,
+        OnHold = 3,
+        Dropped = 4,
     }
 }

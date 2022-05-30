@@ -38,6 +38,8 @@ namespace LicentaAPI.Infrastructure.Mapper
         {
             return new MapperConfiguration(cfg =>
             {
+                cfg.CreateMap<AppUser, PublicUserDetails>();
+
                 cfg.CreateMap<AppointmentCreateRequest, AppointmentCreate>();
                 cfg.CreateMap<AppointmentCreate, Appointment>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
@@ -88,8 +90,6 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<SeriesCreateRequest, SeriesCreate>();
                 cfg.CreateMap<SeriesCreate, Series>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
-
-                cfg.CreateMap<AppUser, PublicUserDetails>();
             });
         }
 

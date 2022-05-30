@@ -307,9 +307,6 @@ namespace LicentaAPI.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Picture")
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("SendTime")
                         .HasColumnType("TEXT");
 

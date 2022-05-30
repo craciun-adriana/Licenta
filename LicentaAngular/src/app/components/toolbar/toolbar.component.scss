@@ -1,0 +1,20 @@
+.container {
+    height: 7vh;
+    padding: 0 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #bacdb0;
+}
+
+a {
+    text-decoration-line: none;
+}
+
+.buttons-container a {
+    padding: 0 0.5em;
+}
+
+.active {
+    text-decoration-line: underline !important;
+}
