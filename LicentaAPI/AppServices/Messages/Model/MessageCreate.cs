@@ -13,10 +13,6 @@ namespace LicentaAPI.AppServices.Messages.Model
 
         public string IdGroup { get; set; }
 
-        public string IdReply { get; set; }
-
         public string Text { get; set; }
-
-        public DateTime SendTime { get; set; }
     }
 }

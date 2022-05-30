@@ -28,9 +28,6 @@ namespace LicentaAPI.Persistence.Models
         [ForeignKey(nameof(Group))]
         public string IdGroup { get; set; }
 
-        [ForeignKey(nameof(Message))]
-        public string IdReply { get; set; }
-
         [Required]
         public string Text { get; set; }
 

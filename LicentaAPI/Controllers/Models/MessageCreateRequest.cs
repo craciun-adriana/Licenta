@@ -9,12 +9,7 @@ namespace LicentaAPI.Controllers.Models
 
         public string IdGroup { get; set; }
 
-        public string IdReply { get; set; }
-
         [Required]
         public string Text { get; set; }
-
-        [Required]
-        public DateTime SendTime { get; set; }
     }
 }

@@ -29,6 +29,7 @@ namespace LicentaAPI.AppServices.Messages
         {
             var message = _mapper.Map<MessageCreate, Message>(messageCreate);
             message.ID = Guid.NewGuid().ToString();
+            message.SendTime = DateTime.UtcNow;
             try
             {
                 _messageRepo.Add(message);

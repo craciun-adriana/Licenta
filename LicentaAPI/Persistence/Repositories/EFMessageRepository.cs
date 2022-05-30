@@ -58,7 +58,7 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.Messages.Where(message =>
                     (message.IdReceiver.Equals(idUser1) && message.IdSender.Equals(idUser2))
                     || (message.IdReceiver.Equals(idUser2) && message.IdSender.Equals(idUser1)))
-                .OrderByDescending(message => message.SendTime);
+                .OrderBy(message => message.SendTime);
         }
 
         /// <inheritdoc/>
