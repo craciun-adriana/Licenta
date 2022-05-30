@@ -1,7 +1,7 @@
 import { Status } from './status';
 import { Genre } from './genre';
 
-export interface ReviewBookModele {
+export interface ReviewBookModel {
     idReview: string;
     idUser: string;
     idBook: string;

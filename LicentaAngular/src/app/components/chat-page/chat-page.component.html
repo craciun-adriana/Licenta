@@ -2,7 +2,7 @@
 
 <div class="grid-container">
     <div class="nameConv">
-        <span>UserName</span>
+        <span>{{chatUser}}</span>
     </div>
     <div class="userList">
 
@@ -24,13 +24,13 @@
     </div>
 </div>
 <div id="search-bar">
-    <form method="post">
-        <input id="search-text" type="text" asp-for="UserName" />
-        <input type="submit" value="Submit">
+    <form [formGroup]="searchFriendsForm">
+        <input id="search-text" type="text" formControlName="userName"/>
+        <input type="submit" (click)="findFriendsByUsername()" value="Submit">
     </form>
     <div>
-        <div>
-            <span></span>
+        <div *ngFor="let foundUser of foundUsers" )>
+            <span>{{foundUser.userName}}</span>
         </div>
     </div>
 </div>

@@ -87,6 +87,7 @@ namespace LicentaAPI.AppServices.Appointments
                         {
                             appointmentDto.TitleSeries = _seriesRepo.GetById(a.IdSeries).Title;
                         }
+                        appointmentDto.GroupName = _groupRepo.GetById(group.ID).Name;
                         appointmentList.Add(appointmentDto);
                     });
             }

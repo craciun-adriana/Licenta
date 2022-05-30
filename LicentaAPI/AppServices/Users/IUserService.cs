@@ -1,9 +1,5 @@
 ﻿using LicentaAPI.AppServices.Models;
-using LicentaAPI.Persistence.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LicentaAPI.AppServices.Users
 {
@@ -11,6 +7,8 @@ namespace LicentaAPI.AppServices.Users
     {
         public IEnumerable<PublicUserDetails> FindUsersByUsername(string username, string loggedInUserId);
 
-        public IEnumerable<AppUser> GetUserById(string userId);
+        public IEnumerable<PublicUserDetails> FindFriendsByUsername(string username, string loggedInUserId);
+
+        public PublicUserDetails GetUserById(string userId);
     }
 }

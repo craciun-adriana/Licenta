@@ -1,7 +1,7 @@
 export interface AppointmentModel {
     idAppointment: string;
     name: string;
-    timeAppointment: Date;
+    timeAppointment: string;
     idBook: string;
     idFilm: string;
     idSeries: string;
@@ -9,5 +9,6 @@ export interface AppointmentModel {
     titleFilm: string;
     titleSeries: string;
     idGroup: string;
+    nameGroup: string;
     location: string;
 }

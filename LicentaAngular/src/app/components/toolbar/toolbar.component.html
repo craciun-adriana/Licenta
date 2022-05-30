@@ -4,13 +4,13 @@
     <div class="buttons-container">
         <a *ngIf="!isLoggedIn" [routerLink]="'/register'" routerLinkActive="active">Register</a>
         <a *ngIf="!isLoggedIn" [routerLink]="'/login'" routerLinkActive="active">Login</a>
-        <a *ngIf="isLoggedIn" href="#">Profile</a>
-        <a *ngIf="isLoggedIn" href="#">Friends</a>
+        <a *ngIf="isLoggedIn" [routerLink]="'/profile'" routerLinkActive="active">Profile</a>
+        <a *ngIf="isLoggedIn" [routerLink]="'/friends'" routerLinkActive="active">Friends</a>
         <a *ngIf="isLoggedIn" [routerLink]="'/chat'" routerLinkActive="active">Chat</a>
-        <a *ngIf="isLoggedIn" href="#">Books</a>
-        <a *ngIf="isLoggedIn" href="#">Films</a>
-        <a *ngIf="isLoggedIn" href="#">Series</a>
-        <a *ngIf="isLoggedIn" href="#">Settings</a>
+        <a *ngIf="isLoggedIn" [routerLink]="'/books'" routerLinkActive="active">Books</a>
+        <a *ngIf="isLoggedIn" [routerLink]="'/films'" routerLinkActive="active">Films</a>
+        <a *ngIf="isLoggedIn" [routerLink]="'/series'" routerLinkActive="active">Series</a>
+        <a *ngIf="isLoggedIn" [routerLink]="'/settings'" routerLinkActive="active">Settings</a>
         <a *ngIf="isLoggedIn" [routerLink]="'/logout'">Logout</a>
     </div>
 </div>

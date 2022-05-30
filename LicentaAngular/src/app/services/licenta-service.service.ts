@@ -155,6 +155,15 @@ export class LicentaService {
             );
     }
 
+    findFriendsByUsername(userName: string): Observable<any> {
+        return this.http.get('/licenta/user/find-friends/' + userName)
+            .pipe(
+                catchError(err => {
+                    return of([]);
+                })
+            );
+    }
+
     getAllMessagesBetweenUsers(otherId: string): Observable<any> {
         return this.http.get('/licenta/message/conversation/user/' + otherId)
             .pipe(
@@ -169,8 +178,9 @@ export class LicentaService {
         return this.http.get('/licenta/user/get/' + idUser)
             .pipe(
                 catchError(err => {
-                    return of([]);
+                    return of(null);
                 })
             );
     }
+
 }

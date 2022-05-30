@@ -13,6 +13,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogoutPageComponent } from './components/logout-page/logout-page.component';
 import { ChatPageComponent } from './components/chat-page/chat-page.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { FriendsPageComponent } from './components/friends-page/friends-page.component';
+import { BooksPageComponent } from './components/books-page/books-page.component';
+import { FilmsPageComponent } from './components/films-page/films-page.component';
+import { SeriesPageComponent } from './components/series-page/series-page.component';
+import { StringToDatePipe } from './pipes/string-to-date.pipe';
+import { SettingsPageComponent } from './components/settings-page/settings-page.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +29,14 @@ import { RegisterPageComponent } from './components/register-page/register-page.
         HomePageComponent,
         LogoutPageComponent,
         ChatPageComponent,
-        RegisterPageComponent
+        RegisterPageComponent,
+        ProfilePageComponent,
+        FriendsPageComponent,
+        BooksPageComponent,
+        FilmsPageComponent,
+        SeriesPageComponent,
+        StringToDatePipe,
+        SettingsPageComponent
     ],
     imports: [
         BrowserModule,

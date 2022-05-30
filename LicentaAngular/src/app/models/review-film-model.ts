@@ -2,7 +2,7 @@ import { Status } from './status';
 import { Genre } from './genre';
 import { Rating } from './rating';
 
-export interface ReviewFilmModele {
+export interface ReviewFilmModel {
     idReview: string;
     idUser: string;
     idFilm: string;

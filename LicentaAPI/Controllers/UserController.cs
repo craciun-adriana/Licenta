@@ -32,7 +32,7 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpGet("get/{id}")]
+        [HttpGet("get/{idUser}")]
         [SwaggerResponse(200, "User with the given id.")]
         [SwaggerResponse(404, "User was not found.")]
         public IActionResult GetUserById(string idUser)
@@ -43,6 +43,15 @@ namespace LicentaAPI.Controllers
                 return Ok(user);
             }
             return NotFound();
+        }
+
+        [Authorize]
+        [HttpGet("find-friends/{userName}")]
+        [SwaggerResponse(200, "Friends with the given string in userName.")]
+        public IActionResult FindFriendsByUsername(string userName)
+        {
+            var loggedInUserId = _userManager.GetUserId(HttpContext.User);
+            return Ok(_userService.FindFriendsByUsername(userName, loggedInUserId));
         }
     }
 }
