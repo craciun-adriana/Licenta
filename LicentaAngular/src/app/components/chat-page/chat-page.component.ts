@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { MessagesModel } from 'src/app/models/messages-model';
 import { UserDetails } from 'src/app/models/user-details';
 import { LicentaService } from 'src/app/services/licenta-service.service';
@@ -16,10 +15,6 @@ export class ChatPageComponent implements OnInit {
     userId: string = '';
     chatUser: string = '';
     foundUsers: UserDetails[] = [];
-
-    searchFriendsForm = new FormGroup({
-        userName: new FormControl('', Validators.required)
-    })
 
     constructor(
         private licentaService: LicentaService

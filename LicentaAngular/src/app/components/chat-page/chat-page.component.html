@@ -24,12 +24,12 @@
     </div>
 </div>
 <div id="search-bar">
-    <form [formGroup]="searchFriendsForm">
-        <input id="search-text" type="text" formControlName="userName"/>
-        <input type="submit" (click)="findFriendsByUsername()" value="Submit">
+    <form >
+        <input #friendSearchInput id="search-text" type="text" />
+        <input type="submit" (click)="findFriendsByUsername(friendSearchInput.value)" value="Submit">
     </form>
     <div>
-        <div *ngFor="let foundUser of foundUsers" )>
+        <div *ngFor="let foundUser of foundUsers">
             <span>{{foundUser.userName}}</span>
         </div>
     </div>
