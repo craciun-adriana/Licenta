@@ -68,5 +68,15 @@ namespace LicentaAPI.AppServices.ReviewFilms
                 };
             });
         }
+
+        public IEnumerable<ReviewFilm> GetReviewFilmByIdFilm(string idFilm)
+        {
+            return _reviewFilmRepo.FindReviewFilmByIdFilm(idFilm);
+        }
+
+        public ReviewFilm GetReviewFilmByIdFilmAndUser(string idFilm, string idUser)
+        {
+            return _reviewFilmRepo.GetReviewFilmByIdFilmAndUser(idFilm, idUser);
+        }
     }
 }

@@ -47,7 +47,7 @@ namespace LicentaAPI.Controllers
         public IActionResult GetLastConversationUser(int amount)
         {
             var idUser = _userManager.GetUserId(HttpContext.User);
-            return Ok(_messageService.GetAllConversationUsers(idUser, amount));
+            return Ok(_messageService.GetLastConversationUsers(idUser, amount));
         }
 
         [Authorize]

@@ -49,5 +49,24 @@ namespace LicentaAPI.Controllers
             var reviewBook = _reviewBooksService.GetByStatus(status);
             return Ok(reviewBook);
         }
+
+        [Authorize]
+        [HttpGet("get-by-id-book/{idBook}")]
+        [SwaggerResponse(200, "ReviewBook with the given idBook.")]
+        public IActionResult GetReviewBookByIdBook(string idBook)
+        {
+            var reviewBooks = _reviewBooksService.GetReviewBookByIdBook(idBook);
+            return Ok(reviewBooks);
+        }
+
+        [Authorize]
+        [HttpGet("get-by-id-book-and-user/{idBook}")]
+        [SwaggerResponse(200, "ReviewBook with the given idBook for logged user.")]
+        public IActionResult GetReviewBookByIdBookAndUser(string idBook)
+        {
+            var idUser = _userManager.GetUserId(HttpContext.User);
+            var reviewBook = _reviewBooksService.GetReviewBookByIdBookAndUser(idBook, idUser);
+            return Ok(reviewBook);
+        }
     }
 }

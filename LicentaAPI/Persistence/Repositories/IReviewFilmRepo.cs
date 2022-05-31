@@ -16,5 +16,7 @@ namespace LicentaAPI.Persistence.Repositories
         public IEnumerable<ReviewFilm> FindReviewFilmByIdFilm(string idFilm);
 
         public IEnumerable<ReviewFilm> GetByStatus(Status status);
+
+        public ReviewFilm GetReviewFilmByIdFilmAndUser(string idFilm, string idUser);
     }
 }

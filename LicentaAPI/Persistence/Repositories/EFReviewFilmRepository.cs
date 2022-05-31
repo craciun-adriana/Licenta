@@ -91,5 +91,20 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.ReviewFilms.Update(entity);
             _dbContext.SaveChanges();
         }
+
+        public ReviewFilm GetReviewFilmByIdFilmAndUser(string idFilm, string idUser)
+        {
+            if (idFilm == null)
+            {
+                throw new ArgumentNullException(nameof(idFilm));
+            }
+            else if (idUser == null)
+            {
+                throw new ArgumentNullException(nameof(idUser));
+            }
+
+            return _dbContext.ReviewFilms
+                .FirstOrDefault(reviewFilm => (reviewFilm.IdFilm.Equals(idFilm)) && (reviewFilm.IdUser.Equals(idUser)));
+        }
     }
 }

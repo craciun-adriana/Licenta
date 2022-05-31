@@ -51,5 +51,24 @@ namespace LicentaAPI.Controllers
 
             return Ok(reviewFilm);
         }
+
+        [Authorize]
+        [HttpGet("get-by-id-film/{idFilm}")]
+        [SwaggerResponse(200, "ReviewFilm with the given idFilm.")]
+        public IActionResult GetReviewFilmByIdFilm(string idFilm)
+        {
+            var reviewFilms = _reviewFilmsService.GetReviewFilmByIdFilm(idFilm);
+            return Ok(reviewFilms);
+        }
+
+        [Authorize]
+        [HttpGet("get-by-id-film-and-user/{idFilm}")]
+        [SwaggerResponse(200, "ReviewFilm with the given idFilm for logged user.")]
+        public IActionResult GetReviewFilmByIdFilmAndUser(string idFilm)
+        {
+            var idUser = _userManager.GetUserId(HttpContext.User);
+            var reviewFilm = _reviewFilmsService.GetReviewFilmByIdFilmAndUser(idFilm, idUser);
+            return Ok(reviewFilm);
+        }
     }
 }

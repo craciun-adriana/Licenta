@@ -91,5 +91,20 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.ReviewBooks.Update(entity);
             _dbContext.SaveChanges();
         }
+
+        public ReviewBook GetReviewBookByIdBookAndUser(string idBook, string idUser)
+        {
+            if (idBook == null)
+            {
+                throw new ArgumentNullException(nameof(idBook));
+            }
+            else if (idUser == null)
+            {
+                throw new ArgumentNullException(nameof(idUser));
+            }
+
+            return _dbContext.ReviewBooks
+                .FirstOrDefault(reviewBook => (reviewBook.IdBook.Equals(idBook)) && (reviewBook.IdUser.Equals(idUser)));
+        }
     }
 }

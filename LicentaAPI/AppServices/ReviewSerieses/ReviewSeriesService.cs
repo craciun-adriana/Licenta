@@ -68,5 +68,15 @@ namespace LicentaAPI.AppServices.ReviewSerieses
                      };
                  });
         }
+
+        public IEnumerable<ReviewSeries> GetReviewSeriesByIdSeries(string idSeries)
+        {
+            return _reviewSeriesRepo.FindReviewSeriesByIdSeries(idSeries);
+        }
+
+        public ReviewSeries GetReviewSeriesByIdSeriesAndUser(string idSeries, string idUser)
+        {
+            return _reviewSeriesRepo.GetReviewSeriesByIdSeriesAndUser(idSeries, idUser);
+        }
     }
 }

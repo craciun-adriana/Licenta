@@ -42,7 +42,7 @@ namespace LicentaAPI.AppServices.Messages
             return message;
         }
 
-        public IEnumerable<PublicUserDetails> GetAllConversationUsers(string idUser, int amount)
+        public IEnumerable<PublicUserDetails> GetLastConversationUsers(string idUser, int amount)
         {
             var userIds = _messageRepo.GetLastConversationUsers(idUser, amount);
             var users = _userRepo.GetUsersByIds(userIds);

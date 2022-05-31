@@ -50,5 +50,24 @@ namespace LicentaAPI.Controllers
             var reviewSeries = _reviewSeriesService.GetByStatus(status);
             return Ok(reviewSeries);
         }
+
+        [Authorize]
+        [HttpGet("get-by-id-series/{idSeries}")]
+        [SwaggerResponse(200, "ReviewSeries with the given idSeries.")]
+        public IActionResult GetReviewSeriesByIdSeries(string idSeries)
+        {
+            var reviewSeries = _reviewSeriesService.GetReviewSeriesByIdSeries(idSeries);
+            return Ok(reviewSeries);
+        }
+
+        [Authorize]
+        [HttpGet("get-by-id-series-and-user/{idSeries}")]
+        [SwaggerResponse(200, "ReviewSeries with the given idSeries for logged user.")]
+        public IActionResult GetReviewSeriesByIdSeriesAndUser(string idSeries)
+        {
+            var idUser = _userManager.GetUserId(HttpContext.User);
+            var reviewSeries = _reviewSeriesService.GetReviewSeriesByIdSeriesAndUser(idSeries, idUser);
+            return Ok(reviewSeries);
+        }
     }
 }

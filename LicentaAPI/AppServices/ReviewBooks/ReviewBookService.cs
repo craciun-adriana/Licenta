@@ -66,5 +66,15 @@ namespace LicentaAPI.AppServices.ReviewBooks
                     };
                 });
         }
+
+        public IEnumerable<ReviewBook> GetReviewBookByIdBook(string idBook)
+        {
+            return _reviewBookRepo.FindReviewBookByIdBook(idBook);
+        }
+
+        public ReviewBook GetReviewBookByIdBookAndUser(string idBook, string idUser)
+        {
+            return _reviewBookRepo.GetReviewBookByIdBookAndUser(idBook, idUser);
+        }
     }
 }

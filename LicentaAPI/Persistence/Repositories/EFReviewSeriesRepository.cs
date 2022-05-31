@@ -91,5 +91,20 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.ReviewSeries.Update(entity);
             _dbContext.SaveChanges();
         }
+
+        public ReviewSeries GetReviewSeriesByIdSeriesAndUser(string idSeries, string idUser)
+        {
+            if (idSeries == null)
+            {
+                throw new ArgumentNullException(nameof(idSeries));
+            }
+            else if (idUser == null)
+            {
+                throw new ArgumentNullException(nameof(idUser));
+            }
+
+            return _dbContext.ReviewSeries
+                .FirstOrDefault(reviewSeries => (reviewSeries.IdSeries.Equals(idSeries)) && (reviewSeries.IdUser.Equals(idUser)));
+        }
     }
 }

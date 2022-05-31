@@ -16,5 +16,7 @@ namespace LicentaAPI.Persistence.Repositories
         public IEnumerable<ReviewBook> FindReviewBookByIdBook(string idBook);
 
         public IEnumerable<ReviewBook> GetByStatus(Status status);
+
+        public ReviewBook GetReviewBookByIdBookAndUser(string idBook, string idUser);
     }
 }
