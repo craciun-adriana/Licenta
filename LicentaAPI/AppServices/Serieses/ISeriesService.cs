@@ -27,7 +27,7 @@ namespace LicentaAPI.AppServices.Serieses
         /// </summary>
         /// <param name="idSeries">The id of the series.</param>
         /// <returns>A series with the given id or null if it was not found.</returns>
-        public Series GetSeriesById(string idSeries);
+        public SeriesDTO GetSeriesById(string idSeries);
 
         /// <summary>
         /// Deletes a series with the given id.

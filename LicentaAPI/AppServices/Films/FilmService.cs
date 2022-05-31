@@ -57,14 +57,28 @@ namespace LicentaAPI.AppServices.Films
             return _filmRepo.GetAll();
         }
 
-        public Film GetFilmById(string idFilm)
+        public FilmDTO GetFilmById(string idFilm)
         {
-            return _filmRepo.GetById(idFilm);
+            var film = _filmRepo.GetById(idFilm);
+            var filmDTO = _mapper.Map<Film, FilmDTO>(film);
+
+            if (string.IsNullOrEmpty(filmDTO.PrequelID))
+            {
+                filmDTO.PrequelTitle = _filmRepo.GetById(film.PrequelID).Title;
+            }
+
+            if (string.IsNullOrEmpty(filmDTO.SequelID))
+            {
+                filmDTO.SequelTitle = _filmRepo.GetById(film.SequelID).Title;
+            }
+
+            return filmDTO;
         }
 
         public FilmUpdateResult UpdateFilm(FilmUpdate filmUpdate)
         {
-            var film = GetFilmById(filmUpdate.ID);
+            var filmDTO = GetFilmById(filmUpdate.ID);
+            var film = _mapper.Map<FilmDTO, Film>(filmDTO);
             if (film == null)
             {
                 return new FilmUpdateResult

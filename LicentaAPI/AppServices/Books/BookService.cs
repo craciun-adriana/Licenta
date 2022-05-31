@@ -38,14 +38,28 @@ namespace LicentaAPI.AppServices.Books
             return book;
         }
 
-        public Book GetBookById(string idBook)
+        public BookDTO GetBookById(string idBook)
         {
-            return _bookRepo.GetById(idBook);
+            var book = _bookRepo.GetById(idBook);
+            var bookDTO = _mapper.Map<Book, BookDTO>(book);
+
+            if (string.IsNullOrEmpty(bookDTO.PrequelID))
+            {
+                bookDTO.PrequelTitle = _bookRepo.GetById(book.PrequelID).Title;
+            }
+
+            if (string.IsNullOrEmpty(bookDTO.SequelID))
+            {
+                bookDTO.SequelTitle = _bookRepo.GetById(book.SequelID).Title;
+            }
+
+            return bookDTO;
         }
 
         public void DeleteBook(string idBook)
         {
-            var book = GetBookById(idBook);
+            var bookDTO = GetBookById(idBook);
+            var book = _mapper.Map<BookDTO, Book>(bookDTO);
             if (book != null)
             {
                 _bookRepo.Delete(book);
@@ -59,7 +73,8 @@ namespace LicentaAPI.AppServices.Books
 
         public BookUpdateResult UpdateBook(BookUpdate bookUpdate)
         {
-            var book = GetBookById(bookUpdate.ID);
+            var bookDTO = GetBookById(bookUpdate.ID);
+            var book = _mapper.Map<BookDTO, Book>(bookDTO);
             if (book == null)
             {
                 return new BookUpdateResult

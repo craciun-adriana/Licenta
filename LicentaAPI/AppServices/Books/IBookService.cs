@@ -27,7 +27,7 @@ namespace LicentaAPI.AppServices.Books
         /// </summary>
         /// <param name="idBook">The id of the book.</param>
         /// <returns>A book with the given id or null if it was not found.</returns>
-        public Book GetBookById(string idBook);
+        public BookDTO GetBookById(string idBook);
 
         /// <summary>
         /// Deletes a book with the given id.

@@ -27,7 +27,7 @@ namespace LicentaAPI.AppServices.Films
         /// </summary>
         /// <param name="idFilm">The id of the film.</param>
         /// <returns>A film with the given id or null if it was not found.</returns>
-        public Film GetFilmById(string idFilm);
+        public FilmDTO GetFilmById(string idFilm);
 
         /// <summary>
         /// Deletes a film with the given id.

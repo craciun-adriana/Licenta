@@ -41,7 +41,8 @@ namespace LicentaAPI.AppServices.Serieses
         ///<inheritdoc/>
         public void DeleteSeries(string idSeries)
         {
-            var series = GetSeriesById(idSeries);
+            var seriesDTO = GetSeriesById(idSeries);
+            var series = _mapper.Map<SeriesDTO, Series>(seriesDTO);
 
             if (series != null)
             {
@@ -61,15 +62,30 @@ namespace LicentaAPI.AppServices.Serieses
         }
 
         ///<inheritdoc/>
-        public Series GetSeriesById(string idSeries)
+        public SeriesDTO GetSeriesById(string idSeries)
         {
-            return _seriesRepo.GetById(idSeries);
+            var series = _seriesRepo.GetById(idSeries);
+            var seriesDTO = _mapper.Map<Series, SeriesDTO>(series);
+
+            if (string.IsNullOrEmpty(seriesDTO.PrequelID))
+            {
+                seriesDTO.PrequelTitle = _seriesRepo.GetById(series.PrequelID).Title;
+            }
+
+            if (string.IsNullOrEmpty(seriesDTO.SequelID))
+            {
+                seriesDTO.SequelTitle = _seriesRepo.GetById(series.SequelID).Title;
+            }
+
+            return seriesDTO;
         }
 
         ///<inheritdoc/>
         public SeriesUpdateResult UpdateSeries(SeriesUpdate seriesUpdate)
         {
-            var series = GetSeriesById(seriesUpdate.ID);
+            var seriesDTO = GetSeriesById(seriesUpdate.ID);
+            var series = _mapper.Map<SeriesDTO, Series>(seriesDTO);
+
             if (series == null)
             {
                 return new SeriesUpdateResult
