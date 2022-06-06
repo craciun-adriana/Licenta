@@ -76,5 +76,16 @@ namespace LicentaAPI.AppServices.ReviewBooks
         {
             return _reviewBookRepo.GetReviewBookByIdBookAndUser(idBook, idUser);
         }
+
+        public IEnumerable<ReviewBookDTO> GetReviewBookCompletedByIdUser(string idUser)
+        {
+            var revBooks = _reviewBookRepo.GetReviewBookCompletedByIdUser(idUser);
+            var revBookDTO = _mapper.Map<ReviewBook, ReviewBookDTO>(revBooks);
+            foreach (var item in revBookDTO)
+            {
+                item.Title = _bookRepo.GetById(item.IdBook).Title;
+            }
+            return revBookDTO;
+        }
     }
 }

@@ -51,6 +51,15 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
+        [HttpGet("get-completed-by-user/{idUser}")]
+        [SwaggerResponse(200, "ReviewBook with the given idUser and status Completed.")]
+        public IActionResult GetReviewBookCompletedByIdUser(string idUser)
+        {
+            var reviewBooksDTO = _reviewBooksService.GetReviewBookCompletedByIdUser(idUser);
+            return Ok(reviewBooksDTO);
+        }
+
+        [Authorize]
         [HttpGet("get-by-id-book/{idBook}")]
         [SwaggerResponse(200, "ReviewBook with the given idBook.")]
         public IActionResult GetReviewBookByIdBook(string idBook)

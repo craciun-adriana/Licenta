@@ -52,6 +52,15 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
+        [HttpGet("get-completed-by-user/{idUser}")]
+        [SwaggerResponse(200, "ReviewFilm with the given idUser and status completed.")]
+        public IActionResult GetReviewSeriesCompletedByIdUser(string idUser)
+        {
+            var reviewSeriesDTO = _reviewSeriesService.GetReviewSeriesCompletedByIdUser(idUser);
+            return Ok(reviewSeriesDTO);
+        }
+
+        [Authorize]
         [HttpGet("get-by-id-series/{idSeries}")]
         [SwaggerResponse(200, "ReviewSeries with the given idSeries.")]
         public IActionResult GetReviewSeriesByIdSeries(string idSeries)

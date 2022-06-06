@@ -106,5 +106,10 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.ReviewFilms
                 .FirstOrDefault(reviewFilm => (reviewFilm.IdFilm.Equals(idFilm)) && (reviewFilm.IdUser.Equals(idUser)));
         }
+
+        public IEnumerable<ReviewFilm> GetReviewFilmCompletedByIdUser(string idUser)
+        {
+            return _dbContext.ReviewFilms.Where(reviewFilm => reviewFilm.IdUser.Equals(idUser) && reviewFilm.Status.Equals(Status.Completed));
+        }
     }
 }

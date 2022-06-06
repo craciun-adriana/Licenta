@@ -106,5 +106,10 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.ReviewSeries
                 .FirstOrDefault(reviewSeries => (reviewSeries.IdSeries.Equals(idSeries)) && (reviewSeries.IdUser.Equals(idUser)));
         }
+
+        public IEnumerable<ReviewSeries> GetReviewSeriesCompletedByIdUser(string idUser)
+        {
+            return _dbContext.ReviewSeries.Where(reviewSeries => reviewSeries.IdUser.Equals(idUser) && reviewSeries.Status.Equals(Status.Completed));
+        }
     }
 }

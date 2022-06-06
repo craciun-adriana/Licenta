@@ -107,7 +107,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        public IEnumerable<string> GetLastConversationUsers(string idUser, int amount)
+        public IEnumerable<string> GetLastConversationsUsers(string idUser, int amount)
         {
             return _dbContext.Messages
                 .Where(mess => (mess.IdSender.Equals(idUser)) || (mess.IdReceiver.Equals(idUser)))

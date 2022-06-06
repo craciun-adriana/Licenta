@@ -20,6 +20,8 @@ namespace LicentaAPI.AppServices.ReviewFilms
 
         public IEnumerable<ReviewFilm> GetReviewFilmByIdFilm(string idFilm);
 
+        public IEnumerable<ReviewFilmDTO> GetReviewFilmCompletedByIdUser(string idUser);
+
         public ReviewFilm GetReviewFilmByIdFilmAndUser(string idFilm, string idUser);
     }
 }

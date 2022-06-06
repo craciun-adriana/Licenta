@@ -78,5 +78,16 @@ namespace LicentaAPI.AppServices.ReviewFilms
         {
             return _reviewFilmRepo.GetReviewFilmByIdFilmAndUser(idFilm, idUser);
         }
+
+        public IEnumerable<ReviewFilmDTO> GetReviewFilmCompletedByIdUser(string idUser)
+        {
+            var revFilms = _reviewFilmRepo.GetReviewFilmCompletedByIdUser(idUser);
+            var revFilmDTO = _mapper.Map<ReviewFilm, ReviewFilmDTO>(revFilms);
+            foreach (var item in revFilmDTO)
+            {
+                item.Title = _filmRepo.GetById(item.IdFilm).Title;
+            }
+            return revFilmDTO;
+        }
     }
 }

@@ -44,10 +44,10 @@ namespace LicentaAPI.Controllers
         [Authorize]
         [HttpGet("conversation/{amount}")]
         [SwaggerResponse(201, "Conversations was uploaded.")]
-        public IActionResult GetLastConversationUser(int amount)
+        public IActionResult GetLastConversationsUser(int amount)
         {
             var idUser = _userManager.GetUserId(HttpContext.User);
-            return Ok(_messageService.GetLastConversationUsers(idUser, amount));
+            return Ok(_messageService.GetLastConversationsUsers(idUser, amount));
         }
 
         [Authorize]

@@ -18,6 +18,8 @@ namespace LicentaAPI.AppServices.ReviewSerieses
 
         public IEnumerable<ReviewSeries> GetReviewSeriesByIdSeries(string idSeries);
 
+        public IEnumerable<ReviewSeriesDTO> GetReviewSeriesCompletedByIdUser(string idUser);
+
         public ReviewSeries GetReviewSeriesByIdSeriesAndUser(string idSeries, string idUser);
     }
 }

@@ -23,6 +23,6 @@ namespace LicentaAPI.Persistence.Repositories
         /// <returns>All messages sent in the group with given idGroup.</returns>
         public IEnumerable<Message> FindMessagesInGroup(string idGroup);
 
-        public IEnumerable<string> GetLastConversationUsers(string idUser, int amount);
+        public IEnumerable<string> GetLastConversationsUsers(string idUser, int amount);
     }
 }
