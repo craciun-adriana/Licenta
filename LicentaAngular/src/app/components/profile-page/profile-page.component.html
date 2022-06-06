@@ -1,4 +1,59 @@
-<div class="">
-    <img alt="Profile picture" [src]="user?.profilePicture" width="80" height="80" />
-    <span>{{user?.userName}}</span>
+<div class="grid-container">
+    <div id="picture">
+        <img alt="Profile picture" [src]="user?.profilePicture" width="80" height="80" />
+    </div>
+    <div id="user-name">
+        <span id="username"> {{user?.userName}} </span>
+        <br><span>{{user?.firstName}} </span>
+        <span>{{user?.lastName}} </span>
+    </div>
+    <div id="rank">
+        <span>{{user?.firstName}} has finished {{user?.rank}} films, series and books.</span>
+    </div>
+    <div id="user-details">
+        <div><b>Description:</b> "{{user?.description}}"</div>
+        <div><b>Date of birth: </b>{{user?.dateOfBirth}}</div>
+        <div><b>Sex: </b> {{user?.sex}}</div>
+    </div>
+
+    <button (click)="">Send friend request</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Books read by {{user?.userName}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reviewBook of reviewBooks">
+                <td>{{reviewBook.title}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Films view by {{user?.userName}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reviewFilm of reviewFilms">
+                <td>{{reviewFilm.title}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Series view by {{user?.userName}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reviewSerie of reviewSeries">
+                <td>{{reviewSerie.title}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
