@@ -38,7 +38,7 @@ export class ChatPageComponent implements OnInit {
         this.licentaService.isUserLoggedIn().subscribe((response: string) => {
             this.userId = response;
         })
-        this.licentaService.getLastConversationFosUser().subscribe((response: UserDetails[]) => {
+        this.licentaService.getLastConversationsFosUser().subscribe((response: UserDetails[]) => {
             this.lastConversation = response;
         });
     }

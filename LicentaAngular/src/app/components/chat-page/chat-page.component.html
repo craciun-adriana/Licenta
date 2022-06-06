@@ -32,7 +32,7 @@
     </form>
     <div>
         <div *ngFor="let foundUser of foundUsers">
-            <span>{{foundUser.userName}}</span>
+            <span (click)="openChatWithUser(foundUser.id)">{{foundUser.userName}}</span>
         </div>
     </div>
 </div>
