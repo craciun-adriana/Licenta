@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
+import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { LoginDetails } from '../models/login-details';
 import { CreateMessageModel } from '../models/messages-model';
 import { RegisterDetails } from '../models/register-details';
@@ -18,7 +19,7 @@ export class LicentaService {
     isUserLoggedIn(): Observable<string> {
         return this.http.get('licenta/auth/is-logged-in')
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of(false);
                 }),
                 map((response: any) => {
@@ -33,7 +34,7 @@ export class LicentaService {
     loginUser(loginDetails: LoginDetails): Observable<boolean> {
         return this.http.post('/licenta/auth/login', loginDetails)
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of(false);
                 }),
                 map(response => {
@@ -48,7 +49,7 @@ export class LicentaService {
     logoutUser(): Observable<any> {
         return this.http.post('/licenta/auth/logout', null)
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of(false);
                 }),
                 map(response => {
@@ -63,7 +64,7 @@ export class LicentaService {
     registerUser(registerDetails: RegisterDetails): Observable<any> {
         return this.http.post('/licenta/auth/register', registerDetails)
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of(false);
                 }),
                 map(response => {
@@ -78,7 +79,7 @@ export class LicentaService {
     getAllBooks(): Observable<any> {
         return this.http.get('/licenta/book/get-all')
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of([]);
                 })
             );
@@ -87,7 +88,7 @@ export class LicentaService {
     getAllFilms(): Observable<any> {
         return this.http.get('/licenta/film/get-all')
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of([]);
                 })
             );
@@ -96,7 +97,7 @@ export class LicentaService {
     getAllSeries(): Observable<any> {
         return this.http.get('/licenta/series/get-all')
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of([]);
                 })
             );
@@ -105,7 +106,34 @@ export class LicentaService {
     getAllAppointmensForUser(): Observable<any> {
         return this.http.get('/licenta/appointment/get-appointment-for-user')
             .pipe(
-                catchError(err => {
+                catchError(error => {
+                    return of([]);
+                })
+            );
+    }
+
+    getReviewBookCompletedByIdUser(idUser: string): Observable<any> {
+        return this.http.get('/licenta/review-book/get-completed-by-user/' + idUser)
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            );
+    }
+
+    getReviewFilmCompletedByIdUser(idUser: string): Observable<any> {
+        return this.http.get('/licenta/review-film/get-completed-by-user/' + idUser)
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            );
+    }
+
+    getReviewSeriesCompletedByIdUser(idUser: string): Observable<any> {
+        return this.http.get('/licenta/review-series/get-completed-by-user/' + idUser)
+            .pipe(
+                catchError(error => {
                     return of([]);
                 })
             );
@@ -114,7 +142,7 @@ export class LicentaService {
     getReviewBookByStatus(status: Status): Observable<any> {
         return this.http.get('/licenta/review-books/get-by-status/' + status)
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of([]);
                 })
             );
@@ -123,7 +151,7 @@ export class LicentaService {
     getReviewFilmByStatus(status: Status): Observable<any> {
         return this.http.get('/licenta/review-films/get-by-status/' + status)
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of([]);
                 })
             );
@@ -132,16 +160,16 @@ export class LicentaService {
     getReviewSeriesByStatus(status: Status): Observable<any> {
         return this.http.get('/licenta/review-series/get-by-status/' + status)
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of([]);
                 })
             );
     }
 
-    getLastConversationFosUser(): Observable<any> {
+    getLastConversationsFosUser(): Observable<any> {
         return this.http.get('/licenta/message/conversation/5')
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of([]);
                 })
             );
@@ -150,7 +178,7 @@ export class LicentaService {
     findUsersByUsername(userName: string): Observable<any> {
         return this.http.get('/licenta/user/find/' + userName)
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of([]);
                 })
             );
@@ -159,7 +187,7 @@ export class LicentaService {
     findFriendsByUsername(userName: string): Observable<any> {
         return this.http.get('/licenta/user/find-friends/' + userName)
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of([]);
                 })
             );
@@ -168,7 +196,7 @@ export class LicentaService {
     getAllMessagesBetweenUsers(otherId: string): Observable<any> {
         return this.http.get('/licenta/message/conversation/user/' + otherId)
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of([]);
                 })
             );
@@ -178,7 +206,7 @@ export class LicentaService {
     getUserById(idUser: string): Observable<any> {
         return this.http.get('/licenta/user/get/' + idUser)
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of(null);
                 })
             );
@@ -187,10 +215,101 @@ export class LicentaService {
     sendMessage(message: CreateMessageModel): Observable<any> {
         return this.http.post('/licenta/message/create', message)
             .pipe(
-                catchError(err => {
+                catchError(error => {
                     return of(null);
                 })
             )
     }
 
+    getDetailsAboutABook(idBook: string): Observable<any> {
+        return this.http.get('licenta/book/get/' + idBook)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+    }
+
+    getDetailsAboutAFilm(idFilm: string): Observable<any> {
+        return this.http.get('licenta/film/get/' + idFilm)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+    }
+    getDetailsAboutASeries(idSeries: string): Observable<any> {
+        return this.http.get('licenta/series/get/' + idSeries)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+    }
+
+    getReviewBookByIdBook(idBook: string): Observable<any> {
+        return this.http.get('licenta/review-books/get-by-id-book/' + idBook)
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            )
+
+    }
+
+    getReviewFilmByIdFilm(idFilm: string): Observable<any> {
+        return this.http.get('licenta/review-films/get-by-id-film/' + idFilm)
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            )
+
+    }
+
+    getReviewSeriesByIdSeries(idSeries: string): Observable<any> {
+        return this.http.get('licenta/review-series/get-by-id-series/' + idSeries)
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            )
+
+    }
+
+    getStatusByIdBookAndUser(idBook: string): Observable<any> {
+        return this.http.get('licenta/review-books/get-by-id-book-and-user/' + idBook)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+    }
+
+    getStatusByIdFilmAndUser(idFilm: string): Observable<any> {
+        return this.http.get('licenta/review-films/get-by-id-film-and-user/' + idFilm)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+    }
+
+    getStatusByIdSeriesAndUser(idSeries: string): Observable<any> {
+        return this.http.get('licenta/review-series/get-by-id-series-and-user/' + idSeries)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+    }
+
+    sendFriendRequest(idUser: string): Observable<any> {
+        return this.http.get('licenta/friendship/create' + idUser)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+    }
 }

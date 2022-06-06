@@ -11,6 +11,7 @@ import { SeriesPageComponent } from './components/series-page/series-page.compon
 import { FriendsPageComponent } from './components/friends-page/friends-page.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { SettingsPageComponent } from './components/settings-page/settings-page.component';
+import { FsbDetailsPageComponent } from './components/fsb-details-page/fsb-details-page.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
     { path: 'series', component: SeriesPageComponent },
     { path: 'friends', component: FriendsPageComponent },
     { path: 'profile', component: ProfilePageComponent },
-    { path: 'profile/:id', component: ProfilePageComponent }
+    { path: 'profile/:id', component: ProfilePageComponent },
+    { path: 'details/:type/:id', component: FsbDetailsPageComponent }
 ]
 
 @NgModule({

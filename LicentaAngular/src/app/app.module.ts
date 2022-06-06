@@ -20,6 +20,7 @@ import { FilmsPageComponent } from './components/films-page/films-page.component
 import { SeriesPageComponent } from './components/series-page/series-page.component';
 import { StringToDatePipe } from './pipes/string-to-date.pipe';
 import { SettingsPageComponent } from './components/settings-page/settings-page.component';
+import { FsbDetailsPageComponent } from './components/fsb-details-page/fsb-details-page.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import { SettingsPageComponent } from './components/settings-page/settings-page.
         FilmsPageComponent,
         SeriesPageComponent,
         StringToDatePipe,
-        SettingsPageComponent
+        SettingsPageComponent,
+        FsbDetailsPageComponent
     ],
     imports: [
         BrowserModule,

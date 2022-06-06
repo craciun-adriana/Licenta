@@ -7,10 +7,12 @@ export interface SeriesModel {
     director: string;
     description: string;
     releaseDate: Date;
-    prequelId: string;
-    sequelId: string;
+    prequelId?: string;
+    sequelId?: string;
     genre: Genre;
     rating: Rating;
     nrEps: number;
     picture: string;
+    prequelTitle?: string;
+    sequelTitle?: string;
 }

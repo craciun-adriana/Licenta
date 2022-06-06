@@ -6,8 +6,10 @@ export interface BookModel {
     author: string;
     description: string;
     releaseDate: Date;
-    prequelId: string;
-    sequelId: string;
+    prequelId?: string;
+    sequelId?: string;
     genre: Genre;
     picture: string;
+    prequelTitle?: string;
+    sequelTitle?: string;
 }
