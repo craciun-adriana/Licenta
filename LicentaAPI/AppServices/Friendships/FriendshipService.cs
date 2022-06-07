@@ -94,5 +94,14 @@ namespace LicentaAPI.AppServices.Friendships
         {
             return _friendshipRepo.FindFriendshipByIdReceiver(idReceiver);
         }
+
+        public Friendship GetFriendshipBetweenUsers(string idUser1, string idUser2)
+        {
+            if (idUser1 != null && idUser2 != null)
+            {
+                return _friendshipRepo.GetFriendshipBetweenUsers(idUser1, idUser2);
+            }
+            return null;
+        }
     }
 }

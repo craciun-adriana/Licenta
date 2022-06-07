@@ -22,5 +22,7 @@ namespace LicentaAPI.AppServices.Friendships
         public Error AcceptFriendship(string idFriendship, string idReceiver);
 
         public Error BlockFriendship(string idFriendship, string idReceiver);
+
+        public Friendship GetFriendshipBetweenUsers(string idUser1, string idUser2);
     }
 }

@@ -105,5 +105,20 @@ namespace LicentaAPI.Controllers
                     return CreateResponse(500, "ErrorCode not implemented." + result.ErrorCode);
             }
         }
+
+        [Authorize]
+        [HttpGet("exist-friendship/{idOtherUser}")]
+        [SwaggerResponse(200, "Friendships with the given idReceiver.")]
+        public IActionResult GetFriendshipBetweenUsers(string idUser2)
+        {
+            var idUser1 = _userManager.GetUserId(HttpContext.User);
+            return Ok(_friendshipService.GetFriendshipBetweenUsers(idUser1, idUser2));
+
+            /*if (friendship != null)
+            {
+                return Ok(friendship);
+            }
+            else return null;*/
+        }
     }
 }

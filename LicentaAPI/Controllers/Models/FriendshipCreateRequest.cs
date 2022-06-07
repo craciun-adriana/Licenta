@@ -8,11 +8,5 @@ namespace LicentaAPI.Controllers.Models
     {
         [Required]
         public string IdReceiver { get; set; }
-
-        [Required]
-        public FriendshipStatus Status { get; set; }
-
-        [Required]
-        public DateTime LastUpdate { get; set; }
     }
 }
