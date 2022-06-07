@@ -83,5 +83,14 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.Films.Update(entity);
             _dbContext.SaveChanges();
         }
+
+        public IEnumerable<Film> FindFilmByGenre(Genre genre)
+        {
+            /*if (genre!=null)
+          {
+              throw new ArgumentNullException(nameof(genre));
+          }*/
+            return _dbContext.Films.Where(film => film.Genre.Equals(genre)).ToList();
+        }
     }
 }

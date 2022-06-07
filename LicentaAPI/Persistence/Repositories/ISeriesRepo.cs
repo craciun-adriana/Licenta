@@ -17,5 +17,12 @@ namespace LicentaAPI.Persistence.Repositories
         /// <param name="title">The title of the series that the user is searching for.</param>
         /// <returns></returns>
         public IEnumerable<Series> FindSeriesByTitle(string title);
+
+        /// <summary>
+        /// Retrieves series that have the given genre.
+        /// </summary>
+        /// <param name="genre">The genre of the series that the user is searching for.</param>
+        /// <returns></returns>
+        public IEnumerable<Series> FindSeriesByGenre(Genre genre);
     }
 }

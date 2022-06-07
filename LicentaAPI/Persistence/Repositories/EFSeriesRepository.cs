@@ -86,5 +86,11 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.Series.Update(entity);
             _dbContext.SaveChanges();
         }
+
+        ///<inheritdoc/>
+        public IEnumerable<Series> FindSeriesByGenre(Genre genre)
+        {
+            return _dbContext.Series.Where(series => series.Genre.Equals(genre)).ToList();
+        }
     }
 }

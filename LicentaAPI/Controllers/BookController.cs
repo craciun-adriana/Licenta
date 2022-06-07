@@ -76,5 +76,21 @@ namespace LicentaAPI.Controllers
             _bookService.DeleteBook(id);
             return Ok();
         }
+
+        [Authorize]
+        [HttpGet("find-by-title/{title}")]
+        [SwaggerResponse(200, "Books with given string in title")]
+        public IActionResult FindBooksByTitle(string title)
+        {
+            return Ok(_bookService.FindBookByTitle(title));
+        }
+
+        [Authorize]
+        [HttpGet("find-by-genre/{genre}")]
+        [SwaggerResponse(200, "Books with given genre")]
+        public IActionResult FindBooksByGenre(Genre genre)
+        {
+            return Ok(_bookService.FindBookByGenre(genre));
+        }
     }
 }

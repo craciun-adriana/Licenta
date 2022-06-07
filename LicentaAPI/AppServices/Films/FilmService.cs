@@ -47,6 +47,11 @@ namespace LicentaAPI.AppServices.Films
             }
         }
 
+        public IEnumerable<Film> FindFilmByGenre(Genre genre)
+        {
+            return _filmRepo.FindFilmByGenre(genre);
+        }
+
         public IEnumerable<Film> FindFilmByTitle(string title)
         {
             return _filmRepo.FindFilmByTitle(title);
@@ -62,12 +67,12 @@ namespace LicentaAPI.AppServices.Films
             var film = _filmRepo.GetById(idFilm);
             var filmDTO = _mapper.Map<Film, FilmDTO>(film);
 
-            if (string.IsNullOrEmpty(filmDTO.PrequelID))
+            if (!string.IsNullOrEmpty(filmDTO.PrequelID))
             {
                 filmDTO.PrequelTitle = _filmRepo.GetById(film.PrequelID).Title;
             }
 
-            if (string.IsNullOrEmpty(filmDTO.SequelID))
+            if (!string.IsNullOrEmpty(filmDTO.SequelID))
             {
                 filmDTO.SequelTitle = _filmRepo.GetById(film.SequelID).Title;
             }

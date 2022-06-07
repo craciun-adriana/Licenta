@@ -76,5 +76,21 @@ namespace LicentaAPI.Controllers
             _filmService.DeleteFilm(id);
             return Ok();
         }
+
+        [Authorize]
+        [HttpGet("find-by-title/{title}")]
+        [SwaggerResponse(200, "Films with given string in title")]
+        public IActionResult FindFilmsByTitle(string title)
+        {
+            return Ok(_filmService.FindFilmByTitle(title));
+        }
+
+        [Authorize]
+        [HttpGet("find-by-genre/{genre}")]
+        [SwaggerResponse(200, "Films with given genre")]
+        public IActionResult FindFilmsByGenre(Genre genre)
+        {
+            return Ok(_filmService.FindFilmByGenre(genre));
+        }
     }
 }

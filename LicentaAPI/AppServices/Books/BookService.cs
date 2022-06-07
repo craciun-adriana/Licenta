@@ -43,12 +43,12 @@ namespace LicentaAPI.AppServices.Books
             var book = _bookRepo.GetById(idBook);
             var bookDTO = _mapper.Map<Book, BookDTO>(book);
 
-            if (string.IsNullOrEmpty(bookDTO.PrequelID))
+            if (!string.IsNullOrEmpty(bookDTO.PrequelID))
             {
                 bookDTO.PrequelTitle = _bookRepo.GetById(book.PrequelID).Title;
             }
 
-            if (string.IsNullOrEmpty(bookDTO.SequelID))
+            if (!string.IsNullOrEmpty(bookDTO.SequelID))
             {
                 bookDTO.SequelTitle = _bookRepo.GetById(book.SequelID).Title;
             }
@@ -97,6 +97,11 @@ namespace LicentaAPI.AppServices.Books
         public IEnumerable<Book> GetAllBooks()
         {
             return _bookRepo.GetAll();
+        }
+
+        public IEnumerable<Book> FindBookByGenre(Genre genre)
+        {
+            return _bookRepo.FindBookByGenre(genre);
         }
     }
 }

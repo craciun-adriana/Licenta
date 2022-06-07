@@ -50,6 +50,11 @@ namespace LicentaAPI.AppServices.Serieses
             }
         }
 
+        public IEnumerable<Series> FindSeriesByGenre(Genre genre)
+        {
+            return _seriesRepo.FindSeriesByGenre(genre);
+        }
+
         ///<inheritdoc/>
         public IEnumerable<Series> FindSeriesByTitle(string title)
         {
@@ -67,12 +72,12 @@ namespace LicentaAPI.AppServices.Serieses
             var series = _seriesRepo.GetById(idSeries);
             var seriesDTO = _mapper.Map<Series, SeriesDTO>(series);
 
-            if (string.IsNullOrEmpty(seriesDTO.PrequelID))
+            if (!string.IsNullOrEmpty(seriesDTO.PrequelID))
             {
                 seriesDTO.PrequelTitle = _seriesRepo.GetById(series.PrequelID).Title;
             }
 
-            if (string.IsNullOrEmpty(seriesDTO.SequelID))
+            if (!string.IsNullOrEmpty(seriesDTO.SequelID))
             {
                 seriesDTO.SequelTitle = _seriesRepo.GetById(series.SequelID).Title;
             }

@@ -43,6 +43,13 @@ namespace LicentaAPI.AppServices.Serieses
         public IEnumerable<Series> FindSeriesByTitle(string title);
 
         /// <summary>
+        /// Returns series that have the given genre.
+        /// </summary>
+        /// <param name="genre">The genre of the series that the user is searching for.</param>
+        /// <returns>A list of series that have the given genre.</returns>
+        public IEnumerable<Series> FindSeriesByGenre(Genre genre);
+
+        /// <summary>
         /// Updates a series.
         /// </summary>
         /// <param name="seriesUpdate">The series that contains the new details.</param>

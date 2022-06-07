@@ -43,6 +43,13 @@ namespace LicentaAPI.AppServices.Books
         public IEnumerable<Book> FindBookByTitle(string title);
 
         /// <summary>
+        /// Returns books that have the given genre.
+        /// </summary>
+        /// <param name="genre">The genre of the book that the user is searching for.</param>
+        /// <returns>A list of books that have the given genre.</returns>
+        public IEnumerable<Book> FindBookByGenre(Genre genre);
+
+        /// <summary>
         /// Updates a book.
         /// </summary>
         /// <param name="bookUpdate">The book that contains the new details.</param>

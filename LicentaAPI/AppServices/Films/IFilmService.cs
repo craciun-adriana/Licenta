@@ -43,6 +43,13 @@ namespace LicentaAPI.AppServices.Films
         public IEnumerable<Film> FindFilmByTitle(string title);
 
         /// <summary>
+        /// Returns films that have the given genre.
+        /// </summary>
+        /// <param name="genre">The genre of the film that the user is searching for.</param>
+        /// <returns>A list of films that have the given genre.</returns>
+        public IEnumerable<Film> FindFilmByGenre(Genre genre);
+
+        /// <summary>
         /// Updates a film.
         /// </summary>
         /// <param name="filmUpdate">The film that contains the new details.</param>

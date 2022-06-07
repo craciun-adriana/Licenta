@@ -76,5 +76,21 @@ namespace LicentaAPI.Controllers
             _seriesService.DeleteSeries(id);
             return Ok();
         }
+
+        [Authorize]
+        [HttpGet("find-by-title/{title}")]
+        [SwaggerResponse(200, "Series with given string in title")]
+        public IActionResult FindSeriesByTitle(string title)
+        {
+            return Ok(_seriesService.FindSeriesByTitle(title));
+        }
+
+        [Authorize]
+        [HttpGet("find-by-genre/{genre}")]
+        [SwaggerResponse(200, "Series with given genre")]
+        public IActionResult FindSeriesByGenre(Genre genre)
+        {
+            return Ok(_seriesService.FindSeriesByGenre(genre));
+        }
     }
 }

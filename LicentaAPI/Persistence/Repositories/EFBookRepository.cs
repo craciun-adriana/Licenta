@@ -17,7 +17,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public void Add(Book entity)
         {
             if (entity == null)
@@ -29,7 +29,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public void Delete(Book entity)
         {
             if (entity == null)
@@ -41,7 +41,7 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.SaveChanges();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public IEnumerable<Book> FindBookByTitle(string title)
         {
             if (string.IsNullOrEmpty(title))
@@ -52,13 +52,23 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.Books.Where(book => book.Title.Contains(title)).ToList();
         }
 
+        public IEnumerable<Book> FindBookByGenre(Genre genre)
+        {
+            /*if (genre!=null)
+            {
+                throw new ArgumentNullException(nameof(genre));
+            }*/
+
+            return _dbContext.Books.Where(book => book.Genre.Equals(genre)).ToList();
+        }
+
         /// <inheritdoc/>
         public IEnumerable<Book> GetAll()
         {
             return _dbContext.Books.ToList();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public Book GetById(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -69,13 +79,13 @@ namespace LicentaAPI.Persistence.Repositories
             return _dbContext.Books.FirstOrDefault(book => book.ID.Equals(id));
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public IEnumerable<Book> Filter(PaginationQuery paginationQuery)
         {
             throw new NotImplementedException();
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public void Update(Book entity)
         {
             if (entity == null)
