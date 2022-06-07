@@ -75,12 +75,12 @@ export class ProfilePageComponent implements OnInit {
         }
     }
 
-    sendFriendRequest(idUser: string): void {
+    sendFriendshipRequest(idUser: string): void {
 
         const friendship: CreateFriendshipModel = {
             idReceiver: idUser
         }
-        this.licentaService.sendFriendRequest(friendship);
+        this.licentaService.sendFriendshipRequest(friendship);
     }
 
 }
