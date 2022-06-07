@@ -1,1 +1,36 @@
-<p>films-page works!</p>
+<h1>Here is our films collection!</h1>
+<h1>Check it and find something new for you ;)</h1>
+
+<form id="search-bar-title">
+    <input #filmSearchByTitleInput id="search-text" type="text" />
+    <input type="submit" (click)="(filmSearchByTitleInput.value)" value="Submit">
+</form>
+
+<div>
+    <select (change)="getFilmByGenre($event)" id="select-genre-search">
+        <option value="">Select genre</option>
+        <option value="Action">Action</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Crime">Crime</option>
+        <option value="Drama">Drama</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Horror">Horror</option>
+        <option value="Musical">Musical</option>
+        <option value="Romance">Romance</option>
+        <option value="ScienceFiction">Science Fiction</option>
+        <option value="Triller">Triller</option>
+        <option value="Western">Western</option>
+    </select>
+</div>
+
+
+<div *ngFor="let foundFilm of films" id="grid-container">
+    <div>
+        <img alt="Profile picture" [src]="foundFilm.picture" width="80" height="80" />
+    </div>
+    <div>
+        <a [routerLink]="'/details/film/' + foundFilm.id">{{foundFilm.title}}</a>
+        <span>{{foundFilm.description}}</span>
+    </div>
+</div>
+

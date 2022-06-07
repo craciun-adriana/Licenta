@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import { CreateFriendshipModel } from '../models/friendship-model';
+import { Genre } from '../models/genre';
 import { LoginDetails } from '../models/login-details';
 import { CreateMessageModel } from '../models/messages-model';
 import { RegisterDetails } from '../models/register-details';
@@ -304,12 +306,81 @@ export class LicentaService {
             )
     }
 
-    sendFriendRequest(idUser: string): Observable<any> {
-        return this.http.get('licenta/friendship/create' + idUser)
+    sendFriendshipRequest(friendship: CreateFriendshipModel): Observable<any> {
+        return this.http.post('licenta/friendship/create', friendship)
             .pipe(
                 catchError(error => {
                     return of(null);
                 })
             )
+    }
+
+    getFriendshipBetweenUsers(idUser: string): Observable<any> {
+        return this.http.get('licenta/friendship/exist-friendship/' + idUser)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+    }
+
+    findBooksByTitle(title: string): Observable<any> {
+        return this.http.get('licenta/book/find-by-title/' + title)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+
+    }
+
+    findBooksByGenre(genre: Genre): Observable<any> {
+        return this.http.get('licenta/book/find-by-genre/' + genre)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+
+    }
+
+    findFilmsByTitle(title: string): Observable<any> {
+        return this.http.get('licenta/film/find-by-title/' + title)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+
+    }
+
+    findFilmsByGenre(genre: Genre): Observable<any> {
+        return this.http.get('licenta/film/find-by-title/' + genre)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+
+    }
+
+    findSeriesByTitle(title: string): Observable<any> {
+        return this.http.get('licenta/series/find-by-title/' + title)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+
+    }
+
+    findSeriesByGenre(genre: Genre): Observable<any> {
+        return this.http.get('licenta/series/find-by-genre/' + genre)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+
     }
 }
