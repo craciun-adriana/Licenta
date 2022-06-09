@@ -220,7 +220,7 @@ export class LicentaService {
                 catchError(error => {
                     return of(null);
                 })
-            )
+            );
     }
 
     getDetailsAboutABook(idBook: string): Observable<any> {
@@ -229,7 +229,7 @@ export class LicentaService {
                 catchError(error => {
                     return of(null);
                 })
-            )
+            );
     }
 
     getDetailsAboutAFilm(idFilm: string): Observable<any> {
@@ -279,6 +279,33 @@ export class LicentaService {
 
     }
 
+    getReviewBookByIdBookAndUser(idBook: string): Observable<any> {
+        return this.http.get('licenta/review-books/get-by-id-book-and-user/' + idBook)
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            )
+    }
+
+    getReviewFilmByIdFilmAndUser(idFilm: string): Observable<any> {
+        return this.http.get('licenta/review-films/get-by-id-film-and-user/' + idFilm)
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            )
+    }
+
+    getReviewSeriesByIdSeriesAndUser(idSeries: string): Observable<any> {
+        return this.http.get('licenta/review-series/get-by-id-series-and-user/' + idSeries)
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            )
+    }
+
     getStatusByIdBookAndUser(idBook: string): Observable<any> {
         return this.http.get('licenta/review-books/get-by-id-book-and-user/' + idBook)
             .pipe(
@@ -324,11 +351,29 @@ export class LicentaService {
             )
     }
 
+    getFriendshipRequestByIdReceiver(): Observable<any> {
+        return this.http.get('licenta/friendship/friendship-request-for-user')
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            )
+    }
+
+    acceptFriendship(idFriendship: string): Observable<any> {
+        return this.http.get('licenta/friendship/accept-friendship'+idFriendship)
+        .pipe(
+            catchError(error => {
+                return of(null);
+            })
+        )
+    }
+
     findBooksByTitle(title: string): Observable<any> {
         return this.http.get('licenta/book/find-by-title/' + title)
             .pipe(
                 catchError(error => {
-                    return of(null);
+                    return of([]);
                 })
             )
 
@@ -338,7 +383,7 @@ export class LicentaService {
         return this.http.get('licenta/book/find-by-genre/' + genre)
             .pipe(
                 catchError(error => {
-                    return of(null);
+                    return of([]);
                 })
             )
 
@@ -348,7 +393,7 @@ export class LicentaService {
         return this.http.get('licenta/film/find-by-title/' + title)
             .pipe(
                 catchError(error => {
-                    return of(null);
+                    return of([]);
                 })
             )
 
@@ -358,7 +403,7 @@ export class LicentaService {
         return this.http.get('licenta/film/find-by-title/' + genre)
             .pipe(
                 catchError(error => {
-                    return of(null);
+                    return of([]);
                 })
             )
 
@@ -368,7 +413,7 @@ export class LicentaService {
         return this.http.get('licenta/series/find-by-title/' + title)
             .pipe(
                 catchError(error => {
-                    return of(null);
+                    return of([]);
                 })
             )
 
@@ -378,9 +423,10 @@ export class LicentaService {
         return this.http.get('licenta/series/find-by-genre/' + genre)
             .pipe(
                 catchError(error => {
-                    return of(null);
+                    return of([]);
                 })
             )
 
     }
+
 }

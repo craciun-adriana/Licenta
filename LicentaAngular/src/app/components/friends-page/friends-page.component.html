@@ -1,1 +1,23 @@
+<div id="friendshipReq">
+    <div *ngFor="let friend in friends">
+        <div>
+            <img alt="Profile picture" [src]="friend.pictureSender" width="80" height="80" />
+            <a [routerLink]="'licenta/user/get/'+friend.idSender">{{friend.nameSender}}</a> sent you a friendship
+            request.
+        </div>
+        <span (click)="acceptFriendship(friend.id)">Accept request</span>
+    </div>
 
+</div>
+
+<div id="searchUser">
+    <form>
+        <input #userSearchInput id="search-text" type="text" />
+        <input type="submit" (click)="findUserByUsername(userSearchInput.value)" value="Submit">
+    </form>
+    <div>
+        <div *ngFor="let foundUser of users">
+            <span (click)="(foundUser.id)">{{foundUser.userName}}</span>
+        </div>
+    </div>
+</div>

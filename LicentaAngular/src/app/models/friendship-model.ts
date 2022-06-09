@@ -5,9 +5,15 @@ export interface FriendshipModel {
 
     idSender: string;
 
+    nameSender: string;
+
+    pictureSender: string;
+
     idReceiver: string;
 
-    friendshipStatus: FriendshipStatus;
+    nameReceiver: string;
+
+    status: FriendshipStatus;
 
     lastUpdate: Date;
 }
