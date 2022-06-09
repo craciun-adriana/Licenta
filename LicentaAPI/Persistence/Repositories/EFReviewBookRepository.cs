@@ -49,7 +49,8 @@ namespace LicentaAPI.Persistence.Repositories
                 throw new ArgumentNullException(nameof(idBook));
             }
 
-            return _dbContext.ReviewBooks.Where(reviewBook => reviewBook.IdBook.Equals(idBook));
+            return _dbContext.ReviewBooks.Where(reviewBook =>
+            (reviewBook.IdBook.Equals(idBook)) && (!string.IsNullOrEmpty(reviewBook.Review) || reviewBook.Grade.HasValue));
         }
 
         /// <inheritdoc/>

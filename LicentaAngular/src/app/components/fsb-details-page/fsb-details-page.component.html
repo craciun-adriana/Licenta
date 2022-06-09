@@ -1,10 +1,65 @@
 <div id="grid-container">
-    <div id="picture">
-        <!-- <img alt="Picture" [src]="fsbDetails.picture" width="120" height="180"> -->
 
+    <div id="picture">
+        <img alt="Picture" [src]="fsbDetails?.picture" width="120" height="180">
     </div>
-    <div id="title">
-        <span>{{fsbDetails.title}}</span>
+
+    <div id="title-description">
+        <span>{{fsbDetails?.title}}</span>
+        <br><span>{{fsbDetails?.description}}</span>
     </div>
+
+    <div id="info">
+        <div *ngIf="isBook"><b>Author:</b> {{fsbDetails?.author}}</div>
+        <div *ngIf="!isBook"><b>Director:</b> {{fsbDetails?.director}}</div>
+        <div><b>Release date:</b>{{fsbDetails?.relaseDate}}</div>
+        <a *ngIf="isBook" [routerLink]="'/details/book/' + fsbDetails?.prequelId"><b>Prequel
+                Title</b>{{fsbDetails?.prequelTitle}}</a>
+        <a *ngIf="isFilm" [routerLink]="'/details/film/' + fsbDetails?.prequelId"><b>Prequel
+                Title</b>{{fsbDetails?.prequelTitle}}</a>
+        <a *ngIf="isSeries" [routerLink]="'/details/series/' + fsbDetails?.prequelId"><b>Prequel
+                Title</b>{{fsbDetails?.prequelTitle}}</a>
+        <div><b>Sequel Title:</b>{{fsbDetails?.sequelTitle}}</div>
+        <div><b>Genre:</b>{{fsbDetails?.genre}}</div>
+        <div *ngIf="!isBook"><b>Rating:</b>{{fsbDetails?.rating}}</div>
+        <div *ngIf="isFilm"><b>Length:</b>{{fsbDetails?.length}}</div>
+        <div *ngIf="isSeries"><b>Number of episodes:</b>{{fsbDetails?.nrEps}}</div>
+    </div>
+
+    <div id="userGrade">
+        <span><b>Your grades is:</b></span>
+        <br>
+        <div>{{userReview?.grade}}</div>
+    </div>
+
+    <div id="userReview">
+        <span><b>Your review is:</b></span>
+        <br>
+        <div>{{userReview?.review}}</div>
+    </div>
+
+    <!-- <button (click)=""></button> -->
+    <table id="reviews">
+        <thead>
+            <tr>
+                <th>User</th>
+            </tr>
+            <tr>
+                <th *ngIf="!isBook">Notate this book with</th>
+                <th *ngIf="!isFilm">Notate this film with</th>
+                <th *ngIf="!isBook">Notate this series with</th>
+            </tr>
+            <tr>
+                <th>And his/her impresion is</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let review in reviews">
+                <td><b>{{review.username}}</b></td>
+                <td><b>Grade:</b>{{review.grades}}</td>
+                <td><b>Review:</b>{{review.review}}</td>
+            </tr>
+        </tbody>
+    </table>
 
 </div>

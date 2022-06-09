@@ -15,12 +15,14 @@ namespace LicentaAPI.AppServices.ReviewBooks
     {
         private readonly IReviewBookRepo _reviewBookRepo;
         private readonly IBookRepo _bookRepo;
+        private readonly IUserRepo _userRepo;
         private readonly IMappingCoordinator _mapper;
 
-        public ReviewBookService(IReviewBookRepo reviewBookRepo, IBookRepo bookRepo, IMappingCoordinator mapper)
+        public ReviewBookService(IReviewBookRepo reviewBookRepo, IBookRepo bookRepo, IUserRepo userRepo, IMappingCoordinator mapper)
         {
             _reviewBookRepo = reviewBookRepo;
             _bookRepo = bookRepo;
+            _userRepo = userRepo;
             _mapper = mapper;
         }
 
@@ -56,6 +58,7 @@ namespace LicentaAPI.AppServices.ReviewBooks
                         Grade = rb.Grade,
                         IdReview = rb.ID,
                         IdUser = rb.IdUser,
+                        Username = _userRepo.GetUserById(rb.IdUser).UserName,
                         PrequelID = book.PrequelID,
                         RelaseDate = book.RelaseDate,
                         Review = rb.Review,

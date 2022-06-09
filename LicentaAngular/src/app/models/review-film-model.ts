@@ -5,6 +5,7 @@ import { Rating } from './rating';
 export interface ReviewFilmModel {
     idReview: string;
     idUser: string;
+    username: string;
     idFilm: string;
     grade: number;
     review: string;

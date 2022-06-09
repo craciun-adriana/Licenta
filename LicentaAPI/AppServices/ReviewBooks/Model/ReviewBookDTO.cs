@@ -9,6 +9,8 @@ namespace LicentaAPI.AppServices.ReviewBooks.Model
 
         public string IdUser { get; set; }
 
+        public string Username { get; set; }
+
         public string IdBook { get; set; }
 
         public int? Grade { get; set; }

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BookModel } from 'src/app/models/book-model';
 import { FilmModel } from 'src/app/models/film-model';
 import { FsbDetailsModel } from 'src/app/models/fsb-details-model';
+import { ReviewFsbModel } from 'src/app/models/review-fsb-model';
 import { SeriesModel } from 'src/app/models/series-model';
 import { LicentaService } from 'src/app/services/licenta-service.service';
 
@@ -15,12 +16,14 @@ export class FsbDetailsPageComponent implements OnInit {
     /*book?: BookModel;
     film?: FilmModel;
     series?: SeriesModel;*/
-    fsbDetails: FsbDetailsModel ;
+    fsbDetails?: FsbDetailsModel;
     type: string = '';
     id: string = '';
     isBook: Boolean = false;
     isFilm: Boolean = false;
     isSeries: Boolean = false;
+    reviews?: ReviewFsbModel[] = [];
+    userReview?: ReviewFsbModel;
     //pt a apela functiile pt add review, fac swich nu if else
     constructor(
         private licentaService: LicentaService,
@@ -30,10 +33,10 @@ export class FsbDetailsPageComponent implements OnInit {
     ngOnInit(): void {
         this.type = this.activatedRoute.snapshot.paramMap.get('type') ?? '';
         this.id = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
-        this.initializeDetailsPage();
         switch (this.type) {
             case 'book':
                 this.isBook = true;
+
                 break;
             case 'film':
                 this.isFilm = true;
@@ -42,25 +45,43 @@ export class FsbDetailsPageComponent implements OnInit {
                 this.isSeries = true;
                 break;
         }
+        this.initializeDetailsPage();
     }
 
     private initializeDetailsPage(): void {
 
         if (this.type === "book") {
-            this.licentaService.getDetailsAboutABook(this.id).subscribe((response: BookModel) => {
+            this.licentaService.getDetailsAboutABook(this.id).subscribe((response: FsbDetailsModel) => {
                 this.fsbDetails = response;
+            });
+            this.licentaService.getReviewBookByIdBook(this.id).subscribe((response: ReviewFsbModel[]) => {
+                this.reviews = response;
+            });
+            this.licentaService.getReviewBookByIdBookAndUser(this.id).subscribe((response: ReviewFsbModel) => {
+                this.userReview = response;
             })
         }
         else if (this.type === "film") {
-            this.licentaService.getDetailsAboutAFilm(this.id).subscribe((response: FilmModel) => {
+            this.licentaService.getDetailsAboutAFilm(this.id).subscribe((response: FsbDetailsModel) => {
                 this.fsbDetails = response;
+            });
+            this.licentaService.getReviewFilmByIdFilm(this.id).subscribe((response: ReviewFsbModel[]) => {
+                this.reviews = response;
+            });
+            this.licentaService.getReviewFilmByIdFilmAndUser(this.id).subscribe((response: ReviewFsbModel) => {
+                this.userReview = response;
             })
         }
         else if (this.type === "series") {
-            this.licentaService.getDetailsAboutASeries(this.id).subscribe((response: SeriesModel) => {
+            this.licentaService.getDetailsAboutASeries(this.id).subscribe((response: FsbDetailsModel) => {
                 this.fsbDetails = response;
+            });
+            this.licentaService.getReviewSeriesByIdSeries(this.id).subscribe((response: ReviewFsbModel[]) => {
+                this.reviews = response;
+            });
+            this.licentaService.getReviewSeriesByIdSeriesAndUser(this.id).subscribe((response: ReviewFsbModel) => {
+                this.userReview = response;
             })
         }
-        //this.licentaService.
     }
 }

@@ -4,6 +4,7 @@ import { Genre } from './genre';
 export interface ReviewBookModel {
     idReview: string;
     idUser: string;
+    username: string;
     idBook: string;
     grade: number;
     review: string;

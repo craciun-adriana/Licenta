@@ -11,7 +11,7 @@ img {
 }
 
 #picture {
-    grid-area: PictureAndName;
+    grid-area: Picture;
     border: 1px solid black;
     text-align: center;
     height: 250px;
@@ -32,7 +32,7 @@ img {
 .grid-container {
     display: grid;
     grid-template-areas:
-        'PictureAndName UserName UserName'
+        'Picture UserName UserName'
         'Rank Rank Rank'
         'UserDetails UserDetails UserDetails ';
     gap: 5px;
