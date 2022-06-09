@@ -62,6 +62,7 @@ namespace LicentaAPI.Infrastructure.Mapper
                     .ForMember(dest => dest.Status, opt => opt.Ignore())
                     .ForMember(dest => dest.LastUpdate, opt => opt.Ignore())
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
+                cfg.CreateMap<Friendship, FriendshipDTO>();
 
                 cfg.CreateMap<GroupCreateRequest, GroupCreate>();
                 cfg.CreateMap<GroupCreate, Group>()

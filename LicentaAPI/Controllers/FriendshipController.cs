@@ -43,13 +43,13 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpGet("all-friendship")]
+        [HttpGet("friendship-request-for-user")]
         [SwaggerResponse(200, "Friendships with the given idReceiver.")]
         [SwaggerResponse(404, "Friendship was not found.")]
-        public IActionResult FindFriendshipByIdReceiver()
+        public IActionResult FindFriendshiRequestpByIdReceiver()
         {
             var idReceiver = _userManager.GetUserId(HttpContext.User);
-            return Ok(_friendshipService.FindFriendshipByIdReceiver(idReceiver));
+            return Ok(_friendshipService.FindFriendshipRequestByIdReceiver(idReceiver));
         }
 
         [Authorize]

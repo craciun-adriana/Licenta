@@ -1,6 +1,4 @@
-﻿using LicentaAPI.Persistence.Models;
-using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace LicentaAPI.Controllers.Models
 {

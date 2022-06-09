@@ -41,7 +41,7 @@ namespace LicentaAPI.Persistence.Repositories
         }
 
         /// <inheritdoc/>
-        public IEnumerable<Friendship> FindFriendshipByIdReceiver(string idReceiver)
+        public IEnumerable<Friendship> FindFriendshipRequestByIdReceiver(string idReceiver)
         {
             if (string.IsNullOrEmpty(idReceiver))
             {
