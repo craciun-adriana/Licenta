@@ -15,7 +15,7 @@ namespace LicentaAPI.Persistence.Repositories
         /// <returns>All reviews received by a Series with given idSeries.</returns>
         public IEnumerable<ReviewSeries> FindReviewSeriesByIdSeries(string idSeries);
 
-        public IEnumerable<ReviewSeries> GetByStatus(Status status);
+        public IEnumerable<ReviewSeries> GetByStatus(Status status, string idUser);
 
         public IEnumerable<ReviewSeries> GetReviewSeriesCompletedByIdUser(string idUser);
 

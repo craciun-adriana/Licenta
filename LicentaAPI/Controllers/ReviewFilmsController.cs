@@ -47,7 +47,8 @@ namespace LicentaAPI.Controllers
         [SwaggerResponse(404, "ReviewFilm can't be found.")]
         public IActionResult GetReviewFilmByStatus(Status status)
         {
-            var reviewFilm = _reviewFilmsService.GetByStatus(status);
+            var idUser = _userManager.GetUserId(HttpContext.User);
+            var reviewFilm = _reviewFilmsService.GetByStatus(status, idUser);
 
             return Ok(reviewFilm);
         }

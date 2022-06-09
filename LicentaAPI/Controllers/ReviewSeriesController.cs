@@ -47,7 +47,8 @@ namespace LicentaAPI.Controllers
         [SwaggerResponse(404, "ReviewSeries can't be found.")]
         public IActionResult GetReviewSeriesByStatus(Status status)
         {
-            var reviewSeries = _reviewSeriesService.GetByStatus(status);
+            var idUser = _userManager.GetUserId(HttpContext.User);
+            var reviewSeries = _reviewSeriesService.GetByStatus(status, idUser);
             return Ok(reviewSeries);
         }
 

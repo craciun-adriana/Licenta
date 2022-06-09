@@ -16,7 +16,7 @@ namespace LicentaAPI.AppServices.ReviewFilms
         /// <returns>The created ReviewFilm or null if it was not created.</returns>
         public ReviewFilm CreateReviewFilm(ReviewFilmCreate reviewFilmCreate);
 
-        public IEnumerable<ReviewFilmDTO> GetByStatus(Status status);
+        public IEnumerable<ReviewFilmDTO> GetByStatus(Status status, string idUser);
 
         public IEnumerable<ReviewFilm> GetReviewFilmByIdFilm(string idFilm);
 

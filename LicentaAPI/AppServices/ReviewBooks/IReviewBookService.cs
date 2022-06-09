@@ -16,7 +16,7 @@ namespace LicentaAPI.AppServices.ReviewBooks
         /// <returns>The created ReviewBook or null if it was not created.</returns>
         public ReviewBook CreateReviewBook(ReviewBookCreate reviewBookCreate);
 
-        public IEnumerable<ReviewBookDTO> GetByStatus(Status status);
+        public IEnumerable<ReviewBookDTO> GetByStatus(Status status, string idUser);
 
         public IEnumerable<ReviewBook> GetReviewBookByIdBook(string idBook);
 

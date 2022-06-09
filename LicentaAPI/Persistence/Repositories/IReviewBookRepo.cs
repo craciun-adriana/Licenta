@@ -15,7 +15,7 @@ namespace LicentaAPI.Persistence.Repositories
         /// <returns>All reviews received by a book with given idBook.</returns>
         public IEnumerable<ReviewBook> FindReviewBookByIdBook(string idBook);
 
-        public IEnumerable<ReviewBook> GetByStatus(Status status);
+        public IEnumerable<ReviewBook> GetByStatus(Status status, string idUser);
 
         public IEnumerable<ReviewBook> GetReviewBookCompletedByIdUser(string idUser);
 

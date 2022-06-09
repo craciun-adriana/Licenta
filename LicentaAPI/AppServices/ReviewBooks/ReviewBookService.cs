@@ -41,9 +41,9 @@ namespace LicentaAPI.AppServices.ReviewBooks
             return reviewBook;
         }
 
-        public IEnumerable<ReviewBookDTO> GetByStatus(Status status)
+        public IEnumerable<ReviewBookDTO> GetByStatus(Status status, string idUser)
         {
-            return _reviewBookRepo.GetByStatus(status)
+            return _reviewBookRepo.GetByStatus(status, idUser)
                 .Select(rb =>
                 {
                     var book = _bookRepo.GetById(rb.IdBook);

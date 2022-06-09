@@ -46,7 +46,8 @@ namespace LicentaAPI.Controllers
         [SwaggerResponse(200, "ReviewBook with the given status.")]
         public IActionResult GetReviewBookByStatus(Status status)
         {
-            var reviewBook = _reviewBooksService.GetByStatus(status);
+            var idUser = _userManager.GetUserId(HttpContext.User);
+            var reviewBook = _reviewBooksService.GetByStatus(status, idUser);
             return Ok(reviewBook);
         }
 

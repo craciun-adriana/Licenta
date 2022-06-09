@@ -41,9 +41,9 @@ namespace LicentaAPI.AppServices.ReviewFilms
             return reviewFilm;
         }
 
-        public IEnumerable<ReviewFilmDTO> GetByStatus(Status status)
+        public IEnumerable<ReviewFilmDTO> GetByStatus(Status status, string idUser)
         {
-            return _reviewFilmRepo.GetByStatus(status)
+            return _reviewFilmRepo.GetByStatus(status, idUser)
                 .Select(rb =>
             {
                 var film = _filmRepo.GetById(rb.IdFilm);

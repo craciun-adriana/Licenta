@@ -15,7 +15,7 @@ namespace LicentaAPI.Persistence.Repositories
         /// <returns>All reviews received by a film with given idFilm.</returns>
         public IEnumerable<ReviewFilm> FindReviewFilmByIdFilm(string idFilm);
 
-        public IEnumerable<ReviewFilm> GetByStatus(Status status);
+        public IEnumerable<ReviewFilm> GetByStatus(Status status, string idUser);
 
         public IEnumerable<ReviewFilm> GetReviewFilmCompletedByIdUser(string idUser);
 

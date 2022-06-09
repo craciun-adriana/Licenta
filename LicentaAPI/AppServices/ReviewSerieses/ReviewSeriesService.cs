@@ -41,9 +41,9 @@ namespace LicentaAPI.AppServices.ReviewSerieses
             return reviewSeries;
         }
 
-        public IEnumerable<ReviewSeriesDTO> GetByStatus(Status status)
+        public IEnumerable<ReviewSeriesDTO> GetByStatus(Status status, string idUser)
         {
-            return _reviewSeriesRepo.GetByStatus(status)
+            return _reviewSeriesRepo.GetByStatus(status, idUser)
                  .Select(rb =>
                  {
                      var series = _seriesRepo.GetById(rb.IdSeries);
