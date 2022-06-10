@@ -17,11 +17,11 @@ namespace LicentaAPI.AppServices.Friendships
         /// <returns>The created friendship or null if it was not created.</returns>
         public Friendship CreateFriendship(FriendshipCreate friendshipCreate);
 
+        public void DeleteFriendship(string idFriendship);
+
         public IEnumerable<FriendshipDTO> FindFriendshipRequestByIdReceiver(string idReceiver);
 
         public Error AcceptFriendship(string idFriendship, string idReceiver);
-
-        public Error BlockFriendship(string idFriendship, string idReceiver);
 
         public Friendship GetFriendshipBetweenUsers(string idUser1, string idUser2);
     }

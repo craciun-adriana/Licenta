@@ -8,6 +8,7 @@ import { LoginDetails } from '../models/login-details';
 import { CreateMessageModel } from '../models/messages-model';
 import { RegisterDetails } from '../models/register-details';
 import { Status } from '../models/status';
+import { UserDetails } from '../models/user-details';
 
 @Injectable({
     providedIn: 'root'
@@ -195,6 +196,7 @@ export class LicentaService {
             );
     }
 
+
     getAllMessagesBetweenUsers(otherId: string): Observable<any> {
         return this.http.get('/licenta/message/conversation/user/' + otherId)
             .pipe(
@@ -361,12 +363,21 @@ export class LicentaService {
     }
 
     acceptFriendship(idFriendship: string): Observable<any> {
-        return this.http.get('licenta/friendship/accept-friendship'+idFriendship)
-        .pipe(
-            catchError(error => {
-                return of(null);
-            })
-        )
+        return this.http.get('licenta/friendship/accept-friendship' + idFriendship)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+    }
+
+    deleteFriendship(idFriendship: string): Observable<any> {
+        return this.http.post('licenta/friendship/delete/' + idFriendship, null)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
     }
 
     findBooksByTitle(title: string): Observable<any> {

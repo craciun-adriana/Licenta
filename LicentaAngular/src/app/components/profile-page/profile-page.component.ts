@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CreateFriendshipModel } from 'src/app/models/friendship-model';
+import { CreateFriendshipModel, FriendshipModel } from 'src/app/models/friendship-model';
+import { FriendshipStatus } from 'src/app/models/friendship-status';
 import { ReviewBookModel } from 'src/app/models/review-book-model';
 import { ReviewFilmModel } from 'src/app/models/review-film-model';
 import { ReviewSeriesModel } from 'src/app/models/review-series-model';
@@ -13,11 +14,13 @@ import { LicentaService } from 'src/app/services/licenta-service.service';
     styleUrls: ['./profile-page.component.scss']
 })
 export class ProfilePageComponent implements OnInit {
-    private userId: string = "";
-    user: UserDetails | null = null;
+    userId: string = "";
+    user?: UserDetails;
     reviewBooks: ReviewBookModel[] = [];
     reviewFilms: ReviewFilmModel[] = [];
     reviewSeries: ReviewSeriesModel[] = [];
+    friendshipStatus: string = '';
+    idFriendship: string = "";
 
     constructor(
         private licentaService: LicentaService,
@@ -54,6 +57,8 @@ export class ProfilePageComponent implements OnInit {
                         this.reviewSeries = response;
                     })
 
+                    this.updateFriendshipStatus();
+
                 } else {
                     this.router.navigate(['home']);
                 }
@@ -75,12 +80,50 @@ export class ProfilePageComponent implements OnInit {
         }
     }
 
-    sendFriendshipRequest(idUser: string): void {
+    private updateFriendshipStatus(): void {
+        this.licentaService.getFriendshipBetweenUsers(this.userId).subscribe((response: FriendshipModel) => {
 
-        const friendship: CreateFriendshipModel = {
-            idReceiver: idUser
-        }
-        this.licentaService.sendFriendshipRequest(friendship);
+            this.idFriendship = response?.id;
+
+            if (response === null) {
+                this.friendshipStatus = "not exist";
+            }
+            else if (response.status === FriendshipStatus.Accepted) {
+
+                this.friendshipStatus = "friends";
+            }
+            else if (response.idSender === this.userId) {
+
+                this.friendshipStatus = "received";
+            }
+            else {
+
+                this.friendshipStatus = "sent";
+
+            }
+        })
     }
 
+    sendFriendshipRequest(): void {
+
+        const friendship: CreateFriendshipModel = {
+            idReceiver: this.userId
+        }
+        this.licentaService.sendFriendshipRequest(friendship).subscribe(_ => {
+            this.updateFriendshipStatus();
+        });
+
+    }
+
+    deleteFriendship(): void {
+        this.licentaService.deleteFriendship(this.idFriendship).subscribe(_ => {
+            this.updateFriendshipStatus();
+        });
+    }
+
+    acceptFriendship(): void {
+        this.licentaService.acceptFriendship(this.idFriendship).subscribe(_ => {
+            this.updateFriendshipStatus();
+        });
+    }
 }

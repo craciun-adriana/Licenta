@@ -45,27 +45,6 @@ namespace LicentaAPI.AppServices.Friendships
             return new Error("", ErrorCode.Ok);
         }
 
-        public Error BlockFriendship(string idFriendship, string idReceiver)
-        {
-            var friendship = _friendshipRepo.GetById(idFriendship);
-            if (friendship == null)
-            {
-                return new Error("Friendship was not found.", ErrorCode.NotFound);
-            }
-            if (friendship.IdReceiver != idReceiver)
-            {
-                return new Error("User is not authorize to block friendship.", ErrorCode.NotAuthorized);
-            }
-            if (friendship.Status != FriendshipStatus.Pending)
-            {
-                return new Error("Friendship is not pending.", ErrorCode.BadRequest);
-            }
-            friendship.Status = FriendshipStatus.Blocked;
-            friendship.LastUpdate = DateTime.UtcNow;
-            _friendshipRepo.Update(friendship);
-            return new Error("", ErrorCode.Ok);
-        }
-
         /// <inheritdoc/>
         public Friendship CreateFriendship(FriendshipCreate friendshipCreate)
         {
@@ -89,6 +68,15 @@ namespace LicentaAPI.AppServices.Friendships
                 return null;
             }
             return friendship;
+        }
+
+        public void DeleteFriendship(string idFriendship)
+        {
+            var friendship = _friendshipRepo.GetById(idFriendship);
+            if (friendship != null)
+            {
+                _friendshipRepo.Delete(friendship);
+            }
         }
 
         /// <inheritdoc/>

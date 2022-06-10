@@ -17,7 +17,7 @@
     </form>
     <div>
         <div *ngFor="let foundUser of users">
-            <span (click)="(foundUser.id)">{{foundUser.userName}}</span>
+            <a [routerLink]="'/profile/'+foundUser.id">{{foundUser.userName}}</a>
         </div>
     </div>
 </div>

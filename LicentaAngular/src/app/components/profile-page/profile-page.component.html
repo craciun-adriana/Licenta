@@ -16,7 +16,17 @@
         <div><b>Sex: </b> {{user?.sex}}</div>
     </div>
 
-    <!---<button (click)="sendFriendshipRequest(user?.id)">Send friendship request</button> -->
+    <div *ngIf="userId!==''" id="friendship">
+        <button *ngIf="friendshipStatus==='not exist'" (click)="sendFriendshipRequest()">Send friendship
+            request</button>
+        <button *ngIf="friendshipStatus==='friends'" (click)="deleteFriendship()">Delete friendship</button>
+        <button *ngIf="friendshipStatus==='received'" (click)="acceptFriendship()">Accept friend request</button>
+        <div *ngIf="friendshipStatus==='sent'">
+            <span>Wait for this user to accept your friendship request.</span>
+            <button (click)="deleteFriendship()">Or delete friendship request.</button>
+        </div>
+    </div>
+
 
     <table>
         <thead>
@@ -34,7 +44,7 @@
     <table>
         <thead>
             <tr>
-                <th>Films view by {{user?.userName}}</th>
+                <th>Films viewed by {{user?.userName}}</th>
             </tr>
         </thead>
         <tbody>
@@ -47,7 +57,7 @@
     <table>
         <thead>
             <tr>
-                <th>Series view by {{user?.userName}}</th>
+                <th>Series viewed by {{user?.userName}}</th>
             </tr>
         </thead>
         <tbody>

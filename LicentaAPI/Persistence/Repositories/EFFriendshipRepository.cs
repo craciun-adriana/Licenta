@@ -87,7 +87,8 @@ namespace LicentaAPI.Persistence.Repositories
         public Friendship GetFriendshipBetweenUsers(string idUser1, string idUser2)
         {
             return _dbContext.Friendships.FirstOrDefault(f =>
-            (f.IdSender == idUser1 && f.IdReceiver == idUser2) || (f.IdSender == idUser2 && f.IdReceiver == idUser1));
+                (f.IdSender == idUser1 && f.IdReceiver == idUser2) 
+                || (f.IdSender == idUser2 && f.IdReceiver == idUser1));
         }
 
         public IEnumerable<string> GetFriendsIdForUser(string idUser)

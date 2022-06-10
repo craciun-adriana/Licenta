@@ -43,6 +43,14 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
+        [HttpPost("delete/{idFriendship}")]
+        [SwaggerResponse(200, "Friendship with the given id was deleted.")]
+        public void DeleteFriendship(string idFriendship)
+        {
+            _friendshipService.DeleteFriendship(idFriendship);
+        }
+
+        [Authorize]
         [HttpGet("friendship-request-for-user")]
         [SwaggerResponse(200, "Friendships with the given idReceiver.")]
         [SwaggerResponse(404, "Friendship was not found.")]
@@ -80,39 +88,12 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("block-friendship/{idFriendship}")]
-        [SwaggerResponse(200, "Friendships with the given idReceiver.")]
-        [SwaggerResponse(404, "Friendship was not found.")]
-        public IActionResult BlockFriendship(string idFriendship)
-        {
-            var idReceiver = _userManager.GetUserId(HttpContext.User);
-            var result = _friendshipService.BlockFriendship(idFriendship, idReceiver);
-            switch (result.ErrorCode)
-            {
-                case ErrorCode.Ok:
-                    return Ok();
-
-                case ErrorCode.NotFound:
-                    return NotFound(result.Message);
-
-                case ErrorCode.NotAuthorized:
-                    return CreateResponse(401, result.Message);
-
-                case ErrorCode.BadRequest:
-                    return BadRequest(result.Message);
-
-                default:
-                    return CreateResponse(500, "ErrorCode not implemented." + result.ErrorCode);
-            }
-        }
-
-        [Authorize]
         [HttpGet("exist-friendship/{idOtherUser}")]
         [SwaggerResponse(200, "Friendships with the given idReceiver.")]
-        public IActionResult GetFriendshipBetweenUsers(string idUser2)
+        public IActionResult GetFriendshipBetweenUsers(string idOtherUser)
         {
             var idUser1 = _userManager.GetUserId(HttpContext.User);
-            return Ok(_friendshipService.GetFriendshipBetweenUsers(idUser1, idUser2));
+            return Ok(_friendshipService.GetFriendshipBetweenUsers(idUser1, idOtherUser));
 
             /*if (friendship != null)
             {

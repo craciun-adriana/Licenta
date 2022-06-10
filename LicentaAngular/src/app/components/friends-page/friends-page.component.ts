@@ -23,7 +23,8 @@ export class FriendsPageComponent implements OnInit {
 
         this.licentaservice.getFriendshipRequestByIdReceiver().subscribe((response: FriendshipModel[]) => {
             this.friends = response;
-        })
+        });
+        
     }
 
     acceptFriendship(idFriendship: string) {
