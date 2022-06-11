@@ -40,5 +40,16 @@ namespace LicentaAPI.Persistence.Repositories
                 .Where(user => user.UserName.ToUpper().Contains(username.ToUpper()))
                 .ToList();
         }
+
+        public void Update(AppUser entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            _dbContext.Users.Update(entity);
+            _dbContext.SaveChanges();
+        }
     }
 }

@@ -82,16 +82,22 @@ namespace LicentaAPI.Infrastructure.Mapper
                     .ForMember(dest => dest.IdUser, opt => opt.Ignore());
                 cfg.CreateMap<ReviewBookCreate, ReviewBook>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
+                cfg.CreateMap<ReviewBook, ReviewBookDTO>()
+                .ForMember(dest => dest.Book, opt => opt.Ignore());
 
                 cfg.CreateMap<ReviewFilmsCreateRequest, ReviewFilmCreate>()
                     .ForMember(dest => dest.IdUser, opt => opt.Ignore());
                 cfg.CreateMap<ReviewFilmCreate, ReviewFilm>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
+                cfg.CreateMap<ReviewFilm, ReviewFilmDTO>()
+                .ForMember(dest => dest.Film, opt => opt.Ignore());
 
                 cfg.CreateMap<ReviewSeriesCreateRequest, ReviewSeriesCreate>()
                     .ForMember(dest => dest.IdUser, opt => opt.Ignore());
                 cfg.CreateMap<ReviewSeriesCreate, ReviewSeries>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
+                cfg.CreateMap<ReviewSeries, ReviewSeriesDTO>()
+                .ForMember(dest => dest.Series, opt => opt.Ignore());
 
                 cfg.CreateMap<SeriesCreateRequest, SeriesCreate>();
                 cfg.CreateMap<SeriesCreate, Series>()

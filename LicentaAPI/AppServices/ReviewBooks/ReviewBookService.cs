@@ -27,17 +27,43 @@ namespace LicentaAPI.AppServices.ReviewBooks
         }
 
         /// <inheritdoc/>
-        public ReviewBook CreateReviewBook(ReviewBookCreate reviewBookCreate)
+        public ReviewBook CreateOrUpdateReviewBook(ReviewBookCreate reviewBookCreate)
         {
             var reviewBook = _mapper.Map<ReviewBookCreate, ReviewBook>(reviewBookCreate);
-            reviewBook.ID = Guid.NewGuid().ToString();
-            try
+            var user = _userRepo.GetUserById(reviewBook.IdUser);
+            var existingReviewBook = _reviewBookRepo.GetReviewBookByIdBookAndUser(reviewBook.IdBook, reviewBook.IdUser);
+            if (existingReviewBook != null)
             {
-                _reviewBookRepo.Add(reviewBook);
+                reviewBook.ID = existingReviewBook.ID;
+                _reviewBookRepo.Update(reviewBook);
+                if (reviewBook.Status == Status.Completed && existingReviewBook.Status != Status.Completed)
+                {
+                    user.Rank++;
+                }
+                else if (reviewBook.Status != Status.Completed && existingReviewBook.Status == Status.Completed)
+                {
+                    user.Rank--;
+                }
+                _userRepo.Update(user);
+                _reviewBookRepo.Update(reviewBook);
             }
-            catch (ArgumentNullException)
+            else
             {
-                return null;
+                reviewBook.ID = Guid.NewGuid().ToString();
+
+                try
+                {
+                    _reviewBookRepo.Add(reviewBook);
+                    if (reviewBook.Status == Status.Completed)
+                    {
+                        user.Rank++;
+                        _userRepo.Update(user);
+                    }
+                }
+                catch (ArgumentNullException)
+                {
+                    return null;
+                }
             }
 
             return reviewBook;
@@ -52,20 +78,13 @@ namespace LicentaAPI.AppServices.ReviewBooks
                     return new ReviewBookDTO
                     {
                         IdBook = rb.IdBook,
-                        Author = book.Author,
-                        Description = book.Description,
-                        Genre = book.Genre,
+                        Book = book,
                         Grade = rb.Grade,
                         IdReview = rb.ID,
                         IdUser = rb.IdUser,
                         Username = _userRepo.GetUserById(rb.IdUser).UserName,
-                        PrequelID = book.PrequelID,
-                        RelaseDate = book.RelaseDate,
                         Review = rb.Review,
-                        SequelID = book.SequelID,
                         Status = rb.Status,
-                        Title = book.Title,
-                        Picture = book.Picture
                     };
                 });
         }
@@ -86,7 +105,7 @@ namespace LicentaAPI.AppServices.ReviewBooks
             var revBookDTO = _mapper.Map<ReviewBook, ReviewBookDTO>(revBooks);
             foreach (var item in revBookDTO)
             {
-                item.Title = _bookRepo.GetById(item.IdBook).Title;
+                item.Book = _bookRepo.GetById(item.IdBook);
             }
             return revBookDTO;
         }

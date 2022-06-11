@@ -19,20 +19,6 @@ namespace LicentaAPI.AppServices.ReviewBooks.Model
 
         public Status Status { get; set; }
 
-        public string Title { get; set; }
-
-        public string Author { get; set; }
-
-        public string Description { get; set; }
-
-        public DateTime RelaseDate { get; set; }
-
-        public string PrequelID { get; set; }
-
-        public string SequelID { get; set; }
-
-        public Genre Genre { get; set; }
-
-        public string Picture { get; set; }
+        public Book Book { get; set; }
     }
 }

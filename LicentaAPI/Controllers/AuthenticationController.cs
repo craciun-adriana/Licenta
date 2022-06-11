@@ -81,7 +81,7 @@ namespace LicentaAPI.Controllers
         [Authorize]
         [HttpGet("is-logged-in")]
         [SwaggerResponse(204, "User is logged out.")]
-        [SwaggerResponse(404, "No user is logged id.")]
+        [SwaggerResponse(401, "No user is logged id.")]
         public IActionResult IsLogged()
         {
             var response = new IsLoggedInResponse

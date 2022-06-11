@@ -15,27 +15,54 @@ namespace LicentaAPI.AppServices.ReviewSerieses
     {
         private readonly IReviewSeriesRepo _reviewSeriesRepo;
         private readonly ISeriesRepo _seriesRepo;
+        private readonly IUserRepo _userRepo;
         private readonly IMappingCoordinator _mapper;
 
-        public ReviewSeriesService(IReviewSeriesRepo reviewSeriesRepo, ISeriesRepo seriesRepo, IMappingCoordinator mapper)
+        public ReviewSeriesService(IReviewSeriesRepo reviewSeriesRepo, ISeriesRepo seriesRepo, IUserRepo userRepo, IMappingCoordinator mapper)
         {
             _reviewSeriesRepo = reviewSeriesRepo;
             _seriesRepo = seriesRepo;
+            _userRepo = userRepo;
             _mapper = mapper;
         }
 
         /// <inheritdoc/>
-        public ReviewSeries CreateReviewSeries(ReviewSeriesCreate reviewSeriesCreate)
+        public ReviewSeries CreateOrUpdateReviewSeries(ReviewSeriesCreate reviewSeriesCreate)
         {
             var reviewSeries = _mapper.Map<ReviewSeriesCreate, ReviewSeries>(reviewSeriesCreate);
-            reviewSeries.ID = Guid.NewGuid().ToString();
-            try
+            var user = _userRepo.GetUserById(reviewSeries.IdUser);
+            var existingReviewFilm = _reviewSeriesRepo.GetReviewSeriesByIdSeriesAndUser(reviewSeries.IdSeries, reviewSeries.IdUser);
+            if (existingReviewFilm != null)
             {
-                _reviewSeriesRepo.Add(reviewSeries);
+                reviewSeries.ID = existingReviewFilm.ID;
+                _reviewSeriesRepo.Update(reviewSeries);
+                if (reviewSeries.Status == Status.Completed && existingReviewFilm.Status != Status.Completed)
+                {
+                    user.Rank++;
+                }
+                else if (reviewSeries.Status != Status.Completed && existingReviewFilm.Status == Status.Completed)
+                {
+                    user.Rank--;
+                }
+                _userRepo.Update(user);
+                _reviewSeriesRepo.Update(reviewSeries);
             }
-            catch (ArgumentNullException)
+            else
             {
-                return null;
+                reviewSeries.ID = Guid.NewGuid().ToString();
+                try
+                {
+                    _reviewSeriesRepo.Add(reviewSeries);
+                    if (reviewSeries.Status == Status.Completed)
+                    {
+                        user.Rank++;
+                        _userRepo.Update(user);
+                    }
+                }
+                catch (ArgumentNullException)
+                {
+                    return null;
+                }
             }
 
             return reviewSeries;
@@ -50,21 +77,12 @@ namespace LicentaAPI.AppServices.ReviewSerieses
                      return new ReviewSeriesDTO
                      {
                          IdSeries = rb.IdSeries,
-                         Director = series.Director,
-                         Description = series.Description,
-                         Genre = series.Genre,
+                         Series = series,
                          Grade = rb.Grade,
                          IdReview = rb.ID,
                          IdUser = rb.IdUser,
-                         PrequelID = series.PrequelID,
-                         RelaseDate = series.RelaseDate,
                          Review = rb.Review,
-                         SequelID = series.SequelID,
                          Status = rb.Status,
-                         Title = series.Title,
-                         Rating = series.Rating,
-                         NrEps = series.NrEps,
-                         Picture = series.Picture
                      };
                  });
         }
@@ -85,7 +103,7 @@ namespace LicentaAPI.AppServices.ReviewSerieses
             var revBookDTO = _mapper.Map<ReviewSeries, ReviewSeriesDTO>(revSeries);
             foreach (var item in revBookDTO)
             {
-                item.Title = _seriesRepo.GetById(item.IdSeries).Title;
+                item.Series = _seriesRepo.GetById(item.IdSeries);
             }
             return revBookDTO;
         }

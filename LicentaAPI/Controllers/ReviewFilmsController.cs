@@ -25,14 +25,14 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("create")]
+        [HttpPost("create-update")]
         [SwaggerResponse(201, "ReviewFilm was created.")]
         [SwaggerResponse(404, "ReviewFilm can't be created.")]
-        public IActionResult CreateReviewBooks(ReviewFilmsCreateRequest request)
+        public IActionResult CreateOrUpdateReviewFilm(ReviewFilmsCreateRequest request)
         {
             var reviewFilmsCreate = _mapper.Map<ReviewFilmsCreateRequest, ReviewFilmCreate>(request);
             reviewFilmsCreate.IdUser = _userManager.GetUserId(HttpContext.User);
-            var reviewFilm = _reviewFilmsService.CreateReviewFilm(reviewFilmsCreate);
+            var reviewFilm = _reviewFilmsService.CreateOrUpdateReviewFilm(reviewFilmsCreate);
 
             if (reviewFilm == null)
             {

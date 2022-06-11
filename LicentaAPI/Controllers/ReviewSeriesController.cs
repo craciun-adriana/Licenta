@@ -25,14 +25,14 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("create")]
+        [HttpPost("create-update")]
         [SwaggerResponse(201, "ReviewSeries was created.")]
         [SwaggerResponse(404, "ReviewSeries can't be created.")]
-        public IActionResult CreateReviewBooks(ReviewSeriesCreateRequest request)
+        public IActionResult CreateOrUpdateReviewBooks(ReviewSeriesCreateRequest request)
         {
             var reviewSeriesCreate = _mapper.Map<ReviewSeriesCreateRequest, ReviewSeriesCreate>(request);
             reviewSeriesCreate.IdUser = _userManager.GetUserId(HttpContext.User);
-            var reviewSeries = _reviewSeriesService.CreateReviewSeries(reviewSeriesCreate);
+            var reviewSeries = _reviewSeriesService.CreateOrUpdateReviewSeries(reviewSeriesCreate);
 
             if (reviewSeries == null)
             {

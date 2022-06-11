@@ -25,14 +25,14 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("create")]
+        [HttpPost("create-update")]
         [SwaggerResponse(201, "ReviewBook was created.")]
         [SwaggerResponse(404, "ReviewBook can't be created.")]
-        public IActionResult CreateReviewBooks(ReviewBooksCreateRequest request)
+        public IActionResult CreateOrUpdateReviewBooks(ReviewBooksCreateRequest request)
         {
             var reviewBookCreate = _mapper.Map<ReviewBooksCreateRequest, ReviewBookCreate>(request);
             reviewBookCreate.IdUser = _userManager.GetUserId(HttpContext.User);
-            var reviewBook = _reviewBooksService.CreateReviewBook(reviewBookCreate);
+            var reviewBook = _reviewBooksService.CreateOrUpdateReviewBook(reviewBookCreate);
 
             if (reviewBook == null)
             {

@@ -12,7 +12,7 @@ namespace LicentaAPI.AppServices.ReviewSerieses
         /// </summary>
         /// <param name="reviewSeriesCreate">Details about a ReviewSeries.</param>
         /// <returns>The created ReviewSeries or null if it was not created.</returns>
-        public ReviewSeries CreateReviewSeries(ReviewSeriesCreate reviewSeriesCreate);
+        public ReviewSeries CreateOrUpdateReviewSeries(ReviewSeriesCreate reviewSeriesCreate);
 
         public IEnumerable<ReviewSeriesDTO> GetByStatus(Status status, string idUser);
 

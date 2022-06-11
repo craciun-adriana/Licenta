@@ -20,24 +20,6 @@ namespace LicentaAPI.AppServices.ReviewFilms.Model
 
         public Status Status { get; set; }
 
-        public string Title { get; set; }
-
-        public string Director { get; set; }
-
-        public string Description { get; set; }
-
-        public DateTime RelaseDate { get; set; }
-
-        public string PrequelID { get; set; }
-
-        public string SequelID { get; set; }
-
-        public Genre Genre { get; set; }
-
-        public Rating Rating { get; set; }
-
-        public int Length { get; set; }
-
-        public string Picture { get; set; }
+        public Film Film { get; set; }
     }
 }

@@ -15,27 +15,54 @@ namespace LicentaAPI.AppServices.ReviewFilms
     {
         private readonly IReviewFilmRepo _reviewFilmRepo;
         private readonly IFilmRepo _filmRepo;
+        private readonly IUserRepo _userRepo;
         private readonly IMappingCoordinator _mapper;
 
-        public ReviewFilmService(IReviewFilmRepo reviewFilmRepo, IFilmRepo filmRepo, IMappingCoordinator mapper)
+        public ReviewFilmService(IReviewFilmRepo reviewFilmRepo, IFilmRepo filmRepo, IUserRepo userRepo, IMappingCoordinator mapper)
         {
             _reviewFilmRepo = reviewFilmRepo;
             _filmRepo = filmRepo;
+            _userRepo = userRepo;
             _mapper = mapper;
         }
 
         /// <inheritdoc/>
-        public ReviewFilm CreateReviewFilm(ReviewFilmCreate reviewFilmCreate)
+        public ReviewFilm CreateOrUpdateReviewFilm(ReviewFilmCreate reviewFilmCreate)
         {
             var reviewFilm = _mapper.Map<ReviewFilmCreate, ReviewFilm>(reviewFilmCreate);
-            reviewFilm.ID = Guid.NewGuid().ToString();
-            try
+            var user = _userRepo.GetUserById(reviewFilm.IdUser);
+            var existingReviewFilm = _reviewFilmRepo.GetReviewFilmByIdFilmAndUser(reviewFilm.IdFilm, reviewFilm.IdUser);
+            if (existingReviewFilm != null)
             {
-                _reviewFilmRepo.Add(reviewFilm);
+                reviewFilm.ID = existingReviewFilm.ID;
+                _reviewFilmRepo.Update(reviewFilm);
+                if (reviewFilm.Status == Status.Completed && existingReviewFilm.Status != Status.Completed)
+                {
+                    user.Rank++;
+                }
+                else if (reviewFilm.Status != Status.Completed && existingReviewFilm.Status == Status.Completed)
+                {
+                    user.Rank--;
+                }
+                _userRepo.Update(user);
+                _reviewFilmRepo.Update(reviewFilm);
             }
-            catch (ArgumentNullException)
+            else
             {
-                return null;
+                reviewFilm.ID = Guid.NewGuid().ToString();
+                try
+                {
+                    _reviewFilmRepo.Add(reviewFilm);
+                    if (reviewFilm.Status == Status.Completed)
+                    {
+                        user.Rank++;
+                        _userRepo.Update(user);
+                    }
+                }
+                catch (ArgumentNullException)
+                {
+                    return null;
+                }
             }
 
             return reviewFilm;
@@ -50,21 +77,12 @@ namespace LicentaAPI.AppServices.ReviewFilms
                 return new ReviewFilmDTO
                 {
                     IdFilm = rb.IdFilm,
-                    Director = film.Director,
-                    Description = film.Description,
-                    Genre = film.Genre,
+                    Film = film,
                     Grade = rb.Grade,
                     IdReview = rb.ID,
                     IdUser = rb.IdUser,
-                    PrequelID = film.PrequelID,
-                    RelaseDate = film.RelaseDate,
                     Review = rb.Review,
-                    SequelID = film.SequelID,
                     Status = rb.Status,
-                    Title = film.Title,
-                    Rating = film.Rating,
-                    Length = film.Length,
-                    Picture = film.Picture
                 };
             });
         }
@@ -85,7 +103,7 @@ namespace LicentaAPI.AppServices.ReviewFilms
             var revFilmDTO = _mapper.Map<ReviewFilm, ReviewFilmDTO>(revFilms);
             foreach (var item in revFilmDTO)
             {
-                item.Title = _filmRepo.GetById(item.IdFilm).Title;
+                item.Film = _filmRepo.GetById(item.IdFilm);
             }
             return revFilmDTO;
         }
