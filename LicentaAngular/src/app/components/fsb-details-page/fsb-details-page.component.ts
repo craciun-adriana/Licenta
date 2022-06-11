@@ -59,7 +59,11 @@ export class FsbDetailsPageComponent implements OnInit {
             });
             this.licentaService.getReviewBookByIdBookAndUser(this.id).subscribe((response: ReviewFsbModel) => {
                 this.userReview = response;
-            })
+            });
+            if(this.userReview!=null)
+            {
+
+            }
         }
         else if (this.type === "film") {
             this.licentaService.getDetailsAboutAFilm(this.id).subscribe((response: FsbDetailsModel) => {

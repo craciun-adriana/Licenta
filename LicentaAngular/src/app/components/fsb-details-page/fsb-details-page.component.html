@@ -29,7 +29,11 @@
     <div id="userGrade">
         <span><b>Your grades is:</b></span>
         <br>
-        <div>{{userReview?.grade}}</div>
+        <div *ngIf="userReview?.grade===null">
+            <input #addGrade id="search-text" type="text" />
+            <input type="submit" (click)="addGrade.value" value="Search users">
+        </div>
+        <div *ngIf="userReview!==null">{{userReview?.grade}}</div>
     </div>
 
     <div id="userReview">
@@ -43,21 +47,17 @@
         <thead>
             <tr>
                 <th>User</th>
-            </tr>
-            <tr>
-                <th *ngIf="!isBook">Notate this book with</th>
-                <th *ngIf="!isFilm">Notate this film with</th>
-                <th *ngIf="!isBook">Notate this series with</th>
-            </tr>
-            <tr>
+                <th *ngIf="isBook">Notate this book with</th>
+                <th *ngIf="isFilm">Notate this film with</th>
+                <th *ngIf="isSeries">Notate this series with</th>
                 <th>And his/her impresion is</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let review in reviews">
-                <td><b>{{review.username}}</b></td>
-                <td><b>Grade:</b>{{review.grades}}</td>
-                <td><b>Review:</b>{{review.review}}</td>
+            <tr *ngFor="let review of reviews">
+                <td><b>{{review.idUser}}</b></td>
+                <td><b></b>{{review.grade}}</td>
+                <td><b></b>{{review.review}}</td>
             </tr>
         </tbody>
     </table>

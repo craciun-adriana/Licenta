@@ -12,7 +12,7 @@
     </div>
     <div id="user-details">
         <div><b>Description:</b> "{{user?.description}}"</div>
-        <div><b>Date of birth: </b>{{user?.dateOfBirth}}</div>
+        <div><b>Date of birth: </b>{{user?.dateOfBirth | date:'longDate'}}</div>
         <div><b>Sex: </b> {{user?.sex}}</div>
     </div>
 

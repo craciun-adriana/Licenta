@@ -84,7 +84,6 @@ export class ProfilePageComponent implements OnInit {
         this.licentaService.getFriendshipBetweenUsers(this.userId).subscribe((response: FriendshipModel) => {
 
             this.idFriendship = response?.id;
-
             if (response === null) {
                 this.friendshipStatus = "not exist";
             }
