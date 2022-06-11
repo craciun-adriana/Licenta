@@ -9,7 +9,8 @@ import { LicentaService } from 'src/app/services/licenta-service.service';
     styleUrls: ['./friends-page.component.scss']
 })
 export class FriendsPageComponent implements OnInit {
-    friends: FriendshipModel[] = [];
+    friendshipReq: FriendshipModel[] = [];
+    friends: UserDetails[] = [];
     users: UserDetails[] = [];
     constructor(
         private licentaservice: LicentaService
@@ -22,9 +23,13 @@ export class FriendsPageComponent implements OnInit {
     private initializeFriendPage(): void {
 
         this.licentaservice.getFriendshipRequestByIdReceiver().subscribe((response: FriendshipModel[]) => {
-            this.friends = response;
+            this.friendshipReq = response;
         });
-        
+
+        this.licentaservice.getFriendsForUser().subscribe((response: UserDetails[]) => {
+            this.friends = response;
+        })
+
     }
 
     acceptFriendship(idFriendship: string) {

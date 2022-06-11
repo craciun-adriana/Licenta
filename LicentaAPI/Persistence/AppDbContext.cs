@@ -23,6 +23,7 @@ namespace LicentaAPI.Persistence
 
         public AppDbContext(DbContextOptions<AppDbContext> opt) : base(opt)
         {
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
     }
 }

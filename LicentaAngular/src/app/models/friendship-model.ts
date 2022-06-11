@@ -13,7 +13,7 @@ export interface FriendshipModel {
 
     nameReceiver: string;
 
-    status: FriendshipStatus;
+    status: string;
 
     lastUpdate: Date;
 }

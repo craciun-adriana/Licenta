@@ -101,5 +101,12 @@ namespace LicentaAPI.AppServices.Friendships
             }
             return null;
         }
+
+        public IEnumerable<AppUser> GetFriendsForUser(string idUser)
+        {
+            var listFriendsId = _friendshipRepo.GetFriendsIdForUser(idUser);
+            var friends = _userRepo.GetUsersByIds(listFriendsId);
+            return friends;
+        }
     }
 }

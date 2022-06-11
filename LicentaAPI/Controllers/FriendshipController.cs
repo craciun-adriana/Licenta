@@ -101,5 +101,14 @@ namespace LicentaAPI.Controllers
             }
             else return null;*/
         }
+
+        [Authorize]
+        [HttpGet("user-friends")]
+        [SwaggerResponse(200, "User's friends.")]
+        public IActionResult GetFriendsForUser()
+        {
+            var idUser = _userManager.GetUserId(HttpContext.User);
+            return Ok(_friendshipService.GetFriendsForUser(idUser));
+        }
     }
 }

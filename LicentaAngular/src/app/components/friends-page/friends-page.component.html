@@ -1,23 +1,34 @@
-<div id="friendshipReq">
-    <div *ngFor="let friend in friends">
-        <div>
-            <img alt="Profile picture" [src]="friend.pictureSender" width="80" height="80" />
-            <a [routerLink]="'licenta/user/get/'+friend.idSender">{{friend.nameSender}}</a> sent you a friendship
-            request.
+<div id="grid-container">
+
+    <div id="friendship-req">
+        <div *ngFor="let friendship of friendshipReq">
+            <div id="request">
+                <img alt="Profile picture" [src]="friendship.pictureSender" width="80" height="80" />
+                <a [routerLink]="'/profile/'+friendship.idSender">{{friendship.nameSender}}</a> sent you a friendship
+                request.
+            </div>
+            <span (click)="acceptFriendship(friendship.id)">Accept request</span>
         </div>
-        <span (click)="acceptFriendship(friend.id)">Accept request</span>
     </div>
 
-</div>
+    <div id="search-user">
+        <form>
+            <input #userSearchInput id="search-text" type="text" />
+            <input type="submit" (click)="findUserByUsername(userSearchInput.value)" value="Search users">
+        </form>
+        <div>
+            <div *ngFor="let foundUser of users">
+                <a [routerLink]="'/profile/'+foundUser.id">{{foundUser.userName}}</a>
+            </div>
+        </div>
+    </div>
 
-<div id="searchUser">
-    <form>
-        <input #userSearchInput id="search-text" type="text" />
-        <input type="submit" (click)="findUserByUsername(userSearchInput.value)" value="Submit">
-    </form>
-    <div>
-        <div *ngFor="let foundUser of users">
-            <a [routerLink]="'/profile/'+foundUser.id">{{foundUser.userName}}</a>
+    <div id="friends">
+        <div *ngFor="let friend of friends">Your actual friends are:
+            <div>
+                <img alt="Profile picture" [src]="friend.profilePicture" width="50" height="50" />
+                <a [routerLink]="'/profile/'+friend.id">{{friend.userName}}</a>
+            </div>
         </div>
     </div>
 </div>

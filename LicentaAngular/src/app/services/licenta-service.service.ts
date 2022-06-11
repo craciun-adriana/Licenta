@@ -363,7 +363,7 @@ export class LicentaService {
     }
 
     acceptFriendship(idFriendship: string): Observable<any> {
-        return this.http.get('licenta/friendship/accept-friendship' + idFriendship)
+        return this.http.post('licenta/friendship/accept-friendship/' + idFriendship, null)
             .pipe(
                 catchError(error => {
                     return of(null);
@@ -376,6 +376,15 @@ export class LicentaService {
             .pipe(
                 catchError(error => {
                     return of(null);
+                })
+            )
+    }
+
+    getFriendsForUser(): Observable<any> {
+        return this.http.get('licenta/friendship/user-friends')
+            .pipe(
+                catchError(error => {
+                    return of([]);
                 })
             )
     }

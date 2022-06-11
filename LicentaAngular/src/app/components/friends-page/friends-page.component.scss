@@ -1,0 +1,28 @@
+img {
+    object-fit: cover;
+}
+
+#friendship-req {
+    grid-area: FriendshipReq;
+    border: 1px solid black;
+}
+
+#request {
+    display: inline;
+}
+
+#search-user {
+    grid-area: UserSearch;
+    border: 1px solid black;
+}
+
+#grid-container {
+    display: grid;
+    grid-template-areas:
+        ' FriendshipReq '
+        ' UserSearch ';
+    gap: 5px;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
