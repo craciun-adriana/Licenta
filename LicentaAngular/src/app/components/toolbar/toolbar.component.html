@@ -4,12 +4,15 @@
     <div class="buttons-container">
         <a *ngIf="!isLoggedIn" [routerLink]="'/register'" routerLinkActive="active">Register</a>
         <a *ngIf="!isLoggedIn" [routerLink]="'/login'" routerLinkActive="active">Login</a>
-        <a *ngIf="isLoggedIn" [routerLink]="'/profile'" routerLinkActive="active">Profile</a>
-        <a *ngIf="isLoggedIn" [routerLink]="'/friends'" routerLinkActive="active">Friends</a>
-        <a *ngIf="isLoggedIn" [routerLink]="'/chat'" routerLinkActive="active">Chat</a>
+        <a *ngIf="!isAdmin&&isLoggedIn" [routerLink]="'/profile'" routerLinkActive="active">Profile</a>
+        <a *ngIf="!isAdmin&&isLoggedIn" [routerLink]="'/friends'" routerLinkActive="active">Friends</a>
+        <a *ngIf="!isAdmin&&isLoggedIn" [routerLink]="'/chat'" routerLinkActive="active">Chat</a>
         <a *ngIf="isLoggedIn" [routerLink]="'/books'" routerLinkActive="active">Books</a>
+        <a *ngIf="isLoggedIn&&isAdmin" [routerLink]="'/add-book'" routerLinkActive="active">Add Book</a>
         <a *ngIf="isLoggedIn" [routerLink]="'/films'" routerLinkActive="active">Films</a>
+        <a *ngIf="isLoggedIn&&isAdmin" [routerLink]="'/add-film'" routerLinkActive="active">Add Film</a>
         <a *ngIf="isLoggedIn" [routerLink]="'/series'" routerLinkActive="active">Series</a>
+        <a *ngIf="isLoggedIn&&isAdmin" [routerLink]="'/add-series'" routerLinkActive="active">Add Series</a>
         <!-- <a *ngIf="isLoggedIn" [routerLink]="'/settings'" routerLinkActive="active">Settings</a> -->
         <a *ngIf="isLoggedIn" [routerLink]="'/logout'">Logout</a>
     </div>

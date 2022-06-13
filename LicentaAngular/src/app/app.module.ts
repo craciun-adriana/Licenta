@@ -19,8 +19,10 @@ import { BooksPageComponent } from './components/books-page/books-page.component
 import { FilmsPageComponent } from './components/films-page/films-page.component';
 import { SeriesPageComponent } from './components/series-page/series-page.component';
 import { StringToDatePipe } from './pipes/string-to-date.pipe';
-import { SettingsPageComponent } from './components/settings-page/settings-page.component';
 import { FsbDetailsPageComponent } from './components/fsb-details-page/fsb-details-page.component';
+import { AddBookComponent } from './components/add-book/add-book.component';
+import { AddFilmComponent } from './components/add-film/add-film.component';
+import { AddSeriesComponent } from './components/add-series/add-series.component';
 
 @NgModule({
     declarations: [
@@ -37,8 +39,10 @@ import { FsbDetailsPageComponent } from './components/fsb-details-page/fsb-detai
         FilmsPageComponent,
         SeriesPageComponent,
         StringToDatePipe,
-        SettingsPageComponent,
-        FsbDetailsPageComponent
+        FsbDetailsPageComponent,
+        AddBookComponent,
+        AddFilmComponent,
+        AddSeriesComponent
     ],
     imports: [
         BrowserModule,

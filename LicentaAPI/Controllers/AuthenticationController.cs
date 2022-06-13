@@ -1,4 +1,5 @@
-﻿using LicentaAPI.Controllers.Models;
+﻿using LicentaAPI.AppServices.Users;
+using LicentaAPI.Controllers.Models;
 using LicentaAPI.Infrastructure.Mapper;
 using LicentaAPI.Persistence.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -11,14 +12,13 @@ namespace LicentaAPI.Controllers
 {
     [ApiController]
     [Route("licenta/auth")]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationController : BaseController
     {
-        private readonly UserManager<AppUser> _userManager;
+        private readonly IUserService _userService;
         private readonly SignInManager<AppUser> _signInManager;
 
-        public AuthenticationController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AuthenticationController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager) : base(userManager)
         {
-            _userManager = userManager;
             _signInManager = signInManager;
         }
 
@@ -82,11 +82,12 @@ namespace LicentaAPI.Controllers
         [HttpGet("is-logged-in")]
         [SwaggerResponse(204, "User is logged out.")]
         [SwaggerResponse(401, "No user is logged id.")]
-        public IActionResult IsLogged()
+        public async Task<IActionResult> IsLoggedIn()
         {
             var response = new IsLoggedInResponse
             {
-                UserId = _userManager.GetUserId(HttpContext.User)
+                UserId = _userManager.GetUserId(HttpContext.User),
+                IsAdmin = await UserIsAdminAsync()
             };
             return Ok(response);
         }

@@ -2,11 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import { CreateBookModel } from '../models/book-model';
+import { CreateFilmModel } from '../models/film-model';
 import { CreateFriendshipModel } from '../models/friendship-model';
 import { Genre } from '../models/genre';
 import { LoginDetails } from '../models/login-details';
 import { CreateMessageModel } from '../models/messages-model';
 import { RegisterDetails } from '../models/register-details';
+import { CreateSeriesModel } from '../models/series-model';
 import { Status } from '../models/status';
 import { UserDetails } from '../models/user-details';
 
@@ -19,7 +22,7 @@ export class LicentaService {
         private http: HttpClient
     ) { }
 
-    isUserLoggedIn(): Observable<string> {
+    isUserLoggedIn(): Observable<any> {
         return this.http.get('licenta/auth/is-logged-in')
             .pipe(
                 catchError(error => {
@@ -27,9 +30,9 @@ export class LicentaService {
                 }),
                 map((response: any) => {
                     if (response === false) {
-                        return "";
+                        return null;
                     }
-                    return response.userId;
+                    return response;
                 })
             );
     }
@@ -75,6 +78,33 @@ export class LicentaService {
                         return false;
                     }
                     return true;
+                })
+            );
+    }
+
+    createBook(book: CreateBookModel): Observable<any> {
+        return this.http.post('/licenta/book/create', book)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            );
+    }
+
+    createFilm(film: CreateFilmModel): Observable<any> {
+        return this.http.post('/licenta/film/create', film)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            );
+    }
+
+    createSeries(series: CreateSeriesModel): Observable<any> {
+        return this.http.post('/licenta/series/create', series)
+            .pipe(
+                catchError(error => {
+                    return of(null);
                 })
             );
     }

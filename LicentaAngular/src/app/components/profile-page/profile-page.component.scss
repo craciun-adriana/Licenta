@@ -39,12 +39,28 @@ img {
 
 }
 
+#books-read {
+    grid-area: BooksRead;
+    border: 1px solid black;
+}
+
+#films-viewed {
+    grid-area: FilmsViewed;
+    border: 1px solid black;
+}
+
+#series-viewed {
+    grid-area: SeriesViewed;
+    border: 1px solid black;
+}
+
 .grid-container {
     display: grid;
     grid-template-areas:
         'Picture UserName Friendship'
         'Rank Rank Rank'
-        'UserDetails UserDetails UserDetails ';
+        'UserDetails UserDetails UserDetails '
+        'BooksRead FilmsViewed SeriesViewed';
     gap: 5px;
     padding: 10px;
     font-family: Arial, Helvetica, sans-serif;

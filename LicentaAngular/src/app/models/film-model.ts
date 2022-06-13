@@ -6,7 +6,7 @@ export interface FilmModel {
     title: string;
     director: string;
     description: string;
-    releaseDate: Date;
+    relaseDate: Date;
     prequelId?: string;
     sequelId?: string;
     genre: Genre;
@@ -16,3 +16,17 @@ export interface FilmModel {
     prequelTitle?: string;
     sequelTitle?: string;
 }
+
+export interface CreateFilmModel {
+    title: string;
+    director: string;
+    description: string;
+    relaseDate: Date;
+    prequelId?: string;
+    sequelId?: string;
+    genre: Genre;
+    rating: Rating;
+    length: number;
+    picture: string;
+}
+

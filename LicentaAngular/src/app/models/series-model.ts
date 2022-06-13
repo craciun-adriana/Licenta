@@ -6,7 +6,7 @@ export interface SeriesModel {
     title: string;
     director: string;
     description: string;
-    releaseDate: Date;
+    relaseDate: Date;
     prequelId?: string;
     sequelId?: string;
     genre: Genre;
@@ -15,4 +15,17 @@ export interface SeriesModel {
     picture: string;
     prequelTitle?: string;
     sequelTitle?: string;
+}
+
+export interface CreateSeriesModel {
+    title: string;
+    director: string;
+    description: string;
+    relaseDate: Date;
+    prequelId?: string;
+    sequelId?: string;
+    genre: Genre;
+    rating: Rating;
+    nrEps: number;
+    picture: string;
 }

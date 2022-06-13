@@ -35,7 +35,7 @@ export class HomePageComponent implements OnInit {
 
     ngOnInit(): void {
         this.licentaService.isUserLoggedIn().subscribe(loggedIn => {
-            if (loggedIn === "") {
+            if (loggedIn === null) {
                 this.router.navigate(['login']);
             } else {
                 this.initializeTables();

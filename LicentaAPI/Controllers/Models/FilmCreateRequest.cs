@@ -30,5 +30,8 @@ namespace LicentaAPI.Controllers.Models
 
         [Required]
         public int Length { get; set; }
+
+        [Required]
+        public string Picture { get; set; }
     }
 }

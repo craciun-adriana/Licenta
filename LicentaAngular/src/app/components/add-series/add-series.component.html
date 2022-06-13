@@ -1,0 +1,78 @@
+<h1>Create a new series</h1>
+    <form [formGroup]="addSeriesForm">
+
+        <div class="content">
+            <span>Title:</span>
+            <input type="text" formControlName="title">
+        </div>
+
+        <div class="content">
+            <span>Director:</span>
+            <input type="text" formControlName="director">
+        </div>
+        <div class="content">
+            <span>Description:</span>
+            <input type="text" formControlName="description">
+        </div>
+
+        <div class="content">
+            <span>Release Date:</span>
+            <input type="date" formControlName="relaseDate">
+        </div>
+
+        <div class="content">
+            <span>Prequel Id</span>
+            <input type="text" formControlName="prequelId">
+        </div>
+
+        <div class="content">
+            <span>Sequel Id:</span>
+            <input type="text" formControlName="sequelId">
+        </div>
+
+        <div class="content">
+            <span>Genre:</span>
+            <select formControlName="genre">
+                <option selected="true" value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Crime">Crime</option>
+                <option value="Drama">Drama</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Horror">Horror</option>
+                <option value="Muzical">Muzical</option>
+                <option value="Romance">Romance</option>
+                <option value="ScienceFiction">ScienceFiction</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Western">Western</option>
+            </select>
+        </div>
+
+        <div class="content">
+            <span>Rating:</span>
+            <select formControlName="rating">
+                <option selected="true" value="G">G</option>
+                <option value="PG">PG</option>
+                <option value="PG13">PG13</option>
+                <option value="R">R</option>
+                <option value="NR17">NR17</option>
+            </select>
+        </div>
+
+        <div class="content">
+            <span>Namber of episodes:</span>
+            <input type="text" formControlName="nrEps">
+        </div>
+
+        <div class="content">
+            <span>Picture:</span>
+            <input type="text" formControlName="picture">
+        </div>
+
+        <div class="content">
+            <button id="add-film" (click)="addSeries()">Add series</button>
+        </div>
+
+        <div class="content">
+            <span class="error">{{errorMessage}}</span>
+        </div>
+    </form>

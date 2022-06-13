@@ -10,8 +10,10 @@ import { FilmsPageComponent } from './components/films-page/films-page.component
 import { SeriesPageComponent } from './components/series-page/series-page.component';
 import { FriendsPageComponent } from './components/friends-page/friends-page.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
-import { SettingsPageComponent } from './components/settings-page/settings-page.component';
 import { FsbDetailsPageComponent } from './components/fsb-details-page/fsb-details-page.component';
+import { AddBookComponent } from './components/add-book/add-book.component';
+import { AddFilmComponent } from './components/add-film/add-film.component';
+import { AddSeriesComponent } from './components/add-series/add-series.component';
 
 
 const routes: Routes = [
@@ -22,8 +24,11 @@ const routes: Routes = [
     { path: 'logout', component: LogoutPageComponent },
     { path: 'chat', component: ChatPageComponent },
     { path: 'books', component: BooksPageComponent },
+    { path: 'add-book', component: AddBookComponent },
     { path: 'films', component: FilmsPageComponent },
+    { path: 'add-film', component: AddFilmComponent },
     { path: 'series', component: SeriesPageComponent },
+    { path: 'add-series', component: AddSeriesComponent },
     { path: 'friends', component: FriendsPageComponent },
     { path: 'profile', component: ProfilePageComponent },
     { path: 'profile/:id', component: ProfilePageComponent },

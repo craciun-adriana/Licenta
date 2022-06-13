@@ -5,11 +5,22 @@ export interface BookModel {
     title: string;
     author: string;
     description: string;
-    releaseDate: Date;
+    relaseDate: Date;
     prequelId?: string;
     sequelId?: string;
     genre: Genre;
     picture: string;
     prequelTitle?: string;
     sequelTitle?: string;
+}
+
+export interface CreateBookModel {
+    title: string;
+    author: string;
+    description: string;
+    relaseDate: Date;
+    prequelId?: string;
+    sequelId?: string;
+    genre: Genre;
+    picture: string;
 }

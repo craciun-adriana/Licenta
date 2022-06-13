@@ -6,7 +6,7 @@
 
     <div id="title-description">
         <span>{{fsbDetails?.title}}</span>
-        <br><span>{{fsbDetails?.description}}</span>
+        <br><span id="description">{{fsbDetails?.description}}</span>
     </div>
 
     <div id="info">
@@ -31,7 +31,7 @@
         <br>
         <div *ngIf="userReview?.grade===null">
             <input #addGrade id="search-text" type="text" />
-            <input type="submit" (click)="addGrade.value" value="Search users">
+            <input type="submit" (click)="addGrade.value" value="Add grade">
         </div>
         <div *ngIf="userReview!==null">{{userReview?.grade}}</div>
     </div>
@@ -42,7 +42,6 @@
         <div>{{userReview?.review}}</div>
     </div>
 
-    <!-- <button (click)=""></button> -->
     <table id="reviews">
         <thead>
             <tr>

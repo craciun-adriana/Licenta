@@ -65,9 +65,9 @@ export class ProfilePageComponent implements OnInit {
             });
         }
         else {
-            this.licentaService.isUserLoggedIn().subscribe((response: string) => {
-                if (response !== "") {
-                    this.licentaService.getUserById(response).subscribe((response: UserDetails) => {
+            this.licentaService.isUserLoggedIn().subscribe((response: any) => {
+                if (response !== null) {
+                    this.licentaService.getUserById(response.userId).subscribe((response: UserDetails) => {
                         if (response !== null) {
                             this.user = response;
                         }

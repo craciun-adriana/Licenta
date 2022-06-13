@@ -31,5 +31,8 @@ namespace LicentaAPI.Controllers.Models
 
         [Required]
         public int NrEps { get; set; }
+
+        [Required]
+        public string Picture { get; set; }
     }
 }
