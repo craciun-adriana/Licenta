@@ -32,7 +32,7 @@ const routes: Routes = [
     { path: 'friends', component: FriendsPageComponent },
     { path: 'profile', component: ProfilePageComponent },
     { path: 'profile/:id', component: ProfilePageComponent },
-    { path: 'details/:type/:id', component: FsbDetailsPageComponent }
+    { path: 'details/:type/:id', component: FsbDetailsPageComponent },
 ]
 
 @NgModule({

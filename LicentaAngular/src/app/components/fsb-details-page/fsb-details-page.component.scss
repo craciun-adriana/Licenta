@@ -20,11 +20,35 @@
     font-size: 70%;
 }
 
+#user-grade {
+    grid-area: UserGrade;
+    border: 1px solid black;
+}
+
+#user-review {
+    grid-area: UserReview;
+    border: 1px solid black;
+}
+
+#delete {
+    grid-area: Delete;
+    border: 1px solid black;
+    text-align: center;
+}
+
+#reviews {
+    grid-area: Reviews;
+    border: 1px solid black;
+}
+
 #grid-container {
     display: grid;
     grid-template-areas:
+        'Delete Delete'
         'Picture TitleDesc'
-        'Info Info';
+        'Info Info'
+        'UserGrade UserReview'
+        'Reviews Reviews';
     gap: 5px;
     padding: 10px;
     font-family: Arial, Helvetica, sans-serif;

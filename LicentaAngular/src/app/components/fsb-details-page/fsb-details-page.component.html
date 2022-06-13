@@ -1,5 +1,9 @@
 <div id="grid-container">
 
+    <div id="delete" *ngIf="isAdmin">
+        <button (click)="deleteFSB()">Detele {{fsbDetails?.title}}</button>
+    </div>
+
     <div id="picture">
         <img alt="Picture" [src]="fsbDetails?.picture" width="120" height="180">
     </div>

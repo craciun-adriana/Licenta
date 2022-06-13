@@ -109,8 +109,35 @@ export class LicentaService {
             );
     }
 
-    getAllBooks(): Observable<any> {
-        return this.http.get('/licenta/book/get-all')
+    deleteBook(idBook: string): Observable<any> {
+        return this.http.delete('licenta/book/delete/' + idBook)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+    }
+
+    deleteFilm(idFilm: string): Observable<any> {
+        return this.http.delete('licenta/film/delete/' + idFilm)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+    }
+
+    deleteSeries(idSeries: string): Observable<any> {
+        return this.http.delete('licenta/series/delete/' + idSeries)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+    }
+
+    getAllFilms(): Observable<any> {
+        return this.http.get('/licenta/film/get-all')
             .pipe(
                 catchError(error => {
                     return of([]);
@@ -118,8 +145,8 @@ export class LicentaService {
             );
     }
 
-    getAllFilms(): Observable<any> {
-        return this.http.get('/licenta/film/get-all')
+    getAllBooks(): Observable<any> {
+        return this.http.get('/licenta/book/get-all')
             .pipe(
                 catchError(error => {
                     return of([]);

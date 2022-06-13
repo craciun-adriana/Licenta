@@ -70,6 +70,10 @@ namespace LicentaAPI.AppServices.Serieses
         public SeriesDTO GetSeriesById(string idSeries)
         {
             var series = _seriesRepo.GetById(idSeries);
+            if (series == null)
+            {
+                return null;
+            }
             var seriesDTO = _mapper.Map<Series, SeriesDTO>(series);
 
             if (!string.IsNullOrEmpty(seriesDTO.PrequelID))

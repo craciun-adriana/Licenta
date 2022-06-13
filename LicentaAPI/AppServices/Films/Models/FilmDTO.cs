@@ -8,6 +8,7 @@ namespace LicentaAPI.AppServices.Films.Models
 {
     public class FilmDTO
     {
+        public string ID { get; set; }
         public string Title { get; set; }
 
         public string Director { get; set; }

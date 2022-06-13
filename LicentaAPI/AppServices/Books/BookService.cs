@@ -41,6 +41,10 @@ namespace LicentaAPI.AppServices.Books
         public BookDTO GetBookById(string idBook)
         {
             var book = _bookRepo.GetById(idBook);
+            if (book == null)
+            {
+                return null;
+            }
             var bookDTO = _mapper.Map<Book, BookDTO>(book);
 
             if (!string.IsNullOrEmpty(bookDTO.PrequelID))

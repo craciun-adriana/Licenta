@@ -65,6 +65,10 @@ namespace LicentaAPI.AppServices.Films
         public FilmDTO GetFilmById(string idFilm)
         {
             var film = _filmRepo.GetById(idFilm);
+            if (film == null)
+            {
+                return null;
+            }
             var filmDTO = _mapper.Map<Film, FilmDTO>(film);
 
             if (!string.IsNullOrEmpty(filmDTO.PrequelID))

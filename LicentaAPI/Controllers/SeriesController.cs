@@ -69,7 +69,7 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpGet("delete/{id}")]
+        [HttpDelete("delete/{id}")]
         [SwaggerResponse(200, "Series with the given id was deleted.")]
         public IActionResult DeleteSeriesById(string id)
         {

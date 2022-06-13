@@ -8,6 +8,7 @@ namespace LicentaAPI.AppServices.Serieses.Models
 {
     public class SeriesDTO
     {
+        public string ID { get; set; }
         public string Title { get; set; }
 
         public string Director { get; set; }
