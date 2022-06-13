@@ -66,7 +66,8 @@ namespace LicentaAPI.Infrastructure.Mapper
 
                 cfg.CreateMap<GroupCreateRequest, GroupCreate>();
                 cfg.CreateMap<GroupCreate, Group>()
-                    .ForMember(dest => dest.ID, opt => opt.Ignore());
+                    .ForMember(dest => dest.ID, opt => opt.Ignore())
+                    .ForMember(dest => dest.LastMessageTimestamp, opt => opt.Ignore());
 
                 cfg.CreateMap<GroupMemberCreateRequest, GroupMemberCreate>();
                 cfg.CreateMap<GroupMemberCreate, GroupMember>()
