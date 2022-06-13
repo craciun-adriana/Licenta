@@ -22,5 +22,7 @@ namespace LicentaAPI.AppServices.Messages
         public IEnumerable<Message> GetAllMessagesInGroup(string idGroup);
 
         public IEnumerable<PublicUserDetails> GetLastConversationsUsers(string iduser, int amound);
+
+        public IEnumerable<Group> GetLastConversationsGroups(string iduser, int amound);
     }
 }

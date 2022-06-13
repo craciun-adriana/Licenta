@@ -39,5 +39,18 @@ namespace LicentaAPI.Controllers
 
             return CreatedAtRoute("", new { group.ID }, group);
         }
+
+        [Authorize]
+        [HttpGet("get/{id}")]
+        [SwaggerResponse(201, "Group was created.")]
+        public IActionResult GetGroupById(string id)
+        {
+            var group = _groupService.GetGroupById(id);
+            if (group != null)
+            {
+                return Ok(group);
+            }
+            return NotFound();
+        }
     }
 }

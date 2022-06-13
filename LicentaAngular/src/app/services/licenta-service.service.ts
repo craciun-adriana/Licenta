@@ -226,13 +226,57 @@ export class LicentaService {
             );
     }
 
-    getLastConversationsFosUser(): Observable<any> {
+    getLastUserConversationsFosUser(): Observable<any> {
         return this.http.get('/licenta/message/conversation/5')
             .pipe(
                 catchError(error => {
                     return of([]);
                 })
             );
+    }
+
+    getLastGroupConversationForUser(): Observable<any> {
+        return this.http.get('/licenta/message/conversation/g/5')
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            );
+    }
+
+    sendMessage(message: CreateMessageModel): Observable<any> {
+        return this.http.post('/licenta/message/create', message)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            );
+    }
+
+    getAllMessagesBetweenUsers(otherId: string): Observable<any> {
+        return this.http.get('/licenta/message/conversation/user/' + otherId)
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            );
+
+    }
+
+    getAllMessagesInGroup(idGroup: string): Observable<any> {
+        return this.http.get('licenta/message/conversation/group/' + idGroup)
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            );
+    }
+
+    getGroupById(idGroup: string): Observable<any> {
+        return this.http.get('licenta/group/get/' + idGroup)
+            .pipe(catchError(error => {
+                return of(null);
+            }))
     }
 
     findUsersByUsername(userName: string): Observable<any> {
@@ -253,28 +297,8 @@ export class LicentaService {
             );
     }
 
-
-    getAllMessagesBetweenUsers(otherId: string): Observable<any> {
-        return this.http.get('/licenta/message/conversation/user/' + otherId)
-            .pipe(
-                catchError(error => {
-                    return of([]);
-                })
-            );
-
-    }
-
     getUserById(idUser: string): Observable<any> {
         return this.http.get('/licenta/user/get/' + idUser)
-            .pipe(
-                catchError(error => {
-                    return of(null);
-                })
-            );
-    }
-
-    sendMessage(message: CreateMessageModel): Observable<any> {
-        return this.http.post('/licenta/message/create', message)
             .pipe(
                 catchError(error => {
                     return of(null);

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LicentaAPI.Persistence.Models
 {
@@ -16,5 +17,7 @@ namespace LicentaAPI.Persistence.Models
         public string Picture { get; set; }
 
         public string Description { get; set; }
+
+        public DateTime LastMessageTimestamp { get; set; }
     }
 }

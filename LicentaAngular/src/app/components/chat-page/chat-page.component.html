@@ -1,14 +1,21 @@
 <h1>Chat</h1>
 
 <div class="grid-container">
-    <div class="nameConv">
+    <div *ngIf="!isGroup" class="nameConv">
         <span>{{chatUser?.userName ?? 'Messages'}}</span>
+    </div>
+    <div *ngIf="isGroup" class="nameConv">
+        <span>{{chatGroup?.name ?? 'Messages'}}</span>
     </div>
     <div class="userList">
 
         <div *ngFor="let user of lastConversation" (click)="openChatWithUser(user.id)">
             <img alt="Profile picture" [src]="user.profilePicture" width="80" height="80" />
             <span>{{user.userName}}</span>
+        </div>
+        <div *ngFor="let group of lastConversationG" (click)="openChatWithGroup(group.id)">
+            <img alt="Profile picture" [src]="group.picture" width="80" height="80" />
+            <span>{{group.name}}</span>
         </div>
     </div>
     <div class="showMess">
@@ -21,8 +28,10 @@
     <div class="createMess">
         <input #userMessageInput id="message" name="message"
             (keyup.enter)="sendMessageToUser(userMessageInput.value); userMessageInput.value=''">
-        <button id="submit" type="submit"
+        <button *ngIf="!isGroup" id="submit" type="submit"
             (click)="sendMessageToUser(userMessageInput.value); userMessageInput.value=''">Send</button>
+        <button *ngIf="isGroup" id="submit" type="submit"
+            (click)="sendMessageToGroup(userMessageInput.value); userMessageInput.value=''">Send</button>
     </div>
 </div>
 <div id="search-bar">

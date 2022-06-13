@@ -69,7 +69,7 @@ namespace LicentaAPI.Persistence.Repositories
                 throw new ArgumentNullException(nameof(idGroup));
             }
             return _dbContext.Messages.Where(message => message.IdGroup.Equals(idGroup))
-                .OrderByDescending(message => message.SendTime);
+                .OrderBy(message => message.SendTime);
         }
 
         /// <inheritdoc/>

@@ -99,5 +99,20 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.Groups.Update(entity);
             _dbContext.SaveChanges();
         }
+
+        public IEnumerable<Group> FindGroupsByLastMessage(string idUser, int amount)
+        {
+            if (idUser == null)
+            {
+                throw new ArgumentNullException(nameof(idUser));
+            }
+
+            return _dbContext.GroupMembers
+                .Where(groupMember => groupMember.IdUser.Equals(idUser))
+                .Select(groupMember => groupMember.IdGroup)
+                .Select(idGroup => _dbContext.Groups.First(group => group.ID.Equals(idGroup)))
+                .OrderByDescending(group => group.LastMessageTimestamp)
+                .Take(amount);
+        }
     }
 }

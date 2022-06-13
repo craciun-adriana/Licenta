@@ -14,5 +14,7 @@ namespace LicentaAPI.AppServices.Groups
         /// <param name="groupCreate">Details about a group.</param>
         /// <returns>The created group or null if it was not created.</returns>
         public Group CreateGroup(GroupCreate groupCreate);
+
+        public Group GetGroupById(string idGroup);
     }
 }

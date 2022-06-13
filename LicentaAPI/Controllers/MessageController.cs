@@ -51,6 +51,15 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
+        [HttpGet("conversation/g/{amount}")]
+        [SwaggerResponse(201, "Conversations was uploaded.")]
+        public IActionResult GetLastConversationsGroup(int amount)
+        {
+            var idUser = _userManager.GetUserId(HttpContext.User);
+            return Ok(_messageService.GetLastConversationsGroups(idUser, amount));
+        }
+
+        [Authorize]
         [HttpGet("conversation/user/{idOtherUser}")]
         [SwaggerResponse(201, "All messages between 2 users.")]
         public IActionResult GetAllMessagesBetweenUsers(string idOtherUser)

@@ -14,12 +14,14 @@ namespace LicentaAPI.AppServices.Messages
     public class MessageService : IMessageService
     {
         private readonly IMessageRepo _messageRepo;
+        private readonly IGroupRepo _groupRepo;
         private readonly IUserRepo _userRepo;
         private readonly IMappingCoordinator _mapper;
 
-        public MessageService(IMessageRepo messageRepo, IUserRepo userRepo, IMappingCoordinator mapper)
+        public MessageService(IMessageRepo messageRepo, IUserRepo userRepo, IGroupRepo groupRepo, IMappingCoordinator mapper)
         {
             _messageRepo = messageRepo;
+            _groupRepo = groupRepo;
             _userRepo = userRepo;
             _mapper = mapper;
         }
@@ -57,6 +59,11 @@ namespace LicentaAPI.AppServices.Messages
         public IEnumerable<Message> GetAllMessagesInGroup(string idGroup)
         {
             return _messageRepo.FindMessagesInGroup(idGroup);
+        }
+
+        public IEnumerable<Group> GetLastConversationsGroups(string idUser, int amount)
+        {
+            return _groupRepo.FindGroupsByLastMessage(idUser, amount);
         }
     }
 }

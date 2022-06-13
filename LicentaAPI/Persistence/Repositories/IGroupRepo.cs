@@ -21,5 +21,7 @@ namespace LicentaAPI.Persistence.Repositories
         /// <param name="idMember"></param>
         /// <returns>All groups in which a user is a member.</returns>
         public IEnumerable<Group> FindGroupsByMemberId(string idMember);
+
+        public IEnumerable<Group> FindGroupsByLastMessage(string idUser, int amount);
     }
 }

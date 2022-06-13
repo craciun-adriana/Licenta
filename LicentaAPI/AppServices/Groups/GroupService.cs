@@ -25,6 +25,7 @@ namespace LicentaAPI.AppServices.Groups
         {
             var group = _mapper.Map<GroupCreate, Group>(groupCreate);
             group.ID = Guid.NewGuid().ToString();
+            group.LastMessageTimestamp = DateTime.UtcNow;
             try
             {
                 _groupRepo.Add(group);
@@ -35,6 +36,11 @@ namespace LicentaAPI.AppServices.Groups
             }
 
             return group;
+        }
+
+        public Group GetGroupById(string idGroup)
+        {
+            return _groupRepo.GetById(idGroup);
         }
     }
 }
