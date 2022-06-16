@@ -22,7 +22,7 @@
         <button *ngIf="friendshipStatus==='friends'" (click)="deleteFriendship()">Delete friendship</button>
         <button *ngIf="friendshipStatus==='received'" (click)="acceptFriendship()">Accept friend request</button>
         <div *ngIf="friendshipStatus==='sent'">
-            <span>Wait for this user to accept your friendship request.</span>
+            <span>Wait for {{user?.userName}} to accept your friendship request,</span>
             <button (click)="deleteFriendship()">Or delete friendship request.</button>
         </div>
     </div>

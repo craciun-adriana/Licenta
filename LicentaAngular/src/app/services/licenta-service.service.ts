@@ -5,6 +5,7 @@ import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { CreateBookModel } from '../models/book-model';
 import { CreateFilmModel } from '../models/film-model';
 import { CreateFriendshipModel } from '../models/friendship-model';
+import { FsbDetailsModel } from '../models/fsb-details-model';
 import { Genre } from '../models/genre';
 import { LoginDetails } from '../models/login-details';
 import { CreateMessageModel } from '../models/messages-model';
@@ -26,13 +27,7 @@ export class LicentaService {
         return this.http.get('licenta/auth/is-logged-in')
             .pipe(
                 catchError(error => {
-                    return of(false);
-                }),
-                map((response: any) => {
-                    if (response === false) {
-                        return null;
-                    }
-                    return response;
+                    return of(null);
                 })
             );
     }
@@ -136,6 +131,33 @@ export class LicentaService {
             )
     }
 
+    updateBook(updateDetails: FsbDetailsModel): Observable<any> {
+        return this.http.post('licenta/book/update', updateDetails)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            );
+    }
+
+    updateFilm(updateDetails: FsbDetailsModel): Observable<any> {
+        return this.http.post('licenta/film/update', updateDetails)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            );
+    }
+
+    updateSeries(updateDetails: FsbDetailsModel): Observable<any> {
+        return this.http.post('licenta/series/update', updateDetails)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            );
+    }
+
     getAllFilms(): Observable<any> {
         return this.http.get('/licenta/film/get-all')
             .pipe(
@@ -226,8 +248,8 @@ export class LicentaService {
             );
     }
 
-    getLastUserConversationsFosUser(): Observable<any> {
-        return this.http.get('/licenta/message/conversation/5')
+    getLastUserConversationsForUser(): Observable<any> {
+        return this.http.get('/licenta/message/conversation/50')
             .pipe(
                 catchError(error => {
                     return of([]);
@@ -235,8 +257,8 @@ export class LicentaService {
             );
     }
 
-    getLastGroupConversationForUser(): Observable<any> {
-        return this.http.get('/licenta/message/conversation/g/5')
+    getLastGroupConversationsForUser(): Observable<any> {
+        return this.http.get('/licenta/message/conversation/g/50')
             .pipe(
                 catchError(error => {
                     return of([]);
@@ -295,6 +317,15 @@ export class LicentaService {
                     return of([]);
                 })
             );
+    }
+
+    findUserGroupsByName(name: string): Observable<any> {
+        return this.http.get('/licenta/group/find-by-name/' + name)
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            )
     }
 
     getUserById(idUser: string): Observable<any> {
