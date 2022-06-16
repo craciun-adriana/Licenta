@@ -114,5 +114,10 @@ namespace LicentaAPI.Persistence.Repositories
                 .OrderByDescending(group => group.LastMessageTimestamp)
                 .Take(amount);
         }
+
+        public IEnumerable<Group> GetGroupsByIds(IEnumerable<string> ids)
+        {
+            return _dbContext.Groups.Where(gr => ids.Contains(gr.ID));
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using LicentaAPI.AppServices.Groups.Model;
 using LicentaAPI.Persistence.Models;
+using System.Collections.Generic;
 
 namespace LicentaAPI.AppServices.Groups
 {
@@ -16,5 +17,7 @@ namespace LicentaAPI.AppServices.Groups
         public Group CreateGroup(GroupCreate groupCreate);
 
         public Group GetGroupById(string idGroup);
+
+        public IEnumerable<Group> FindUserGroupsByName(string name, string userId);
     }
 }

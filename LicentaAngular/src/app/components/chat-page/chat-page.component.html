@@ -25,16 +25,20 @@
             </li>
         </ul>
     </div>
-    <div class="createMess">
+    <div *ngIf="!isGroup" class="createMess">
         <input #userMessageInput id="message" name="message"
             (keyup.enter)="sendMessageToUser(userMessageInput.value); userMessageInput.value=''">
-        <button *ngIf="!isGroup" id="submit" type="submit"
+        <button id="submit" type="submit"
             (click)="sendMessageToUser(userMessageInput.value); userMessageInput.value=''">Send</button>
-        <button *ngIf="isGroup" id="submit" type="submit"
+    </div>
+    <div *ngIf="isGroup" class="createMess">
+        <input #userMessageInput id="message" name="message"
+            (keyup.enter)="sendMessageToGroup(userMessageInput.value); userMessageInput.value=''">
+        <button id="submit" type="submit"
             (click)="sendMessageToGroup(userMessageInput.value); userMessageInput.value=''">Send</button>
     </div>
 </div>
-<div id="search-bar">
+<div id="search-user-bar">
     <form>
         <input #friendSearchInput id="search-text" type="text" />
         <input type="submit" (click)="findFriendsByUsername(friendSearchInput.value)" value="Submit">
@@ -42,6 +46,18 @@
     <div>
         <div *ngFor="let foundUser of foundUsers">
             <span (click)="openChatWithUser(foundUser.id)">{{foundUser.userName}}</span>
+        </div>
+    </div>
+</div>
+
+<div id="search-group-bar">
+    <form>
+        <input #groupSearchInput id="search-text" type="text" />
+        <input type="submit" (click)="findUserGroupsByName(groupSearchInput.value)" value="Submit">
+    </form>
+    <div>
+        <div *ngFor="let foundGroup of foundGroups">
+            <span (click)="openChatWithGroup(foundGroup.id)">{{foundGroup.name}}</span>
         </div>
     </div>
 </div>

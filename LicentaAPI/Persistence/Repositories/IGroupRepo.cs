@@ -23,5 +23,7 @@ namespace LicentaAPI.Persistence.Repositories
         public IEnumerable<Group> FindGroupsByMemberId(string idMember);
 
         public IEnumerable<Group> FindGroupsByLastMessage(string idUser, int amount);
+
+        public IEnumerable<Group> GetGroupsByIds(IEnumerable<string> ids);
     }
 }

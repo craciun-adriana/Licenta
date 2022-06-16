@@ -52,5 +52,13 @@ namespace LicentaAPI.Controllers
             }
             return NotFound();
         }
+
+        [Authorize]
+        [HttpGet("find-by-name/{name}")]
+        public IActionResult FindUserGroupsByName(string name)
+        {
+            var userId = _userManager.GetUserId(HttpContext.User);
+            return Ok(_groupService.FindUserGroupsByName(name, userId));
+        }
     }
 }

@@ -86,5 +86,15 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.GroupMembers.Update(entity);
             _dbContext.SaveChanges();
         }
+
+        public IEnumerable<string> FindUserGroupsId(string userId)
+        {
+            if (userId == null)
+            {
+                throw new ArgumentNullException(nameof(userId));
+            }
+
+            return _dbContext.GroupMembers.Where(gr => gr.IdUser.Equals(userId)).Select(gr => gr.IdGroup);
+        }
     }
 }

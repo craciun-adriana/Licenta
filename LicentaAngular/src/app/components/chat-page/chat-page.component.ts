@@ -18,6 +18,7 @@ export class ChatPageComponent implements OnInit {
     chatUser: UserDetails | null = null;
     chatGroup: GroupModel | null = null;
     foundUsers: UserDetails[] = [];
+    foundGroups: GroupModel[] = [];
     isGroup: boolean = false;
     constructor(
         private licentaService: LicentaService
@@ -32,10 +33,10 @@ export class ChatPageComponent implements OnInit {
         this.licentaService.isUserLoggedIn().subscribe((response: any) => {
             this.userId = response?.userId ?? '';
         })
-        this.licentaService.getLastUserConversationsFosUser().subscribe((response: UserDetails[]) => {
+        this.licentaService.getLastUserConversationsForUser().subscribe((response: UserDetails[]) => {
             this.lastConversation = response;
         });
-        this.licentaService.getLastGroupConversationForUser().subscribe((response: GroupModel[]) => {
+        this.licentaService.getLastGroupConversationsForUser().subscribe((response: GroupModel[]) => {
             this.lastConversationG = response;
         })
     }
@@ -43,6 +44,13 @@ export class ChatPageComponent implements OnInit {
     findFriendsByUsername(userName: string): void {
         this.licentaService.findFriendsByUsername(userName).subscribe((response: UserDetails[]) => {
             this.foundUsers = response;
+        })
+    }
+
+    findUserGroupsByName(name: string): void {
+        this.licentaService.findUserGroupsByName(name).subscribe((response: GroupModel[]) => {
+
+            this.foundGroups = response;
         })
     }
 
