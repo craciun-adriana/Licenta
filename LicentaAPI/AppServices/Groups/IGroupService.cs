@@ -19,5 +19,7 @@ namespace LicentaAPI.AppServices.Groups
         public Group GetGroupById(string idGroup);
 
         public IEnumerable<Group> FindUserGroupsByName(string name, string userId);
+
+        public IEnumerable<Group> FindUserGroup(string userId);
     }
 }

@@ -9,6 +9,8 @@
     grid-area: LastConversations;
     border: 1px solid black;
     text-align: center;
+    height: 100px;
+    overflow-y: auto;
 }
 
 .showMess {

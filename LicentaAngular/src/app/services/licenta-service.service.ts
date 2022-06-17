@@ -329,6 +329,15 @@ export class LicentaService {
             );
     }
 
+    findUserGroups(): Observable<any> {
+        return this.http.get('/licenta/group/find-by-user')
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            )
+    }
+
     findUserGroupsByName(name: string): Observable<any> {
         return this.http.get('/licenta/group/find-by-name/' + name)
             .pipe(

@@ -1,6 +1,7 @@
 ﻿using LicentaAPI.AppServices.Models;
 using LicentaAPI.Persistence.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -109,14 +110,15 @@ namespace LicentaAPI.Persistence.Repositories
 
         public IEnumerable<string> GetLastConversationsUsers(string idUser, int amount)
         {
-            return _dbContext.Messages
+            var users = _dbContext.Messages
                 .Where(mess => (mess.IdSender.Equals(idUser)) || (mess.IdReceiver.Equals(idUser)))
                 .OrderByDescending(mess => mess.SendTime)
-                .ToList()
-                .Select(mess => (mess.IdSender == idUser) ? mess.IdReceiver : mess.IdSender)
+                .ToList();
+            return users.Select(mess => (mess.IdSender == idUser) ? mess.IdReceiver : mess.IdSender)
                 .Distinct()
-                .Where(idUser => !string.IsNullOrEmpty(idUser))
-                .Take(amount);
+                .Where(idUserc => !string.IsNullOrEmpty(idUserc))
+                .Take(amount)
+                .ToList();
         }
     }
 }

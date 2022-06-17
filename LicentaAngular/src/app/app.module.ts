@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,7 @@ import { FsbDetailsPageComponent } from './components/fsb-details-page/fsb-detai
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { AddFilmComponent } from './components/add-film/add-film.component';
 import { AddSeriesComponent } from './components/add-series/add-series.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -50,7 +52,9 @@ import { AddSeriesComponent } from './components/add-series/add-series.component
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatAutocompleteModule
     ],
     providers: [
         LicentaService

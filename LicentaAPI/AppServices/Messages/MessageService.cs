@@ -5,6 +5,7 @@ using LicentaAPI.Persistence.Models;
 using LicentaAPI.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LicentaAPI.AppServices.Messages
 {
@@ -46,8 +47,9 @@ namespace LicentaAPI.AppServices.Messages
 
         public IEnumerable<PublicUserDetails> GetLastConversationsUsers(string idUser, int amount)
         {
-            var userIds = _messageRepo.GetLastConversationsUsers(idUser, amount);
-            var users = _userRepo.GetUsersByIds(userIds);
+            var userIds = _messageRepo.GetLastConversationsUsers(idUser, amount).ToList();
+            var users = _userRepo.GetUsersByIds(userIds)
+                .OrderBy(u => userIds.IndexOf(u.Id));
             return _mapper.Map<AppUser, PublicUserDetails>(users);
         }
 

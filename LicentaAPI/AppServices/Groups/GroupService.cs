@@ -42,6 +42,12 @@ namespace LicentaAPI.AppServices.Groups
             return group;
         }
 
+        public IEnumerable<Group> FindUserGroup(string userId)
+        {
+            var groupsId = _groupMemberRepo.FindUserGroupsId(userId);
+            return _groupRepo.GetGroupsByIds(groupsId);
+        }
+
         public IEnumerable<Group> FindUserGroupsByName(string name, string userId)
         {
             var groupsId = _groupMemberRepo.FindUserGroupsId(userId);
