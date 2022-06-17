@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import { CreateAppointmentModel } from '../models/appointment-model';
 import { CreateBookModel } from '../models/book-model';
 import { CreateFilmModel } from '../models/film-model';
 import { CreateFriendshipModel } from '../models/friendship-model';
@@ -192,6 +193,15 @@ export class LicentaService {
                     return of([]);
                 })
             );
+    }
+
+    createAppointment(appointment: CreateAppointmentModel): Observable<any> {
+        return this.http.post('/licenta/appointment/create', appointment)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
     }
 
     getReviewBookCompletedByIdUser(idUser: string): Observable<any> {

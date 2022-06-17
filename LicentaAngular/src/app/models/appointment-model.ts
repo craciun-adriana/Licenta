@@ -9,6 +9,16 @@ export interface AppointmentModel {
     titleFilm: string;
     titleSeries: string;
     idGroup: string;
-    nameGroup: string;
+    groupName: string;
+    location: string;
+}
+
+export interface CreateAppointmentModel {
+    name: string;
+    timeAppointment: string;
+    idBook: string;
+    idFilm: string;
+    idSeries: string;
+    idGroup: string;
     location: string;
 }

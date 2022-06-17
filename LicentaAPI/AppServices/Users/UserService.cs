@@ -42,5 +42,10 @@ namespace LicentaAPI.AppServices.Users
             var user = _userRepo.GetUserById(userId);
             return _mapper.Map<AppUser, PublicUserDetails>(user);
         }
+
+        public void Update(AppUser user)
+        {
+            _userRepo.Update(user);
+        }
     }
 }

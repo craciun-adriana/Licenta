@@ -63,9 +63,9 @@
                 <td>{{appointment.titleBook}}</td>
                 <td>{{appointment.titleFilm}}</td>
                 <td>{{appointment.titleSeries}}</td>
-                <td>{{appointment.nameGroup}}</td>
+                <td>{{appointment.groupName}}</td>
                 <td>{{appointment.location}}</td>
-                <td>{{appointment.timeAppointment | stringToDate | date:'fullDate'}}</td>
+                <td>{{appointment.timeAppointment | stringToDate | date:'medium'}}</td>
             </tr>
         </tbody>
     </table>
@@ -153,4 +153,41 @@
             </tr>
         </tbody>
     </table>
+
+    <button *ngIf="!createNewAppoint" (click)="createNewAppointment()">Create a new appointment</button>
+    <div *ngIf="createNewAppoint">
+        <form [formGroup]="createAppointForm">
+            <div class="content">
+                <span>Appointment name:</span>
+                <input type="text" formControlName="name">
+            </div>
+            <div class="content">
+                <span>Date and time:</span>
+                <input type="datetime-local" formControlName="timeAppointment">
+            </div>
+            <div class="content">
+                <span>Name of book:</span>
+                <input type="text" formControlName="idBook">
+            </div>
+            <div class="content">
+                <span>Name of film:</span>
+                <input type="text" formControlName="idFilm">
+            </div>
+            <div class="content">
+                <span>Name of series:</span>
+                <input type="text" formControlName="idSeries">
+            </div>
+            <div class="content">
+                <span>Group:</span>
+                <input type="text" formControlName="idGroup">
+            </div>
+            <div class="content">
+                <span>Location:</span>
+                <input type="text" formControlName="location">
+            </div>
+            <div class="content">
+                <button (click)="appointmentCreate()"> Create appointment</button>
+            </div>
+        </form>
+    </div>
 </div>

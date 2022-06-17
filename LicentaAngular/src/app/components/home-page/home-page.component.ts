@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AppointmentModel } from 'src/app/models/appointment-model';
+import { AppointmentModel, CreateAppointmentModel } from 'src/app/models/appointment-model';
 import { BookModel } from 'src/app/models/book-model';
 import { FilmModel } from 'src/app/models/film-model';
 import { ReviewBookModel } from 'src/app/models/review-book-model';
@@ -26,6 +27,19 @@ export class HomePageComponent implements OnInit {
     reviewBooksO: ReviewBookModel[] = [];
     reviewFilmsO: ReviewFilmModel[] = [];
     reviewSeriesO: ReviewSeriesModel[] = [];
+
+    createNewAppoint: boolean = false;
+    errorMessage: string = '';
+
+    createAppointForm = new FormGroup({
+        name: new FormControl('', Validators.required),
+        timeAppointment: new FormControl('', Validators.required),
+        idBook: new FormControl('',),
+        idFilm: new FormControl('',),
+        idSeries: new FormControl('',),
+        idGroup: new FormControl('', Validators.required),
+        location: new FormControl('', Validators.required),
+    })
 
 
     constructor(
@@ -74,5 +88,34 @@ export class HomePageComponent implements OnInit {
         this.licentaService.getReviewSeriesByStatus(Status.Ongoing).subscribe((response: ReviewSeriesModel[]) => {
             this.reviewSeriesO = response;
         });
+
+    }
+
+
+    createNewAppointment(): void {
+        this.createNewAppoint = true;
+    }
+
+    appointmentCreate(): void {
+
+        const createAppointment: CreateAppointmentModel = {
+            name: this.createAppointForm.get('name')?.value,
+            timeAppointment: this.createAppointForm.get('timeAppointment')?.value,
+            idBook: this.createAppointForm.get('idBook')?.value,
+            idFilm: this.createAppointForm.get('idFilm')?.value,
+            idSeries: this.createAppointForm.get('idSeries')?.value,
+            idGroup: this.createAppointForm.get('idGroup')?.value,
+            location: this.createAppointForm.get('location')?.value,
+        }
+        this.licentaService.createAppointment(createAppointment).subscribe(response => {
+            if (response === false) {
+                this.errorMessage = 'Appointment can not be created.';
+            } else {
+                this.errorMessage = 'Appointment was created.'
+                this.createNewAppoint = false;
+                // fac un mic buton de x pt a inchide formularul
+            }
+        }
+        )
     }
 }

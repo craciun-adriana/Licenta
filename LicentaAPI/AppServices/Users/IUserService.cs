@@ -1,4 +1,5 @@
 ﻿using LicentaAPI.AppServices.Models;
+using LicentaAPI.Persistence.Models;
 using System.Collections.Generic;
 
 namespace LicentaAPI.AppServices.Users
@@ -10,5 +11,7 @@ namespace LicentaAPI.AppServices.Users
         public IEnumerable<PublicUserDetails> FindFriendsByUsername(string username, string loggedInUserId);
 
         public PublicUserDetails GetUserById(string userId);
+
+        public void Update(AppUser user);
     }
 }
