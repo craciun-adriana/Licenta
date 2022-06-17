@@ -86,8 +86,7 @@ namespace LicentaAPI.AppServices.Films
 
         public FilmUpdateResult UpdateFilm(FilmUpdate filmUpdate)
         {
-            var filmDTO = GetFilmById(filmUpdate.ID);
-            var film = _mapper.Map<FilmDTO, Film>(filmDTO);
+            var film = _filmRepo.GetById(filmUpdate.ID);
             if (film == null)
             {
                 return new FilmUpdateResult
@@ -97,7 +96,7 @@ namespace LicentaAPI.AppServices.Films
                 };
             }
 
-            _mapper.Map(filmUpdate, film);
+            film = _mapper.Map<FilmUpdate, Film>(filmUpdate);
             _filmRepo.Update(film);
 
             return new FilmUpdateResult

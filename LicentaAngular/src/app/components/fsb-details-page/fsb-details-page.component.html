@@ -7,6 +7,7 @@
     <form [formGroup]="updateForm">
         <div id="picture">
             <img alt="Picture" [src]="fsbDetails?.picture" width="120" height="180">
+            <input *ngIf="isAdmin" type="text" formControlName="picture" value="{{}fsbDetails?.picture">
         </div>
 
         <div id="title-description">

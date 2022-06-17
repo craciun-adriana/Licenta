@@ -94,6 +94,7 @@ namespace LicentaAPI.Persistence.Repositories
             }
 
             _dbContext.Books.Update(entity);
+            _dbContext.SaveChanges();
         }
     }
 }

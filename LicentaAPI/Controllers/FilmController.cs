@@ -92,5 +92,17 @@ namespace LicentaAPI.Controllers
         {
             return Ok(_filmService.FindFilmByGenre(genre));
         }
+
+        [Authorize]
+        [HttpPost("update")]
+        public async Task<IActionResult> UpdateFilm(UpdateFilmRequest request)
+        {
+            if (!await UserIsAdminAsync())
+            {
+                return Unauthorized();
+            }
+            var filmUpdate = _mapper.Map<UpdateFilmRequest, FilmUpdate>(request);
+            return Ok(_filmService.UpdateFilm(filmUpdate));
+        }
     }
 }

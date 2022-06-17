@@ -92,8 +92,7 @@ namespace LicentaAPI.AppServices.Serieses
         ///<inheritdoc/>
         public SeriesUpdateResult UpdateSeries(SeriesUpdate seriesUpdate)
         {
-            var seriesDTO = GetSeriesById(seriesUpdate.ID);
-            var series = _mapper.Map<SeriesDTO, Series>(seriesDTO);
+            var series = _seriesRepo.GetById(seriesUpdate.ID);
 
             if (series == null)
             {
@@ -104,7 +103,7 @@ namespace LicentaAPI.AppServices.Serieses
                 };
             }
 
-            _mapper.Map(seriesUpdate, series);
+            series = _mapper.Map<SeriesUpdate, Series>(seriesUpdate);
             _seriesRepo.Update(series);
 
             return new SeriesUpdateResult

@@ -92,5 +92,17 @@ namespace LicentaAPI.Controllers
         {
             return Ok(_seriesService.FindSeriesByGenre(genre));
         }
+
+        [Authorize]
+        [HttpPost("update")]
+        public async Task<IActionResult> UpdateSeries(UpdateSeriesRequest request)
+        {
+            if (!await UserIsAdminAsync())
+            {
+                return Unauthorized();
+            }
+            var seriesUpdate = _mapper.Map<UpdateSeriesRequest, SeriesUpdate>(request);
+            return Ok(_seriesService.UpdateSeries(seriesUpdate));
+        }
     }
 }

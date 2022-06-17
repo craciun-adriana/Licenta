@@ -71,8 +71,12 @@ namespace LicentaAPI.Controllers
         [Authorize]
         [HttpDelete("delete/{id}")]
         [SwaggerResponse(200, "Book with the given id was deleted.")]
-        public IActionResult DeleteBookById(string id)
+        public async Task<IActionResult> DeleteBookById(string id)
         {
+            if (!await UserIsAdminAsync())
+            {
+                return Unauthorized();
+            }
             _bookService.DeleteBook(id);
             return Ok();
         }
@@ -91,6 +95,18 @@ namespace LicentaAPI.Controllers
         public IActionResult FindBooksByGenre(Genre genre)
         {
             return Ok(_bookService.FindBookByGenre(genre));
+        }
+
+        [Authorize]
+        [HttpPost("update")]
+        public async Task<IActionResult> UpdateBook(UpdateBookRequest request)
+        {
+            if (!await UserIsAdminAsync())
+            {
+                return Unauthorized();
+            }
+            var bookUpdate = _mapper.Map<UpdateBookRequest, BookUpdate>(request);
+            return Ok(_bookService.UpdateBook(bookUpdate));
         }
     }
 }

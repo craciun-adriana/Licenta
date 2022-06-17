@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FsbDetailsModel, FsbUpdateDetailsModel } from 'src/app/models/fsb-details-model';
+import { FsbDetailsModel } from 'src/app/models/fsb-details-model';
 import { ReviewFsbModel } from 'src/app/models/review-fsb-model';
 import { LicentaService } from 'src/app/services/licenta-service.service';
 

@@ -77,8 +77,7 @@ namespace LicentaAPI.AppServices.Books
 
         public BookUpdateResult UpdateBook(BookUpdate bookUpdate)
         {
-            var bookDTO = GetBookById(bookUpdate.ID);
-            var book = _mapper.Map<BookDTO, Book>(bookDTO);
+            var book = _bookRepo.GetById(bookUpdate.ID);
             if (book == null)
             {
                 return new BookUpdateResult
@@ -87,7 +86,7 @@ namespace LicentaAPI.AppServices.Books
                     UpdatedBook = null
                 };
             }
-            _mapper.Map(bookUpdate, book);
+            book = _mapper.Map<BookUpdate, Book>(bookUpdate);
             _bookRepo.Update(book);
 
             return new BookUpdateResult

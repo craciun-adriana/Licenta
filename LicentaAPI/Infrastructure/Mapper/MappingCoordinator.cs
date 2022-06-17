@@ -49,12 +49,16 @@ namespace LicentaAPI.Infrastructure.Mapper
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
                 cfg.CreateMap<Book, BookDTO>();
                 cfg.CreateMap<BookDTO, Book>();
+                cfg.CreateMap<UpdateBookRequest, BookUpdate>();
+                cfg.CreateMap<BookUpdate, Book>();
 
                 cfg.CreateMap<FilmCreateRequest, FilmCreate>();
                 cfg.CreateMap<FilmCreate, Film>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
                 cfg.CreateMap<Film, FilmDTO>();
                 cfg.CreateMap<FilmDTO, Film>();
+                cfg.CreateMap<UpdateFilmRequest, FilmUpdate>();
+                cfg.CreateMap<FilmUpdate, Film>();
 
                 cfg.CreateMap<FriendshipCreateRequest, FriendshipCreate>()
                     .ForMember(dest => dest.IdSender, opt => opt.Ignore());
@@ -105,6 +109,8 @@ namespace LicentaAPI.Infrastructure.Mapper
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
                 cfg.CreateMap<Series, SeriesDTO>();
                 cfg.CreateMap<SeriesDTO, Series>();
+                cfg.CreateMap<UpdateSeriesRequest, SeriesUpdate>();
+                cfg.CreateMap<SeriesUpdate, Series>();
             });
         }
 
