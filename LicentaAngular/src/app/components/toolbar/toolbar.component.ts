@@ -24,7 +24,7 @@ export class ToolbarComponent implements OnInit {
         this.subscriptions.unsubscribe();
         this.subscriptions = new Subscription();
 
-        var subscription = timer(0, 5000).subscribe(_ => {
+        var subscription = timer(0, 10000).subscribe(_ => {
             this.licentaService.isUserLoggedIn().subscribe(response => {
                 if (response !== null) {
                     this.isLoggedIn = true;

@@ -49,7 +49,8 @@ namespace LicentaAPI.Persistence.Repositories
                 throw new ArgumentNullException(nameof(idFilm));
             }
 
-            return _dbContext.ReviewFilms.Where(reviewFilm => reviewFilm.IdFilm.Equals(idFilm));
+            return _dbContext.ReviewFilms.Where(reviewF =>
+            (reviewF.IdFilm.Equals(idFilm)) && (!string.IsNullOrEmpty(reviewF.Review) || reviewF.Grade.HasValue));
         }
 
         /// <inheritdoc/>

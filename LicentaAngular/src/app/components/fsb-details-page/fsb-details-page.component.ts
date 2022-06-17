@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BookModel } from 'src/app/models/book-model';
+import { FilmModel } from 'src/app/models/film-model';
 import { FsbDetailsModel } from 'src/app/models/fsb-details-model';
 import { ReviewFsbModel } from 'src/app/models/review-fsb-model';
+import { SeriesModel } from 'src/app/models/series-model';
 import { LicentaService } from 'src/app/services/licenta-service.service';
 
 @Component({
@@ -24,6 +27,10 @@ export class FsbDetailsPageComponent implements OnInit {
 
     isAdmin: boolean = false;
     errormessage: string = '';
+
+    book: BookModel[] = [];
+    film: FilmModel[] = [];
+    series: SeriesModel[] = [];
 
     updateForm = new FormGroup({
         title: new FormControl('', Validators.required),
@@ -172,8 +179,8 @@ export class FsbDetailsPageComponent implements OnInit {
             director: this.updateForm.get('director')?.value,
             description: this.updateForm.get('description')?.value,
             relaseDate: this.updateForm.get('releaseDate')?.value,
-            prequelId: this.updateForm.get('prequelId')?.value,
-            sequelId: this.updateForm.get('sequelId')?.value,
+            prequelId: this.updateForm.get('prequelId')?.value?.id,
+            sequelId: this.updateForm.get('sequelId')?.value?.id,
             picture: this.updateForm.get('picture')?.value,
             genre: this.updateForm.get('genre')?.value,
             rating: this.updateForm.get('rating')?.value,
@@ -192,5 +199,18 @@ export class FsbDetailsPageComponent implements OnInit {
                 break;
         }
 
+    }
+
+
+    bookDisplayFunction(book: BookModel): string {
+        return book?.title;
+    }
+
+    filmDisplayFunction(film: FilmModel): string {
+        return film?.title;
+    }
+
+    seriesDisplayFunction(series: SeriesModel): string {
+        return series?.title;
     }
 }

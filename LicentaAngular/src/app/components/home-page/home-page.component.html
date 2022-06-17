@@ -167,19 +167,31 @@
             </div>
             <div class="content">
                 <span>Name of book:</span>
-                <input type="text" formControlName="idBook">
+                <mat-autocomplete #autoBook="matAutocomplete" [displayWith]="bookDisplayFunction">
+                    <mat-option *ngFor="let book of books" [value]="book">{{book.title}}</mat-option>
+                </mat-autocomplete>
+                <input type="text" formControlName="idBook" [matAutocomplete]="autoBook">
             </div>
             <div class="content">
                 <span>Name of film:</span>
-                <input type="text" formControlName="idFilm">
+                <mat-autocomplete #autoFilm="matAutocomplete" [displayWith]="filmDisplayFunction">
+                    <mat-option *ngFor="let film of films" [value]="film">{{film.title}}</mat-option>
+                </mat-autocomplete>
+                <input type="text" formControlName="idFilm" [matAutocomplete]="autoFilm">
             </div>
             <div class="content">
                 <span>Name of series:</span>
-                <input type="text" formControlName="idSeries">
+                <mat-autocomplete #autoSeries="matAutocomplete" [displayWith]="seriesDisplayFunction">
+                    <mat-option *ngFor="let series of serieses" [value]="series">{{series.title}}</mat-option>
+                </mat-autocomplete>
+                <input type="text" formControlName="idSeries" [matAutocomplete]="autoSeries">
             </div>
             <div class="content">
                 <span>Group:</span>
-                <input type="text" formControlName="idGroup">
+                <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="groupDisplayFunction">
+                    <mat-option *ngFor="let group of groupUser" [value]="group">{{group.name}}</mat-option>
+                </mat-autocomplete>
+                <input type="text" formControlName="idGroup" [matAutocomplete]="autoGroup">
             </div>
             <div class="content">
                 <span>Location:</span>

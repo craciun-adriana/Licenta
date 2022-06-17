@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AppointmentModel, CreateAppointmentModel } from 'src/app/models/appointment-model';
 import { BookModel } from 'src/app/models/book-model';
 import { FilmModel } from 'src/app/models/film-model';
+import { GroupModel } from 'src/app/models/group-model';
 import { ReviewBookModel } from 'src/app/models/review-book-model';
 import { ReviewFilmModel } from 'src/app/models/review-film-model';
 import { ReviewSeriesModel } from 'src/app/models/review-series-model';
@@ -30,6 +31,8 @@ export class HomePageComponent implements OnInit {
 
     createNewAppoint: boolean = false;
     errorMessage: string = '';
+
+    groupUser: GroupModel[] = [];
 
     createAppointForm = new FormGroup({
         name: new FormControl('', Validators.required),
@@ -88,6 +91,9 @@ export class HomePageComponent implements OnInit {
         this.licentaService.getReviewSeriesByStatus(Status.Ongoing).subscribe((response: ReviewSeriesModel[]) => {
             this.reviewSeriesO = response;
         });
+        this.licentaService.findUserGroups().subscribe((response: GroupModel[]) => {
+            this.groupUser = response;
+        })
 
     }
 
@@ -104,7 +110,7 @@ export class HomePageComponent implements OnInit {
             idBook: this.createAppointForm.get('idBook')?.value,
             idFilm: this.createAppointForm.get('idFilm')?.value,
             idSeries: this.createAppointForm.get('idSeries')?.value,
-            idGroup: this.createAppointForm.get('idGroup')?.value,
+            idGroup: this.createAppointForm.get('idGroup')?.value.id,
             location: this.createAppointForm.get('location')?.value,
         }
         this.licentaService.createAppointment(createAppointment).subscribe(response => {
@@ -115,7 +121,20 @@ export class HomePageComponent implements OnInit {
                 this.createNewAppoint = false;
                 // fac un mic buton de x pt a inchide formularul
             }
-        }
-        )
+        })
     }
+
+    groupDisplayFunction(group: GroupModel): string {
+        return group.name;
+    }
+    bookDisplayFunction(book: BookModel): string {
+        return book.title;
+    }
+    filmDisplayFunction(film: FilmModel): string {
+        return film.title;
+    }
+    seriesDisplayFunction(series: SeriesModel): string {
+        return series.title;
+    }
+
 }

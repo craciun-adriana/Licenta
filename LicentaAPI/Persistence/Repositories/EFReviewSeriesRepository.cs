@@ -49,7 +49,8 @@ namespace LicentaAPI.Persistence.Repositories
                 throw new ArgumentNullException(nameof(idSeries));
             }
 
-            return _dbContext.ReviewSeries.Where(reviewSeries => reviewSeries.IdSeries.Equals(idSeries));
+            return _dbContext.ReviewSeries.Where(reviewS =>
+            (reviewS.IdSeries.Equals(idSeries)) && (!string.IsNullOrEmpty(reviewS.Review) || reviewS.Grade.HasValue));
         }
 
         /// <inheritdoc/>
