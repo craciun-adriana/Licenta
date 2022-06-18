@@ -10,12 +10,13 @@
     </div>
 
     <div *ngIf="isOpenGroupDetails">
-        <div><b>Description:</b>
+        <div><b>Description: </b>
             <span>{{chatGroup?.description}}</span>
         </div>
 
-        <div *ngFor="let member of groupMembers"><b>Member:</b>
-            <span>{{member.userName}}, </span>
+        <div>
+            <b>Members: </b>
+            <span *ngFor="let member of groupMembers">{{member.userName}}, </span>
         </div>
 
         <div (click)="openAddGroupMember()"><b>Add a new member</b></div>
@@ -27,6 +28,9 @@
                     <mat-option *ngFor="let friend of userFriends" [value]="friend">{{friend.userName}}</mat-option>
                 </mat-autocomplete>
                 <input formControlName="idUser" type="text" [matAutocomplete]="autoFriends">
+                <div>
+                    <button (click)="addGroupMember()">Add member</button>
+                </div>
             </form>
         </div>
     </div>
@@ -94,8 +98,8 @@
 </div>
 
 <div>
-    <button (click)="startCreateGroup">Create a new group</button>
-
+    <button (click)="startCreateGroup()">Create a new group</button>
+    <br><button *ngIf="isCreatingGroup" id="close-create-group" (click)="closeCreateGroup()">Close</button>
     <form *ngIf="isCreatingGroup" [formGroup]="createGroupForm">
         <div>
             <span>Group name:</span>

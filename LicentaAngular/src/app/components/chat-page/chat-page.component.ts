@@ -123,6 +123,10 @@ export class ChatPageComponent implements OnInit {
         this.isCreatingGroup = true;
     }
 
+    closeCreateGroup(): void {
+        this.isCreatingGroup = false;
+    }
+
     createGroup(): void {
         const createGroup: CreateGroupModel = {
             name: this.createGroupForm.get('name')?.value,
@@ -132,7 +136,6 @@ export class ChatPageComponent implements OnInit {
         this.licentaService.createGroup(createGroup).subscribe((response: GroupModel) => {
             const createGroupAdmin: CreateGroupMemberModel = {
                 idGroup: response.id,
-                idUser: 'da',
                 isAdmin: true,
             }
             this.licentaService.createGroupMember(createGroupAdmin).subscribe();
@@ -143,7 +146,7 @@ export class ChatPageComponent implements OnInit {
 
         const groupMember: CreateGroupMemberModel = {
             idGroup: this.chatGroup!.id,
-            idUser: this.addGroupMemberForm.get('idUser')?.value,
+            idUser: this.addGroupMemberForm.get('idUser')?.value.id,
             isAdmin: false,
         }
 
@@ -152,6 +155,7 @@ export class ChatPageComponent implements OnInit {
 
     openGroupDetails(): void {
         this.isOpenGroupDetails = true;
+        this.getGroupMembers(this.chatGroup!.id);
     }
 
     openAddGroupMember(): void {

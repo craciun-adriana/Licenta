@@ -321,7 +321,7 @@ export class LicentaService {
     }
 
     getGroupMembersByIdGroup(idGroup: string): Observable<any> {
-        return this.http.get('/licenta/group-member/get-members'+idGroup)
+        return this.http.get('/licenta/group-member/get-members/' + idGroup)
             .pipe(catchError(error => {
                 return of(null);
             }))

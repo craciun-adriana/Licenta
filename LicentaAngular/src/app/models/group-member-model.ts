@@ -9,6 +9,6 @@ export interface GroupMemberModel {
 
 export interface CreateGroupMemberModel {
     idGroup: string;
-    idUser: string;
+    idUser?: string;
     isAdmin: boolean;
 }

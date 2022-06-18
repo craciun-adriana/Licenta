@@ -31,6 +31,10 @@ namespace LicentaAPI.Controllers
         public IActionResult CreateGroupMember(GroupMemberCreateRequest request)
         {
             var groupMemberCreate = _mapper.Map<GroupMemberCreateRequest, GroupMemberCreate>(request);
+            if (string.IsNullOrEmpty(request.IdUser))
+            {
+                groupMemberCreate.IdUser = _userManager.GetUserId(HttpContext.User);
+            }
             var groupMember = _groupMemberService.CreateGroupMember(groupMemberCreate);
 
             if (groupMember == null)
