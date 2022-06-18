@@ -4,9 +4,33 @@
     <div *ngIf="!isGroup" class="nameConv">
         <span>{{chatUser?.userName ?? 'Messages'}}</span>
     </div>
+
     <div *ngIf="isGroup" class="nameConv">
-        <span>{{chatGroup?.name ?? 'Messages'}}</span>
+        <span (click)="openGroupDetails()">{{chatGroup?.name ?? 'Messages'}}</span>
     </div>
+
+    <div *ngIf="isOpenGroupDetails">
+        <div><b>Description:</b>
+            <span>{{chatGroup?.description}}</span>
+        </div>
+
+        <div *ngFor="let member of groupMembers"><b>Member:</b>
+            <span>{{member.userName}}, </span>
+        </div>
+
+        <div (click)="openAddGroupMember()"><b>Add a new member</b></div>
+
+
+        <div *ngIf="addMember">
+            <form [formGroup]="addGroupMemberForm">
+                <mat-autocomplete #autoFriends="matAutocomplete" [displayWith]="friendDisplayFunction">
+                    <mat-option *ngFor="let friend of userFriends" [value]="friend">{{friend.userName}}</mat-option>
+                </mat-autocomplete>
+                <input formControlName="idUser" type="text" [matAutocomplete]="autoFriends">
+            </form>
+        </div>
+    </div>
+
     <div class="userList">
 
         <div *ngFor="let user of lastConversation" (click)="openChatWithUser(user.id)">
@@ -18,6 +42,7 @@
             <span>{{group.name}}</span>
         </div>
     </div>
+
     <div class="showMess">
         <ul>
             <li *ngFor="let message of messages">
@@ -25,24 +50,29 @@
             </li>
         </ul>
     </div>
+
     <div *ngIf="!isGroup" class="createMess">
         <input #userMessageInput id="message" name="message"
             (keyup.enter)="sendMessageToUser(userMessageInput.value); userMessageInput.value=''">
         <button id="submit" type="submit"
             (click)="sendMessageToUser(userMessageInput.value); userMessageInput.value=''">Send</button>
     </div>
+
     <div *ngIf="isGroup" class="createMess">
         <input #userMessageInput id="message" name="message"
             (keyup.enter)="sendMessageToGroup(userMessageInput.value); userMessageInput.value=''">
         <button id="submit" type="submit"
             (click)="sendMessageToGroup(userMessageInput.value); userMessageInput.value=''">Send</button>
     </div>
+
 </div>
+
 <div id="search-user-bar">
     <form>
         <input #friendSearchInput id="search-text" type="text" />
         <input type="submit" (click)="findFriendsByUsername(friendSearchInput.value)" value="Submit">
     </form>
+
     <div>
         <div *ngFor="let foundUser of foundUsers">
             <span (click)="openChatWithUser(foundUser.id)">{{foundUser.userName}}</span>
@@ -55,9 +85,32 @@
         <input #groupSearchInput id="search-text" type="text" />
         <input type="submit" (click)="findUserGroupsByName(groupSearchInput.value)" value="Submit">
     </form>
+
     <div>
         <div *ngFor="let foundGroup of foundGroups">
             <span (click)="openChatWithGroup(foundGroup.id)">{{foundGroup.name}}</span>
         </div>
     </div>
+</div>
+
+<div>
+    <button (click)="startCreateGroup">Create a new group</button>
+
+    <form *ngIf="isCreatingGroup" [formGroup]="createGroupForm">
+        <div>
+            <span>Group name:</span>
+            <input type="text" formControlName="name">
+        </div>
+        <div>
+            <span>Group picture:</span>
+            <input type="text" formControlName="picture">
+        </div>
+        <div>
+            <span>Group description:</span>
+            <input type="text" formControlName="description">
+        </div>
+        <div class="content">
+            <button (click)="createGroup()"> Create group</button>
+        </div>
+    </form>
 </div>

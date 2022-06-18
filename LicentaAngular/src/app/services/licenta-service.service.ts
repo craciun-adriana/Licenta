@@ -8,6 +8,8 @@ import { CreateFilmModel } from '../models/film-model';
 import { CreateFriendshipModel } from '../models/friendship-model';
 import { FsbDetailsModel } from '../models/fsb-details-model';
 import { Genre } from '../models/genre';
+import { CreateGroupMemberModel } from '../models/group-member-model';
+import { CreateGroupModel } from '../models/group-model';
 import { LoginDetails } from '../models/login-details';
 import { CreateMessageModel } from '../models/messages-model';
 import { RegisterDetails } from '../models/register-details';
@@ -25,7 +27,7 @@ export class LicentaService {
     ) { }
 
     isUserLoggedIn(): Observable<any> {
-        return this.http.get('licenta/auth/is-logged-in')
+        return this.http.get('/licenta/auth/is-logged-in')
             .pipe(
                 catchError(error => {
                     return of(null);
@@ -142,7 +144,7 @@ export class LicentaService {
     }
 
     updateFilm(updateDetails: FsbDetailsModel): Observable<any> {
-        return this.http.post('licenta/film/update', updateDetails)
+        return this.http.post('/licenta/film/update', updateDetails)
             .pipe(
                 catchError(error => {
                     return of(null);
@@ -296,7 +298,7 @@ export class LicentaService {
     }
 
     getAllMessagesInGroup(idGroup: string): Observable<any> {
-        return this.http.get('licenta/message/conversation/group/' + idGroup)
+        return this.http.get('/licenta/message/conversation/group/' + idGroup)
             .pipe(
                 catchError(error => {
                     return of([]);
@@ -304,8 +306,29 @@ export class LicentaService {
             );
     }
 
+    createGroup(group: CreateGroupModel): Observable<any> {
+        return this.http.post('/licenta/group/create', group)
+            .pipe(catchError(error => {
+                return of(null);
+            }))
+    }
+
+    createGroupMember(groupMember: CreateGroupMemberModel): Observable<any> {
+        return this.http.post('/licenta/group-member/create', groupMember)
+            .pipe(catchError(error => {
+                return of(null);
+            }))
+    }
+
+    getGroupMembersByIdGroup(idGroup: string): Observable<any> {
+        return this.http.get('/licenta/group-member/get-members'+idGroup)
+            .pipe(catchError(error => {
+                return of(null);
+            }))
+    }
+
     getGroupById(idGroup: string): Observable<any> {
-        return this.http.get('licenta/group/get/' + idGroup)
+        return this.http.get('/licenta/group/get/' + idGroup)
             .pipe(catchError(error => {
                 return of(null);
             }))

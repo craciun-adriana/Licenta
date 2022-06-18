@@ -3,7 +3,8 @@ import { CreateMessageModel, MessagesModel } from 'src/app/models/messages-model
 import { UserDetails } from 'src/app/models/user-details';
 import { LicentaService } from 'src/app/services/licenta-service.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { GroupModel } from 'src/app/models/group-model';
+import { CreateGroupModel, GroupModel } from 'src/app/models/group-model';
+import { CreateGroupMemberModel, GroupMemberModel } from 'src/app/models/group-member-model';
 
 @Component({
     selector: 'app-chat-page',
@@ -19,7 +20,24 @@ export class ChatPageComponent implements OnInit {
     chatGroup: GroupModel | null = null;
     foundUsers: UserDetails[] = [];
     foundGroups: GroupModel[] = [];
+
     isGroup: boolean = false;
+    isCreatingGroup: boolean = false;
+    groupMembers: UserDetails[] = [];
+    userFriends: UserDetails[] = [];
+    isOpenGroupDetails: boolean = false;
+    addMember: boolean = false;
+
+    createGroupForm = new FormGroup({
+        name: new FormControl('', Validators.required),
+        picture: new FormControl('',),
+        description: new FormControl('',),
+    })
+
+    addGroupMemberForm = new FormGroup({
+        idUser: new FormControl('', Validators.required)
+    })
+
     constructor(
         private licentaService: LicentaService
     ) { }
@@ -100,5 +118,63 @@ export class ChatPageComponent implements OnInit {
             this.chatGroup = response;
         })
     }
+
+    startCreateGroup(): void {
+        this.isCreatingGroup = true;
+    }
+
+    createGroup(): void {
+        const createGroup: CreateGroupModel = {
+            name: this.createGroupForm.get('name')?.value,
+            picture: this.createGroupForm.get('picture')?.value,
+            description: this.createGroupForm.get('description')?.value,
+        }
+        this.licentaService.createGroup(createGroup).subscribe((response: GroupModel) => {
+            const createGroupAdmin: CreateGroupMemberModel = {
+                idGroup: response.id,
+                idUser: 'da',
+                isAdmin: true,
+            }
+            this.licentaService.createGroupMember(createGroupAdmin).subscribe();
+        });
+    }
+
+    addGroupMember(): void {
+
+        const groupMember: CreateGroupMemberModel = {
+            idGroup: this.chatGroup!.id,
+            idUser: this.addGroupMemberForm.get('idUser')?.value,
+            isAdmin: false,
+        }
+
+        this.licentaService.createGroupMember(groupMember).subscribe();
+    }
+
+    openGroupDetails(): void {
+        this.isOpenGroupDetails = true;
+    }
+
+    openAddGroupMember(): void {
+        this.getUserFriends();
+        this.addMember = true;
+    }
+
+    getGroupMembers(idGroup: string): void {
+        this.licentaService.getGroupMembersByIdGroup(idGroup).subscribe((response: UserDetails[]) => {
+            this.groupMembers = response;
+        })
+    }
+
+    getUserFriends(): void {
+        this.licentaService.getFriendsForUser().subscribe((response: UserDetails[]) => {
+            this.userFriends = response;
+        })
+    }
+
+    friendDisplayFunction(friend: UserDetails): string {
+        return friend.userName;
+    }
+
+
 
 }

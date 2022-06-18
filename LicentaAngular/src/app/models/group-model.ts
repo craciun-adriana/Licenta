@@ -6,3 +6,9 @@ export interface GroupModel {
     lastMessageTimestamp: Date;
 
 }
+
+export interface CreateGroupModel {
+    name: string;
+    picture: string;
+    description: string;
+}

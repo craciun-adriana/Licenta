@@ -3,6 +3,8 @@ using LicentaAPI.Infrastructure.Mapper;
 using LicentaAPI.Persistence.Models;
 using LicentaAPI.Persistence.Repositories;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LicentaAPI.AppServices.GroupMembers
 {
@@ -12,11 +14,13 @@ namespace LicentaAPI.AppServices.GroupMembers
     public class GroupMemberService : IGroupMemberService
     {
         private readonly IGroupMemberRepo _groupMemberRepo;
+        private readonly IUserRepo _userRepo;
         private readonly IMappingCoordinator _mapper;
 
-        public GroupMemberService(IGroupMemberRepo groupMemberRepo, IMappingCoordinator mapper)
+        public GroupMemberService(IGroupMemberRepo groupMemberRepo, IUserRepo userRepo, IMappingCoordinator mapper)
         {
             _groupMemberRepo = groupMemberRepo;
+            _userRepo = userRepo;
             _mapper = mapper;
         }
 
@@ -35,6 +39,13 @@ namespace LicentaAPI.AppServices.GroupMembers
             }
 
             return groupMember;
+        }
+
+        public IEnumerable<AppUser> FindGroupMemberByIdGroup(string idGroup)
+        {
+            var groupMemberIds = _groupMemberRepo.FindGroupMembersByIdGroup(idGroup)
+                .Select(member => member.IdUser);
+            return _userRepo.GetUsersByIds(groupMemberIds);
         }
     }
 }

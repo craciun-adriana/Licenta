@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Linq;
 
 namespace LicentaAPI.Controllers
 {
@@ -38,6 +39,19 @@ namespace LicentaAPI.Controllers
             }
 
             return CreatedAtRoute("", new { groupMember.ID }, groupMember);
+        }
+
+        [Authorize]
+        [HttpGet("get-members/{idGroup}")]
+        [SwaggerResponse(200, "All group members.")]
+        public IActionResult FindGroupMemberByIdGroup(string idGroup)
+        {
+            var groupMembers = _groupMemberService.FindGroupMemberByIdGroup(idGroup);
+            if (groupMembers.Any())
+            {
+                return Ok(groupMembers);
+            }
+            return NotFound();
         }
     }
 }
