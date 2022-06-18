@@ -189,13 +189,19 @@ export class FsbDetailsPageComponent implements OnInit {
         }
         switch (this.type) {
             case 'book':
-                this.licentaService.updateBook(updateDetails).subscribe()
+                this.licentaService.updateBook(updateDetails).subscribe(_ => {
+                    window.location.reload();
+                })
                 break;
             case 'film':
-                this.licentaService.updateFilm(updateDetails).subscribe()
+                this.licentaService.updateFilm(updateDetails).subscribe(_ => {
+                    window.location.reload();
+                })
                 break;
             case 'series':
-                this.licentaService.updateSeries(updateDetails).subscribe()
+                this.licentaService.updateSeries(updateDetails).subscribe(_ => {
+                    window.location.reload();
+                })
                 break;
         }
 

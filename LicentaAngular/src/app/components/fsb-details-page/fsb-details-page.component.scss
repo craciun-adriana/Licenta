@@ -2,13 +2,13 @@
     grid-area: Picture;
     border: 1px solid black;
     text-align: center;
-    height: 250px;
+    height: 300px;
 }
 
 #title-description {
     grid-area: TitleDesc;
     border: 1px solid black;
-    margin-top: 80px;
+    margin-top: 70px;
     font-size: 170%;
 }
 
@@ -19,8 +19,24 @@
 #description {
     font-size: 70%;
     width: 90%;
-    height: 90%;
-    text-align: center;
+    height: 80%;
+    text-align: justify;
+}
+
+#title {
+    font-size: 100%;
+}
+
+#info div {
+    margin-top: 10px;
+    margin-left: 25px;
+    display: block;
+}
+
+#info b {
+    display: inline-block;
+    text-align: left;
+    width: 100px;
 }
 
 #user-grade {

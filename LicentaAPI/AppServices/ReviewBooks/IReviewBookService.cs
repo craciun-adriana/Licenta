@@ -18,7 +18,7 @@ namespace LicentaAPI.AppServices.ReviewBooks
 
         public IEnumerable<ReviewBookDTO> GetByStatus(Status status, string idUser);
 
-        public IEnumerable<ReviewBook> GetReviewBookByIdBook(string idBook);
+        public IEnumerable<ReviewBookDTO> GetReviewBookByIdBook(string idBook);
 
         public IEnumerable<ReviewBookDTO> GetReviewBookCompletedByIdUser(string idUser);
 

@@ -1,18 +1,18 @@
-<div id="grid-container">
+<form [formGroup]="updateForm">
+    <div id="grid-container">
 
-    <div id="delete" *ngIf="isAdmin">
-        <button (click)="deleteFSB()">Detele {{fsbDetails?.title}}</button>
-    </div>
+        <div id="delete" *ngIf="isAdmin">
+            <button mat-raised-button color="primary" (click)="deleteFSB()">Delete {{fsbDetails?.title}}</button>
+        </div>
 
-    <form [formGroup]="updateForm">
         <div id="picture">
-            <img alt="Picture" [src]="fsbDetails?.picture" width="120" height="180">
-            <input *ngIf="isAdmin" type="text" formControlName="picture" value="{{fsbDetails?.picture}}">
+            <img alt="Picture" [src]="fsbDetails?.picture" width="170" height="250">
+            <br><input *ngIf="isAdmin" type="text" formControlName="picture" value="{{fsbDetails?.picture}}">
         </div>
 
         <div id="title-description">
-            <span *ngIf="!isAdmin">{{fsbDetails?.title}}</span>
-            <input *ngIf="isAdmin" formControlName="title" type="text">
+            <span *ngIf="!isAdmin" id="title">{{fsbDetails?.title}}</span>
+            <input *ngIf="isAdmin" id="title" formControlName="title" type="text">
             <br><span *ngIf="!isAdmin" id="description">{{fsbDetails?.description}}</span>
             <textarea *ngIf="isAdmin" formControlName="description" id="description" type="text"
                 value="{{fsbDetails?.description}}"></textarea>
@@ -20,20 +20,20 @@
 
 
         <div id="info">
-            <div *ngIf="isBook"><b>Author:</b> <span *ngIf="!isAdmin">{{fsbDetails?.author}}</span>
+            <div *ngIf="isBook"><b>Author: </b> <span *ngIf="!isAdmin">{{fsbDetails?.author}}</span>
                 <input *ngIf="isAdmin" formControlName="author" type="text" value="{{fsbDetails?.author}}">
             </div>
 
-            <div *ngIf="!isBook"><b>Director:</b> <span *ngIf="!isAdmin">{{fsbDetails?.director}}</span>
+            <div *ngIf="!isBook"><b>Director: </b> <span *ngIf="!isAdmin">{{fsbDetails?.director}}</span>
                 <input *ngIf="isAdmin" formControlName="director" type="text" value="{{fsbDetails?.director}}">
             </div>
 
-            <div><b>Release date:</b> <span *ngIf="!isAdmin">{{fsbDetails?.relaseDate}}</span>
+            <div><b>Release date: </b> <span *ngIf="!isAdmin">{{fsbDetails?.relaseDate}}</span>
                 <input *ngIf="isAdmin" formControlName="releaseDate" type="date"
                     [value]="fsbDetails?.relaseDate | date:'yyyy-MM-dd'">
             </div>
 
-            <div *ngIf="isBook"><b>Prequel Title:</b>
+            <div *ngIf="isBook"><b>Prequel Title: </b>
                 <a *ngIf="!isAdmin"
                     [routerLink]="'/details/book/' + fsbDetails?.prequelId">{{fsbDetails?.prequelTitle}}</a>
                 <mat-autocomplete #autoBook="matAutocomplete" [displayWith]="bookDisplayFunction">
@@ -43,7 +43,7 @@
                     value="{{fsbDetails?.prequelTitle}}">
             </div>
 
-            <div *ngIf="isFilm"><b>Prequel Title:</b>
+            <div *ngIf="isFilm"><b>Prequel Title: </b>
                 <a *ngIf="!isAdmin"
                     [routerLink]="'/details/film/' + fsbDetails?.prequelId">{{fsbDetails?.prequelTitle}}</a>
                 <mat-autocomplete #autoFilm="matAutocomplete" [displayWith]="filmDisplayFunction">
@@ -53,7 +53,7 @@
                     value="{{fsbDetails?.prequelTitle}}">
             </div>
 
-            <div *ngIf="isSeries"><b>Prequel Title:</b>
+            <div *ngIf="isSeries"><b>Prequel Title: </b>
                 <a *ngIf="!isAdmin"
                     [routerLink]="'/details/series/' + fsbDetails?.prequelId">{{fsbDetails?.prequelTitle}}</a>
                 <mat-autocomplete #autoSeries="matAutocomplete" [displayWith]="seriesDisplayFunction">
@@ -63,7 +63,7 @@
                     value="{{fsbDetails?.prequelTitle}}">
             </div>
 
-            <div *ngIf="isBook"><b>Sequel Title:</b>
+            <div *ngIf="isBook"><b>Sequel Title: </b>
                 <a *ngIf="!isAdmin"
                     [routerLink]="'/details/book/' + fsbDetails?.sequelId">{{fsbDetails?.sequelTitle}}</a>
                 <mat-autocomplete #autoBookS="matAutocomplete" [displayWith]="bookDisplayFunction">
@@ -73,7 +73,7 @@
                     value="{{fsbDetails?.sequelTitle}}">
             </div>
 
-            <div *ngIf="isFilm"><b>Sequel Title:</b>
+            <div *ngIf="isFilm"><b>Sequel Title: </b>
                 <a *ngIf="!isAdmin"
                     [routerLink]="'/details/film/' + fsbDetails?.sequelId">{{fsbDetails?.sequelTitle}}</a>
                 <mat-autocomplete #autoFilmS="matAutocomplete" [displayWith]="filmDisplayFunction">
@@ -83,7 +83,7 @@
                     value="{{fsbDetails?.sequelId}}">
             </div>
 
-            <div *ngIf="isSeries"><b>Sequel Title:</b>
+            <div *ngIf="isSeries"><b>Sequel Title: </b>
                 <a *ngIf="!isAdmin"
                     [routerLink]="'/details/series/' + fsbDetails?.sequelId">{{fsbDetails?.sequelTitle}}</a>
                 <mat-autocomplete #autoSeriesS="matAutocomplete" [displayWith]="seriesDisplayFunction">
@@ -93,7 +93,7 @@
                     value="{{fsbDetails?.sequelId}}">
             </div>
 
-            <div><b>Genre:</b> <span *ngIf="!isAdmin">{{fsbDetails?.genre}}</span>
+            <div><b>Genre: </b> <span *ngIf="!isAdmin">{{fsbDetails?.genre}}</span>
                 <select *ngIf="isAdmin" formControlName="genre" type="text" [value]="fsbDetails?.genre">
                     <option value="Action">Action</option>
                     <option value="Comedy">Comedy</option>
@@ -109,56 +109,56 @@
                 </select>
             </div>
 
-            <div *ngIf="!isBook"><b>Rating:</b> <span *ngIf="!isAdmin">{{fsbDetails?.rating}}</span>
+            <div *ngIf="!isBook"><b>Rating: </b> <span *ngIf="!isAdmin">{{fsbDetails?.rating}}</span>
                 <input *ngIf="isAdmin" formControlName="rating" type="text" value="{{fsbDetails?.director}}">
             </div>
 
-            <div *ngIf="isFilm"><b>Length:</b> <span *ngIf="!isAdmin">{{fsbDetails?.length}}</span>
+            <div *ngIf="isFilm"><b>Length: </b> <span *ngIf="!isAdmin">{{fsbDetails?.length}}</span>
                 <input *ngIf="isAdmin" formControlName="length" type="text" value="{{fsbDetails?.director}}">
             </div>
 
-            <div *ngIf="isSeries"><b>Number of episodes:</b> <span *ngIf="!isAdmin">{{fsbDetails?.nrEps}}</span>
+            <div *ngIf="isSeries"><b>Number of episodes: </b> <span *ngIf="!isAdmin">{{fsbDetails?.nrEps}}</span>
                 <input *ngIf="isAdmin" formControlName="nrEps" type="text" value="{{fsbDetails?.director}}">
             </div>
         </div>
         <div class="updateFSB">
-            <button id="update" (click)="updateFSB()">Update</button>
+            <button mat-raised-button color="primary" id="update" (click)="updateFSB()">Update</button>
         </div>
-    </form>
 
-    <div id="userGrade">
-        <span><b>Your grades is:</b></span>
-        <br>
-        <div *ngIf="userReview?.grade===null">
-            <input #addGrade id="search-text" type="text" />
-            <input type="submit" (click)="addGrade.value" value="Add grade">
+        <div *ngIf="!isAdmin" id="userGrade">
+            <span><b>Your grades is: </b></span>
+            <br>
+            <div *ngIf="userReview?.grade===null">
+                <input #addGrade id="search-text" type="text" />
+                <input type="submit" (click)="addGrade.value" value="Add grade">
+            </div>
+            <div *ngIf="userReview!==null">{{userReview?.grade}}</div>
         </div>
-        <div *ngIf="userReview!==null">{{userReview?.grade}}</div>
+
+        <div *ngIf="!isAdmin" id="userReview">
+            <span><b>Your review is:</b></span>
+            <br>
+            <div>{{userReview?.review}}</div>
+        </div>
+
+        <table id="reviews">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th *ngIf="isBook">Notate this book with</th>
+                    <th *ngIf="isFilm">Notate this film with</th>
+                    <th *ngIf="isSeries">Notate this series with</th>
+                    <th>And his/her impresion is</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let review of reviews">
+                    <td><b>{{review.username}}</b></td>
+                    <td><b></b>{{review.grade}}</td>
+                    <td><b></b>{{review.review}}</td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
-
-    <div id="userReview">
-        <span><b>Your review is:</b></span>
-        <br>
-        <div>{{userReview?.review}}</div>
-    </div>
-
-    <table id="reviews">
-        <thead>
-            <tr>
-                <th>User</th>
-                <th *ngIf="isBook">Notate this book with</th>
-                <th *ngIf="isFilm">Notate this film with</th>
-                <th *ngIf="isSeries">Notate this series with</th>
-                <th>And his/her impresion is</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let review of reviews">
-                <td><b>{{review.idUser}}</b></td>
-                <td><b></b>{{review.grade}}</td>
-                <td><b></b>{{review.review}}</td>
-            </tr>
-        </tbody>
-    </table>
-
-</div>
+</form>

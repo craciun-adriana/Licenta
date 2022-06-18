@@ -89,9 +89,24 @@ namespace LicentaAPI.AppServices.ReviewBooks
                 });
         }
 
-        public IEnumerable<ReviewBook> GetReviewBookByIdBook(string idBook)
+        public IEnumerable<ReviewBookDTO> GetReviewBookByIdBook(string idBook)
         {
-            return _reviewBookRepo.FindReviewBookByIdBook(idBook);
+            return _reviewBookRepo.FindReviewBookByIdBook(idBook)
+                .Select(rb =>
+                {
+                    var book = _bookRepo.GetById(rb.IdBook);
+                    return new ReviewBookDTO
+                    {
+                        IdBook = rb.IdBook,
+                        Book = book,
+                        Grade = rb.Grade,
+                        IdReview = rb.ID,
+                        IdUser = rb.IdUser,
+                        Username = _userRepo.GetUserById(rb.IdUser)?.UserName ?? "User deleted",
+                        Review = rb.Review,
+                        Status = rb.Status,
+                    };
+                });
         }
 
         public ReviewBook GetReviewBookByIdBookAndUser(string idBook, string idUser)
