@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateBookModel } from 'src/app/models/book-model';
-import { CreateFilmModel } from 'src/app/models/film-model';
+import { CreateFilmModel, FilmModel } from 'src/app/models/film-model';
 import { LicentaService } from 'src/app/services/licenta-service.service';
 
 @Component({
@@ -24,13 +24,21 @@ export class AddFilmComponent implements OnInit {
         picture: new FormControl('', Validators.required),
     })
 
+    films: FilmModel[] = [];
     errorMessage: string = '';
+
     constructor(
         private licentaService: LicentaService
     ) { }
 
     ngOnInit(): void {
+        this.initializePage();
+    }
 
+    initializePage(): void {
+        this.licentaService.getAllFilms().subscribe((response: FilmModel[]) => {
+            this.films = response;
+        })
     }
 
     addFilm(): void {
@@ -39,8 +47,8 @@ export class AddFilmComponent implements OnInit {
             director: this.addFilmForm.get('director')?.value,
             description: this.addFilmForm.get('description')?.value,
             relaseDate: this.addFilmForm.get('relaseDate')?.value,
-            prequelId: this.addFilmForm.get('prequelId')?.value,
-            sequelId: this.addFilmForm.get('seguelId')?.value,
+            prequelId: this.addFilmForm.get('prequelId')?.value.id,
+            sequelId: this.addFilmForm.get('seguelId')?.value.id,
             genre: this.addFilmForm.get('genre')?.value,
             rating: this.addFilmForm.get('rating')?.value,
             length: this.addFilmForm.get('length')?.value,
@@ -52,5 +60,9 @@ export class AddFilmComponent implements OnInit {
                 this.errorMessage = "Film was created.";
             else this.errorMessage = 'Series can not be created.';
         })
+    }
+
+    filmDisplayFunction(film: FilmModel): string {
+        return film.title;
     }
 }

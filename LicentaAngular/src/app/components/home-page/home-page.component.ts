@@ -29,7 +29,7 @@ export class HomePageComponent implements OnInit {
     reviewFilmsO: ReviewFilmModel[] = [];
     reviewSeriesO: ReviewSeriesModel[] = [];
 
-    createNewAppoint: boolean = false;
+    createNewAppoint: boolean = true;
     errorMessage: string = '';
 
     groupUser: GroupModel[] = [];

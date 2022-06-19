@@ -1,75 +1,114 @@
 <h1>Create a new film</h1>
-<form [formGroup]="addFilmForm">
+<form [formGroup]="addFilmForm" id="addFilmForm">
 
     <div class="content">
-        <span>Title:</span>
-        <input type="text" formControlName="title">
+        <span>Title :</span>
+        <mat-form-field appearance="fill">
+            <mat-label>Add a title</mat-label>
+            <input required matInput type="text" formControlName="title">
+        </mat-form-field>
     </div>
 
     <div class="content">
         <span>Director:</span>
-        <input type="text" formControlName="director">
+        <mat-form-field appearance="fill">
+            <mat-label>Add an director</mat-label>
+            <input required matInput type="text" formControlName="director">
+        </mat-form-field>
     </div>
+
     <div class="content">
         <span>Description:</span>
-        <input type="text" formControlName="description">
+        <mat-form-field appearance="fill">
+            <mat-label>Add a description</mat-label>
+            <input required matInput type="text" formControlName="description">
+        </mat-form-field>
     </div>
 
     <div class="content">
-        <span>Release Date:</span>
-        <input type="date" formControlName="relaseDate">
+        <span>ReleaseDate:</span>
+        <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input required matInput [matDatepicker]="picker" formControlName="releasedate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
     </div>
 
     <div class="content">
-        <span>Prequel Id</span>
-        <input type="text" formControlName="prequelId">
+        <span>Prequel film Id:</span>
+        <mat-form-field appearance="fill">
+            <mat-label>Choose a film</mat-label>
+            <mat-autocomplete #autoFilm="matAutocomplete" [displayWith]="filmDisplayFunction">
+                <mat-option *ngFor="let film of films" [value]="film">{{film.title}}</mat-option>
+            </mat-autocomplete>
+            <input matInput type="text" formControlName="prequelId" [matAutocomplete]="autoFilm">
+        </mat-form-field>
     </div>
 
     <div class="content">
-        <span>Sequel Id:</span>
-        <input type="text" formControlName="sequelId">
+        <span>Sequel film Id:</span>
+        <mat-form-field appearance="fill">
+            <mat-label>Choose a film</mat-label>
+            <mat-autocomplete #autoFilmS="matAutocomplete" [displayWith]="filmDisplayFunction">
+                <mat-option *ngFor="let film of films" [value]="film">{{film.title}}</mat-option>
+            </mat-autocomplete>
+            <input matInput type="text" formControlName="serquelId" [matAutocomplete]="autoFilmS">
+        </mat-form-field>
     </div>
 
     <div class="content">
         <span>Genre:</span>
-        <select formControlName="genre">
-            <option selected="true" value="Action">Action</option>
-            <option value="Comedy">Comedy</option>
-            <option value="Crime">Crime</option>
-            <option value="Drama">Drama</option>
-            <option value="Fantasy">Fantasy</option>
-            <option value="Horror">Horror</option>
-            <option value="Muzical">Muzical</option>
-            <option value="Romance">Romance</option>
-            <option value="ScienceFiction">Science Fiction</option>
-            <option value="Thriller">Thriller</option>
-            <option value="Western">Western</option>
-        </select>
+        <mat-form-field appearance="fill">
+            <mat-label>Choose a genre</mat-label>
+            <mat-select formControlName="genre">
+                <mat-option selected="true" value="Action">Action</mat-option>
+                <mat-option value="Comedy">Comedy</mat-option>
+                <mat-option value="Crime">Crime</mat-option>
+                <mat-option value="Drama">Drama</mat-option>
+                <mat-option value="Fantasy">Fantasy</mat-option>
+                <mat-option value="Horror">Horror</mat-option>
+                <mat-option value="Muzical">Muzical</mat-option>
+                <mat-option value="Romance">Romance</mat-option>
+                <mat-option value="ScienceFiction">ScienceFiction</mat-option>
+                <mat-option value="Thriller">Thriller</mat-option>
+                <mat-option value="Western">Western</mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
 
     <div class="content">
         <span>Rating:</span>
-        <select formControlName="rating">
-            <option selected="true" value="G">G</option>
-            <option value="PG">PG</option>
-            <option value="PG13">PG13</option>
-            <option value="R">R</option>
-            <option value="NR17">NR17</option>
-        </select>
+        <mat-form-field appearance="fill">
+            <mat-label>Add rating</mat-label>
+            <mat-select formControlName="rating">
+                <mat-option selected="true" value="G">G</mat-option>
+                <mat-option value="PG">PG</mat-option>
+                <mat-option value="PG13">PG13</mat-option>
+                <mat-option value="R">R</mat-option>
+                <mat-option value="NR17">NR17</mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
 
     <div class="content">
         <span>Length:</span>
-        <input type="text" formControlName="length">
+        <mat-form-field appearance="fill">
+            <mat-label>Add length</mat-label>
+            <input required matInput type="text" formControlName="length">
+        </mat-form-field>
     </div>
 
     <div class="content">
         <span>Picture:</span>
-        <input type="text" formControlName="picture">
+        <mat-form-field appearance="fill">
+            <mat-label>Add picture</mat-label>
+            <input required matInput type="text" formControlName="picture">
+        </mat-form-field>
     </div>
 
     <div class="content">
-        <button id="add-film" (click)="addFilm()">Add film</button>
+        <button mat-raised-button color="primary" id="add-film" (click)="addFilm()">Add film</button>
     </div>
 
     <div class="content">

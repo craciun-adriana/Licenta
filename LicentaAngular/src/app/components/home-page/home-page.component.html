@@ -156,15 +156,18 @@
 
     <button *ngIf="!createNewAppoint" mat-raised-button color="primary" (click)="createNewAppointment()">Create a new
         appointment</button>
-    <div *ngIf="createNewAppoint" >
+    <div *ngIf="createNewAppoint">
         <form [formGroup]="createAppointForm" id="formAppointment">
             <div class="content">
                 <span>Appointment name:</span>
-                <input type="text" formControlName="name">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a name</mat-label>
+                    <input matInput type="text" formControlName="name">
+                </mat-form-field>
             </div>
             <div class="content">
                 <span>Date and time:</span>
-                <mat-form-field appearance="fill" color="black">
+                <mat-form-field appearance="fill">
                     <mat-label>Choose a date</mat-label>
                     <input matInput [ngxMatDatetimePicker]="picker" formControlName="timeAppointment">
                     <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
@@ -174,39 +177,52 @@
 
             <div class="content">
                 <span>Name of book:</span>
-                <mat-autocomplete #autoBook="matAutocomplete" [displayWith]="bookDisplayFunction">
-                    <mat-option *ngFor="let book of books" [value]="book">{{book.title}}</mat-option>
-                </mat-autocomplete>
-                <input type="text" formControlName="idBook" [matAutocomplete]="autoBook">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a book</mat-label>
+                    <mat-autocomplete #autoBook="matAutocomplete" [displayWith]="bookDisplayFunction">
+                        <mat-option *ngFor="let book of books" [value]="book">{{book.title}}</mat-option>
+                    </mat-autocomplete>
+                    <input matInput type="text" formControlName="idBook" [matAutocomplete]="autoBook">
+                </mat-form-field>
             </div>
             <div class="content">
                 <span>Name of film:</span>
-                <mat-autocomplete #autoFilm="matAutocomplete" [displayWith]="filmDisplayFunction">
-                    <mat-option *ngFor="let film of films" [value]="film">{{film.title}}</mat-option>
-                </mat-autocomplete>
-                <input type="text" formControlName="idFilm" [matAutocomplete]="autoFilm">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a film</mat-label>
+                    <mat-autocomplete #autoFilm="matAutocomplete" [displayWith]="filmDisplayFunction">
+                        <mat-option *ngFor="let film of films" [value]="film">{{film.title}}</mat-option>
+                    </mat-autocomplete>
+                    <input matInput type="text" formControlName="idFilm" [matAutocomplete]="autoFilm">
+                </mat-form-field>
             </div>
             <div class="content">
                 <span>Name of series:</span>
-                <mat-autocomplete #autoSeries="matAutocomplete" [displayWith]="seriesDisplayFunction">
-                    <mat-option *ngFor="let series of serieses" [value]="series">{{series.title}}</mat-option>
-                </mat-autocomplete>
-                <input type="text" formControlName="idSeries" [matAutocomplete]="autoSeries">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a series</mat-label>
+                    <mat-autocomplete #autoSeries="matAutocomplete" [displayWith]="seriesDisplayFunction">
+                        <mat-option *ngFor="let series of serieses" [value]="series">{{series.title}}</mat-option>
+                    </mat-autocomplete>
+                    <input matInput type="text" formControlName="idSeries" [matAutocomplete]="autoSeries">
+                </mat-form-field>
             </div>
             <div class="content">
                 <span>Group:</span>
-                <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="groupDisplayFunction">
-                    <mat-option *ngFor="let group of groupUser" [value]="group">{{group.name}}</mat-option>
-                </mat-autocomplete>
-                <input type="text" formControlName="idGroup" [matAutocomplete]="autoGroup">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a group</mat-label>
+                    <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="groupDisplayFunction">
+                        <mat-option *ngFor="let group of groupUser" [value]="group">{{group.name}}</mat-option>
+                    </mat-autocomplete>
+                    <input matInput type="text" formControlName="idGroup" [matAutocomplete]="autoGroup">
+                </mat-form-field>
             </div>
             <div class="content">
                 <span>Location:</span>
-                <input type="text" formControlName="location">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a location</mat-label>
+                    <input matInput type="text" formControlName="location">
+                </mat-form-field>
             </div>
-            <!-- <div class="content"> -->
-                <button mat-raised-button color="primary" (click)="appointmentCreate()"> Create appointment</button>
-            <!-- </div> -->
+            <button mat-raised-button color="primary" (click)="appointmentCreate()">Create appointment</button>
         </form>
     </div>
 </div>

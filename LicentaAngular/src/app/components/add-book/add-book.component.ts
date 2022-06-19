@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CreateBookModel } from 'src/app/models/book-model';
+import { BookModel, CreateBookModel } from 'src/app/models/book-model';
+import { FilmModel } from 'src/app/models/film-model';
+import { SeriesModel } from 'src/app/models/series-model';
 import { LicentaService } from 'src/app/services/licenta-service.service';
 
 @Component({
@@ -21,6 +23,7 @@ export class AddBookComponent implements OnInit {
         picture: new FormControl('', Validators.required),
     })
 
+    books: BookModel[] = [];
     errorMessage: string = '';
 
     constructor(
@@ -28,6 +31,14 @@ export class AddBookComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.initializePage()
+    }
+
+    initializePage(): void {
+        this.licentaService.getAllBooks().subscribe((response: BookModel[]) => {
+            this.books = response;
+        })
+
     }
 
     addBook(): void {
@@ -36,8 +47,8 @@ export class AddBookComponent implements OnInit {
             author: this.addBookForm.get('author')?.value,
             description: this.addBookForm.get('description')?.value,
             relaseDate: this.addBookForm.get('releaseDate')?.value,
-            prequelId: this.addBookForm.get('prequelId')?.value,
-            sequelId: this.addBookForm.get('seguelId')?.value,
+            prequelId: this.addBookForm.get('prequelId')?.value.id,
+            sequelId: this.addBookForm.get('seguelId')?.value.id,
             genre: this.addBookForm.get('genre')?.value,
             picture: this.addBookForm.get('picture')?.value,
         }
@@ -46,6 +57,10 @@ export class AddBookComponent implements OnInit {
                 this.errorMessage = "Book was created.";
             else this.errorMessage = 'Book can not be created.';
         })
+    }
+
+    bookDisplayFunction(book: BookModel): string {
+        return book.title;
     }
 
 }

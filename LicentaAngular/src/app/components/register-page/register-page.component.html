@@ -1,41 +1,71 @@
 <h1>Register</h1>
 
-<form [formGroup]="registerForm">
+<form [formGroup]="registerForm" id="registerForm">
     <div class="content">
         <span>First Name:</span>
-        <input type="text" formControlName="firstName">
+        <mat-form-field appearance="fill">
+            <mat-label>Add your first name</mat-label>
+            <input matInput type="text" formControlName="firstName">
+        </mat-form-field>
     </div>
+
     <div class="content">
         <span>Last Name:</span>
-        <input type="text" formControlName="lastName">
+        <mat-form-field appearance="fill">
+            <mat-label>Add your last name</mat-label>
+            <input matInput type="text" formControlName="lastName">
+        </mat-form-field>
     </div>
+
     <div class="content">
         <span>Email:</span>
-        <input type="text" formControlName="email">
+        <mat-form-field appearance="fill">
+            <mat-label>Add your email name</mat-label>
+            <input matInput type="text" formControlName="email">
+        </mat-form-field>
     </div>
+
     <div class="content">
         <span>User Name:</span>
-        <input type="text" formControlName="userName">
+        <mat-form-field appearance="fill">
+            <mat-label>Set your user name</mat-label>
+            <input matInput type="text" formControlName="userName">
+        </mat-form-field>
     </div>
+
     <div class="content">
         <span>Password:</span>
-        <input type="password" formControlName="password">
+        <mat-form-field appearance="fill">
+            <mat-label>Set your password</mat-label>
+            <input matInput type="text" formControlName="password">
+        </mat-form-field>
     </div>
     <div class="content">
         <span>Date of birth:</span>
-        <input type="date" formControlName="dateOfBirth">
+        <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
     </div>
+
     <div class="content">
         <span>Sex</span>
-        <select formControlName="sex">
-            <option selected="true" value="Other">Other</option>
-            <option value="Female">Female</option>
-            <option value="Male">Male</option>
-        </select>
+        <mat-form-field appearance="fill">
+            <mat-label>Choose sex</mat-label>
+            <mat-select formControlName="sex">
+                <mat-option selected="true" value="Other">Other</mat-option>
+                <mat-option value="Female">Female</mat-option>
+                <mat-option value="Male">Male</mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
+
     <div class="content">
-        <button id="register" (click)="clickRegister()">Register</button>
+        <button mat-raised-button color="primary" id="register" (click)="clickRegister()">Register</button>
     </div>
+
     <div class="content" *ngIf="showErrorMessage">
         <span class="error">Could not register user.</span>
     </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CreateSeriesModel } from 'src/app/models/series-model';
+import { CreateSeriesModel, SeriesModel } from 'src/app/models/series-model';
 import { LicentaService } from 'src/app/services/licenta-service.service';
 
 @Component({
@@ -23,6 +23,7 @@ export class AddSeriesComponent implements OnInit {
         picture: new FormControl('', Validators.required),
     })
 
+    serieses: SeriesModel[] =[];
     errorMessage: string = '';
 
     constructor(
@@ -30,6 +31,13 @@ export class AddSeriesComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.initializePage();
+    }
+
+    initializePage(): void {
+        this.licentaService.getAllSeries().subscribe((response: SeriesModel[]) => {
+            this.serieses = response;
+        })
     }
 
     addSeries(): void {
@@ -51,5 +59,9 @@ export class AddSeriesComponent implements OnInit {
                 this.errorMessage = "Series was created.";
             else this.errorMessage = 'Series can not be created.';
         })
+    }
+
+    seriesDisplayFunction(series: SeriesModel): string {
+        return series.title;
     }
 }

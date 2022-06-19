@@ -4,14 +4,18 @@
     display: inline;
 }
 
-#formAppointment{
+#formAppointment {
     margin-top: 30px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 400px;
+    margin-right: 400px;
     margin-bottom: 100px;
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+#formAppointment span {
+    color: aliceblue;
 }
 
 .content {
@@ -31,5 +35,6 @@
 }
 
 form {
-    background-color: #484D6D;
+    background-color: #7A7A7A;
+    box-shadow: 1px 1px 2px black, 0 0 px black, 0 0 10px gray;
 }

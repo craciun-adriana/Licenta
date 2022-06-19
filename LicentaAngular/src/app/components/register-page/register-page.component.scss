@@ -1,29 +1,70 @@
-body {
-    margin: 0;
-    background-color: #f0e9ed;
-}
+// body {
+//     margin: 0;
+//     background-color: #f0e9ed;
+// }
+
+// h1 {
+//     font-family: Arial, Helvetica, sans-serif;
+//     color: #383838;
+//     text-align: center;
+//     margin-top: 25px;
+//     margin-bottom: 25px;
+// }
+
+// span {
+//     font-family: Arial, Helvetica, sans-serif;
+//     color: #383838;
+//     text-align: center;
+// }
+
+// .content {
+//     margin: 20px;
+//     text-align: center;
+// }
+
+// .register {
+//     margin: 1cm;
+//     text-align: center;
+//     text-size-adjust: 20px;
+// }
 
 h1 {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #383838;
-    text-align: center;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
 }
 
-span {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #383838;
-    text-align: center;
+#registerForm {
+    margin-top: 30px;
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#registerForm span {
+    color: aliceblue;
 }
 
 .content {
-    margin: 20px;
-    text-align: center;
+    display: flex;
+    justify-content: space-around;
 }
 
-.register {
-    margin: 1cm;
-    text-align: center;
-    text-size-adjust: 20px;
+.content span {
+    display: inline-block;
+    text-align: right;
+    width: 140px;
+    margin: 10px;
+}
+
+form {
+    background-color: #7A7A7A;
+    box-shadow: 1px 1px 2px black, 0 0 15px black, 0 0 10px gray;
+
+    mat-form-field{
+        display: flex;
+        justify-content: space-around;
+    }
 }

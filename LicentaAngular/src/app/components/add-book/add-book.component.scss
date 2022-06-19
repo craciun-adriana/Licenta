@@ -1,0 +1,55 @@
+.title {
+    display: flex;
+    justify-content: center;
+}
+
+#addBookForm {
+    margin: 4vh 15vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #7A7A7A;
+    box-shadow: 1px 1px 2px black, 0 0 15px black, 0 0 10px gray;
+    // font-size: 13px;
+
+    .columns {
+        display: flex;
+        flex-direction: row;
+        justify-items: space-between;
+        padding: 3em;
+        gap: 5vw;
+
+        .col-one,
+        .col-two {
+            width: 50%;
+        }
+    }
+
+    span {
+        color: aliceblue;
+    }
+
+    .bottom-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5vh;
+    }
+
+    mat-form-field {
+        width: 20vw;
+    }
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    //padding: 0, 10vw;
+
+    span {
+        display: inline-block;
+        text-align: left;
+        //width: 140px;
+        margin: 10px;
+    }
+}
+

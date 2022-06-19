@@ -3,17 +3,24 @@
 <form [formGroup]="loginForm">
     <div class="content">
         <span>UserName</span>
-        <input type="text" formControlName="userName" id="userName">
+        <mat-form-field appearance="fill">
+            <mat-label>Add your user name</mat-label>
+            <input matInput type="text" formControlName="userName">
+        </mat-form-field>
     </div>
 
     <div class="content">
         <span>Password</span>
-        <input type="password" formControlName="password" id="password">
+        <mat-form-field appearance="fill">
+            <mat-label>Add your password</mat-label>
+            <input matInput type="text" formControlName="password">
+        </mat-form-field>
     </div>
 
     <div class="content">
-        <span>Remember me</span>
-        <input type="checkbox" formControlName="rememberMe" id="rememberMe">
+        <section class="example-section">
+            <mat-checkbox formControlName="rememberMe" class="example-margin">Remember me!</mat-checkbox>
+        </section>
     </div>
 
     <div class="login-button-container">
