@@ -17,9 +17,9 @@ namespace LicentaAPI.AppServices.Messages
         /// <returns>The created message or null if it was not created.</returns>
         public Message CreateMessage(MessageCreate messageCreate);
 
-        public IEnumerable<Message> GetAllMessagesBetweenUsers(string idUser1, string idUser2);
+        public IEnumerable<MessageDTO> GetAllMessagesBetweenUsers(string idUser1, string idUser2);
 
-        public IEnumerable<Message> GetAllMessagesInGroup(string idGroup);
+        public IEnumerable<MessageDTO> GetAllMessagesInGroup(string idGroup);
 
         public IEnumerable<PublicUserDetails> GetLastConversationsUsers(string iduser, int amound);
 

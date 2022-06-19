@@ -4,3 +4,32 @@
     display: inline;
 }
 
+#formAppointment{
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+.content span {
+    display: inline-block;
+    text-align: right;
+    width: 140px;
+    margin: 10px;
+}
+
+.content input {
+    width: 190px;
+}
+
+form {
+    background-color: #484D6D;
+}

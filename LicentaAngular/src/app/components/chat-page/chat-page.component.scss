@@ -4,20 +4,31 @@
     text-align: center;
 }
 
-.userList {
+.conversationLists {
     background-color: beige;
     grid-area: LastConversations;
     border: 1px solid black;
     text-align: center;
-    height: 100px;
+    height: 300px;
+}
+
+#userList {
+    overflow-y: auto;
+}
+
+#groupList {
     overflow-y: auto;
 }
 
 .showMess {
     grid-area: Chat;
     border: 1px solid black;
-    height: 100px;
+    height: 400px;
     overflow-y: auto;
+}
+
+li {
+    margin: 10px;
 }
 
 .createMess {
@@ -60,4 +71,21 @@ img {
     list-style-type: none;
     border: 1px solid black;
     background-color: beige;
+}
+
+.message-container {
+    display: flex;
+    align-items: center;
+
+    img {
+        margin-right: 5px;
+    }
+}
+
+.sent {
+    justify-content: flex-end;
+}
+
+.received {
+    justify-content: flex-start;
 }

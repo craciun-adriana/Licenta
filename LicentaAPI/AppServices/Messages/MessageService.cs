@@ -53,14 +53,28 @@ namespace LicentaAPI.AppServices.Messages
             return _mapper.Map<AppUser, PublicUserDetails>(users);
         }
 
-        public IEnumerable<Message> GetAllMessagesBetweenUsers(string idUser1, string idUser2)
+        public IEnumerable<MessageDTO> GetAllMessagesBetweenUsers(string idUser1, string idUser2)
         {
-            return _messageRepo.FindMessagesBetweenUsers(idUser1, idUser2);
+            var messages = _messageRepo.FindMessagesBetweenUsers(idUser1, idUser2);
+            var messageDTO = _mapper.Map<Message, MessageDTO>(messages);
+
+            foreach (var item in messageDTO)
+            {
+                item.NameSender = _userRepo.GetUserById(item.IdSender).UserName;
+            }
+            return messageDTO;
         }
 
-        public IEnumerable<Message> GetAllMessagesInGroup(string idGroup)
+        public IEnumerable<MessageDTO> GetAllMessagesInGroup(string idGroup)
         {
-            return _messageRepo.FindMessagesInGroup(idGroup);
+            var messages = _messageRepo.FindMessagesInGroup(idGroup);
+            var messageDTO = _mapper.Map<Message, MessageDTO>(messages);
+
+            foreach (var item in messageDTO)
+            {
+                item.NameSender = _userRepo.GetUserById(item.IdSender).UserName;
+            }
+            return messageDTO;
         }
 
         public IEnumerable<Group> GetLastConversationsGroups(string idUser, int amount)

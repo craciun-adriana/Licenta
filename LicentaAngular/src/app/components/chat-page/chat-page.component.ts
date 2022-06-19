@@ -179,6 +179,12 @@ export class ChatPageComponent implements OnInit {
         return friend.userName;
     }
 
-
+    getMessageClass(idSender: string): string {
+        if(idSender===this.userId)
+        {
+            return "sent";
+        }
+        return "received";
+    }
 
 }
