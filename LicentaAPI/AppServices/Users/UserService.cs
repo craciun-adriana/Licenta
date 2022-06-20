@@ -47,5 +47,14 @@ namespace LicentaAPI.AppServices.Users
         {
             _userRepo.Update(user);
         }
+
+        public void DeleteUser(string idUser)
+        {
+            var user = _userRepo.GetUserById(idUser);
+            if (user != null)
+            {
+                _userRepo.Delete(user);
+            }
+        }
     }
 }

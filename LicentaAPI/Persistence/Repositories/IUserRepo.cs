@@ -11,6 +11,8 @@ namespace LicentaAPI.Persistence.Repositories
 
         public void Update(AppUser entity);
 
+        public void Delete(AppUser entity);
+
         public IEnumerable<AppUser> FindUsersByUsername(string username);
 
         public IEnumerable<AppUser> FindFriendsByUsername(string username, IEnumerable<string> listfiendsId);

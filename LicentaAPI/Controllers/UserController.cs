@@ -49,5 +49,15 @@ namespace LicentaAPI.Controllers
             var loggedInUserId = _userManager.GetUserId(HttpContext.User);
             return Ok(_userService.FindFriendsByUsername(userName, loggedInUserId));
         }
+
+        [Authorize]
+        [HttpDelete("delete")]
+        [SwaggerResponse(200, "Friends with the given string in userName.")]
+        public IActionResult DeleteUser()
+        {
+            var user = _userManager.GetUserId(HttpContext.User);
+            _userService.DeleteUser(user);
+            return Ok();
+        }
     }
 }

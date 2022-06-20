@@ -13,5 +13,7 @@ namespace LicentaAPI.AppServices.Users
         public PublicUserDetails GetUserById(string userId);
 
         public void Update(AppUser user);
+
+        public void DeleteUser(string idUser);
     }
 }

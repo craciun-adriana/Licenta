@@ -150,4 +150,10 @@ export class ProfilePageComponent implements OnInit {
             this.reviewSeries = response;
         })
     }
+
+    deleteUser(): void {
+        this.licentaService.deleteUser().subscribe(_ => {
+            this.router.navigate(['login']);
+        });
+    }
 }

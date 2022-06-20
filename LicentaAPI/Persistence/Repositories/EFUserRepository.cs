@@ -51,5 +51,16 @@ namespace LicentaAPI.Persistence.Repositories
             _dbContext.Users.Update(entity);
             _dbContext.SaveChanges();
         }
+
+        public void Delete(AppUser entity)
+        {
+            if(entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            _dbContext.Users.Remove(entity);
+            _dbContext.SaveChanges();
+        }
     }
 }

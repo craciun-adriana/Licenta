@@ -1,15 +1,23 @@
 <div class="grid-container">
+
+    <div>
+<span>Delete my account</span>
+    </div>
+
     <div id="picture">
         <img alt="Profile picture" [src]="user?.profilePicture" width="80" height="80" />
     </div>
+
     <div id="user-name">
         <span id="username"> {{user?.userName}} </span>
         <br><span>{{user?.firstName}} </span>
         <span>{{user?.lastName}} </span>
     </div>
+
     <div id="rank">
         <span>{{user?.firstName}} has finished {{user?.rank}} films, series and books.</span>
     </div>
+
     <div id="user-details">
         <div><b>Description:</b> "{{user?.description}}"</div>
         <div><b>Date of birth: </b>{{user?.dateOfBirth | date:'longDate'}}</div>
