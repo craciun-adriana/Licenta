@@ -13,6 +13,7 @@ export interface ReviewBookModel {
         title: string;
         author: string;
         description: string;
+        relaseDate: string
         prequeslId: string;
         sequelId: string;
         genre: Genre;
