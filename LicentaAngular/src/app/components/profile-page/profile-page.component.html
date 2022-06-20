@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div>
+    <div *ngIf="userId==''">
         <span>View your books with choosen status:</span>
         <mat-form-field appearance="fill">
             <mat-label>Status</mat-label>
@@ -63,7 +63,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let reviewFilm of reviewFilms">
-                    <td>{{reviewFilm.title}}</td>
+                    <td>{{reviewFilm.film?.title}}</td>
                 </tr>
             </tbody>
         </table>
@@ -76,7 +76,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let reviewSerie of reviewSeries">
-                    <td>{{reviewSerie.title}}</td>
+                    <td>{{reviewSerie.series?.title}}</td>
                 </tr>
             </tbody>
         </table>

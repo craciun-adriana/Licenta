@@ -121,7 +121,7 @@
                 <input *ngIf="isAdmin" formControlName="nrEps" type="text" value="{{fsbDetails?.director}}">
             </div>
         </div>
-        <div class="updateFSB">
+        <div *ngIf="isAdmin" class="updateFSB">
             <button mat-raised-button color="primary" id="update" (click)="updateFSB()">Update</button>
         </div>
 

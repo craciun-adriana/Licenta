@@ -206,26 +206,26 @@ export class LicentaService {
             )
     }
 
-    getReviewFilmCompletedByIdUser(idUser: string): Observable<any> {
-        return this.http.get('/licenta/review-film/get-completed-by-user/' + idUser)
-            .pipe(
-                catchError(error => {
-                    return of([]);
-                })
-            );
-    }
-
-    getReviewSeriesCompletedByIdUser(idUser: string): Observable<any> {
-        return this.http.get('/licenta/review-series/get-completed-by-user/' + idUser)
-            .pipe(
-                catchError(error => {
-                    return of([]);
-                })
-            );
-    }
-
     getReviewBookByStatus(status: Status): Observable<any> {
         return this.http.get(`/licenta/review-books/get-by-status/${status}`)
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            );
+    }
+
+    getReviewFilmByStatus(status: Status): Observable<any> {
+        return this.http.get(`/licenta/review-films/get-by-status/${status}`)
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            );
+    }
+
+    getReviewSeriesByStatus(status: Status): Observable<any> {
+        return this.http.get(`/licenta/review-series/get-by-status/${status}`)
             .pipe(
                 catchError(error => {
                     return of([]);
@@ -242,8 +242,8 @@ export class LicentaService {
             );
     }
 
-    getReviewFilmByStatus(status: Status): Observable<any> {
-        return this.http.get('/licenta/review-films/get-by-status/' + status)
+    getReviewFilmByStatusAndUserId(status: Status, idUser: string): Observable<any> {
+        return this.http.get(`/licenta/review-films/get-by-status/${status}/${idUser}`)
             .pipe(
                 catchError(error => {
                     return of([]);
@@ -251,8 +251,8 @@ export class LicentaService {
             );
     }
 
-    getReviewSeriesByStatus(status: Status): Observable<any> {
-        return this.http.get('/licenta/review-series/get-by-status/' + status)
+    getReviewSeriesByStatusAndUserId(status: Status, idUser: string): Observable<any> {
+        return this.http.get(`/licenta/review-series/get-by-status/${status}/${idUser}`)
             .pipe(
                 catchError(error => {
                     return of([]);

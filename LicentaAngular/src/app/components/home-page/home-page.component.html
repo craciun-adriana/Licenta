@@ -94,7 +94,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let reviewFilm of reviewFilms">
-                <td>{{reviewFilm.title}}</td>
+                <td>{{reviewFilm.film.title}}</td>
             </tr>
         </tbody>
     </table>
@@ -107,7 +107,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let reviewSerie of reviewSeries">
-                <td>{{reviewSerie.title}}</td>
+                <td>{{reviewSerie.series.title}}</td>
             </tr>
         </tbody>
     </table>
@@ -136,7 +136,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let reviewFilmO of reviewFilmsO">
-                <td>{{reviewFilmO.title}}</td>
+                <td>{{reviewFilmO.film.title}}</td>
             </tr>
         </tbody>
     </table>
@@ -149,7 +149,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let reviewSerieO of reviewSeriesO">
-                <td>{{reviewSerieO.title}}</td>
+                <td>{{reviewSerieO.series.title}}</td>
             </tr>
         </tbody>
     </table>

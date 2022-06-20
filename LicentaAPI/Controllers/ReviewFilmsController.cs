@@ -54,12 +54,13 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpGet("get-completed-by-user/{idUser}")]
-        [SwaggerResponse(200, "ReviewFilm with the given idUser and status completed.")]
-        public IActionResult GetReviewFilmCompletedByIdUser(string idUser)
+        [HttpGet("get-by-status/{status}/{idUser}")]
+        [SwaggerResponse(200, "ReviewFilm with the given status.")]
+        [SwaggerResponse(404, "ReviewFilm can't be found.")]
+        public IActionResult GetReviewFilmByStatus(Status status, string idUser)
         {
-            var reviewFilmsDTO = _reviewFilmsService.GetReviewFilmCompletedByIdUser(idUser);
-            return Ok(reviewFilmsDTO);
+            var reviewFilm = _reviewFilmsService.GetByStatus(status, idUser);
+            return Ok(reviewFilm);
         }
 
         [Authorize]

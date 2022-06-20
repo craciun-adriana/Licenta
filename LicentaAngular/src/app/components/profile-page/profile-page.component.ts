@@ -57,11 +57,11 @@ export class ProfilePageComponent implements OnInit {
                         this.reviewBooks = response;
                     })
 
-                    this.licentaService.getReviewFilmCompletedByIdUser(this.userId).subscribe((response: ReviewFilmModel[]) => {
+                    this.licentaService.getReviewFilmByStatusAndUserId(Status.Completed, this.userId).subscribe((response: ReviewFilmModel[]) => {
                         this.reviewFilms = response;
                     })
 
-                    this.licentaService.getReviewSeriesCompletedByIdUser(this.userId).subscribe((response: ReviewSeriesModel[]) => {
+                    this.licentaService.getReviewSeriesByStatusAndUserId(Status.Completed, this.userId).subscribe((response: ReviewSeriesModel[]) => {
                         this.reviewSeries = response;
                     })
 
@@ -140,6 +140,14 @@ export class ProfilePageComponent implements OnInit {
 
         this.licentaService.getReviewBookByStatusAndUserId(status, this.user.id).subscribe((response: ReviewBookModel[]) => {
             this.reviewBooks = response;
+        })
+
+        this.licentaService.getReviewFilmByStatusAndUserId(status, this.user.id).subscribe((response: ReviewFilmModel[]) => {
+            this.reviewFilms = response;
+        })
+
+        this.licentaService.getReviewSeriesByStatusAndUserId(status, this.user.id).subscribe((response: ReviewSeriesModel[]) => {
+            this.reviewSeries = response;
         })
     }
 }
