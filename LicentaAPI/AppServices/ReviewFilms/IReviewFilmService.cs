@@ -18,7 +18,7 @@ namespace LicentaAPI.AppServices.ReviewFilms
 
         public IEnumerable<ReviewFilmDTO> GetByStatus(Status status, string idUser);
 
-        public IEnumerable<ReviewFilm> GetReviewFilmByIdFilm(string idFilm);
+        public IEnumerable<ReviewFilmDTO> GetReviewFilmByIdFilm(string idFilm);
 
         public IEnumerable<ReviewFilmDTO> GetReviewFilmCompletedByIdUser(string idUser);
 

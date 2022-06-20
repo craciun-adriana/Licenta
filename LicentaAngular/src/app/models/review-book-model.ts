@@ -9,11 +9,13 @@ export interface ReviewBookModel {
     grade: number;
     review: string;
     status: Status;
-    title: string;
-    author: string;
-    description: string;
-    prequeslId: string;
-    sequelId: string;
-    genre: Genre;
-    picture: string;
+    book: {
+        title: string;
+        author: string;
+        description: string;
+        prequeslId: string;
+        sequelId: string;
+        genre: Genre;
+        picture: string;
+    }
 }

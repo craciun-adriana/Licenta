@@ -66,7 +66,7 @@ namespace LicentaAPI.Controllers
         public IActionResult FindUserGroup()
         {
             var userId = _userManager.GetUserId(HttpContext.User);
-            return Ok(_groupService.FindUserGroup(userId));
+            return Ok(_groupService.FindUserGroups(userId));
         }
     }
 }

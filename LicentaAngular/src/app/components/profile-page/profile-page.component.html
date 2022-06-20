@@ -27,43 +27,58 @@
         </div>
     </div>
 
+    <div>
+        <span>View your books with choosen status:</span>
+        <mat-form-field appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select (selectionChange)="filterReviews($event.value)" value="Completed">
+                <mat-option value="Planning">Planning</mat-option>
+                <mat-option value="Completed">Completed</mat-option>
+                <mat-option value="Ongoing">Ongoing</mat-option>
+                <mat-option value="OnHold">OnHold</mat-option>
+                <mat-option value="Dropped">Dropped</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
 
-    <table id="books-read">
-        <thead>
-            <tr>
-                <th>Books read by {{user?.userName}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let reviewBook of reviewBooks">
-                <td>{{reviewBook.title}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div>
+        <table id="books-read">
+            <thead>
+                <tr>
+                    <th>Books read by {{user?.userName}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reviewBook of reviewBooks">
+                    <td>{{reviewBook.book?.title}}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <table id="films-viewed">
-        <thead>
-            <tr>
-                <th>Films viewed by {{user?.userName}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let reviewFilm of reviewFilms">
-                <td>{{reviewFilm.title}}</td>
-            </tr>
-        </tbody>
-    </table>
+        <table id="films-viewed">
+            <thead>
+                <tr>
+                    <th>Films viewed by {{user?.userName}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reviewFilm of reviewFilms">
+                    <td>{{reviewFilm.title}}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <table id="series-viewed">
-        <thead>
-            <tr>
-                <th>Series viewed by {{user?.userName}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let reviewSerie of reviewSeries">
-                <td>{{reviewSerie.title}}</td>
-            </tr>
-        </tbody>
-    </table>
+        <table id="series-viewed">
+            <thead>
+                <tr>
+                    <th>Series viewed by {{user?.userName}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reviewSerie of reviewSeries">
+                    <td>{{reviewSerie.title}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

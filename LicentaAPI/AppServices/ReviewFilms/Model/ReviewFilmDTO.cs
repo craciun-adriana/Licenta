@@ -12,6 +12,8 @@ namespace LicentaAPI.AppServices.ReviewFilms.Model
 
         public string IdUser { get; set; }
 
+        public string Username { get; set; }
+
         public string IdFilm { get; set; }
 
         public int? Grade { get; set; }

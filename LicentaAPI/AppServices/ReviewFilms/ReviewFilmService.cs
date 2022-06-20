@@ -87,9 +87,24 @@ namespace LicentaAPI.AppServices.ReviewFilms
             });
         }
 
-        public IEnumerable<ReviewFilm> GetReviewFilmByIdFilm(string idFilm)
+        public IEnumerable<ReviewFilmDTO> GetReviewFilmByIdFilm(string idFilm)
         {
-            return _reviewFilmRepo.FindReviewFilmByIdFilm(idFilm);
+            return _reviewFilmRepo.FindReviewFilmByIdFilm(idFilm)
+                .Select(rb =>
+                {
+                    var film = _filmRepo.GetById(rb.IdFilm);
+                    return new ReviewFilmDTO
+                    {
+                        IdFilm = rb.IdFilm,
+                        Film = film,
+                        Grade = rb.Grade,
+                        IdReview = rb.ID,
+                        IdUser = rb.IdUser,
+                        Username = _userRepo.GetUserById(rb.IdUser)?.UserName ?? "User deleted",
+                        Review = rb.Review,
+                        Status = rb.Status,
+                    };
+                });
         }
 
         public ReviewFilm GetReviewFilmByIdFilmAndUser(string idFilm, string idUser)

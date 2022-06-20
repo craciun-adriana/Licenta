@@ -1,6 +1,6 @@
-<h1>List of what we have to offer you :)</h1>
+<!-- <h1>List of what we have to offer you :)</h1> -->
 
-<div class="tables">
+<!-- <div class="tables">
     <table>
         <thead>
             <tr>
@@ -41,7 +41,7 @@
             </tr>
         </tbody>
     </table>
-</div>
+</div> -->
 
 <div>
     <h1>Your appointments!</h1>
@@ -81,7 +81,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let reviewBook of reviewBooks">
-                <td>{{reviewBook.title}}</td>
+                <td>{{reviewBook.book.title}}</td>
             </tr>
         </tbody>
     </table>
@@ -123,7 +123,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let reviewBookO of reviewBooksO">
-                <td>{{reviewBookO.title}}</td>
+                <td>{{reviewBookO.book.title}}</td>
             </tr>
         </tbody>
     </table>
@@ -222,7 +222,7 @@
                     <input matInput type="text" formControlName="location">
                 </mat-form-field>
             </div>
-            <button mat-raised-button color="primary" (click)="appointmentCreate()">Create appointment</button>
+            <button class="add-appointment" mat-raised-button color="primary" (click)="appointmentCreate()">Create appointment</button>
         </form>
     </div>
 </div>

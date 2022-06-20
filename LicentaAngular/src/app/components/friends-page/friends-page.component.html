@@ -31,4 +31,14 @@
             </div>
         </div>
     </div>
+
+
+    <div id="groups">
+        <div *ngFor="let group of groups">You are member in following groups:
+            <div>
+                <img alt="Profile picture" [src]="group.picture" width="50" height="50" />
+                <span>{{group.name}}</span>
+            </div>
+        </div>
+    </div>
 </div>

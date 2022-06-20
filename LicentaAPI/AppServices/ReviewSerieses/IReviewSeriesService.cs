@@ -16,7 +16,7 @@ namespace LicentaAPI.AppServices.ReviewSerieses
 
         public IEnumerable<ReviewSeriesDTO> GetByStatus(Status status, string idUser);
 
-        public IEnumerable<ReviewSeries> GetReviewSeriesByIdSeries(string idSeries);
+        public IEnumerable<ReviewSeriesDTO> GetReviewSeriesByIdSeries(string idSeries);
 
         public IEnumerable<ReviewSeriesDTO> GetReviewSeriesCompletedByIdUser(string idUser);
 

@@ -36,6 +36,13 @@ namespace LicentaAPI.AppServices.Messages
             try
             {
                 _messageRepo.Add(message);
+
+                if (message.IdGroup != null)
+                {
+                    var group = _groupRepo.GetById(message.IdGroup);
+                    group.LastMessageTimestamp = message.SendTime;
+                    _groupRepo.Update(group);
+                }
             }
             catch (ArgumentNullException)
             {

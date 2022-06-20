@@ -5,36 +5,36 @@
 }
 
 #formAppointment {
-    margin-top: 30px;
-    margin-left: 400px;
-    margin-right: 400px;
-    margin-bottom: 100px;
+    margin: 4vh 15vw;
     display: flex;
     justify-content: center;
     flex-direction: column;
-}
 
-#formAppointment span {
-    color: aliceblue;
+    background-color: #7A7A7A;
+    box-shadow: 1px 1px 2px black, 0 0 15px black, 0 0 10px gray;
+
+    span {
+        color: aliceblue;
+    }
 }
 
 .content {
     display: flex;
     justify-content: center;
+
+    span {
+        display: inline-block;
+        text-align: right;
+        width: 140px;
+        margin: 10px;
+    }
+
+    input {
+        width: 190px;
+    }
+
 }
 
-.content span {
-    display: inline-block;
-    text-align: right;
-    width: 140px;
-    margin: 10px;
-}
-
-.content input {
-    width: 190px;
-}
-
-form {
-    background-color: #7A7A7A;
-    box-shadow: 1px 1px 2px black, 0 0 px black, 0 0 10px gray;
+#add-apppointment {
+    padding-bottom: 10vh;
 }

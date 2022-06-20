@@ -10,14 +10,29 @@
     border: 1px solid black;
     text-align: center;
     height: 300px;
+
+    div {
+        align-content: flex-start;
+    }
 }
 
-#userList {
-    overflow-y: auto;
-}
-
+#userList,
 #groupList {
     overflow-y: auto;
+    max-height: 30vh;
+
+    div {
+        display: flex;
+        justify-content: start;
+        margin: 0.5em 1em;
+        align-items: center;
+
+        img {
+            margin-right: 1em;
+            width: 60px;
+            height: 60px;
+        }
+    }
 }
 
 .showMess {

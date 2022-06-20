@@ -36,26 +36,29 @@
     </div>
 
     <div class="conversationLists">
-
-        <div *ngFor="let user of lastConversation" id="userList" (click)="openChatWithUser(user.id)">
-            <img alt="Profile picture" [src]="user.profilePicture" width="80" height="80" />
-            <span>{{user.userName}}</span>
+        <div id="userList">
+            <div *ngFor="let user of lastConversation" (click)="openChatWithUser(user.id)">
+                <img alt="Profile picture" [src]="user.profilePicture ? user.profilePicture : '/assets/img/default-user-image.png'" />
+                <span>{{user.userName}}</span>
+            </div>
         </div>
-        <div *ngFor="let group of lastConversationG" id="groupList" (click)="openChatWithGroup(group.id)">
-            <img alt="Profile picture" [src]="group.picture" width="80" height="80" />
-            <span>{{group.name}}</span>
+        <div id="groupList">
+            <div *ngFor="let group of lastConversationG" (click)="openChatWithGroup(group.id)">
+                <img alt="Profile picture" [src]="group.picture ? group.picture : '/assets/img/default-user-image.png'" />
+                <span>{{group.name}}</span>
+            </div>
         </div>
     </div>
 
     <div class="showMess">
         <ul>
-            <li *ngFor="let message of messages" class="message-container"
-                [ngClass]="getMessageClass(message.idSender)" matTooltip="{{message.sendTime | date : 'short'}}">
+            <li *ngFor="let message of messages" class="message-container" [ngClass]="getMessageClass(message.idSender)"
+                matTooltip="{{message.sendTime | date : 'short'}}">
                 <img *ngIf="message.idSender!==userId" [src]="chatUser?.profilePicture" width="20" height="20">
-                <div class="message" >
+                <div class="message">
                     <span *ngIf="isGroup">{{message.nameSender}}</span>
                     <br *ngIf="isGroup">
-                    <span >{{message.text}}</span>
+                    <span>{{message.text}}</span>
                 </div>
             </li>
         </ul>

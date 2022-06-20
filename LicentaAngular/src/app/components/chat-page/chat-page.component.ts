@@ -106,6 +106,7 @@ export class ChatPageComponent implements OnInit {
         this.licentaService.sendMessage(message).subscribe(response => {
             this.openChatWithGroup(message.idGroup!);
         });
+        
     }
 
     openChatWithGroup(groupId: string): void {

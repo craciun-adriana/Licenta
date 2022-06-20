@@ -206,15 +206,6 @@ export class LicentaService {
             )
     }
 
-    getReviewBookCompletedByIdUser(idUser: string): Observable<any> {
-        return this.http.get('/licenta/review-book/get-completed-by-user/' + idUser)
-            .pipe(
-                catchError(error => {
-                    return of([]);
-                })
-            );
-    }
-
     getReviewFilmCompletedByIdUser(idUser: string): Observable<any> {
         return this.http.get('/licenta/review-film/get-completed-by-user/' + idUser)
             .pipe(
@@ -234,7 +225,16 @@ export class LicentaService {
     }
 
     getReviewBookByStatus(status: Status): Observable<any> {
-        return this.http.get('/licenta/review-books/get-by-status/' + status)
+        return this.http.get(`/licenta/review-books/get-by-status/${status}`)
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            );
+    }
+
+    getReviewBookByStatusAndUserId(status: Status, idUser: string): Observable<any> {
+        return this.http.get(`/licenta/review-books/get-by-status/${status}/${idUser}`)
             .pipe(
                 catchError(error => {
                     return of([]);

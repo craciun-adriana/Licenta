@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FriendshipModel } from 'src/app/models/friendship-model';
+import { GroupModel } from 'src/app/models/group-model';
 import { UserDetails } from 'src/app/models/user-details';
 import { LicentaService } from 'src/app/services/licenta-service.service';
 
@@ -9,9 +10,12 @@ import { LicentaService } from 'src/app/services/licenta-service.service';
     styleUrls: ['./friends-page.component.scss']
 })
 export class FriendsPageComponent implements OnInit {
+
     friendshipReq: FriendshipModel[] = [];
     friends: UserDetails[] = [];
     users: UserDetails[] = [];
+    groups: GroupModel[] = [];
+
     constructor(
         private licentaservice: LicentaService
     ) { }
@@ -28,6 +32,10 @@ export class FriendsPageComponent implements OnInit {
 
         this.licentaservice.getFriendsForUser().subscribe((response: UserDetails[]) => {
             this.friends = response;
+        })
+
+        this.licentaservice.findUserGroups().subscribe((response: GroupModel[]) => {
+            this.groups = response;
         })
 
     }

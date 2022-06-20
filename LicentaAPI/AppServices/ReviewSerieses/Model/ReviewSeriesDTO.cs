@@ -12,6 +12,8 @@ namespace LicentaAPI.AppServices.ReviewSerieses.Model
 
         public string IdUser { get; set; }
 
+        public string Username { get; set; }
+
         public string IdSeries { get; set; }
 
         public int? Grade { get; set; }

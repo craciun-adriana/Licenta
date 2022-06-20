@@ -87,9 +87,24 @@ namespace LicentaAPI.AppServices.ReviewSerieses
                  });
         }
 
-        public IEnumerable<ReviewSeries> GetReviewSeriesByIdSeries(string idSeries)
+        public IEnumerable<ReviewSeriesDTO> GetReviewSeriesByIdSeries(string idSeries)
         {
-            return _reviewSeriesRepo.FindReviewSeriesByIdSeries(idSeries);
+            return _reviewSeriesRepo.FindReviewSeriesByIdSeries(idSeries)
+                 .Select(rb =>
+                 {
+                     var series = _seriesRepo.GetById(rb.IdSeries);
+                     return new ReviewSeriesDTO
+                     {
+                         IdSeries = rb.IdSeries,
+                         Series = series,
+                         Grade = rb.Grade,
+                         IdReview = rb.ID,
+                         IdUser = rb.IdUser,
+                         Username = _userRepo.GetUserById(rb.IdUser)?.UserName ?? "User deleted",
+                         Review = rb.Review,
+                         Status = rb.Status,
+                     };
+                 });
         }
 
         public ReviewSeries GetReviewSeriesByIdSeriesAndUser(string idSeries, string idUser)

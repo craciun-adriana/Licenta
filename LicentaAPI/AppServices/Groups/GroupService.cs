@@ -42,7 +42,7 @@ namespace LicentaAPI.AppServices.Groups
             return group;
         }
 
-        public IEnumerable<Group> FindUserGroup(string userId)
+        public IEnumerable<Group> FindUserGroups(string userId)
         {
             var groupsId = _groupMemberRepo.FindUserGroupsId(userId);
             return _groupRepo.GetGroupsByIds(groupsId);
