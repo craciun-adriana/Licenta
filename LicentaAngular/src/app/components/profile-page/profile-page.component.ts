@@ -31,6 +31,16 @@ export class ProfilePageComponent implements OnInit {
         status: new FormControl('', Validators.required),
     })
 
+    userDetailsForm = new FormGroup({
+        firstName: new FormControl('', Validators.required),
+        lastName: new FormControl('', Validators.required),
+        userName: new FormControl('', Validators.required),
+        dateOfBirth: new FormControl('', Validators.required),
+        sex: new FormControl('', Validators.required),
+        description: new FormControl('', Validators.required),
+        profilePicture: new FormControl('', Validators.required),
+    })
+
     constructor(
         private licentaService: LicentaService,
         private router: Router,
@@ -152,8 +162,29 @@ export class ProfilePageComponent implements OnInit {
     }
 
     deleteUser(): void {
+
+        const deleteConfirmation = confirm("Are you sure you want to delete your account?");
+        if (!deleteConfirmation) {
+            return;
+        }
         this.licentaService.deleteUser().subscribe(_ => {
             this.router.navigate(['login']);
         });
+    }
+
+    updateUser(): void {
+        const updateUser: UserDetails = {
+            userName: this.userDetailsForm.get('userName')?.value,
+            firstName: this.userDetailsForm.get('firstName')?.value,
+            lastName: this.userDetailsForm.get('lastName')?.value,
+            description: this.userDetailsForm.get('description')?.value,
+            dateOfBirth: this.userDetailsForm.get('dateOfBirth')?.value,
+            sex: this.userDetailsForm.get('sex')?.value,
+            profilePicture: this.userDetailsForm.get('profilePicture')?.value,
+        }
+
+        this.licentaService.updateUser(updateUser).subscribe(_ => {
+            window.location.reload();
+        })
     }
 }

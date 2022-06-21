@@ -1,92 +1,119 @@
-<div class="grid-container">
+<form [formGroup]="userDetailsForm">
+    <div class="grid-container">
 
-    <div>
-        <button (click)="deleteUser()">Delete my account</button>
-    </div>
+        <div>
+            <button (click)="deleteUser()">Delete my account</button>
+        </div>
 
-    <div id="picture">
-        <img alt="Profile picture" [src]="user?.profilePicture" width="80" height="80" />
-    </div>
+        <div id="picture">
+            <img alt="Profile picture" [src]="user?.profilePicture" width="80" height="80" />
+        </div>
 
-    <div id="user-name">
-        <span id="username"> {{user?.userName}} </span>
-        <br><span>{{user?.firstName}} </span>
-        <span>{{user?.lastName}} </span>
-    </div>
+        <div id="user-name">
+            <span *ngIf="userId !==''" id="username"> {{user?.userName}} </span>
+            <input *ngIf="userId==''" formControlName="userName" type="text" value="{{user?.userName}}">
 
-    <div id="rank">
-        <span>{{user?.firstName}} has finished {{user?.rank}} films, series and books.</span>
-    </div>
+            <br><span *ngIf="userId!==''">{{user?.firstName}} </span>
+            <input *ngIf="userId==''" formControlName="firstName" type="text" value="{{user?.firstName}}">
 
-    <div id="user-details">
-        <div><b>Description:</b> "{{user?.description}}"</div>
-        <div><b>Date of birth: </b>{{user?.dateOfBirth | date:'longDate'}}</div>
-        <div><b>Sex: </b> {{user?.sex}}</div>
-    </div>
+            <span *ngIf="userId!==''">{{user?.lastName}} </span>
+            <input *ngIf="userId==''" formControlName="lastname" type="text" value="{{user?.lastName}}">
 
-    <div *ngIf="userId!==''" id="friendship">
-        <button *ngIf="friendshipStatus==='not exist'" (click)="sendFriendshipRequest()">Send friendship
-            request</button>
-        <button *ngIf="friendshipStatus==='friends'" (click)="deleteFriendship()">Delete friendship</button>
-        <button *ngIf="friendshipStatus==='received'" (click)="acceptFriendship()">Accept friend request</button>
-        <div *ngIf="friendshipStatus==='sent'">
-            <span>Wait for {{user?.userName}} to accept your friendship request,</span>
-            <button (click)="deleteFriendship()">Or delete friendship request.</button>
+        </div>
+
+        <div id="rank">
+            <span>{{user?.firstName}} has finished {{user?.rank}} films, series and books.</span>
+        </div>
+
+        <div id="user-details">
+            <div><b>Description: </b> <span *ngIf="userId!==''">{{user?.description}}</span>
+                <textarea *ngIf="userId==''" formControlName="description" type="text" value="{{user?.description}}">
+
+            </textarea>
+            </div>
+
+            <div><b>Date of birth: </b> <span *ngIf="userId!==''">{{user?.dateOfBirth | date:'longDate'}}</span>
+                <input *ngIf="userId==''" formControlName="dateOfBirth" type="text" value="{{user?.description}}">
+            </div>
+
+            <div><b>Sex: </b> <span *ngIf="userId!==''">{{user?.sex}}</span>
+
+                <select *ngIf="userId==''" formControlName="sex" type="text" [value]="user?.sex">
+                    <option value="Other">Other</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+        </div>
+
+        <div *ngIf="userId!==''" id="friendship">
+            <button *ngIf="friendshipStatus==='not exist'" (click)="sendFriendshipRequest()">Send friendship
+                request</button>
+            <button *ngIf="friendshipStatus==='friends'" (click)="deleteFriendship()">Delete friendship</button>
+            <button *ngIf="friendshipStatus==='received'" (click)="acceptFriendship()">Accept friend request</button>
+            <div *ngIf="friendshipStatus==='sent'">
+                <span>Wait for {{user?.userName}} to accept your friendship request,</span>
+                <button (click)="deleteFriendship()">Or delete friendship request.</button>
+            </div>
+        </div>
+
+        <div *ngIf="userId==''">
+            <span>View your books with choosen status:</span>
+            <mat-form-field appearance="fill">
+                <mat-label>Status</mat-label>
+                <mat-select (selectionChange)="filterReviews($event.value)" value="Completed">
+                    <mat-option value="Planning">Planning</mat-option>
+                    <mat-option value="Completed">Completed</mat-option>
+                    <mat-option value="Ongoing">Ongoing</mat-option>
+                    <mat-option value="OnHold">OnHold</mat-option>
+                    <mat-option value="Dropped">Dropped</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <table id="books-read">
+                <thead>
+                    <tr>
+                        <th>Books read by {{user?.userName}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let reviewBook of reviewBooks">
+                        <td>{{reviewBook.book?.title}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table id="films-viewed">
+                <thead>
+                    <tr>
+                        <th>Films viewed by {{user?.userName}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let reviewFilm of reviewFilms">
+                        <td>{{reviewFilm.film?.title}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table id="series-viewed">
+                <thead>
+                    <tr>
+                        <th>Series viewed by {{user?.userName}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let reviewSerie of reviewSeries">
+                        <td>{{reviewSerie.series?.title}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <div *ngIf="userId==''">
-        <span>View your books with choosen status:</span>
-        <mat-form-field appearance="fill">
-            <mat-label>Status</mat-label>
-            <mat-select (selectionChange)="filterReviews($event.value)" value="Completed">
-                <mat-option value="Planning">Planning</mat-option>
-                <mat-option value="Completed">Completed</mat-option>
-                <mat-option value="Ongoing">Ongoing</mat-option>
-                <mat-option value="OnHold">OnHold</mat-option>
-                <mat-option value="Dropped">Dropped</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-
     <div>
-        <table id="books-read">
-            <thead>
-                <tr>
-                    <th>Books read by {{user?.userName}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let reviewBook of reviewBooks">
-                    <td>{{reviewBook.book?.title}}</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <table id="films-viewed">
-            <thead>
-                <tr>
-                    <th>Films viewed by {{user?.userName}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let reviewFilm of reviewFilms">
-                    <td>{{reviewFilm.film?.title}}</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <table id="series-viewed">
-            <thead>
-                <tr>
-                    <th>Series viewed by {{user?.userName}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let reviewSerie of reviewSeries">
-                    <td>{{reviewSerie.series?.title}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <button (click)="updateUser()">Update my informations</button>
     </div>
-</div>
+</form>

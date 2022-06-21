@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ok } from 'assert';
 import { catchError, map, Observable, of } from 'rxjs';
-import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { CreateAppointmentModel } from '../models/appointment-model';
 import { CreateBookModel } from '../models/book-model';
 import { CreateFilmModel } from '../models/film-model';
@@ -84,6 +82,15 @@ export class LicentaService {
     deleteUser(): Observable<any> {
         return this.http.delete('/licenta/user/delete')
             .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+    }
+
+    updateUser(updateUser: UserDetails): Observable<any> {
+        return this.http.post('/licenta/user/update', updateUser)
+            .pipe            (
                 catchError(error => {
                     return of(null);
                 })

@@ -17,6 +17,10 @@ namespace LicentaAPI.Controllers
         protected async Task<bool> UserIsAdminAsync()
         {
             var user = await _userManager.FindByIdAsync(_userManager.GetUserId(HttpContext.User));
+            if (user == null)
+            {
+                return false;
+            }
             return user.IsAdmin;
         }
 

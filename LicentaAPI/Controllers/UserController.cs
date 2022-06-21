@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Threading.Tasks;
 
 namespace LicentaAPI.Controllers
 {
@@ -15,11 +16,13 @@ namespace LicentaAPI.Controllers
     public class UserController : BaseController
     {
         private readonly IUserService _userService;
+        private readonly SignInManager<AppUser> _signInManager;
         private readonly IMappingCoordinator _mapper;
 
-        public UserController(IUserService userService, IMappingCoordinator mapper, UserManager<AppUser> userManager) : base(userManager)
+        public UserController(IUserService userService, IMappingCoordinator mapper, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager) : base(userManager)
         {
             _userService = userService;
+            _signInManager = signInManager;
             _mapper = mapper;
         }
 
@@ -77,15 +80,15 @@ namespace LicentaAPI.Controllers
             return Ok(_userService.Update(userUpdate));
         }
 
-        ///[Authorize]
-        ///[HttpDelete("delete/{password}")]
-        ///[SwaggerResponse(200, "Friends with the given string in userName.")]
-        ///public IActionResult DeleteUser(string password)
-        ///{
-        ///var user = _userManager.GetUserId(HttpContext.User);
-        ///if (password==user.password)
-        ///_userService.DeleteUser(user);
-        ///return Ok();
-        ///}
+        [Authorize]
+        [HttpDelete("delete")]
+        [SwaggerResponse(200, "User was deleted.")]
+        public async Task<IActionResult> DeleteUser()
+        {
+            var user = _userManager.GetUserId(HttpContext.User);
+            await _signInManager.SignOutAsync();
+            _userService.DeleteUser(user);
+            return Ok();
+        }
     }
 }
