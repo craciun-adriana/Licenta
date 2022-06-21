@@ -6,17 +6,6 @@
     <input type="submit" (click)="getBookByTitle(bookSearchByTitleInput.value)" value="Submit">
 </form>
 
-<!---<div id="search-bar-genre">
-    <form>
-        <input #bookSearchByTitleInput id="search-text" type="text" />
-        <input type="submit" (click)="(bookSearchByTitleInput.value)" value="Submit">
-    </form>
-    <div>
-        <div *ngFor="let foundBook of foundBooksByTitle">
-            <span (click)="openDetailsPageForBook(foundBook.id)">{{foundBook.title}}</span>
-        </div>
-    </div>
-</div>-->
 <div>
     <select (change)="getBookByGenre($event)" id="select-genre-search">
         <option value="">Select genre</option>

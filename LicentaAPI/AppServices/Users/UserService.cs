@@ -1,4 +1,5 @@
 ﻿using LicentaAPI.AppServices.Models;
+using LicentaAPI.AppServices.Users.Models;
 using LicentaAPI.Infrastructure.Mapper;
 using LicentaAPI.Persistence.Models;
 using LicentaAPI.Persistence.Repositories;
@@ -43,9 +44,16 @@ namespace LicentaAPI.AppServices.Users
             return _mapper.Map<AppUser, PublicUserDetails>(user);
         }
 
-        public void Update(AppUser user)
+        public UserUpdateResult Update(UserUpdate userUpdate)
         {
+            var user = _mapper.Map<UserUpdate, AppUser>(userUpdate);
             _userRepo.Update(user);
+
+            return new UserUpdateResult
+            {
+                Error = "",
+                UserUpdate = user
+            };
         }
 
         public void DeleteUser(string idUser)
@@ -55,6 +63,12 @@ namespace LicentaAPI.AppServices.Users
             {
                 _userRepo.Delete(user);
             }
+        }
+
+        public IEnumerable<PublicUserDetails> GetAllUsers(bool isAdmin)
+        {
+            var users = _userRepo.GetAllUsers(isAdmin);
+            return _mapper.Map<AppUser, PublicUserDetails>(users);
         }
     }
 }

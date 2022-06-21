@@ -16,5 +16,7 @@ namespace LicentaAPI.Persistence.Repositories
         public IEnumerable<AppUser> FindUsersByUsername(string username);
 
         public IEnumerable<AppUser> FindFriendsByUsername(string username, IEnumerable<string> listfiendsId);
+
+        public IEnumerable<AppUser> GetAllUsers(bool isAdmin);
     }
 }

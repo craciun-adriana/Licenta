@@ -1,0 +1,26 @@
+<h1>Amins</h1>
+
+<div *ngFor="let admin of admins" class="admins">
+    <div>
+        <img alt="Profile picture" [src]="admin.profilePicture" width="80" height="80" />
+    </div>
+    <div>
+        <a [routerLink]="'/details/book/' + admin.id">{{admin.userName}}</a>
+        <span>{{admin.firstName}}</span>
+        <span>{{admin.lastName}}</span>
+    </div>
+</div>
+
+<h1>Users</h1>
+
+<div *ngFor="let user of users" class="admins">
+    <div>
+        <img alt="Profile picture" [src]="user.profilePicture" width="80" height="80" />
+    </div>
+    <div>
+        <a [routerLink]="'/details/book/' + user.id">{{user.userName}}</a>
+        <span>{{user.firstName}}</span>
+        <span>{{user.lastName}}</span>
+    </div>
+    <!-- <button (click)="madeAdmin()">Made admin</button> -->
+</div>

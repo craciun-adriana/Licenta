@@ -54,13 +54,18 @@ namespace LicentaAPI.Persistence.Repositories
 
         public void Delete(AppUser entity)
         {
-            if(entity == null)
+            if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
             _dbContext.Users.Remove(entity);
             _dbContext.SaveChanges();
+        }
+
+        public IEnumerable<AppUser> GetAllUsers(bool isAdmin)
+        {
+            return _dbContext.Users.Where(user => user.IsAdmin.Equals(isAdmin));
         }
     }
 }

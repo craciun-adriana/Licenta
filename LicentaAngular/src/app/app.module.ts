@@ -38,6 +38,7 @@ import { AddBookComponent } from './components/add-book/add-book.component';
 import { AddFilmComponent } from './components/add-film/add-film.component';
 import { AddSeriesComponent } from './components/add-series/add-series.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
     declarations: [
@@ -57,7 +58,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         FsbDetailsPageComponent,
         AddBookComponent,
         AddFilmComponent,
-        AddSeriesComponent
+        AddSeriesComponent,
+        UsersComponent
     ],
     imports: [
         BrowserModule,

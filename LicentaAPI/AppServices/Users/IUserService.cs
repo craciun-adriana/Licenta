@@ -1,4 +1,5 @@
 ﻿using LicentaAPI.AppServices.Models;
+using LicentaAPI.AppServices.Users.Models;
 using LicentaAPI.Persistence.Models;
 using System.Collections.Generic;
 
@@ -12,8 +13,10 @@ namespace LicentaAPI.AppServices.Users
 
         public PublicUserDetails GetUserById(string userId);
 
-        public void Update(AppUser user);
+        public UserUpdateResult Update(UserUpdate user);
 
         public void DeleteUser(string idUser);
+
+        public IEnumerable<PublicUserDetails> GetAllUsers(bool isAdmin);
     }
 }

@@ -1,4 +1,7 @@
 ﻿using LicentaAPI.AppServices.Users;
+using LicentaAPI.AppServices.Users.Models;
+using LicentaAPI.Controllers.Models;
+using LicentaAPI.Infrastructure.Mapper;
 using LicentaAPI.Persistence.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -12,10 +15,12 @@ namespace LicentaAPI.Controllers
     public class UserController : BaseController
     {
         private readonly IUserService _userService;
+        private readonly IMappingCoordinator _mapper;
 
-        public UserController(IUserService userService, UserManager<AppUser> userManager) : base(userManager)
+        public UserController(IUserService userService, IMappingCoordinator mapper, UserManager<AppUser> userManager) : base(userManager)
         {
             _userService = userService;
+            _mapper = mapper;
         }
 
         [Authorize]
@@ -42,6 +47,14 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
+        [HttpGet("get-all-users/{idAdmin}")]
+        [SwaggerResponse(200, "User with the given id.")]
+        public IActionResult GetAllUsers(bool isAdmin)
+        {
+            return Ok(_userService.GetAllUsers(isAdmin));
+        }
+
+        [Authorize]
         [HttpGet("find-friends/{userName}")]
         [SwaggerResponse(200, "Friends with the given string in userName.")]
         public IActionResult FindFriendsByUsername(string userName)
@@ -51,13 +64,28 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpDelete("delete")]
-        [SwaggerResponse(200, "Friends with the given string in userName.")]
-        public IActionResult DeleteUser()
+        [HttpPatch("update")]
+        public IActionResult Update(UpdateUserRequest request)
         {
-            var user = _userManager.GetUserId(HttpContext.User);
-            _userService.DeleteUser(user);
-            return Ok();
+            var loggedUserId = _userManager.GetUserId(HttpContext.User);
+            if (request.ID != loggedUserId)
+            {
+                Unauthorized();
+            }
+            var userUpdate = _mapper.Map<UpdateUserRequest, UserUpdate>(request);
+
+            return Ok(_userService.Update(userUpdate));
         }
+
+        ///[Authorize]
+        ///[HttpDelete("delete/{password}")]
+        ///[SwaggerResponse(200, "Friends with the given string in userName.")]
+        ///public IActionResult DeleteUser(string password)
+        ///{
+        ///var user = _userManager.GetUserId(HttpContext.User);
+        ///if (password==user.password)
+        ///_userService.DeleteUser(user);
+        ///return Ok();
+        ///}
     }
 }

@@ -90,6 +90,15 @@ export class LicentaService {
             )
     }
 
+    getAllUsers(isAdmin: boolean): Observable<any> {
+        return this.http.get('/licenta/user/get-all-users' + isAdmin)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            );
+    }
+
     createBook(book: CreateBookModel): Observable<any> {
         return this.http.post('/licenta/book/create', book)
             .pipe(

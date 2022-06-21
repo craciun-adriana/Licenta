@@ -11,12 +11,10 @@ using LicentaAPI.AppServices.ReviewBooks.Model;
 using LicentaAPI.AppServices.ReviewFilms.Model;
 using LicentaAPI.AppServices.ReviewSerieses.Model;
 using LicentaAPI.AppServices.Serieses.Models;
+using LicentaAPI.AppServices.Users.Models;
 using LicentaAPI.Controllers.Models;
 using LicentaAPI.Persistence.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LicentaAPI.Infrastructure.Mapper
 {
@@ -112,6 +110,9 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<SeriesDTO, Series>();
                 cfg.CreateMap<UpdateSeriesRequest, SeriesUpdate>();
                 cfg.CreateMap<SeriesUpdate, Series>();
+
+                cfg.CreateMap<UpdateUserRequest, UserUpdate>();
+                cfg.CreateMap<UserUpdate, AppUser>();
             });
         }
 
