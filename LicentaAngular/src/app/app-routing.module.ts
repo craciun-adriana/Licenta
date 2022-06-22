@@ -14,6 +14,7 @@ import { FsbDetailsPageComponent } from './components/fsb-details-page/fsb-detai
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { AddFilmComponent } from './components/add-film/add-film.component';
 import { AddSeriesComponent } from './components/add-series/add-series.component';
+import { UsersComponent } from './components/users/users.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,9 @@ const routes: Routes = [
     { path: 'profile', component: ProfilePageComponent },
     { path: 'profile/:id', component: ProfilePageComponent },
     { path: 'details/:type/:id', component: FsbDetailsPageComponent },
+    { path: 'users', component: UsersComponent },
+    { path: '**', redirectTo: '/home' },
+
 ]
 
 @NgModule({

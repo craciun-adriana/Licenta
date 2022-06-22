@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -51,7 +52,8 @@ export class FsbDetailsPageComponent implements OnInit {
     constructor(
         private licentaService: LicentaService,
         private activatedRoute: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private datePipe: DatePipe
     ) { }
 
     ngOnInit(): void {
@@ -139,7 +141,7 @@ export class FsbDetailsPageComponent implements OnInit {
             author: this.fsbDetails?.author,
             director: this.fsbDetails?.director,
             description: this.fsbDetails?.description,
-            releaseDate: this.fsbDetails?.relaseDate,
+            releaseDate: this.datePipe.transform(this.fsbDetails?.relaseDate, 'yyyy-MM-dd'),
             prequelId: this.fsbDetails?.prequelId,
             sequelId: this.fsbDetails?.sequelId,
             picture: this.fsbDetails?.picture,

@@ -46,13 +46,22 @@ namespace LicentaAPI.AppServices.Users
 
         public UserUpdateResult Update(UserUpdate userUpdate)
         {
-            var user = _mapper.Map<UserUpdate, AppUser>(userUpdate);
-            _userRepo.Update(user);
+            var existingUser = _userRepo.GetUserById(userUpdate.ID);
+            if (existingUser == null)
+            {
+                return new UserUpdateResult
+                {
+                    Error = "User not found",
+                    UserUpdate = null
+                };
+            }
+            _mapper.Map(userUpdate, existingUser);
+            _userRepo.Update(existingUser);
 
             return new UserUpdateResult
             {
                 Error = "",
-                UserUpdate = user
+                UserUpdate = existingUser
             };
         }
 
@@ -69,6 +78,19 @@ namespace LicentaAPI.AppServices.Users
         {
             var users = _userRepo.GetAllUsers(isAdmin);
             return _mapper.Map<AppUser, PublicUserDetails>(users);
+        }
+
+        public bool UpdateAdminStatus(string userId, bool adminStatus)
+        {
+            var user = _userRepo.GetUserById(userId);
+            if (user != null)
+            {
+                return false;
+            }
+
+            user.IsAdmin = adminStatus;
+            _userRepo.Update(user);
+            return true;
         }
     }
 }

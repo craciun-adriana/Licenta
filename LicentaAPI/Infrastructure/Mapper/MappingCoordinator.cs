@@ -111,7 +111,8 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<UpdateSeriesRequest, SeriesUpdate>();
                 cfg.CreateMap<SeriesUpdate, Series>();
 
-                cfg.CreateMap<UpdateUserRequest, UserUpdate>();
+                cfg.CreateMap<UpdateUserRequest, UserUpdate>()
+                    .ForMember(dest => dest.ID, opt => opt.Ignore());
                 cfg.CreateMap<UserUpdate, AppUser>();
             });
         }

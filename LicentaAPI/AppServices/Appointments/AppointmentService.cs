@@ -60,6 +60,7 @@ namespace LicentaAPI.AppServices.Appointments
             foreach (var group in groups)
             {
                 _appointmentRepo.FindAppointmentByGroupId(group.ID)
+                    .Where(a => a.TimeAppointment.ToUniversalTime() > DateTime.UtcNow)
                     .ToList()
                     .ForEach(a =>
                     {

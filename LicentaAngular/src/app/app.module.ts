@@ -19,7 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LicentaService } from './services/licenta-service.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -82,7 +82,8 @@ import { UsersComponent } from './components/users/users.component';
         MatCheckboxModule
     ],
     providers: [
-        LicentaService
+        LicentaService,
+        DatePipe
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]

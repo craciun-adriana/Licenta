@@ -31,5 +31,9 @@ export class UsersComponent implements OnInit {
         })
     }
 
-    // madeAdmin()
+    updateAdminStatus(userId: string, adminStatus: boolean): void {
+        this.licentaService.updateAdminStatus(userId, adminStatus).subscribe(_ => {
+            this.initializePage();
+        });
+    }
 }

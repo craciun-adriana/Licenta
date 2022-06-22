@@ -18,5 +18,7 @@ namespace LicentaAPI.AppServices.Users
         public void DeleteUser(string idUser);
 
         public IEnumerable<PublicUserDetails> GetAllUsers(bool isAdmin);
+
+        public bool UpdateAdminStatus(string userId, bool adminStatus);
     }
 }

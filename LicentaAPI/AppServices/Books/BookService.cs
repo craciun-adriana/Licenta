@@ -86,7 +86,7 @@ namespace LicentaAPI.AppServices.Books
                     UpdatedBook = null
                 };
             }
-            book = _mapper.Map<BookUpdate, Book>(bookUpdate);
+            _mapper.Map(bookUpdate, book);
             _bookRepo.Update(book);
 
             return new BookUpdateResult

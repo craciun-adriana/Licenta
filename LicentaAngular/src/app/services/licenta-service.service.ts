@@ -14,7 +14,7 @@ import { CreateMessageModel } from '../models/messages-model';
 import { RegisterDetails } from '../models/register-details';
 import { CreateSeriesModel } from '../models/series-model';
 import { Status } from '../models/status';
-import { UserDetails } from '../models/user-details';
+import { UserDetails, UserUpdate } from '../models/user-details';
 
 @Injectable({
     providedIn: 'root'
@@ -88,9 +88,22 @@ export class LicentaService {
             )
     }
 
-    updateUser(updateUser: UserDetails): Observable<any> {
+    updateUser(updateUser: UserUpdate): Observable<any> {
         return this.http.post('/licenta/user/update', updateUser)
-            .pipe            (
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            )
+    }
+
+    updateAdminStatus(userId: string, adminStatus: boolean): Observable<any> {
+        const updateRequest = {
+            id: userId,
+            adminStatus: adminStatus
+        }
+        return this.http.post('/licenta/user/update-admin-status', updateRequest)
+            .pipe(
                 catchError(error => {
                     return of(null);
                 })

@@ -13,3 +13,13 @@ export interface UserDetails {
     isAdmin: boolean;
     rank: number;
 }
+
+export interface UserUpdate {
+    userName: string;
+    profilePicture: string;
+    firstName: string;
+    lastName: string;
+    dateOfBirth: string;
+    description: string;
+    sex: Sex;
+}

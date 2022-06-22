@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,7 +11,7 @@ import { ReviewFilmModel } from 'src/app/models/review-film-model';
 import { ReviewSeriesModel } from 'src/app/models/review-series-model';
 import { SeriesModel } from 'src/app/models/series-model';
 import { Status } from 'src/app/models/status';
-import { UserDetails } from 'src/app/models/user-details';
+import { UserDetails, UserUpdate } from 'src/app/models/user-details';
 import { LicentaService } from 'src/app/services/licenta-service.service';
 
 @Component({
@@ -45,7 +46,8 @@ export class ProfilePageComponent implements OnInit {
         private licentaService: LicentaService,
         private router: Router,
         ///ne ofera informatii despre ruta(url-ul) pe care suntem
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private datePipe: DatePipe
     ) { }
 
     ngOnInit(): void {
@@ -58,6 +60,7 @@ export class ProfilePageComponent implements OnInit {
         this.userId = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
 
         if (this.userId !== '') {
+            // other user profile page
             this.licentaService.getUserById(this.userId).subscribe((response: UserDetails) => {
                 if (response !== null) {
 
@@ -82,11 +85,13 @@ export class ProfilePageComponent implements OnInit {
             });
         }
         else {
+            // my profile page
             this.licentaService.isUserLoggedIn().subscribe((response: any) => {
                 if (response !== null) {
                     this.licentaService.getUserById(response.userId).subscribe((response: UserDetails) => {
                         if (response !== null) {
                             this.user = response;
+                            this.updateFormValues();
                         }
                     });
                 }
@@ -95,6 +100,19 @@ export class ProfilePageComponent implements OnInit {
                 }
             })
         }
+    }
+
+    private updateFormValues() {
+
+        this.userDetailsForm.patchValue({
+            userName: this.user?.userName,
+            firstName: this.user?.firstName,
+            lastName: this.user?.lastName,
+            description: this.user?.description,
+            dateOfBirth: this.datePipe.transform(this.user?.dateOfBirth, 'yyyy-MM-dd'),
+            sex: this.user?.sex,
+            profilePicture: this.user?.profilePicture,
+        })
     }
 
     private updateFriendshipStatus(): void {
@@ -173,7 +191,7 @@ export class ProfilePageComponent implements OnInit {
     }
 
     updateUser(): void {
-        const updateUser: UserDetails = {
+        const updateUser: UserUpdate = {
             userName: this.userDetailsForm.get('userName')?.value,
             firstName: this.userDetailsForm.get('firstName')?.value,
             lastName: this.userDetailsForm.get('lastName')?.value,

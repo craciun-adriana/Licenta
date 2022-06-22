@@ -5,6 +5,7 @@ namespace LicentaAPI.AppServices.Users.Models
 {
     public class UserUpdate
     {
+        public string ID { get; set; }
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -17,10 +18,5 @@ namespace LicentaAPI.AppServices.Users.Models
 
         public Sex Sex { get; set; }
 
-        public DateTime LastOnline { get; set; }
-
-        public bool IsAdmin { get; set; } = false;
-
-        public int Rank { get; set; } = 0;
     }
 }

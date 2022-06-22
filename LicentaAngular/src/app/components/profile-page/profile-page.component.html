@@ -11,13 +11,13 @@
 
         <div id="user-name">
             <span *ngIf="userId !==''" id="username"> {{user?.userName}} </span>
-            <input *ngIf="userId==''" formControlName="userName" type="text" value="{{user?.userName}}">
+            <input *ngIf="userId==''" formControlName="userName" type="text">
 
             <br><span *ngIf="userId!==''">{{user?.firstName}} </span>
-            <input *ngIf="userId==''" formControlName="firstName" type="text" value="{{user?.firstName}}">
+            <input *ngIf="userId==''" formControlName="firstName" type="text">
 
             <span *ngIf="userId!==''">{{user?.lastName}} </span>
-            <input *ngIf="userId==''" formControlName="lastname" type="text" value="{{user?.lastName}}">
+            <input *ngIf="userId==''" formControlName="lastName" type="text">
 
         </div>
 
@@ -26,19 +26,22 @@
         </div>
 
         <div id="user-details">
-            <div><b>Description: </b> <span *ngIf="userId!==''">{{user?.description}}</span>
-                <textarea *ngIf="userId==''" formControlName="description" type="text" value="{{user?.description}}">
-
-            </textarea>
+            <div>
+                <b>Description: </b>
+                <span *ngIf="userId!==''">{{user?.description}}</span>
+                <textarea *ngIf="userId==''" formControlName="description" type="text">
+                </textarea>
             </div>
 
-            <div><b>Date of birth: </b> <span *ngIf="userId!==''">{{user?.dateOfBirth | date:'longDate'}}</span>
-                <input *ngIf="userId==''" formControlName="dateOfBirth" type="text" value="{{user?.description}}">
+            <div>
+                <b>Date of birth: </b>
+                <span *ngIf="userId!==''">{{user?.dateOfBirth | date:'longDate'}}</span>
+                <input *ngIf="userId==''" formControlName="dateOfBirth" type="date">
             </div>
 
             <div><b>Sex: </b> <span *ngIf="userId!==''">{{user?.sex}}</span>
 
-                <select *ngIf="userId==''" formControlName="sex" type="text" [value]="user?.sex">
+                <select *ngIf="userId==''" formControlName="sex" type="text">
                     <option value="Other">Other</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>

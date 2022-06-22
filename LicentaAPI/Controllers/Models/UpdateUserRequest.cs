@@ -6,8 +6,6 @@ namespace LicentaAPI.Controllers.Models
 {
     public class UpdateUserRequest
     {
-        [Required]
-        public string ID { get; set; }
 
         [Required]
         public string FirstName { get; set; }
@@ -24,11 +22,5 @@ namespace LicentaAPI.Controllers.Models
 
         [Required]
         public Sex Sex { get; set; }
-
-        public DateTime LastOnline { get; set; }
-
-        public bool IsAdmin { get; set; }
-
-        public int Rank { get; set; }
     }
 }

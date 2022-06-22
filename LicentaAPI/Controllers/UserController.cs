@@ -67,15 +67,12 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpPatch("update")]
+        [HttpPost("update")]
         public IActionResult Update(UpdateUserRequest request)
         {
             var loggedUserId = _userManager.GetUserId(HttpContext.User);
-            if (request.ID != loggedUserId)
-            {
-                Unauthorized();
-            }
             var userUpdate = _mapper.Map<UpdateUserRequest, UserUpdate>(request);
+            userUpdate.ID = loggedUserId;
 
             return Ok(_userService.Update(userUpdate));
         }
@@ -89,6 +86,27 @@ namespace LicentaAPI.Controllers
             await _signInManager.SignOutAsync();
             _userService.DeleteUser(user);
             return Ok();
+        }
+
+        [Authorize]
+        [HttpPost("update-admin-status")]
+        public async Task<IActionResult> UpdateAdminStatus(UpdateAdminStatusRequest request)
+        {
+            if (!await UserIsAdminAsync())
+            {
+                return Unauthorized();
+            }
+            var userId = _userManager.GetUserId(HttpContext.User);
+            if (request.ID == userId)
+            {
+                return BadRequest();
+            }
+
+            if (_userService.UpdateAdminStatus(request.ID, request.AdminStatus))
+            {
+                return Ok();
+            }
+            return NotFound();
         }
     }
 }
