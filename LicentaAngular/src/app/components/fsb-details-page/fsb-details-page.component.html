@@ -18,13 +18,10 @@
 
             <input *ngIf="isAdmin" id="title" formControlName="title" type="text">
             <textarea *ngIf="isAdmin" formControlName="description" id="description" type="text"></textarea>
-            
+
         </div>
 
-        <div *ngIf="!isAdmin">
-            <span>Your status for {{fsbDetails?.title}} is {{userReview?.status}}.</span>
-            <span> Choose a new one:</span>
-        </div>
+
 
         <div id="info">
 
@@ -68,66 +65,87 @@
                         [routerLink]="'/details/book/' + fsbDetails?.prequelId">{{fsbDetails?.prequelTitle}}</a>
                 </div>
                 <mat-form-field *ngIf="isAdmin" appearance="fill">
-                    <mat-label>Choose a title</mat-label>
+                    <b>Prequel title</b>
                     <mat-autocomplete #autoBook="matAutocomplete" [displayWith]="bookDisplayFunction">
                         <mat-option *ngFor="let book of entity" [value]="book">{{book.title}}</mat-option>
                     </mat-autocomplete>
                     <input matInput formControlName="prequelId" type="text" [matAutocomplete]="autoBook">
                 </mat-form-field>
-
-                <!-- <div class="content">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Choose a book</mat-label>
-                        <mat-autocomplete #autoBook="matAutocomplete" [displayWith]="bookDisplayFunction">
-                            <mat-option *ngFor="let book of books" [value]="book">{{book.title}}</mat-option>
-                        </mat-autocomplete>
-                        <input matInput type="text" formControlName="prequelId" [matAutocomplete]="autoBook">
-                    </mat-form-field>
-                </div> -->
-            </div>
-            <div *ngIf="isFilm"><b>Prequel Title: </b>
-                <a *ngIf="!isAdmin"
-                    [routerLink]="'/details/film/' + fsbDetails?.prequelId">{{fsbDetails?.prequelTitle}}</a>
-                <mat-autocomplete #autoFilm="matAutocomplete" [displayWith]="filmDisplayFunction">
-                    <mat-option *ngFor="let film of entity" [value]="film">{{film.title}}</mat-option>
-                </mat-autocomplete>
-                <input *ngIf="isAdmin" formControlName="prequelId" type="text" [matAutocomplete]="autoFilm">
             </div>
 
-            <div *ngIf="isSeries"><b>Prequel Title: </b>
-                <a *ngIf="!isAdmin"
-                    [routerLink]="'/details/series/' + fsbDetails?.prequelId">{{fsbDetails?.prequelTitle}}</a>
-                <mat-autocomplete #autoSeries="matAutocomplete" [displayWith]="seriesDisplayFunction">
-                    <mat-option *ngFor="let series of entity" [value]="series">{{series.title}}</mat-option>
-                </mat-autocomplete>
-                <input *ngIf="isAdmin" formControlName="prequelId" type="text" [matAutocomplete]="autoSeries">
+            <div *ngIf="isFilm">
+                <div *ngIf="!isAdmin">
+                    <b>Prequel Title: </b>
+                    <a *ngIf="!isAdmin"
+                        [routerLink]="'/details/film/' + fsbDetails?.prequelId">{{fsbDetails?.prequelTitle}}</a>
+                </div>
+                <mat-form-field *ngIf="isAdmin" appearance="fill">
+                    <b>Prequel title</b>
+                    <mat-autocomplete #autoFilm="matAutocomplete" [displayWith]="filmDisplayFunction">
+                        <mat-option *ngFor="let film of entity" [value]="film">{{film.title}}</mat-option>
+                    </mat-autocomplete>
+                    <input matInput formControlName="prequelId" type="text" [matAutocomplete]="autoFilm">
+                </mat-form-field>
             </div>
 
-            <div *ngIf="isBook"><b>Sequel Title: </b>
-                <a *ngIf="!isAdmin"
-                    [routerLink]="'/details/book/' + fsbDetails?.sequelId">{{fsbDetails?.sequelTitle}}</a>
-                <mat-autocomplete #autoBookS="matAutocomplete" [displayWith]="bookDisplayFunction">
-                    <mat-option *ngFor="let book of entity" [value]="book">{{book.title}}</mat-option>
-                </mat-autocomplete>
-                <input *ngIf="isAdmin" formControlName="sequelId" type="text" [matAutocomplete]="autoBookS">
+            <div *ngIf="isSeries">
+                <div *ngIf="!isAdmin">
+                    <b>Prequel Title: </b>
+                    <a *ngIf="!isAdmin"
+                        [routerLink]="'/details/series/' + fsbDetails?.prequelId">{{fsbDetails?.prequelTitle}}</a>
+                </div>
+                <mat-form-field *ngIf="isAdmin" appearance="fill">
+                    <b>Prequel title</b>
+                    <mat-autocomplete #autoSeries="matAutocomplete" [displayWith]="seriesDisplayFunction">
+                        <mat-option *ngFor="let series of entity" [value]="series">{{series.title}}</mat-option>
+                    </mat-autocomplete>
+                    <input matInput formControlName="prequelId" type="text" [matAutocomplete]="autoSeries">
+                </mat-form-field>
             </div>
 
-            <div *ngIf="isFilm"><b>Sequel Title: </b>
-                <a *ngIf="!isAdmin"
-                    [routerLink]="'/details/film/' + fsbDetails?.sequelId">{{fsbDetails?.sequelTitle}}</a>
-                <mat-autocomplete #autoFilmS="matAutocomplete" [displayWith]="filmDisplayFunction">
-                    <mat-option *ngFor="let film of entity" [value]="film">{{film.title}}</mat-option>
-                </mat-autocomplete>
-                <input *ngIf="isAdmin" formControlName="sequelId" type="text" [matAutocomplete]="autoFilmS">
+            <div *ngIf="isBook">
+                <div *ngIf="!isAdmin">
+                    <b>Sequel Title: </b>
+                    <a *ngIf="!isAdmin"
+                        [routerLink]="'/details/book/' + fsbDetails?.sequelId">{{fsbDetails?.sequelTitle}}</a>
+                </div>
+                <mat-form-field *ngIf="isAdmin" appearance="fill">
+                    <b>Sequel title</b>
+                    <mat-autocomplete #autoBook="matAutocomplete" [displayWith]="bookDisplayFunction">
+                        <mat-option *ngFor="let book of entity" [value]="book">{{book.title}}</mat-option>
+                    </mat-autocomplete>
+                    <input matInput formControlName="sequelId" type="text" [matAutocomplete]="autoBook">
+                </mat-form-field>
             </div>
 
-            <div *ngIf="isSeries"><b>Sequel Title: </b>
-                <a *ngIf="!isAdmin"
-                    [routerLink]="'/details/series/' + fsbDetails?.sequelId">{{fsbDetails?.sequelTitle}}</a>
-                <mat-autocomplete #autoSeriesS="matAutocomplete" [displayWith]="seriesDisplayFunction">
-                    <mat-option *ngFor="let series of entity" [value]="series">{{series.title}}</mat-option>
-                </mat-autocomplete>
-                <input *ngIf="isAdmin" formControlName="sequelId" type="text" [matAutocomplete]="autoSeriesS">
+            <div *ngIf="isFilm">
+                <div *ngIf="!isAdmin">
+                    <b>Sequel Title: </b>
+                    <a *ngIf="!isAdmin"
+                        [routerLink]="'/details/film/' + fsbDetails?.sequelId">{{fsbDetails?.sequelTitle}}</a>
+                </div>
+                <mat-form-field *ngIf="isAdmin" appearance="fill">
+                    <b>Sequel title</b>
+                    <mat-autocomplete #autoFilm="matAutocomplete" [displayWith]="filmDisplayFunction">
+                        <mat-option *ngFor="let film of entity" [value]="film">{{film.title}}</mat-option>
+                    </mat-autocomplete>
+                    <input matInput formControlName="sequelId" type="text" [matAutocomplete]="autoFilm">
+                </mat-form-field>
+            </div>
+
+            <div *ngIf="isSeries">
+                <div *ngIf="!isAdmin">
+                    <b>Sequel Title: </b>
+                    <a *ngIf="!isAdmin"
+                        [routerLink]="'/details/series/' + fsbDetails?.sequelId">{{fsbDetails?.sequelTitle}}</a>
+                </div>
+                <mat-form-field *ngIf="isAdmin" appearance="fill">
+                    <b>Sequel title</b>
+                    <mat-autocomplete #autoSeries="matAutocomplete" [displayWith]="seriesDisplayFunction">
+                        <mat-option *ngFor="let series of entity" [value]="series">{{series.title}}</mat-option>
+                    </mat-autocomplete>
+                    <input matInput formControlName="sequelId" type="text" [matAutocomplete]="autoSeries">
+                </mat-form-field>
             </div>
 
             <div>
@@ -188,11 +206,13 @@
                 </mat-form-field>
             </div>
         </div>
+
         <div *ngIf="isAdmin" class="updateFSB">
             <button mat-raised-button color="primary" id="update" (click)="updateFSB()">Update</button>
         </div>
 
-        <div *ngIf="!isAdmin" id="userGrade">
+
+        <div *ngIf="!isAdmin" id="user-review">
             <span><b>Your grades is: </b></span>
             <br>
             <div *ngIf="userReview?.grade===null">
@@ -200,12 +220,15 @@
                 <input type="submit" (click)="addGrade.value" value="Add grade">
             </div>
             <div *ngIf="userReview!==null">{{userReview?.grade}}</div>
-        </div>
 
-        <div *ngIf="!isAdmin" id="userReview">
             <span><b>Your review is:</b></span>
             <br>
             <div>{{userReview?.review}}</div>
+
+            <div *ngIf="!isAdmin">
+                <span>Your status for {{fsbDetails?.title}} is {{userReview?.status}}.</span>
+                <span> Choose a new one:</span>
+            </div>
         </div>
 
         <table id="reviews">

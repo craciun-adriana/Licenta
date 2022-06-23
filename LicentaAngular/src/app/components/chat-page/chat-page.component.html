@@ -38,13 +38,15 @@
     <div class="conversationLists">
         <div id="userList">
             <div *ngFor="let user of lastConversation" (click)="openChatWithUser(user.id)">
-                <img alt="Profile picture" [src]="user.profilePicture ? user.profilePicture : '/assets/img/default-user-image.png'" />
+                <img alt="Profile picture"
+                    [src]="user.profilePicture ? user.profilePicture : '/assets/img/default-user-image.png'" />
                 <span>{{user.userName}}</span>
             </div>
         </div>
         <div id="groupList">
             <div *ngFor="let group of lastConversationG" (click)="openChatWithGroup(group.id)">
-                <img alt="Profile picture" [src]="group.picture ? group.picture : '/assets/img/default-user-image.png'" />
+                <img alt="Profile picture"
+                    [src]="group.picture ? group.picture : '/assets/img/default-user-image.png'" />
                 <span>{{group.name}}</span>
             </div>
         </div>
@@ -54,11 +56,13 @@
         <ul>
             <li *ngFor="let message of messages" class="message-container" [ngClass]="getMessageClass(message.idSender)"
                 matTooltip="{{message.sendTime | date : 'short'}}">
-                <img *ngIf="message.idSender!==userId" [src]="chatUser?.profilePicture" width="20" height="20">
-                <div class="message">
-                    <span *ngIf="isGroup">{{message.nameSender}}</span>
-                    <br *ngIf="isGroup">
-                    <span>{{message.text}}</span>
+                <div #chatDiv tabindex="1">
+                    <img *ngIf="message.idSender!==userId" [src]="chatUser?.profilePicture" width="20" height="20">
+                    <div class="message">
+                        <span *ngIf="isGroup">{{message.nameSender}}</span>
+                        <br *ngIf="isGroup">
+                        <span>{{message.text}}</span>
+                    </div>
                 </div>
             </li>
         </ul>
@@ -67,14 +71,14 @@
     <div *ngIf="!isGroup" class="createMess">
         <input #userMessageInput id="message" name="message"
             (keyup.enter)="sendMessageToUser(userMessageInput.value); userMessageInput.value=''">
-        <button id="submit" type="submit"
+        <button mat-raised-button color="primary" id="submit" type="submit"
             (click)="sendMessageToUser(userMessageInput.value); userMessageInput.value=''">Send</button>
     </div>
 
     <div *ngIf="isGroup" class="createMess">
         <input #userMessageInput id="message" name="message"
             (keyup.enter)="sendMessageToGroup(userMessageInput.value); userMessageInput.value=''">
-        <button id="submit" type="submit"
+        <button mat-raised-button color="primary" id="submit" type="submit"
             (click)="sendMessageToGroup(userMessageInput.value); userMessageInput.value=''">Send</button>
     </div>
 
@@ -123,7 +127,7 @@
             <input type="text" formControlName="description">
         </div>
         <div class="content">
-            <button (click)="createGroup()"> Create group</button>
+            <button mat-raised-button color="primary" (click)="createGroup()"> Create group</button>
         </div>
     </form>
 </div>

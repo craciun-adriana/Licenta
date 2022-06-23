@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CreateMessageModel, MessagesModel } from 'src/app/models/messages-model';
 import { UserDetails } from 'src/app/models/user-details';
 import { LicentaService } from 'src/app/services/licenta-service.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateGroupModel, GroupModel } from 'src/app/models/group-model';
 import { CreateGroupMemberModel, GroupMemberModel } from 'src/app/models/group-member-model';
+import { Subscription, timer } from 'rxjs';
 
 @Component({
     selector: 'app-chat-page',
@@ -18,6 +19,8 @@ export class ChatPageComponent implements OnInit {
     userId: string = '';
     chatUser: UserDetails | null = null;
     chatGroup: GroupModel | null = null;
+    chatSubscription: Subscription = new Subscription();
+    firstTimeChat: boolean = false;
     foundUsers: UserDetails[] = [];
     foundGroups: GroupModel[] = [];
 
@@ -38,6 +41,8 @@ export class ChatPageComponent implements OnInit {
         idUser: new FormControl('', Validators.required)
     })
 
+    @ViewChildren("chatDiv") chatDivs?: QueryList<ElementRef>;
+
     constructor(
         private licentaService: LicentaService
     ) { }
@@ -45,18 +50,27 @@ export class ChatPageComponent implements OnInit {
     ngOnInit(): void {
 
         this.initializeChat();
+        this.chatDivs?.changes.subscribe(_ => {
+            if (this.chatDivs && this.chatDivs.last) {
+                this.chatDivs.last.nativeElement.scrollIntoView();
+            }
+        })
     }
 
     private initializeChat(): void {
         this.licentaService.isUserLoggedIn().subscribe((response: any) => {
             this.userId = response?.userId ?? '';
-        })
-        this.licentaService.getLastUserConversationsForUser().subscribe((response: UserDetails[]) => {
-            this.lastConversation = response;
         });
-        this.licentaService.getLastGroupConversationsForUser().subscribe((response: GroupModel[]) => {
-            this.lastConversationG = response;
-        })
+
+        timer(0, 10000).subscribe(_ => {
+            this.licentaService.getLastUserConversationsForUser().subscribe((response: UserDetails[]) => {
+                this.lastConversation = response;
+            });
+
+            this.licentaService.getLastGroupConversationsForUser().subscribe((response: GroupModel[]) => {
+                this.lastConversationG = response;
+            });
+        });
     }
 
     findFriendsByUsername(userName: string): void {
@@ -74,9 +88,19 @@ export class ChatPageComponent implements OnInit {
 
     openChatWithUser(userId: string): void {
         this.isGroup = false;
-        this.licentaService.getAllMessagesBetweenUsers(userId).subscribe((response: MessagesModel[]) => {
-            this.messages = response;
+        this.firstTimeChat = true;
+        this.chatSubscription.unsubscribe();
+        this.chatSubscription = new Subscription();
+
+        const subscription = timer(0, 10000).subscribe(_ => {
+            this.licentaService.getAllMessagesBetweenUsers(userId).subscribe((response: MessagesModel[]) => {
+                this.messages = response;
+
+            });
         });
+
+        this.chatSubscription.add(subscription);
+
         this.licentaService.getUserById(userId).subscribe((response: UserDetails) => {
             this.chatUser = response;
         })
@@ -106,15 +130,21 @@ export class ChatPageComponent implements OnInit {
         this.licentaService.sendMessage(message).subscribe(response => {
             this.openChatWithGroup(message.idGroup!);
         });
-        
+
     }
 
     openChatWithGroup(groupId: string): void {
         this.isGroup = true;
-        this.licentaService.getAllMessagesInGroup(groupId).subscribe((response: MessagesModel[]) => {
-            this.messages = response;
+        this.chatSubscription.unsubscribe();
+        this.chatSubscription = new Subscription();
+
+        const subscription = timer(0, 10000).subscribe(_ => {
+            this.licentaService.getAllMessagesInGroup(groupId).subscribe((response: MessagesModel[]) => {
+                this.messages = response;
+            });
         });
 
+        this.chatSubscription.add(subscription);
         this.licentaService.getGroupById(groupId).subscribe((response: GroupModel) => {
             this.chatGroup = response;
         })
@@ -181,8 +211,7 @@ export class ChatPageComponent implements OnInit {
     }
 
     getMessageClass(idSender: string): string {
-        if(idSender===this.userId)
-        {
+        if (idSender === this.userId) {
             return "sent";
         }
         return "received";

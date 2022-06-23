@@ -1,7 +1,7 @@
 <form [formGroup]="userDetailsForm">
     <div class="grid-container">
 
-        <div>
+        <div *ngIf="userId==''">
             <button (click)="deleteUser()">Delete my account</button>
         </div>
 
@@ -116,7 +116,7 @@
         </div>
     </div>
 
-    <div>
+    <div *ngIf="userId==''">
         <button (click)="updateUser()">Update my informations</button>
     </div>
 </form>

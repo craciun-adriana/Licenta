@@ -11,7 +11,6 @@ export class UsersComponent implements OnInit {
 
     admins: UserDetails[] = [];
     users: UserDetails[] = [];
-    isAdmin: boolean = false;
 
     constructor(
         private licentaService: LicentaService
@@ -22,14 +21,13 @@ export class UsersComponent implements OnInit {
     }
 
     private initializePage() {
-        this.licentaService.getAllUsers(this.isAdmin).subscribe((response: UserDetails[]) => {
+        this.licentaService.getAllUsers(false).subscribe((response: UserDetails[]) => {
             this.users = response;
         })
-        this.isAdmin = true;
-        this.licentaService.getAllUsers(this.isAdmin).subscribe((response: UserDetails[]) => {
+
+        this.licentaService.getAllUsers(true).subscribe((response: UserDetails[]) => {
             this.admins = response;
         })
-        debugger
     }
 
     updateAdminStatus(userId: string, adminStatus: boolean): void {

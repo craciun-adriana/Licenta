@@ -50,10 +50,20 @@ namespace LicentaAPI.Controllers
         }
 
         [Authorize]
-        [HttpGet("get-all-users/{idAdmin}")]
+        [HttpGet("get-all-users/{isAdmin}")]
         [SwaggerResponse(200, "User with the given id.")]
-        public IActionResult GetAllUsers(bool isAdmin)
+        public async Task<IActionResult> GetAllUsers(bool isAdmin)
         {
+            if (!(await UserIsAdminAsync()))
+            {
+                return Unauthorized();
+            }
+
+            //if (isAdmin == "admin")
+            //{
+            //    return Ok(_userService.GetAllUsers(true));
+            //}
+
             return Ok(_userService.GetAllUsers(isAdmin));
         }
 

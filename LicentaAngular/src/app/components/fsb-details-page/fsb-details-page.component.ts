@@ -142,8 +142,14 @@ export class FsbDetailsPageComponent implements OnInit {
             director: this.fsbDetails?.director,
             description: this.fsbDetails?.description,
             releaseDate: this.datePipe.transform(this.fsbDetails?.relaseDate, 'yyyy-MM-dd'),
-            prequelId: this.fsbDetails?.prequelId,
-            sequelId: this.fsbDetails?.sequelId,
+            prequelId: {
+                id: this.fsbDetails?.prequelId,
+                title: this.fsbDetails?.prequelTitle
+            },
+            sequelId: {
+                id: this.fsbDetails?.sequelId,
+                title: this.fsbDetails?.sequelTitle
+            },
             picture: this.fsbDetails?.picture,
             genre: this.fsbDetails?.genre,
             rating: this.fsbDetails?.rating,
