@@ -111,7 +111,7 @@ export class LicentaService {
     }
 
     getAllUsers(isAdmin: boolean): Observable<any> {
-        return this.http.get('/licenta/user/get-all-users' + isAdmin)
+        return this.http.get('/licenta/user/get-all-users/' + isAdmin)
             .pipe(
                 catchError(error => {
                     return of(null);

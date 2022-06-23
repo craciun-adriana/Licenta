@@ -9,6 +9,7 @@
         <span>{{admin.firstName}}</span>
         <span>{{admin.lastName}}</span>
     </div>
+    <button mat-raised-button color="primary" (click)="updateAdminStatus(admin.id, false)">Delete admin</button>
 </div>
 
 <h1>Users</h1>
@@ -22,5 +23,5 @@
         <span>{{user.firstName}}</span>
         <span>{{user.lastName}}</span>
     </div>
-    <!-- <button (click)="updateUser()">Made admin</button> -->
+    <button mat-raised-button color="primary" (click)="updateAdminStatus(user.id, true)">Made admin</button>
 </div>

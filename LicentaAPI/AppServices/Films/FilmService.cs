@@ -96,7 +96,7 @@ namespace LicentaAPI.AppServices.Films
                 };
             }
 
-            film = _mapper.Map<FilmUpdate, Film>(filmUpdate);
+            _mapper.Map(filmUpdate, film);
             _filmRepo.Update(film);
 
             return new FilmUpdateResult

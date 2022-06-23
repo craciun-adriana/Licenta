@@ -23,7 +23,7 @@ namespace LicentaAPI.Persistence.Repositories
         ///<inheritdoc/>
         public IEnumerable<AppUser> FindUsersByUsername(string username)
         {
-            return _dbContext.Users.Where(user => user.UserName.Contains(username));
+            return _dbContext.Users.Where(user => user.UserName.ToUpper().Contains(username.ToUpper()) && user.IsAdmin.Equals(false));
         }
 
         ///<inheritdoc/>
@@ -37,7 +37,7 @@ namespace LicentaAPI.Persistence.Repositories
         {
             return _dbContext.Users
                 .Where(user => listFriendsId.Contains(user.Id))
-                .Where(user => user.UserName.ToUpper().Contains(username.ToUpper()))
+                .Where(user => user.UserName.ToUpper().Contains(username.ToUpper()) && user.IsAdmin.Equals(false))
                 .ToList();
         }
 

@@ -103,7 +103,7 @@ namespace LicentaAPI.AppServices.Serieses
                 };
             }
 
-            series = _mapper.Map<SeriesUpdate, Series>(seriesUpdate);
+            _mapper.Map(seriesUpdate, series);
             _seriesRepo.Update(series);
 
             return new SeriesUpdateResult

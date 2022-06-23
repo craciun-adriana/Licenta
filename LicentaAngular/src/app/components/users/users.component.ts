@@ -29,6 +29,7 @@ export class UsersComponent implements OnInit {
         this.licentaService.getAllUsers(this.isAdmin).subscribe((response: UserDetails[]) => {
             this.admins = response;
         })
+        debugger
     }
 
     updateAdminStatus(userId: string, adminStatus: boolean): void {

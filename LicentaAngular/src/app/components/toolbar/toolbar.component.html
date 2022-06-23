@@ -8,6 +8,7 @@
         <a *ngIf="!isAdmin&&isLoggedIn" [routerLink]="'/friends'" routerLinkActive="active">Friends</a>
         <a *ngIf="!isAdmin&&isLoggedIn" [routerLink]="'/chat'" routerLinkActive="active">Chat</a>
         <a *ngIf="isLoggedIn" [routerLink]="'/books'" routerLinkActive="active">Books</a>
+        <a *ngIf="isLoggedIn&&isAdmin" [routerLink]="'/users'" routerLinkActive="active">Users</a>
         <a *ngIf="isLoggedIn&&isAdmin" [routerLink]="'/add-book'" routerLinkActive="active">Add Book</a>
         <a *ngIf="isLoggedIn" [routerLink]="'/films'" routerLinkActive="active">Films</a>
         <a *ngIf="isLoggedIn&&isAdmin" [routerLink]="'/add-film'" routerLinkActive="active">Add Film</a>
