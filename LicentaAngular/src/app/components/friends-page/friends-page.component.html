@@ -7,14 +7,15 @@
                 <a [routerLink]="'/profile/'+friendship.idSender">{{friendship.nameSender}}</a> sent you a friendship
                 request.
             </div>
-            <span (click)="acceptFriendship(friendship.id)">Accept request</span>
+            <button mat-raised-button color="primary" (click)="acceptFriendship(friendship.id)">Accept request</button>
         </div>
     </div>
 
     <div id="search-user">
         <form>
             <input #userSearchInput id="search-text" type="text" />
-            <input type="submit" (click)="findUserByUsername(userSearchInput.value)" value="Search users">
+            <button mat-raised-button color="primary" (click)="findUserByUsername(userSearchInput.value)">Search
+                users</button>
         </form>
         <div>
             <div *ngFor="let foundUser of users">
@@ -24,20 +25,20 @@
     </div>
 
     <div id="friends">
-        <div *ngFor="let friend of friends">Your actual friends are:
-            <div>
-                <img alt="Profile picture" [src]="friend.profilePicture" width="50" height="50" />
-                <a [routerLink]="'/profile/'+friend.id">{{friend.userName}}</a>
+        <div>Your actual friends are:
+            <div *ngFor="let friend of friends">
+                <img class="first-column" alt="Profile picture" [src]="friend.profilePicture" width="50" height="50" />
+                <a class="second-column" [routerLink]="'/profile/'+friend.id">{{friend.userName}}</a>
             </div>
         </div>
     </div>
 
 
     <div id="groups">
-        <div *ngFor="let group of groups">You are member in following groups:
-            <div>
-                <img alt="Profile picture" [src]="group.picture" width="50" height="50" />
-                <span>{{group.name}}</span>
+        <div>You are member in following groups:
+            <div *ngFor="let group of groups">
+                <img class="firs-column" alt="Profile picture" [src]="group.picture" width="50" height="50" />
+                <span class="second-column">{{group.name}}</span>
             </div>
         </div>
     </div>

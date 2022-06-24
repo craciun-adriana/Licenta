@@ -232,7 +232,7 @@
                     <mat-option value="Dropped">Dropped</mat-option>
                 </mat-select>
             </mat-form-field>
-            <button (click)="saveReview()">Save review</button>
+            <button mat-raised-button color="primary" (click)="saveReview()">Save review</button>
         </form>
 
         <table id="reviews">
@@ -252,7 +252,7 @@
                     <td>{{review.grade}}</td>
                     <td>{{review.review}}</td>
                     <td>
-                        <button (click)="deleteReview(review.idReview)">Delete</button>
+                        <button mat-raised-button color="primary" (click)="deleteReview(review.idReview)">Delete</button>
                     </td>
                 </tr>
             </tbody>

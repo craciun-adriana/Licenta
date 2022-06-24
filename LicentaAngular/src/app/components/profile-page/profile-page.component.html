@@ -2,7 +2,7 @@
     <div class="grid-container">
 
         <div *ngIf="userId==''">
-            <button (click)="deleteUser()">Delete my account</button>
+            <button mat-raised-button color="primary" (click)="deleteUser()">Delete my account</button>
         </div>
 
         <div id="picture">
@@ -11,14 +11,22 @@
 
         <div id="user-name">
             <span *ngIf="userId !==''" id="username"> {{user?.userName}} </span>
-            <input *ngIf="userId==''" formControlName="userName" type="text">
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input *ngIf="userId==''" matInput formControlName="userName" type="text">
+            </mat-form-field>
 
             <br><span *ngIf="userId!==''">{{user?.firstName}} </span>
-            <input *ngIf="userId==''" formControlName="firstName" type="text">
+            <mat-form-field>
+                <mat-label>First name</mat-label>
+                <input *ngIf="userId==''" matInput formControlName="firstName" type="text">
+            </mat-form-field>
 
             <span *ngIf="userId!==''">{{user?.lastName}} </span>
-            <input *ngIf="userId==''" formControlName="lastName" type="text">
-
+            <mat-form-field>
+                <mat-label>Last name</mat-label>
+                <input *ngIf="userId==''" matInput formControlName="lastName" type="text">
+            </mat-form-field>
         </div>
 
         <div id="rank">
@@ -29,8 +37,11 @@
             <div>
                 <b>Description: </b>
                 <span *ngIf="userId!==''">{{user?.description}}</span>
-                <textarea *ngIf="userId==''" formControlName="description" type="text">
-                </textarea>
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <textarea matInput *ngIf="userId==''" formControlName="description" type="text">
+                    </textarea>
+                </mat-form-field>
             </div>
 
             <div>
@@ -40,28 +51,33 @@
             </div>
 
             <div><b>Sex: </b> <span *ngIf="userId!==''">{{user?.sex}}</span>
-
-                <select *ngIf="userId==''" formControlName="sex" type="text">
-                    <option value="Other">Other</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
+                <mat-form-field>
+                    <mat-select *ngIf="userId==''" formControlName="sex" type="text">
+                        <mat-option value="Other">Other</mat-option>
+                        <mat-option value="Male">Male</mat-option>
+                        <mat-option value="Female">Female</mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
         </div>
 
         <div *ngIf="userId!==''" id="friendship">
-            <button *ngIf="friendshipStatus==='not exist'" (click)="sendFriendshipRequest()">Send friendship
+            <button *ngIf="friendshipStatus==='not exist'" mat-raised-button color="primary"
+                (click)="sendFriendshipRequest()">Send friendship
                 request</button>
-            <button *ngIf="friendshipStatus==='friends'" (click)="deleteFriendship()">Delete friendship</button>
-            <button *ngIf="friendshipStatus==='received'" (click)="acceptFriendship()">Accept friend request</button>
+            <button *ngIf="friendshipStatus==='friends'" mat-raised-button color="primary"
+                (click)="deleteFriendship()">Delete friendship</button>
+            <button *ngIf="friendshipStatus==='received'" mat-raised-button color="primary"
+                (click)="acceptFriendship()">Accept friend request</button>
             <div *ngIf="friendshipStatus==='sent'">
                 <span>Wait for {{user?.userName}} to accept your friendship request,</span>
-                <button (click)="deleteFriendship()">Or delete friendship request.</button>
+                <button mat-raised-button color="primary" (click)="deleteFriendship()">Or delete friendship
+                    request.</button>
             </div>
         </div>
 
         <div *ngIf="userId==''">
-            <span>View your books with choosen status:</span>
+            <span>View your books with chosen status:</span>
             <mat-form-field appearance="fill">
                 <mat-label>Status</mat-label>
                 <mat-select (selectionChange)="filterReviews($event.value)" value="Completed">
@@ -74,7 +90,7 @@
             </mat-form-field>
         </div>
 
-        <div>
+        <div class="tables">
             <table id="books-read">
                 <thead>
                     <tr>
@@ -117,6 +133,7 @@
     </div>
 
     <div *ngIf="userId==''">
-        <button (click)="updateUser()">Update my informations</button>
+        <button class="button-update-info" mat-raised-button color="primary" (click)="updateUser()">Update my
+            information</button>
     </div>
 </form>
