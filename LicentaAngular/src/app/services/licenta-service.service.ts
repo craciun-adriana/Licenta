@@ -632,7 +632,7 @@ export class LicentaService {
     }
 
     findFilmsByGenre(genre: Genre): Observable<any> {
-        return this.http.get('licenta/film/find-by-title/' + genre)
+        return this.http.get('licenta/film/find-by-genre/' + genre)
             .pipe(
                 catchError(error => {
                     return of([]);

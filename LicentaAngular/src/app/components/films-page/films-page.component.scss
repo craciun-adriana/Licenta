@@ -1,3 +1,43 @@
-img {
-    object-fit: cover;
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    div mat-form-field {
+        margin-right: 1em;
+    }
+}
+
+.film-item {
+    margin: 2em;
+    display: flex;
+    gap: 1em;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+    .first-column {
+        display: flex;
+        align-items: center;
+
+        img {
+            width: 100px;
+            height: 150px;
+            object-fit: cover;
+        }
+    }
+
+    .second-column {
+        display: flex;
+        gap: 1em;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+    }
 }

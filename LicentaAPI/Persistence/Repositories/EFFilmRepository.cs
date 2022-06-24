@@ -47,7 +47,7 @@ namespace LicentaAPI.Persistence.Repositories
                 throw new ArgumentNullException(nameof(title));
             }
 
-            return _dbContext.Films.Where(film => film.Title.Contains(title)).ToList();
+            return _dbContext.Films.Where(film => film.Title.ToUpper().Contains(title.ToUpper())).ToList();
         }
 
         /// <inheritdoc/>

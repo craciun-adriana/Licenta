@@ -49,7 +49,7 @@ namespace LicentaAPI.Persistence.Repositories
                 throw new ArgumentNullException(nameof(title));
             }
 
-            return _dbContext.Series.Where(series => series.Title.Contains(title)).ToList();
+            return _dbContext.Series.Where(series => series.Title.ToUpper().Contains(title.ToUpper())).ToList();
         }
 
         /// <inheritdoc/>

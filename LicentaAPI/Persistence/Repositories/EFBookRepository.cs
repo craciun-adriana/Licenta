@@ -49,7 +49,7 @@ namespace LicentaAPI.Persistence.Repositories
                 throw new ArgumentNullException(nameof(title));
             }
 
-            return _dbContext.Books.Where(book => book.Title.Contains(title)).ToList();
+            return _dbContext.Books.Where(book => book.Title.ToUpper().Contains(title.ToUpper())).ToList();
         }
 
         public IEnumerable<Book> FindBookByGenre(Genre genre)

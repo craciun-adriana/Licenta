@@ -29,7 +29,7 @@ export class ChatPageComponent implements OnInit {
     groupMembers: UserDetails[] = [];
     userFriends: UserDetails[] = [];
     isOpenGroupDetails: boolean = false;
-    addMember: boolean = false;
+    isAddMemberOpen: boolean = false;
 
     createGroupForm = new FormGroup({
         name: new FormControl('', Validators.required),
@@ -41,20 +41,14 @@ export class ChatPageComponent implements OnInit {
         idUser: new FormControl('', Validators.required)
     })
 
-    @ViewChildren("chatDiv") chatDivs?: QueryList<ElementRef>;
+    @ViewChildren("chatDiv") chatDiv?: ElementRef;
 
     constructor(
         private licentaService: LicentaService
     ) { }
 
     ngOnInit(): void {
-
         this.initializeChat();
-        this.chatDivs?.changes.subscribe(_ => {
-            if (this.chatDivs && this.chatDivs.last) {
-                this.chatDivs.last.nativeElement.scrollIntoView();
-            }
-        })
     }
 
     private initializeChat(): void {
@@ -73,13 +67,10 @@ export class ChatPageComponent implements OnInit {
         });
     }
 
-    findFriendsByUsername(userName: string): void {
-        this.licentaService.findFriendsByUsername(userName).subscribe((response: UserDetails[]) => {
+    findFriendsAndGroupsByName(name: string): void {
+        this.licentaService.findFriendsByUsername(name).subscribe((response: UserDetails[]) => {
             this.foundUsers = response;
         })
-    }
-
-    findUserGroupsByName(name: string): void {
         this.licentaService.findUserGroupsByName(name).subscribe((response: GroupModel[]) => {
 
             this.foundGroups = response;
@@ -95,7 +86,6 @@ export class ChatPageComponent implements OnInit {
         const subscription = timer(0, 10000).subscribe(_ => {
             this.licentaService.getAllMessagesBetweenUsers(userId).subscribe((response: MessagesModel[]) => {
                 this.messages = response;
-
             });
         });
 
@@ -193,7 +183,11 @@ export class ChatPageComponent implements OnInit {
 
     openAddGroupMember(): void {
         this.getUserFriends();
-        this.addMember = true;
+        this.isAddMemberOpen = true;
+    }
+
+    closeAddGroupMember(): void {
+        this.isAddMemberOpen = false;
     }
 
     getGroupMembers(idGroup: string): void {
@@ -219,4 +213,19 @@ export class ChatPageComponent implements OnInit {
         return "received";
     }
 
+    isValidUrl(urlToCheck?: string): boolean {
+        let url;
+
+        if (!urlToCheck) {
+            return false;
+        }
+
+        try {
+            url = new URL(urlToCheck);
+        } catch (_) {
+            return false;
+        }
+
+        return url.protocol === "http:" || url.protocol === "https:";
+    }
 }

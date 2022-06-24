@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+
 import { FilmModel } from 'src/app/models/film-model';
 import { Genre } from 'src/app/models/genre';
 import { LicentaService } from 'src/app/services/licenta-service.service';
@@ -14,7 +14,6 @@ export class FilmsPageComponent implements OnInit {
 
     constructor(
         private licentaService: LicentaService,
-        private router: Router
     ) { }
 
     ngOnInit(): void {
@@ -22,14 +21,14 @@ export class FilmsPageComponent implements OnInit {
     }
 
     private initializeFilmPage(): void {
-        this.licentaService.getAllFilms().subscribe((response) => {
+        this.licentaService.getAllFilms().subscribe((response: FilmModel[]) => {
             this.films = response;
-        })
+        });
     }
 
     getFilmByTitle(title: string): void {
-        if (title != '') {
-            this.licentaService.findFilmsByTitle(title).subscribe((response) => {
+        if (title) {
+            this.licentaService.findFilmsByTitle(title).subscribe((response: FilmModel[]) => {
                 this.films = response;
             });
         }
@@ -38,10 +37,9 @@ export class FilmsPageComponent implements OnInit {
         }
     }
 
-    getFilmByGenre(event: any): void {
-        const genre = event.target.value;
-        if (genre !== '') {
-            this.licentaService.findFilmsByGenre(genre).subscribe((response) => {
+    getFilmByGenre(genre: Genre): void {
+        if (genre) {
+            this.licentaService.findFilmsByGenre(genre).subscribe((response: FilmModel[]) => {
                 this.films = response;
             });
         }
@@ -52,5 +50,17 @@ export class FilmsPageComponent implements OnInit {
 
     genre(): typeof Genre {
         return Genre;
+    }
+
+    isValidUrl(urlToCheck: string): boolean {
+        let url;
+
+        try {
+            url = new URL(urlToCheck);
+        } catch (_) {
+            return false;
+        }
+
+        return url.protocol === "http:" || url.protocol === "https:";
     }
 }

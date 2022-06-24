@@ -1,35 +1,51 @@
-h1 {
+.title {
     display: flex;
     justify-content: center;
 }
 
-#addSeriesForm {
-    margin-top: 30px;
-    margin-left: 400px;
-    margin-right: 400px;
-    margin-bottom: 100px;
+.addSeriesForm {
+    margin: 4vh 15vw;
     display: flex;
     justify-content: center;
     flex-direction: column;
-}
-
-#addSeriesForm span {
-    color: aliceblue;
-}
-
-.content {
-    display: flex;
-    justify-content: center;
-}
-
-.content span {
-    display: inline-block;
-    text-align: right;
-    width: 140px;
-    margin: 10px;
-}
-
-form {
     background-color: #7A7A7A;
     box-shadow: 1px 1px 2px black, 0 0 15px black, 0 0 10px gray;
+
+    .columns {
+        display: flex;
+        flex-direction: row;
+        justify-items: space-between;
+        padding: 3em;
+        gap: 5vw;
+
+        .col-one,
+        .col-two {
+            width: 50%;
+
+            .content {
+                display: flex;
+                justify-content: space-between;
+
+                mat-form-field {
+                    width: 20vw;
+                }
+
+                span {
+                    display: inline-block;
+                    text-align: left;
+                    margin: 10px;
+                }
+            }
+        }
+    }
+
+    span {
+        color: aliceblue;
+    }
+
+    .bottom-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5vh;
+    }
 }

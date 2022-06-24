@@ -1,36 +1,49 @@
-<h1>Here is our films collection!</h1>
-<h1>Check it and find something new for you ;)</h1>
-
-<form id="search-bar-title">
-    <input #filmSearchByTitleInput id="search-text" type="text" />
-    <input type="submit" (click)="(filmSearchByTitleInput.value)" value="Submit">
-</form>
-
-<div>
-    <select (change)="getFilmByGenre($event)" id="select-genre-search">
-        <option value="">Select genre</option>
-        <option value="Action">Action</option>
-        <option value="Comedy">Comedy</option>
-        <option value="Crime">Crime</option>
-        <option value="Drama">Drama</option>
-        <option value="Fantasy">Fantasy</option>
-        <option value="Horror">Horror</option>
-        <option value="Musical">Musical</option>
-        <option value="Romance">Romance</option>
-        <option value="ScienceFiction">Science Fiction</option>
-        <option value="Triller">Triller</option>
-        <option value="Western">Western</option>
-    </select>
+<div class="title">
+    <h1>Here is our film collection!</h1>
+    <h1>Check it and find something new for you ;)</h1>
 </div>
 
+<div class="search">
+    <div>
+        <mat-form-field>
+            <mat-label>Search for a film</mat-label>
+            <input matInput #filmSearchByTitleInput type="text">
+        </mat-form-field>
+        <button mat-raised-button color="primary"
+            (click)="getFilmByTitle(filmSearchByTitleInput.value); selectGenre.value=''">
+            Search
+        </button>
+    </div>
 
-<div *ngFor="let foundFilm of films" id="grid-container">
-    <div>
-        <img alt="Profile picture" [src]="foundFilm.picture" width="80" height="80" />
-    </div>
-    <div>
-        <a [routerLink]="'/details/film/' + foundFilm.id">{{foundFilm.title}}</a>
-        <span>{{foundFilm.description}}</span>
-    </div>
+    <br>
+
+    <mat-form-field>
+        <mat-select #selectGenre (valueChange)="getFilmByGenre($event); filmSearchByTitleInput.value=''">
+            <mat-option selected="true" value="">Select genre</mat-option>
+            <mat-option value="Action">Action</mat-option>
+            <mat-option value="Comedy">Comedy</mat-option>
+            <mat-option value="Crime">Crime</mat-option>
+            <mat-option value="Drama">Drama</mat-option>
+            <mat-option value="Fantasy">Fantasy</mat-option>
+            <mat-option value="Horror">Horror</mat-option>
+            <mat-option value="Muzical">Musical</mat-option>
+            <mat-option value="Romance">Romance</mat-option>
+            <mat-option value="ScienceFiction">Science Fiction</mat-option>
+            <mat-option value="Triller">Triller</mat-option>
+            <mat-option value="Western">Western</mat-option>
+        </mat-select>
+    </mat-form-field>
 </div>
 
+<div *ngFor="let foundFilm of films" class="film-item">
+    <div class="first-column">
+        <img alt="Film cover"
+            [src]="isValidUrl(foundFilm.picture) ? foundFilm.picture : '/assets/img/blank-film-cover.jpg'" width="80"
+            height="80" />
+    </div>
+    <div class="second-column">
+        <span>Title: <a [routerLink]="'/details/film/' + foundFilm.id">{{foundFilm.title}}</a></span>
+        <span>Genre: {{foundFilm.genre}}</span>
+        <span>Description: {{foundFilm.description}}</span>
+    </div>
+</div>

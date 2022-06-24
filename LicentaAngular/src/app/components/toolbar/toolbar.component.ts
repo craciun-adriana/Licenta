@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { interval, Subscription, timer } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
+
 import { LicentaService } from 'src/app/services/licenta-service.service';
 
 @Component({

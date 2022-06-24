@@ -1,18 +1,15 @@
-<h1>Chat</h1>
+<h1 class="title">Chat</h1>
 
-<div class="grid-container">
-    <div *ngIf="!isGroup" class="nameConv">
-        <span>{{chatUser?.userName ?? 'Messages'}}</span>
-        <span></span>
+<div class="message-grid-container">
+    <div class="conversation-name">
+        <span *ngIf="!isGroup">{{chatUser?.userName ?? 'Messages'}}</span>
+        <span *ngIf="isGroup" (click)="openGroupDetails()">{{chatGroup?.name ?? 'Messages'}}</span>
     </div>
 
-    <div *ngIf="isGroup" class="nameConv">
-        <span (click)="openGroupDetails()">{{chatGroup?.name ?? 'Messages'}}</span>
-    </div>
-
+    <!-- Group details container -->
     <div *ngIf="isOpenGroupDetails">
-        <div><b>Description: </b>
-            <span>{{chatGroup?.description}}</span>
+        <div>
+            <b>Description: </b><span>{{chatGroup?.description}}</span>
         </div>
 
         <div>
@@ -20,90 +17,79 @@
             <span *ngFor="let member of groupMembers">{{member.userName}}, </span>
         </div>
 
-        <div (click)="openAddGroupMember()"><b>Add a new member</b></div>
+        <button *ngIf="!isAddMemberOpen" mat-raised-button color="primary" (click)="openAddGroupMember()">Add a new
+            member</button>
+        <button *ngIf="isAddMemberOpen" mat-raised-button color="primary" (click)="closeAddGroupMember()">Close</button>
 
-        <div *ngIf="addMember">
+        <div *ngIf="isAddMemberOpen">
             <form [formGroup]="addGroupMemberForm">
-                <mat-autocomplete #autoFriends="matAutocomplete" [displayWith]="friendDisplayFunction">
-                    <mat-option *ngFor="let friend of userFriends" [value]="friend">{{friend.userName}}</mat-option>
-                </mat-autocomplete>
-                <input formControlName="idUser" type="text" [matAutocomplete]="autoFriends">
-                <div>
-                    <button (click)="addGroupMember()">Add member</button>
-                </div>
+                <mat-form-field>
+                    <mat-autocomplete #autoFriends="matAutocomplete" [displayWith]="friendDisplayFunction">
+                        <mat-option *ngFor="let friend of userFriends" [value]="friend">{{friend.userName}}</mat-option>
+                    </mat-autocomplete>
+                    <input matInput formControlName="idUser" type="text" [matAutocomplete]="autoFriends">
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="addGroupMember()">Add member</button>
             </form>
         </div>
     </div>
 
-    <div class="conversationLists">
-        <div id="userList">
+    <div class="conversation-lists">
+        <div class="list">
             <div *ngFor="let user of lastConversation" (click)="openChatWithUser(user.id)">
                 <img alt="Profile picture"
-                    [src]="user.profilePicture ? user.profilePicture : '/assets/img/default-user-image.png'" />
+                    [src]="isValidUrl(user.profilePicture) ? user.profilePicture : '/assets/img/default-user-image.png'" />
                 <span>{{user.userName}}</span>
             </div>
         </div>
-        <div id="groupList">
+        <div class="list">
             <div *ngFor="let group of lastConversationG" (click)="openChatWithGroup(group.id)">
                 <img alt="Profile picture"
-                    [src]="group.picture ? group.picture : '/assets/img/default-user-image.png'" />
+                    [src]="isValidUrl(group.picture) ? group.picture : '/assets/img/default-user-image.png'" />
                 <span>{{group.name}}</span>
             </div>
         </div>
     </div>
 
-    <div class="showMess">
+    <div class="messages">
         <ul>
-            <li *ngFor="let message of messages" class="message-container" [ngClass]="getMessageClass(message.idSender)"
-                matTooltip="{{message.sendTime | date : 'short'}}">
+            <li *ngFor="let message of messages" class="message-container"
+                [ngClass]="getMessageClass(message.idSender)" ()>
                 <div #chatDiv tabindex="1">
-                    <img *ngIf="message.idSender!==userId" [src]="chatUser?.profilePicture" width="20" height="20">
-                    <div class="message">
-                        <span *ngIf="isGroup">{{message.nameSender}}</span>
+                    <img *ngIf="message.idSender !== userId"
+                        [src]="isValidUrl(chatUser?.profilePicture) ? chatUser?.profilePicture : '/assets/img/default-user-image.png'">
+                    <span>
+                        <i *ngIf="isGroup && message.idSender !== userId">{{message.nameSender}}</i>
                         <br *ngIf="isGroup">
-                        <span>{{message.text}}</span>
-                    </div>
+                        <span matTooltip="{{message.sendTime | date : 'short'}}">{{message.text}}</span>
+                    </span>
                 </div>
             </li>
         </ul>
     </div>
 
-    <div *ngIf="!isGroup" class="createMess">
-        <input #userMessageInput id="message" name="message"
-            (keyup.enter)="sendMessageToUser(userMessageInput.value); userMessageInput.value=''">
-        <button mat-raised-button color="primary" id="submit" type="submit"
-            (click)="sendMessageToUser(userMessageInput.value); userMessageInput.value=''">Send</button>
+    <div class="create-messages">
+        <textarea #userMessageInput class="message-input"
+            (keyup.enter)="isGroup? sendMessageToGroup(userMessageInput.value) : sendMessageToUser(userMessageInput.value); userMessageInput.value=''"></textarea>
+        <button mat-raised-button color="primary"
+            (click)="isGroup? sendMessageToGroup(userMessageInput.value) : sendMessageToUser(userMessageInput.value); userMessageInput.value=''">Send</button>
     </div>
-
-    <div *ngIf="isGroup" class="createMess">
-        <input #userMessageInput id="message" name="message"
-            (keyup.enter)="sendMessageToGroup(userMessageInput.value); userMessageInput.value=''">
-        <button mat-raised-button color="primary" id="submit" type="submit"
-            (click)="sendMessageToGroup(userMessageInput.value); userMessageInput.value=''">Send</button>
-    </div>
-
 </div>
 
-<div id="search-user-bar">
-    <form>
-        <input #friendSearchInput id="search-text" type="text" />
-        <input type="submit" (click)="findFriendsByUsername(friendSearchInput.value)" value="Submit">
-    </form>
+<!-- Search bar -->
+<div>
+    <mat-form-field>
+        <mat-label>Search users and groups</mat-label>
+        <input matInput #friendSearchInput type="text" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="findFriendsAndGroupsByName(friendSearchInput.value)">
+        Search
+    </button>
 
     <div>
         <div *ngFor="let foundUser of foundUsers">
             <span (click)="openChatWithUser(foundUser.id)">{{foundUser.userName}}</span>
         </div>
-    </div>
-</div>
-
-<div id="search-group-bar">
-    <form>
-        <input #groupSearchInput id="search-text" type="text" />
-        <input type="submit" (click)="findUserGroupsByName(groupSearchInput.value)" value="Submit">
-    </form>
-
-    <div>
         <div *ngFor="let foundGroup of foundGroups">
             <span (click)="openChatWithGroup(foundGroup.id)">{{foundGroup.name}}</span>
         </div>
@@ -111,8 +97,9 @@
 </div>
 
 <div>
+    <!-- TODO: de facut -->
     <button (click)="startCreateGroup()">Create a new group</button>
-    <br><button *ngIf="isCreatingGroup" id="close-create-group" (click)="closeCreateGroup()">Close</button>
+    <br><button *ngIf="isCreatingGroup" (click)="closeCreateGroup()">Close</button>
     <form *ngIf="isCreatingGroup" [formGroup]="createGroupForm">
         <div>
             <span>Group name:</span>
@@ -126,7 +113,7 @@
             <span>Group description:</span>
             <input type="text" formControlName="description">
         </div>
-        <div class="content">
+        <div>
             <button mat-raised-button color="primary" (click)="createGroup()"> Create group</button>
         </div>
     </form>
