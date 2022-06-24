@@ -22,6 +22,8 @@ namespace LicentaAPI.AppServices.ReviewBooks
 
         public IEnumerable<ReviewBookDTO> GetReviewBookCompletedByIdUser(string idUser);
 
-        public ReviewBook GetReviewBookByIdBookAndUser(string idBook, string idUser);
+        public ReviewBookDTO GetReviewBookByIdBookAndUser(string idBook, string idUser);
+
+        public void DeleteReview(string idReview);
     }
 }

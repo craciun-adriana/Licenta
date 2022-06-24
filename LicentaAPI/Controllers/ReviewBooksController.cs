@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace LicentaAPI.Controllers
 {
@@ -28,9 +29,9 @@ namespace LicentaAPI.Controllers
         [HttpPost("create-update")]
         [SwaggerResponse(201, "ReviewBook was created.")]
         [SwaggerResponse(404, "ReviewBook can't be created.")]
-        public IActionResult CreateOrUpdateReviewBooks(ReviewBooksCreateRequest request)
+        public IActionResult CreateOrUpdateReviewBooks(ReviewCreateRequest request)
         {
-            var reviewBookCreate = _mapper.Map<ReviewBooksCreateRequest, ReviewBookCreate>(request);
+            var reviewBookCreate = _mapper.Map<ReviewCreateRequest, ReviewBookCreate>(request);
             reviewBookCreate.IdUser = _userManager.GetUserId(HttpContext.User);
             var reviewBook = _reviewBooksService.CreateOrUpdateReviewBook(reviewBookCreate);
 
@@ -77,6 +78,18 @@ namespace LicentaAPI.Controllers
             var idUser = _userManager.GetUserId(HttpContext.User);
             var reviewBook = _reviewBooksService.GetReviewBookByIdBookAndUser(idBook, idUser);
             return Ok(reviewBook);
+        }
+
+        [Authorize]
+        [HttpDelete("delete/{idReview}")]
+        public async Task<IActionResult> DeleteReview(string idReview)
+        {
+            if (await UserIsAdminAsync())
+            {
+                _reviewBooksService.DeleteReview(idReview);
+                return Ok();
+            }
+            return Unauthorized();
         }
     }
 }

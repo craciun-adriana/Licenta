@@ -83,7 +83,7 @@ namespace LicentaAPI.AppServices.Users
         public bool UpdateAdminStatus(string userId, bool adminStatus)
         {
             var user = _userRepo.GetUserById(userId);
-            if (user != null)
+            if (user == null)
             {
                 return false;
             }

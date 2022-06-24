@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace LicentaAPI.Controllers.Models
 {
-    public class ReviewBooksCreateRequest
+    public class ReviewCreateRequest
     {
         [Required]
-        public string IdBook { get; set; }
+        public string IdResource { get; set; }
 
         public int? Grade { get; set; }
 

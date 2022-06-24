@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace LicentaAPI.Controllers
 {
@@ -28,9 +29,9 @@ namespace LicentaAPI.Controllers
         [HttpPost("create-update")]
         [SwaggerResponse(201, "ReviewFilm was created.")]
         [SwaggerResponse(404, "ReviewFilm can't be created.")]
-        public IActionResult CreateOrUpdateReviewFilm(ReviewFilmsCreateRequest request)
+        public IActionResult CreateOrUpdateReviewFilm(ReviewCreateRequest request)
         {
-            var reviewFilmsCreate = _mapper.Map<ReviewFilmsCreateRequest, ReviewFilmCreate>(request);
+            var reviewFilmsCreate = _mapper.Map<ReviewCreateRequest, ReviewFilmCreate>(request);
             reviewFilmsCreate.IdUser = _userManager.GetUserId(HttpContext.User);
             var reviewFilm = _reviewFilmsService.CreateOrUpdateReviewFilm(reviewFilmsCreate);
 
@@ -80,6 +81,18 @@ namespace LicentaAPI.Controllers
             var idUser = _userManager.GetUserId(HttpContext.User);
             var reviewFilm = _reviewFilmsService.GetReviewFilmByIdFilmAndUser(idFilm, idUser);
             return Ok(reviewFilm);
+        }
+
+        [Authorize]
+        [HttpDelete("delete/{idReview}")]
+        public async Task<IActionResult> DeleteReview(string idReview)
+        {
+            if (await UserIsAdminAsync())
+            {
+                _reviewFilmsService.DeleteReview(idReview);
+                return Ok();
+            }
+            return Unauthorized();
         }
     }
 }

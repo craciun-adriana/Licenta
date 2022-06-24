@@ -68,6 +68,15 @@ namespace LicentaAPI.AppServices.ReviewFilms
             return reviewFilm;
         }
 
+        public void DeleteReview(string idReview)
+        {
+            var review = _reviewFilmRepo.GetById(idReview);
+            if (review != null)
+            {
+                _reviewFilmRepo.Delete(review);
+            }
+        }
+
         public IEnumerable<ReviewFilmDTO> GetByStatus(Status status, string idUser)
         {
             return _reviewFilmRepo.GetByStatus(status, idUser)
@@ -107,9 +116,25 @@ namespace LicentaAPI.AppServices.ReviewFilms
                 });
         }
 
-        public ReviewFilm GetReviewFilmByIdFilmAndUser(string idFilm, string idUser)
+        public ReviewFilmDTO GetReviewFilmByIdFilmAndUser(string idFilm, string idUser)
         {
-            return _reviewFilmRepo.GetReviewFilmByIdFilmAndUser(idFilm, idUser);
+            var review = _reviewFilmRepo.GetReviewFilmByIdFilmAndUser(idFilm, idUser);
+            if (review == null)
+            {
+                return null;
+            }
+            var film = _filmRepo.GetById(review.IdFilm);
+            return new ReviewFilmDTO
+            {
+                IdFilm = review.IdFilm,
+                Film = film,
+                Grade = review.Grade,
+                IdReview = review.ID,
+                IdUser = review.IdUser,
+                Username = _userRepo.GetUserById(review.IdUser)?.UserName ?? "User deleted",
+                Review = review.Review,
+                Status = review.Status,
+            };
         }
 
         public IEnumerable<ReviewFilmDTO> GetReviewFilmCompletedByIdUser(string idUser)

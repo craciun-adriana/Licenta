@@ -21,20 +21,6 @@
 
         </div>
 
-        <!-- continua de aici -->
-        <div>
-            <mat-form-field appearance="fill">
-                <mat-label>Status</mat-label>
-                <mat-select value="Completed">
-                    <mat-option value="Planning">Planning</mat-option>
-                    <mat-option value="Completed">Completed</mat-option>
-                    <mat-option value="Ongoing">Ongoing</mat-option>
-                    <mat-option value="OnHold">OnHold</mat-option>
-                    <mat-option value="Dropped">Dropped</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-
         <div id="info">
 
             <div *ngIf="isBook">
@@ -224,33 +210,40 @@
         </div>
 
 
-        <div *ngIf="!isAdmin" id="user-review">
+        <form [formGroup]="userReviewForm" *ngIf="!isAdmin" id="user-review">
             <span><b>Your grades is: </b></span>
             <br>
-            <div *ngIf="userReview?.grade===null">
-                <input #addGrade id="search-text" type="text" />
-                <input type="submit" (click)="addGrade.value" value="Add grade">
-            </div>
-            <div *ngIf="userReview!==null">{{userReview?.grade}}</div>
+            <input formControlName="grade" id="search-text" type="number" step="1" min="0" max="10">
 
             <span><b>Your review is:</b></span>
             <br>
-            <div>{{userReview?.review}}</div>
+            <textarea formControlName="review"></textarea>
+            <br>
 
-            <div *ngIf="!isAdmin">
-                <span>Your status for {{fsbDetails?.title}} is {{userReview?.status}}.</span>
-                <span> Choose a new one:</span>
-            </div>
-        </div>
+            <span>Your status for {{fsbDetails?.title}}:</span>
+            <mat-form-field appearance="fill">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option value="">Select status</mat-option>
+                    <mat-option value="Planning">Planning</mat-option>
+                    <mat-option value="Completed">Completed</mat-option>
+                    <mat-option value="Ongoing">Ongoing</mat-option>
+                    <mat-option value="OnHold">OnHold</mat-option>
+                    <mat-option value="Dropped">Dropped</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button (click)="saveReview()">Save review</button>
+        </form>
 
         <table id="reviews">
             <thead>
                 <tr>
                     <th>User</th>
-                    <th *ngIf="isBook">Notate this book with</th>
-                    <th *ngIf="isFilm">Notate this film with</th>
-                    <th *ngIf="isSeries">Notate this series with</th>
-                    <th>And his/her impresion is</th>
+                    <th *ngIf="isBook">Graded this book with</th>
+                    <th *ngIf="isFilm">Graded this film with</th>
+                    <th *ngIf="isSeries">Graded this series with</th>
+                    <th>And their impression is</th>
+                    <th *ngIf="isAdmin">Delete review</th>
                 </tr>
             </thead>
             <tbody>
@@ -258,6 +251,9 @@
                     <td><a [routerLink]="'/profile/'+review.idUser">{{review.username}}</a></td>
                     <td>{{review.grade}}</td>
                     <td>{{review.review}}</td>
+                    <td>
+                        <button (click)="deleteReview(review.idReview)">Delete</button>
+                    </td>
                 </tr>
             </tbody>
         </table>

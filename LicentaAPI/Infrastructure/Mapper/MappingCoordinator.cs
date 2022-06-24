@@ -82,22 +82,25 @@ namespace LicentaAPI.Infrastructure.Mapper
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
                 cfg.CreateMap<Message, MessageDTO>();
 
-                cfg.CreateMap<ReviewBooksCreateRequest, ReviewBookCreate>()
-                    .ForMember(dest => dest.IdUser, opt => opt.Ignore());
+                cfg.CreateMap<ReviewCreateRequest, ReviewBookCreate>()
+                    .ForMember(dest => dest.IdUser, opt => opt.Ignore())
+                    .ForMember(dest => dest.IdBook, opt => opt.MapFrom(src => src.IdResource));
                 cfg.CreateMap<ReviewBookCreate, ReviewBook>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
                 cfg.CreateMap<ReviewBook, ReviewBookDTO>()
                 .ForMember(dest => dest.Book, opt => opt.Ignore());
 
-                cfg.CreateMap<ReviewFilmsCreateRequest, ReviewFilmCreate>()
-                    .ForMember(dest => dest.IdUser, opt => opt.Ignore());
+                cfg.CreateMap<ReviewCreateRequest, ReviewFilmCreate>()
+                    .ForMember(dest => dest.IdUser, opt => opt.Ignore())
+                    .ForMember(dest => dest.IdFilm, opt => opt.MapFrom(src => src.IdResource));
                 cfg.CreateMap<ReviewFilmCreate, ReviewFilm>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
                 cfg.CreateMap<ReviewFilm, ReviewFilmDTO>()
                 .ForMember(dest => dest.Film, opt => opt.Ignore());
 
-                cfg.CreateMap<ReviewSeriesCreateRequest, ReviewSeriesCreate>()
-                    .ForMember(dest => dest.IdUser, opt => opt.Ignore());
+                cfg.CreateMap<ReviewCreateRequest, ReviewSeriesCreate>()
+                    .ForMember(dest => dest.IdUser, opt => opt.Ignore())
+                    .ForMember(dest => dest.IdSeries, opt => opt.MapFrom(src => src.IdResource));
                 cfg.CreateMap<ReviewSeriesCreate, ReviewSeries>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
                 cfg.CreateMap<ReviewSeries, ReviewSeriesDTO>()

@@ -22,6 +22,8 @@ namespace LicentaAPI.AppServices.ReviewFilms
 
         public IEnumerable<ReviewFilmDTO> GetReviewFilmCompletedByIdUser(string idUser);
 
-        public ReviewFilm GetReviewFilmByIdFilmAndUser(string idFilm, string idUser);
+        public ReviewFilmDTO GetReviewFilmByIdFilmAndUser(string idFilm, string idUser);
+
+        public void DeleteReview(string idReview);
     }
 }

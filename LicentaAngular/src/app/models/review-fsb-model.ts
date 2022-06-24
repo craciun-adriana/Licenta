@@ -1,7 +1,7 @@
 import { Status } from "./status";
 
 export interface ReviewFsbModel {
-    id: string;
+    idReview: string;
     idUser: string;
     username: string;
     idBook: string;

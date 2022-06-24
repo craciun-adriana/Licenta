@@ -69,6 +69,15 @@ namespace LicentaAPI.AppServices.ReviewBooks
             return reviewBook;
         }
 
+        public void DeleteReview(string idReview)
+        {
+            var review = _reviewBookRepo.GetById(idReview);
+            if (review != null)
+            {
+                _reviewBookRepo.Delete(review);
+            }
+        }
+
         public IEnumerable<ReviewBookDTO> GetByStatus(Status status, string idUser)
         {
             return _reviewBookRepo.GetByStatus(status, idUser)
@@ -109,9 +118,25 @@ namespace LicentaAPI.AppServices.ReviewBooks
                 });
         }
 
-        public ReviewBook GetReviewBookByIdBookAndUser(string idBook, string idUser)
+        public ReviewBookDTO GetReviewBookByIdBookAndUser(string idBook, string idUser)
         {
-            return _reviewBookRepo.GetReviewBookByIdBookAndUser(idBook, idUser);
+            var review = _reviewBookRepo.GetReviewBookByIdBookAndUser(idBook, idUser);
+            if (review == null)
+            {
+                return null;
+            }
+            var book = _bookRepo.GetById(review.IdBook);
+            return new ReviewBookDTO
+            {
+                IdBook = review.IdBook,
+                Book = book,
+                Grade = review.Grade,
+                IdReview = review.ID,
+                IdUser = review.IdUser,
+                Username = _userRepo.GetUserById(review.IdUser)?.UserName ?? "User deleted",
+                Review = review.Review,
+                Status = review.Status,
+            };
         }
 
         public IEnumerable<ReviewBookDTO> GetReviewBookCompletedByIdUser(string idUser)

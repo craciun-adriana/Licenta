@@ -48,6 +48,12 @@ export class FsbDetailsPageComponent implements OnInit {
         nrEps: new FormControl('', Validators.required),
     })
 
+    userReviewForm = new FormGroup({
+        grade: new FormControl('', Validators.required),
+        review: new FormControl('', Validators.required),
+        status: new FormControl('', Validators.required)
+    })
+
     //pt a apela functiile pt add review, fac swich nu if else
     constructor(
         private licentaService: LicentaService,
@@ -91,6 +97,7 @@ export class FsbDetailsPageComponent implements OnInit {
             });
             this.licentaService.getReviewBookByIdBookAndUser(this.id).subscribe((response: ReviewFsbModel) => {
                 this.userReview = response;
+                this.updateUserReviewForm();
             });
             this.licentaService.getAllBooks().subscribe((response: FsbDetailsModel[]) => {
                 this.entity = response;
@@ -109,6 +116,7 @@ export class FsbDetailsPageComponent implements OnInit {
             });
             this.licentaService.getReviewFilmByIdFilmAndUser(this.id).subscribe((response: ReviewFsbModel) => {
                 this.userReview = response;
+                this.updateUserReviewForm();
             });
             this.licentaService.getAllFilms().subscribe((response: FsbDetailsModel[]) => {
                 this.entity = response;
@@ -127,6 +135,7 @@ export class FsbDetailsPageComponent implements OnInit {
             });
             this.licentaService.getReviewSeriesByIdSeriesAndUser(this.id).subscribe((response: ReviewFsbModel) => {
                 this.userReview = response;
+                this.updateUserReviewForm();
             });
             this.licentaService.getAllSeries().subscribe((response: FsbDetailsModel[]) => {
                 this.entity = response;
@@ -135,7 +144,6 @@ export class FsbDetailsPageComponent implements OnInit {
     }
 
     private updateFormValues() {
-
         this.updateForm.patchValue({
             title: this.fsbDetails?.title,
             author: this.fsbDetails?.author,
@@ -155,8 +163,15 @@ export class FsbDetailsPageComponent implements OnInit {
             rating: this.fsbDetails?.rating,
             length: this.fsbDetails?.length,
             nrEps: this.fsbDetails?.nrEps,
-
         });
+    }
+
+    private updateUserReviewForm() {
+        this.userReviewForm.patchValue({
+            grade: this.userReview?.grade ?? 0,
+            review: this.userReview?.review,
+            status: this.userReview?.status
+        })
     }
 
     public deleteFSB() {
@@ -212,9 +227,7 @@ export class FsbDetailsPageComponent implements OnInit {
                 })
                 break;
         }
-
     }
-
 
     bookDisplayFunction(book: BookModel): string {
         return book?.title;
@@ -226,5 +239,27 @@ export class FsbDetailsPageComponent implements OnInit {
 
     seriesDisplayFunction(series: SeriesModel): string {
         return series?.title;
+    }
+
+    saveReview(): void {
+        const userReviewDetails = {
+            idResource: this.fsbDetails?.id,
+            grade: this.userReviewForm.get('grade')?.value,
+            review: this.userReviewForm.get('review')?.value,
+            status: this.userReviewForm.get('status')?.value,
+        };
+
+        const type = this.isBook ? "books" : this.isFilm ? "films" : "series";
+
+        this.licentaService.createOrUpdateReview(userReviewDetails, type).subscribe(_ => {
+            this.initializeDetailsPage();
+        })
+    }
+
+    deleteReview(idReview: string) {
+        const type = this.isBook ? "books" : this.isFilm ? "films" : "series";
+        this.licentaService.deleteReview(idReview, type).subscribe(_ => {
+            this.initializeDetailsPage();
+        });
     }
 }

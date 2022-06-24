@@ -299,6 +299,24 @@ export class LicentaService {
             );
     }
 
+    createOrUpdateReview(userReview: any, type: "books" | "films" | "series"): Observable<any> {
+        return this.http.post(`/licenta/review-${type}/create-update`, userReview)
+            .pipe(
+                catchError(error => {
+                    return of(null);
+                })
+            );
+    }
+
+    deleteReview(idReview: string, type: "books" | "films" | "series"): Observable<any> {
+        return this.http.delete(`/licenta/review-${type}/delete/${idReview}`)
+            .pipe(
+                catchError(error => {
+                    return of([]);
+                })
+            );
+    }
+
     getLastUserConversationsForUser(): Observable<any> {
         return this.http.get('/licenta/message/conversation/50')
             .pipe(
@@ -306,6 +324,7 @@ export class LicentaService {
                     return of([]);
                 })
             );
+
     }
 
     getLastGroupConversationsForUser(): Observable<any> {
