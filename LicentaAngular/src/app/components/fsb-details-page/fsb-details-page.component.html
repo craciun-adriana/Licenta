@@ -21,7 +21,19 @@
 
         </div>
 
-
+        <!-- continua de aici -->
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Status</mat-label>
+                <mat-select value="Completed">
+                    <mat-option value="Planning">Planning</mat-option>
+                    <mat-option value="Completed">Completed</mat-option>
+                    <mat-option value="Ongoing">Ongoing</mat-option>
+                    <mat-option value="OnHold">OnHold</mat-option>
+                    <mat-option value="Dropped">Dropped</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 
         <div id="info">
 
@@ -50,7 +62,7 @@
             <div>
                 <div *ngIf="!isAdmin">
                     <b>Release date: </b>
-                    <span *ngIf="!isAdmin">{{fsbDetails?.relaseDate}}</span>
+                    <span *ngIf="!isAdmin">{{ fsbDetails?.relaseDate | date: 'longDate' }}</span>
                 </div>
                 <mat-form-field *ngIf="isAdmin" appearance="fill">
                     <b>Release date: </b>

@@ -92,6 +92,18 @@ export class ProfilePageComponent implements OnInit {
                         if (response !== null) {
                             this.user = response;
                             this.updateFormValues();
+
+                            this.licentaService.getReviewBookByStatusAndUserId(Status.Completed, this.user.id).subscribe((response: ReviewBookModel[]) => {
+                                this.reviewBooks = response;
+                            })
+
+                            this.licentaService.getReviewFilmByStatusAndUserId(Status.Completed, this.user.id).subscribe((response: ReviewFilmModel[]) => {
+                                this.reviewFilms = response;
+                            })
+
+                            this.licentaService.getReviewSeriesByStatusAndUserId(Status.Completed, this.user.id).subscribe((response: ReviewSeriesModel[]) => {
+                                this.reviewSeries = response;
+                            })
                         }
                     });
                 }

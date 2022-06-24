@@ -11,7 +11,6 @@ namespace LicentaAPI.Controllers.Models
         [Required]
         public string IdGroup { get; set; }
 
-        [Required]
         public string IdUser { get; set; }
 
         [Required]

@@ -169,7 +169,9 @@ export class ChatPageComponent implements OnInit {
                 idGroup: response.id,
                 isAdmin: true,
             }
-            this.licentaService.createGroupMember(createGroupAdmin).subscribe();
+            this.licentaService.createGroupMember(createGroupAdmin).subscribe(_ => {
+                this.closeCreateGroup();
+            });
         });
     }
 

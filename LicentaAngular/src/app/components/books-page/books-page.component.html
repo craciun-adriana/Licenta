@@ -1,13 +1,13 @@
 <h1>Here is our books collection!</h1>
 <h1>Check it and find something new for you ;)</h1>
 
-<form id="search-bar-title">
+<div id="search-bar-title">
     <input #bookSearchByTitleInput id="search-text" type="text" />
-    <input type="submit" (click)="getBookByTitle(bookSearchByTitleInput.value)" value="Submit">
-</form>
+    <button (click)="getBookByTitle(bookSearchByTitleInput.value); selectGenre.value=''">Search</button>
+</div>
 
 <div>
-    <select (change)="getBookByGenre($event)" id="select-genre-search">
+    <select #selectGenre (change)="getBookByGenre($event); bookSearchByTitleInput.value=''" id="select-genre-search">
         <option value="">Select genre</option>
         <option value="Action">Action</option>
         <option value="Comedy">Comedy</option>
