@@ -1,0 +1,17 @@
+.container {
+    width: 30vw;
+    height: 60vh;
+    overflow-y: auto;
+
+    .found {
+        display: flex;
+        align-items: center;
+        margin: 1em 0;
+
+        img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+    }
+}

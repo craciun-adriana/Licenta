@@ -1,0 +1,24 @@
+<div>
+    <div>
+        <b>Description: </b><span>{{chatGroup?.description}}</span>
+    </div>
+
+    <div>
+        <b>Members: </b>
+        <a *ngFor="let member of groupMembers" [routerLink]="'/profile/'+member.id"
+            [mat-dialog-close]="">{{member.userName}}, </a>
+    </div>
+    <div>
+        <form [formGroup]="addGroupMemberForm">
+            <mat-form-field>
+                <mat-autocomplete #autoFriends="matAutocomplete" [displayWith]="friendDisplayFunction">
+                    <mat-option *ngFor="let friend of userFriends" [value]="friend">{{friend.userName}}</mat-option>
+                </mat-autocomplete>
+                <mat-label>Search users</mat-label>
+                <input matInput formControlName="idUser" type="text" [matAutocomplete]="autoFriends">
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="addGroupMember()">Add member</button>
+        </form>
+    </div>
+
+</div>

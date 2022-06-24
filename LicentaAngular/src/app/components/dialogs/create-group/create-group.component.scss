@@ -1,0 +1,17 @@
+.container {
+    width: 40vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1em;
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+
+        button {
+            margin: 0 10px;
+        }
+    }
+}

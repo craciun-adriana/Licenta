@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="found" *ngFor="let foundUser of users" [mat-dialog-close]="{isGroup: false, id: foundUser.id}">
+        <img alt="Profile picture"
+            [src]="isValidUrl(foundUser.profilePicture) ? foundUser.profilePicture : '/assets/img/default-user-image.png'">
+        <span>{{foundUser.userName}}</span>
+    </div>
+    <div class="found" *ngFor="let foundGroup of groups" [mat-dialog-close]="{isGroup: true, id: foundGroup.id}">
+        <img alt="Profile picture"
+            [src]="isValidUrl(foundGroup.picture) ? foundGroup.picture : '/assets/img/default-user-image.png'">
+        <span>{{foundGroup.name}}</span>
+    </div>
+</div>

@@ -40,6 +40,10 @@ import { AddFilmComponent } from './components/add-film/add-film.component';
 import { AddSeriesComponent } from './components/add-series/add-series.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersComponent } from './components/users/users.component';
+import { CreateGroupDialog } from './components/dialogs/create-group/create-group.component';
+import { DetailsGroupDialog } from './components/dialogs/details-group/details-group.component';
+import { UsersGroupsSearchDialog } from './components/dialogs/users-groups-search/users-groups-search.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -60,7 +64,10 @@ import { UsersComponent } from './components/users/users.component';
         AddBookComponent,
         AddFilmComponent,
         AddSeriesComponent,
-        UsersComponent
+        UsersComponent,
+        CreateGroupDialog,
+        DetailsGroupDialog,
+        UsersGroupsSearchDialog
     ],
     imports: [
         BrowserModule,
@@ -81,7 +88,8 @@ import { UsersComponent } from './components/users/users.component';
         MatNativeDateModule,
         MatSelectModule,
         MatCheckboxModule,
-        MatIconModule
+        MatIconModule,
+        MatDialogModule
     ],
     providers: [
         LicentaService,

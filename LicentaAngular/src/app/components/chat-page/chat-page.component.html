@@ -1,42 +1,30 @@
 <h1 class="title">Chat</h1>
 
+<div class="search-container">
+    <div>
+        <mat-form-field>
+            <mat-label>Search users and groups</mat-label>
+            <input matInput #friendSearchInput type="text" />
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="findFriendsAndGroupsByName(friendSearchInput.value)">
+            Search
+        </button>
+    </div>
+
+    <div class="button-container">
+        <button mat-raised-button color="primary" (click)="openCreateGroupDialog()">Create a new group</button>
+    </div>
+</div>
+
 <div class="message-grid-container">
     <div class="conversation-name">
         <span class="name">
             <span *ngIf="!isGroup">{{chatUser?.userName ?? 'Messages'}}</span>
-            <span *ngIf="isGroup" (click)="openGroupDetails()">{{chatGroup?.name ?? 'Messages'}}</span>
+            <span *ngIf="isGroup">{{chatGroup?.name ?? 'Messages'}}</span>
         </span>
-        <button *ngIf="isGroup" class="more-menu" mat-icon-button>
+        <button *ngIf="isGroup" class="more-menu" mat-icon-button  (click)="openGroupDetails()">
             <mat-icon>more_vert</mat-icon>
         </button>
-    </div>
-
-    <!-- Group details container -->
-    <div *ngIf="isOpenGroupDetails">
-        <div>
-            <b>Description: </b><span>{{chatGroup?.description}}</span>
-        </div>
-
-        <div>
-            <b>Members: </b>
-            <span *ngFor="let member of groupMembers">{{member.userName}}, </span>
-        </div>
-
-        <button *ngIf="!isAddMemberOpen" mat-raised-button color="primary" (click)="openAddGroupMember()">Add a new
-            member</button>
-        <button *ngIf="isAddMemberOpen" mat-raised-button color="primary" (click)="closeAddGroupMember()">Close</button>
-
-        <div *ngIf="isAddMemberOpen">
-            <form [formGroup]="addGroupMemberForm">
-                <mat-form-field>
-                    <mat-autocomplete #autoFriends="matAutocomplete" [displayWith]="friendDisplayFunction">
-                        <mat-option *ngFor="let friend of userFriends" [value]="friend">{{friend.userName}}</mat-option>
-                    </mat-autocomplete>
-                    <input matInput formControlName="idUser" type="text" [matAutocomplete]="autoFriends">
-                </mat-form-field>
-                <button mat-raised-button color="primary" (click)="addGroupMember()">Add member</button>
-            </form>
-        </div>
     </div>
 
     <div class="conversation-lists">
@@ -79,47 +67,4 @@
         <button mat-raised-button color="primary"
             (click)="isGroup? sendMessageToGroup(userMessageInput.value) : sendMessageToUser(userMessageInput.value); userMessageInput.value=''">Send</button>
     </div>
-</div>
-
-<!-- Search bar -->
-<div>
-    <mat-form-field>
-        <mat-label>Search users and groups</mat-label>
-        <input matInput #friendSearchInput type="text" />
-    </mat-form-field>
-    <button mat-raised-button color="primary" (click)="findFriendsAndGroupsByName(friendSearchInput.value)">
-        Search
-    </button>
-
-    <div>
-        <div *ngFor="let foundUser of foundUsers">
-            <span (click)="openChatWithUser(foundUser.id)">{{foundUser.userName}}</span>
-        </div>
-        <div *ngFor="let foundGroup of foundGroups">
-            <span (click)="openChatWithGroup(foundGroup.id)">{{foundGroup.name}}</span>
-        </div>
-    </div>
-</div>
-
-<div>
-    <!-- TODO: de facut -->
-    <button (click)="startCreateGroup()">Create a new group</button>
-    <br><button *ngIf="isCreatingGroup" (click)="closeCreateGroup()">Close</button>
-    <form *ngIf="isCreatingGroup" [formGroup]="createGroupForm">
-        <div>
-            <span>Group name:</span>
-            <input type="text" formControlName="name">
-        </div>
-        <div>
-            <span>Group picture:</span>
-            <input type="text" formControlName="picture">
-        </div>
-        <div>
-            <span>Group description:</span>
-            <input type="text" formControlName="description">
-        </div>
-        <div>
-            <button mat-raised-button color="primary" (click)="createGroup()"> Create group</button>
-        </div>
-    </form>
 </div>
