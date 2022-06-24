@@ -8,6 +8,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
 
 import {
     NgxMatDatetimePickerModule,
@@ -79,7 +80,8 @@ import { UsersComponent } from './components/users/users.component';
         MatTooltipModule,
         MatNativeDateModule,
         MatSelectModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatIconModule
     ],
     providers: [
         LicentaService,

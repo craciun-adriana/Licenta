@@ -2,8 +2,13 @@
 
 <div class="message-grid-container">
     <div class="conversation-name">
-        <span *ngIf="!isGroup">{{chatUser?.userName ?? 'Messages'}}</span>
-        <span *ngIf="isGroup" (click)="openGroupDetails()">{{chatGroup?.name ?? 'Messages'}}</span>
+        <span class="name">
+            <span *ngIf="!isGroup">{{chatUser?.userName ?? 'Messages'}}</span>
+            <span *ngIf="isGroup" (click)="openGroupDetails()">{{chatGroup?.name ?? 'Messages'}}</span>
+        </span>
+        <button *ngIf="isGroup" class="more-menu" mat-icon-button>
+            <mat-icon>more_vert</mat-icon>
+        </button>
     </div>
 
     <!-- Group details container -->
@@ -53,14 +58,14 @@
 
     <div class="messages">
         <ul>
-            <li *ngFor="let message of messages" class="message-container"
-                [ngClass]="getMessageClass(message.idSender)" ()>
+            <li *ngFor="let message of messages" [ngClass]="getMessageClass(message.idSender)"
+                class="message-container">
                 <div #chatDiv tabindex="1">
                     <img *ngIf="message.idSender !== userId"
                         [src]="isValidUrl(chatUser?.profilePicture) ? chatUser?.profilePicture : '/assets/img/default-user-image.png'">
                     <span>
                         <i *ngIf="isGroup && message.idSender !== userId">{{message.nameSender}}</i>
-                        <br *ngIf="isGroup">
+                        <br *ngIf="isGroup && message.idSender !== userId">
                         <span matTooltip="{{message.sendTime | date : 'short'}}">{{message.text}}</span>
                     </span>
                 </div>

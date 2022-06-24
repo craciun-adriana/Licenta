@@ -14,29 +14,38 @@ img {
         'LastConversations nameConversation nameConversation'
         'LastConversations Chat Chat'
         'LastConversations WriteMessage WriteMessage';
-    gap: 5px;
-    padding: 10px;
-    background-color: bisque;
+    margin: 10px 5vw;
     font-family: Arial, Helvetica, sans-serif;
 
     .conversation-name {
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: bisque;
         grid-area: nameConversation;
         border: 1px solid black;
         height: 5vh;
+        width: 70vw;
+
+        .name {
+            margin-left: 1em;
+        }
+
+        .more-menu {
+            margin-left: auto;
+        }
     }
 
     .conversation-lists {
         background-color: beige;
         grid-area: LastConversations;
         border: 1px solid black;
+        width: 20vw;
         text-align: center;
 
         .list {
             overflow-y: auto;
-            max-height: 35vh;
+            max-height: 37vh;
 
             div {
                 display: flex;
@@ -55,8 +64,10 @@ img {
 
     .messages {
         grid-area: Chat;
+        background-color: bisque;
         border: 1px solid black;
         height: 60vh;
+        width: 70vw;
         overflow-y: auto;
 
         ul {
@@ -67,21 +78,32 @@ img {
             display: flex;
             align-items: center;
             list-style-type: none;
-            border: 1px solid black;
-            background-color: beige;
+            width: 51%;
 
             &.sent {
                 justify-content: flex-end;
+                float: right;
+
+                div {
+                    justify-content: flex-end;
+                }
             }
 
             &.received {
                 justify-content: flex-start;
+                float: left;
+
+                div {
+                    justify-content: flex-start;
+                }
             }
 
             div {
-                margin: 1em;
+                background-color: beige;
+                min-width: 5vw;
+                padding: 0.5em 1em;
+                margin: 2px 1em;
                 display: flex;
-                justify-content: center;
                 align-items: center;
 
                 img {
@@ -98,16 +120,18 @@ img {
     }
 
     .create-messages {
+        background-color: bisque;
         grid-area: WriteMessage;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
         border: 1px solid black;
+        width: 70vw;
 
         .message-input {
             resize: none;
-            height: 5vh;
+            height: 10vh;
             flex-grow: 100;
         }
 

@@ -72,7 +72,6 @@ export class ChatPageComponent implements OnInit {
             this.foundUsers = response;
         })
         this.licentaService.findUserGroupsByName(name).subscribe((response: GroupModel[]) => {
-
             this.foundGroups = response;
         })
     }
