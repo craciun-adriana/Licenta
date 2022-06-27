@@ -2,11 +2,12 @@
 
 <div *ngFor="let admin of admins" class="list">
     <div class="first-column">
-        <img alt="Profile picture" [src]="admin.profilePicture" width="80" height="80" />
+        <img alt="Profile picture"
+            [src]="isValidUrl(admin.profilePicture) ? admin.profilePicture : '/assets/img/default-user-image.png'" />
     </div>
     <div class="second-column">
         <span>Username: <a [routerLink]="'/profile/' + admin.id">{{admin.userName}}</a> </span>
-        <span>First name and last name: {{admin.firstName}} {{admin.lastName}}</span>
+        <span>First last name: {{admin.firstName}} {{admin.lastName}}</span>
     </div>
     <div class="third-column">
         <button mat-raised-button color="primary" (click)="updateAdminStatus(admin.id, false)">Delete
@@ -18,11 +19,12 @@
 
 <div *ngFor="let user of users" class="list">
     <div class="first-column">
-        <img alt="Profile picture" [src]="user.profilePicture" width="80" height="80" />
+        <img alt="Profile picture"
+            [src]="isValidUrl(user.profilePicture) ? user.profilePicture : '/assets/img/default-user-image.png'" />
     </div>
     <div class="second-column">
         <span>Username: <a [routerLink]="'/profile/' + user.id">{{user.userName}}</a></span>
-        <span>First name and last name: {{user.firstName}} {{user.lastName}}</span>
+        <span>First last name: {{user.firstName}} {{user.lastName}}</span>
     </div>
     <div class="third-column">
         <button mat-raised-button color="primary" (click)="updateAdminStatus(user.id, true)">

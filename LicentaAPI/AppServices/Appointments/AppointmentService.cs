@@ -1,7 +1,7 @@
-﻿using LicentaAPI.Infrastructure.Mapper;
-using LicentaAPI.Persistence.Repositories;
+﻿using LicentaAPI.AppServices.Appointments.Model;
+using LicentaAPI.Infrastructure.Mapper;
 using LicentaAPI.Persistence.Models;
-using LicentaAPI.AppServices.Appointments.Model;
+using LicentaAPI.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +13,12 @@ namespace LicentaAPI.AppServices.Appointments
     /// </summary>
     public class AppointmentService : IAppointmentService
     {
-        private IAppointmentRepo _appointmentRepo;
-        private IGroupRepo _groupRepo;
+        private readonly IAppointmentRepo _appointmentRepo;
+        private readonly IGroupRepo _groupRepo;
         private readonly IBookRepo _bookRepo;
         private readonly IFilmRepo _filmRepo;
         private readonly ISeriesRepo _seriesRepo;
-        private IMappingCoordinator _mapper;
+        private readonly IMappingCoordinator _mapper;
 
         public AppointmentService(
             IAppointmentRepo appointmentRepo,
@@ -60,7 +60,7 @@ namespace LicentaAPI.AppServices.Appointments
             foreach (var group in groups)
             {
                 _appointmentRepo.FindAppointmentByGroupId(group.ID)
-                    .Where(a => a.TimeAppointment.ToUniversalTime() > DateTime.UtcNow)
+                    .Where(a => a.TimeAppointment.CompareTo(DateTime.Now) > 0)
                     .ToList()
                     .ForEach(a =>
                     {

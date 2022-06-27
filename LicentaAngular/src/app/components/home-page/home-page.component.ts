@@ -29,7 +29,7 @@ export class HomePageComponent implements OnInit {
     reviewFilmsO: ReviewFilmModel[] = [];
     reviewSeriesO: ReviewSeriesModel[] = [];
 
-    createNewAppoint: boolean = true;
+    createNewAppoint: boolean = false;
     errorMessage: string = '';
 
     groupUser: GroupModel[] = [];
@@ -94,9 +94,7 @@ export class HomePageComponent implements OnInit {
         this.licentaService.findUserGroups().subscribe((response: GroupModel[]) => {
             this.groupUser = response;
         })
-
     }
-
 
     createNewAppointment(): void {
         this.createNewAppoint = true;
@@ -107,12 +105,13 @@ export class HomePageComponent implements OnInit {
         const createAppointment: CreateAppointmentModel = {
             name: this.createAppointForm.get('name')?.value,
             timeAppointment: this.createAppointForm.get('timeAppointment')?.value,
-            idBook: this.createAppointForm.get('idBook')?.value,
-            idFilm: this.createAppointForm.get('idFilm')?.value,
-            idSeries: this.createAppointForm.get('idSeries')?.value,
+            idBook: this.createAppointForm.get('idBook')?.value.id,
+            idFilm: this.createAppointForm.get('idFilm')?.value.id,
+            idSeries: this.createAppointForm.get('idSeries')?.value.id,
             idGroup: this.createAppointForm.get('idGroup')?.value.id,
             location: this.createAppointForm.get('location')?.value,
         }
+
         this.licentaService.createAppointment(createAppointment).subscribe(response => {
             if (response === false) {
                 this.errorMessage = 'Appointment can not be created.';

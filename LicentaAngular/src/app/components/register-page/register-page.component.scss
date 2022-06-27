@@ -1,70 +1,31 @@
-// body {
-//     margin: 0;
-//     background-color: #f0e9ed;
-// }
-
-// h1 {
-//     font-family: Arial, Helvetica, sans-serif;
-//     color: #383838;
-//     text-align: center;
-//     margin-top: 25px;
-//     margin-bottom: 25px;
-// }
-
-// span {
-//     font-family: Arial, Helvetica, sans-serif;
-//     color: #383838;
-//     text-align: center;
-// }
-
-// .content {
-//     margin: 20px;
-//     text-align: center;
-// }
-
-// .register {
-//     margin: 1cm;
-//     text-align: center;
-//     text-size-adjust: 20px;
-// }
-
-h1 {
+.title {
     display: flex;
     justify-content: center;
 }
 
-#registerForm {
-    margin-top: 10vh;
-    margin-left: 25vw;
-    margin-right: 25vw;
-    margin-bottom: 10vh;
+.registerForm {
+    margin: 10vh 30vw;
+    padding: 5vh 5vw;
     display: flex;
     justify-content: center;
     flex-direction: column;
-}
-
-#registerForm span {
-    color: aliceblue;
-}
-
-.content {
-    display: flex;
-    justify-content: space-around;
-}
-
-.content span {
-    display: inline-block;
-    text-align: right;
-    width: 140px;
-    margin: 10px;
-}
-
-form {
-    background-color: #7A7A7A;
+    background-color: #7a7a7a;
     box-shadow: 1px 1px 2px black, 0 0 15px black, 0 0 10px gray;
 
-    mat-form-field{
+    .content {
         display: flex;
         justify-content: space-around;
     }
+
+    .buttons {
+        margin-top: 2vh;
+    }
+
+    mat-form-field {
+        width: 20vw;
+    }
+}
+
+.spacing {
+    height: 10vh;
 }

@@ -1,9 +1,3 @@
-.title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 img {
     object-fit: cover;
 }
@@ -23,10 +17,10 @@ img {
 .message-grid-container {
     display: grid;
     grid-template-areas:
-        'LastConversations nameConversation nameConversation'
-        'LastConversations Chat Chat'
-        'LastConversations WriteMessage WriteMessage';
-    margin: 10px 5vw;
+        "LastConversations nameConversation nameConversation"
+        "LastConversations Chat Chat"
+        "LastConversations WriteMessage WriteMessage";
+    margin: 2vh 5vw;
     font-family: Arial, Helvetica, sans-serif;
 
     .conversation-name {
@@ -110,24 +104,7 @@ img {
                 }
             }
 
-            div {
-                background-color: beige;
-                min-width: 5vw;
-                padding: 0.5em 1em;
-                margin: 2px 1em;
-                display: flex;
-                align-items: center;
-
-                img {
-                    width: 30px;
-                    height: 30px;
-                    margin-right: 5px;
-                }
-
-                i {
-                    font-size: smaller;
-                }
-            }
+           
         }
     }
 
@@ -145,10 +122,11 @@ img {
             resize: none;
             height: 10vh;
             flex-grow: 100;
+            font-size: large;
         }
 
         button {
-            margin-left: 10px;
+            margin: 0 1em;
         }
     }
 }

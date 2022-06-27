@@ -1,69 +1,95 @@
-#picture {
-    grid-area: Picture;
-    border: 1px solid black;
-    text-align: center;
-    height: 300px;
-}
-
-#title-description {
-    grid-area: TitleDesc;
-    border: 1px solid black;
-    margin-top: 70px;
-    font-size: 170%;
-}
-
-#info {
-    grid-area: Info;
-}
-
-#description {
-    font-size: 70%;
-    width: 90%;
-    height: 80%;
-    text-align: justify;
-}
-
-#title {
-    font-size: 100%;
-}
-
-#info div {
-    margin-top: 10px;
-    margin-left: 25px;
-    display: block;
-}
-
-#info b {
-    display: inline-block;
-    text-align: left;
-    width: 100px;
-}
-
-#user-review {
-    grid-area: UserReview;
-    border: 1px solid black;
-}
-
-#delete {
-    grid-area: Delete;
-    border: 1px solid black;
-    text-align: center;
-}
-
-#reviews {
-    grid-area: Reviews;
-    border: 1px solid black;
-}
-
-#grid-container {
+.grid-container {
     display: grid;
     grid-template-areas:
-        'Delete Delete'
-        'Picture TitleDesc'
-        'Info Info'
-        'UserReview UserReview'
-        'Reviews Reviews';
-    gap: 5px;
-    padding: 10px;
+        "Delete Delete"
+        "Picture TitleDesc"
+        "Info Info"
+        "UserReview UserReview"
+        "Reviews Reviews";
+    gap: 1em;
+    padding: 1em 2em;
     font-family: Arial, Helvetica, sans-serif;
+
+    .delete {
+        grid-area: Delete;
+        text-align: center;
+    }
+
+    .picture {
+        grid-area: Picture;
+        text-align: center;
+
+        img {
+            width: 170px;
+            height: 250px;
+            object-fit: cover;
+        }
+    }
+
+    .title-description {
+        grid-area: TitleDesc;
+        margin-top: 2em;
+
+        .title {
+            font-size: x-large;
+        }
+
+        .description {
+            font-size: large;
+        }
+
+        .admin-inputs {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+
+            mat-form-field {
+                width: 20vw;
+            }
+        }
+    }
+
+    .info {
+        grid-area: Info;
+        padding: 1em 2em;
+        display: flex;
+        gap: 2em;
+
+        div div div {
+            width: 15vw;
+            margin-top: 2em;
+        }
+
+        .forth-column {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .user-review {
+        grid-area: UserReview;
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+        padding: 1em 2em;
+
+        .first-column {
+            display: flex;
+            gap: 2vw;
+
+            mat-form-field {
+                width: 15vw;
+            }
+        }
+
+        .review {
+            width: 32vw;
+        }
+    }
+
+    .reviews {
+        background-color: transparent;
+        grid-area: Reviews;
+        padding: 1em 2em;
+    }
 }

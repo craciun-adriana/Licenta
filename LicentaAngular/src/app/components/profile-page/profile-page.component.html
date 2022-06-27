@@ -1,84 +1,113 @@
-<form [formGroup]="userDetailsForm">
-    <div class="grid-container">
-
-        <div *ngIf="userId==''">
+<div>
+    <form [formGroup]="userDetailsForm" class="grid-container">
+        <div *ngIf="!userId">
             <button mat-raised-button color="primary" (click)="deleteUser()">Delete my account</button>
         </div>
 
-        <div id="picture">
-            <img alt="Profile picture" [src]="user?.profilePicture" width="80" height="80" />
+        <div class="picture">
+            <img alt="Profile picture"
+                [src]="isValidUrl(user?.profilePicture)?user?.profilePicture : '/assets/img/default-user-image.png'" />
         </div>
 
-        <div id="user-name">
-            <span *ngIf="userId !==''" id="username"> {{user?.userName}} </span>
-            <mat-form-field>
-                <mat-label>Username</mat-label>
-                <input *ngIf="userId==''" matInput formControlName="userName" type="text">
-            </mat-form-field>
+        <div class="user-name">
+            <div *ngIf="userId" class="details">
+                <span>Username: {{user?.userName}}</span>
+                <span>First name: {{user?.firstName}}</span>
+                <span>Last name: {{user?.lastName}}</span>
+            </div>
 
-            <br><span *ngIf="userId!==''">{{user?.firstName}} </span>
-            <mat-form-field>
-                <mat-label>First name</mat-label>
-                <input *ngIf="userId==''" matInput formControlName="firstName" type="text">
-            </mat-form-field>
+            <div *ngIf="!userId" class="details">
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="userName" type="text">
+                </mat-form-field>
 
-            <span *ngIf="userId!==''">{{user?.lastName}} </span>
-            <mat-form-field>
-                <mat-label>Last name</mat-label>
-                <input *ngIf="userId==''" matInput formControlName="lastName" type="text">
-            </mat-form-field>
+                <mat-form-field>
+                    <mat-label>First name</mat-label>
+                    <input matInput formControlName="firstName" type="text">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Last name</mat-label>
+                    <input matInput formControlName="lastName" type="text">
+                </mat-form-field>
+            </div>
         </div>
 
-        <div id="rank">
+        <div class="rank">
             <span>{{user?.firstName}} has finished {{user?.rank}} films, series and books.</span>
         </div>
 
-        <div id="user-details">
-            <div>
-                <b>Description: </b>
-                <span *ngIf="userId!==''">{{user?.description}}</span>
-                <mat-form-field>
-                    <mat-label>Description</mat-label>
-                    <textarea matInput *ngIf="userId==''" formControlName="description" type="text">
+        <div class="user-details">
+            <div class="container">
+                <div>
+                    <b *ngIf="userId">Description: </b>
+                    <span *ngIf="userId">{{user?.description}}</span>
+                    <mat-form-field *ngIf="!userId">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description" type="text">
                     </textarea>
-                </mat-form-field>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <b *ngIf="userId">Date of birth: </b>
+                    <span *ngIf="userId">{{user?.dateOfBirth | date:'longDate'}}</span>
+                    <mat-form-field *ngIf="!userId">
+                        <mat-label>Date of birth</mat-label>
+                        <input matInput formControlName="dateOfBirth" [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <b *ngIf="userId">Sex: </b>
+                    <span *ngIf="userId">{{user?.sex}}</span>
+                    <mat-form-field *ngIf="!userId">
+                        <mat-label>Sex</mat-label>
+                        <mat-select formControlName="sex" type="text">
+                            <mat-option value="Other">Other</mat-option>
+                            <mat-option value="Male">Male</mat-option>
+                            <mat-option value="Female">Female</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
             </div>
 
-            <div>
-                <b>Date of birth: </b>
-                <span *ngIf="userId!==''">{{user?.dateOfBirth | date:'longDate'}}</span>
-                <input *ngIf="userId==''" formControlName="dateOfBirth" type="date">
-            </div>
-
-            <div><b>Sex: </b> <span *ngIf="userId!==''">{{user?.sex}}</span>
-                <mat-form-field>
-                    <mat-select *ngIf="userId==''" formControlName="sex" type="text">
-                        <mat-option value="Other">Other</mat-option>
-                        <mat-option value="Male">Male</mat-option>
-                        <mat-option value="Female">Female</mat-option>
-                    </mat-select>
-                </mat-form-field>
+            <div *ngIf="!userId" class="button-update-info">
+                <button mat-raised-button color="primary" (click)="updateUser()">
+                    Update my information
+                </button>
             </div>
         </div>
 
-        <div *ngIf="userId!==''" id="friendship">
+        <div *ngIf="userId" class="friendship">
             <button *ngIf="friendshipStatus==='not exist'" mat-raised-button color="primary"
-                (click)="sendFriendshipRequest()">Send friendship
-                request</button>
-            <button *ngIf="friendshipStatus==='friends'" mat-raised-button color="primary"
-                (click)="deleteFriendship()">Delete friendship</button>
+                (click)="sendFriendshipRequest()">
+                Send friendship request
+            </button>
+            <button *ngIf="friendshipStatus==='friends'" mat-raised-button color="primary" (click)="deleteFriendship()">
+                Delete friendship
+            </button>
             <button *ngIf="friendshipStatus==='received'" mat-raised-button color="primary"
-                (click)="acceptFriendship()">Accept friend request</button>
-            <div *ngIf="friendshipStatus==='sent'">
-                <span>Wait for {{user?.userName}} to accept your friendship request,</span>
-                <button mat-raised-button color="primary" (click)="deleteFriendship()">Or delete friendship
-                    request.</button>
+                (click)="acceptFriendship()">
+                Accept friend request
+            </button>
+
+            <div *ngIf="friendshipStatus==='sent'" class="sent">
+                <span>Wait for {{user?.userName}} to accept your friendship request.</span>
+                <button mat-raised-button color="primary" (click)="deleteFriendship()">
+                    Or delete friendship request
+                </button>
             </div>
         </div>
+    </form>
 
-        <div *ngIf="userId==''">
-            <span>View your books with chosen status:</span>
-            <mat-form-field appearance="fill">
+    <div class="reviews">
+        <div *ngIf="!userId" class="select">
+            <span>View your books with status: </span>
+            <mat-form-field>
                 <mat-label>Status</mat-label>
                 <mat-select (selectionChange)="filterReviews($event.value)" value="Completed">
                     <mat-option value="Planning">Planning</mat-option>
@@ -91,49 +120,40 @@
         </div>
 
         <div class="tables">
-            <table id="books-read">
-                <thead>
-                    <tr>
-                        <th>Books read by {{user?.userName}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let reviewBook of reviewBooks">
-                        <td>{{reviewBook.book?.title}}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div>
+                <table mat-table [dataSource]="reviewBooks">
+                    <ng-container matColumnDef="book">
+                        <th mat-header-cell *matHeaderCellDef>Book name</th>
+                        <td mat-cell *matCellDef="let reviewb">{{reviewb.book?.title}}</td>
+                    </ng-container>
 
-            <table id="films-viewed">
-                <thead>
-                    <tr>
-                        <th>Films viewed by {{user?.userName}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let reviewFilm of reviewFilms">
-                        <td>{{reviewFilm.film?.title}}</td>
-                    </tr>
-                </tbody>
-            </table>
+                    <tr mat-header-row *matHeaderRowDef="['book']"></tr>
+                    <tr mat-row *matRowDef="let row; columns: ['book'];"></tr>
+                </table>
 
-            <table id="series-viewed">
-                <thead>
-                    <tr>
-                        <th>Series viewed by {{user?.userName}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let reviewSeries of reviewSeries">
-                        <td>{{reviewSeries.series?.title}}</td>
-                    </tr>
-                </tbody>
-            </table>
+            </div>
+            <div>
+                <table mat-table [dataSource]="reviewFilms">
+                    <ng-container matColumnDef="film">
+                        <th mat-header-cell *matHeaderCellDef>Film name</th>
+                        <td mat-cell *matCellDef="let reviewf">{{reviewf.film?.title}}</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="['film']"></tr>
+                    <tr mat-row *matRowDef="let row; columns: ['film'];"></tr>
+                </table>
+            </div>
+            <div>
+                <table mat-table [dataSource]="reviewSeries">
+                    <ng-container matColumnDef="series">
+                        <th mat-header-cell *matHeaderCellDef>Series name</th>
+                        <td mat-cell *matCellDef="let reviews">{{reviews.series?.title}}</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="['series']"></tr>
+                    <tr mat-row *matRowDef="let row; columns: ['series'];"></tr>
+                </table>
+            </div>
         </div>
     </div>
-
-    <div *ngIf="userId==''">
-        <button class="button-update-info" mat-raised-button color="primary" (click)="updateUser()">Update my
-            information</button>
-    </div>
-</form>
+</div>

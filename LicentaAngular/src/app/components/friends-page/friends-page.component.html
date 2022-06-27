@@ -1,44 +1,56 @@
-<div id="grid-container">
-
-    <div id="friendship-req">
-        <div *ngFor="let friendship of friendshipReq">
-            <div id="request">
-                <img alt="Profile picture" [src]="friendship.pictureSender" width="80" height="80" />
-                <a [routerLink]="'/profile/'+friendship.idSender">{{friendship.nameSender}}</a> sent you a friendship
-                request.
-            </div>
-            <button mat-raised-button color="primary" (click)="acceptFriendship(friendship.id)">Accept request</button>
-        </div>
+<div class="grid-container">
+    <div class="search-user">
+        <mat-form-field>
+            <mat-label>Search for users</mat-label>
+            <input #userSearchInput matInput type="text" />
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="findUserByUsername(userSearchInput.value)">
+            Search users
+        </button>
     </div>
 
-    <div id="search-user">
-        <form>
-            <input #userSearchInput id="search-text" type="text" />
-            <button mat-raised-button color="primary" (click)="findUserByUsername(userSearchInput.value)">Search
-                users</button>
-        </form>
-        <div>
-            <div *ngFor="let foundUser of users">
-                <a [routerLink]="'/profile/'+foundUser.id">{{foundUser.userName}}</a>
+    <div class="requests-container">
+        <h2>Friendship requests</h2>
+        <span class="info" *ngIf="friendshipReq.length === 0">Nothing for now.</span>
+        <div class="friendship-req" *ngFor="let friendship of friendshipReq">
+            <div class="first-column">
+                <img alt="Profile picture"
+                    [src]="isValidUrl(friendship.pictureSender) ? friendship.pictureSender : '/assets/img/default-user-image.png'" />
             </div>
-        </div>
-    </div>
-
-    <div id="friends">
-        <div>Your actual friends are:
-            <div *ngFor="let friend of friends">
-                <img class="first-column" alt="Profile picture" [src]="friend.profilePicture" width="50" height="50" />
-                <a class="second-column" [routerLink]="'/profile/'+friend.id">{{friend.userName}}</a>
+            <div class="second-column">
+                <span>Username: <a [routerLink]="'/profile/' + friendship.idSender">{{friendship.nameSender}}</a></span>
+            </div>
+            <div class="third-column">
+                <button mat-raised-button color="primary" (click)="acceptFriendship(friendship.id)">Accept
+                    request</button>
             </div>
         </div>
     </div>
 
+    <div class="friends">
+        <h2>Your are friends with</h2>
+        <span class="info" *ngIf="friends.length === 0">You have no friends yet.</span>
+        <div class="friend-item" *ngFor="let friend of friends">
+            <div class="first-column">
+                <img alt="Profile picture" [src]="isValidUrl(friend.profilePicture) ? friend.profilePicture :
+                    '/assets/img/default-user-image.png'" />
+            </div>
+            <div class="second-column">
+                <span>Username: <a [routerLink]="'/profile/' + friend.id">{{friend.userName}}</a></span>
+            </div>
+        </div>
+    </div>
 
-    <div id="groups">
-        <div>You are member in following groups:
-            <div *ngFor="let group of groups">
-                <img class="firs-column" alt="Profile picture" [src]="group.picture" width="50" height="50" />
-                <span class="second-column">{{group.name}}</span>
+    <div class="groups">
+        <h2>You are a member of the following groups</h2>
+        <span class="info" *ngIf="groups.length === 0">You are currently in no group.</span>
+        <div class="group-item" *ngFor="let group of groups">
+            <div class="first-column">
+                <img alt="Profile picture" [src]="isValidUrl(group.picture) ? group.picture :
+                    '/assets/img/default-user-image.png'" />
+            </div>
+            <div class="second-column">
+                <span>{{group.name}}</span>
             </div>
         </div>
     </div>

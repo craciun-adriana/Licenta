@@ -10,7 +10,7 @@
             <input matInput #bookSearchByTitleInput type="text" />
         </mat-form-field>
         <button mat-raised-button color="primary"
-            (click)="getBookByTitle(bookSearchByTitleInput.value); selectGenre.value=''">
+            (click)="getBookByTitle(bookSearchByTitleInput.value); selectGenre.value='Select'">
             Search
         </button>
     </div>
@@ -18,16 +18,14 @@
     <br>
 
     <mat-form-field>
-        <mat-select #selectGenre (valueChange)="getBookByGenre($event); bookSearchByTitleInput.value=''">
-            <mat-option selected="true" value="">Select genre</mat-option>
+        <mat-select #selectGenre (valueChange)="getBookByGenre($event); bookSearchByTitleInput.value=''" value="Select">
+            <mat-option value="Select">Select genre</mat-option>
             <mat-option value="Action">Action</mat-option>
             <mat-option value="Comedy">Comedy</mat-option>
             <mat-option value="Crime">Crime</mat-option>
             <mat-option value="Drama">Drama</mat-option>
             <mat-option value="Fantasy">Fantasy</mat-option>
             <mat-option value="Horror">Horror</mat-option>
-            <!-- TODO: are sens? -->
-            <mat-option value="Muzical">Musical</mat-option>
             <mat-option value="Romance">Romance</mat-option>
             <mat-option value="ScienceFiction">Science Fiction</mat-option>
             <mat-option value="Triller">Triller</mat-option>

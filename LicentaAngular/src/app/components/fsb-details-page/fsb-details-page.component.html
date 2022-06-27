@@ -1,262 +1,236 @@
 <form [formGroup]="updateForm">
-    <div id="grid-container">
-
-        <div id="delete" *ngIf="isAdmin">
+    <div class="grid-container">
+        <div class="delete" *ngIf="isAdmin">
             <button mat-raised-button color="primary" (click)="deleteFSB()">Delete {{fsbDetails?.title}}</button>
         </div>
 
-        <div id="picture">
-            <img alt="Picture" [src]="fsbDetails?.picture" width="170" height="250">
-            <br><input *ngIf="isAdmin" type="text" formControlName="picture">
+        <div class="picture">
+            <img alt="Picture" [src]="fsbDetails?.picture">
+            <br>
+            <mat-form-field *ngIf="isAdmin">
+                <mat-label>Image url</mat-label>
+                <input matInput type="text" formControlName="picture">
+            </mat-form-field>
         </div>
 
-        <div id="title-description">
-            <div>
-                <span *ngIf="!isAdmin" id="title">{{fsbDetails?.title}}</span>
-                <br><span *ngIf="!isAdmin" id="description">{{fsbDetails?.description}}</span>
+        <div class="title-description">
+            <div *ngIf="!isAdmin">
+                <span class="title">{{fsbDetails?.title}}</span>
+                <br>
+                <span class="description">{{fsbDetails?.description}}</span>
             </div>
 
-            <input *ngIf="isAdmin" id="title" formControlName="title" type="text">
-            <textarea *ngIf="isAdmin" formControlName="description" id="description" type="text"></textarea>
-
+            <div *ngIf="isAdmin" class="admin-inputs">
+                <mat-form-field>
+                    <mat-label>Title</mat-label>
+                    <input matInput class="title" formControlName="title" type="text">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <textarea matInput class="description" formControlName="description" rows="4"></textarea>
+                </mat-form-field>
+            </div>
         </div>
 
-        <div id="info">
-
-            <div *ngIf="isBook">
-                <div *ngIf="!isAdmin">
-                    <b>Author: </b>
-                    <span>{{fsbDetails?.author}}</span>
+        <div class="info">
+            <div class="first-column">
+                <div *ngIf="isBook">
+                    <div *ngIf="!isAdmin">
+                        <b>Author: </b>
+                        <span>{{fsbDetails?.author}}</span>
+                    </div>
+                    <mat-form-field *ngIf="isAdmin">
+                        <mat-label>Author</mat-label>
+                        <input matInput formControlName="author" type="text">
+                    </mat-form-field>
                 </div>
-                <mat-form-field *ngIf="isAdmin" appearance="fill">
-                    <b>Author: </b>
-                    <input matInput formControlName="author" type="text">
-                </mat-form-field>
-            </div>
 
-            <div *ngIf="!isBook">
-                <div *ngIf="!isAdmin">
-                    <b>Director: </b>
-                    <span *ngIf="!isAdmin">{{fsbDetails?.director}}</span>
+                <div *ngIf="!isBook">
+                    <div *ngIf="!isAdmin">
+                        <b>Director: </b>
+                        <span *ngIf="!isAdmin">{{fsbDetails?.director}}</span>
+                    </div>
+                    <mat-form-field *ngIf="isAdmin">
+                        <mat-label>Director</mat-label>
+                        <input matInput formControlName="director" type="text">
+                    </mat-form-field>
                 </div>
-                <mat-form-field *ngIf="isAdmin" appearance="fill">
-                    <b>Director: </b>
-                    <input matInput formControlName="director" type="text">
-                </mat-form-field>
-            </div>
 
-            <div>
-                <div *ngIf="!isAdmin">
-                    <b>Release date: </b>
-                    <span *ngIf="!isAdmin">{{ fsbDetails?.relaseDate | date: 'longDate' }}</span>
-                </div>
-                <mat-form-field *ngIf="isAdmin" appearance="fill">
-                    <b>Release date: </b>
-                    <input matInput formControlName="releaseDate" type="date">
-                </mat-form-field>
-            </div>
-
-            <div *ngIf="isBook">
-                <div *ngIf="!isAdmin">
-                    <b>Prequel Title: </b>
-                    <a *ngIf="!isAdmin"
-                        [routerLink]="'/details/book/' + fsbDetails?.prequelId">{{fsbDetails?.prequelTitle}}</a>
-                </div>
-                <mat-form-field *ngIf="isAdmin" appearance="fill">
-                    <b>Prequel title</b>
-                    <mat-autocomplete #autoBook="matAutocomplete" [displayWith]="bookDisplayFunction">
-                        <mat-option *ngFor="let book of entity" [value]="book">{{book.title}}</mat-option>
-                    </mat-autocomplete>
-                    <input matInput formControlName="prequelId" type="text" [matAutocomplete]="autoBook">
-                </mat-form-field>
-            </div>
-
-            <div *ngIf="isFilm">
-                <div *ngIf="!isAdmin">
-                    <b>Prequel Title: </b>
-                    <a *ngIf="!isAdmin"
-                        [routerLink]="'/details/film/' + fsbDetails?.prequelId">{{fsbDetails?.prequelTitle}}</a>
-                </div>
-                <mat-form-field *ngIf="isAdmin" appearance="fill">
-                    <b>Prequel title</b>
-                    <mat-autocomplete #autoFilm="matAutocomplete" [displayWith]="filmDisplayFunction">
-                        <mat-option *ngFor="let film of entity" [value]="film">{{film.title}}</mat-option>
-                    </mat-autocomplete>
-                    <input matInput formControlName="prequelId" type="text" [matAutocomplete]="autoFilm">
-                </mat-form-field>
-            </div>
-
-            <div *ngIf="isSeries">
-                <div *ngIf="!isAdmin">
-                    <b>Prequel Title: </b>
-                    <a *ngIf="!isAdmin"
-                        [routerLink]="'/details/series/' + fsbDetails?.prequelId">{{fsbDetails?.prequelTitle}}</a>
-                </div>
-                <mat-form-field *ngIf="isAdmin" appearance="fill">
-                    <b>Prequel title</b>
-                    <mat-autocomplete #autoSeries="matAutocomplete" [displayWith]="seriesDisplayFunction">
-                        <mat-option *ngFor="let series of entity" [value]="series">{{series.title}}</mat-option>
-                    </mat-autocomplete>
-                    <input matInput formControlName="prequelId" type="text" [matAutocomplete]="autoSeries">
-                </mat-form-field>
-            </div>
-
-            <div *ngIf="isBook">
-                <div *ngIf="!isAdmin">
-                    <b>Sequel Title: </b>
-                    <a *ngIf="!isAdmin"
-                        [routerLink]="'/details/book/' + fsbDetails?.sequelId">{{fsbDetails?.sequelTitle}}</a>
-                </div>
-                <mat-form-field *ngIf="isAdmin" appearance="fill">
-                    <b>Sequel title</b>
-                    <mat-autocomplete #autoBook="matAutocomplete" [displayWith]="bookDisplayFunction">
-                        <mat-option *ngFor="let book of entity" [value]="book">{{book.title}}</mat-option>
-                    </mat-autocomplete>
-                    <input matInput formControlName="sequelId" type="text" [matAutocomplete]="autoBook">
-                </mat-form-field>
-            </div>
-
-            <div *ngIf="isFilm">
-                <div *ngIf="!isAdmin">
-                    <b>Sequel Title: </b>
-                    <a *ngIf="!isAdmin"
-                        [routerLink]="'/details/film/' + fsbDetails?.sequelId">{{fsbDetails?.sequelTitle}}</a>
-                </div>
-                <mat-form-field *ngIf="isAdmin" appearance="fill">
-                    <b>Sequel title</b>
-                    <mat-autocomplete #autoFilm="matAutocomplete" [displayWith]="filmDisplayFunction">
-                        <mat-option *ngFor="let film of entity" [value]="film">{{film.title}}</mat-option>
-                    </mat-autocomplete>
-                    <input matInput formControlName="sequelId" type="text" [matAutocomplete]="autoFilm">
-                </mat-form-field>
-            </div>
-
-            <div *ngIf="isSeries">
-                <div *ngIf="!isAdmin">
-                    <b>Sequel Title: </b>
-                    <a *ngIf="!isAdmin"
-                        [routerLink]="'/details/series/' + fsbDetails?.sequelId">{{fsbDetails?.sequelTitle}}</a>
-                </div>
-                <mat-form-field *ngIf="isAdmin" appearance="fill">
-                    <b>Sequel title</b>
-                    <mat-autocomplete #autoSeries="matAutocomplete" [displayWith]="seriesDisplayFunction">
-                        <mat-option *ngFor="let series of entity" [value]="series">{{series.title}}</mat-option>
-                    </mat-autocomplete>
-                    <input matInput formControlName="sequelId" type="text" [matAutocomplete]="autoSeries">
-                </mat-form-field>
-            </div>
-
-            <div>
-                <div *ngIf="!isAdmin">
-                    <b>Genre: </b>
-                    <span>{{fsbDetails?.genre}}</span>
-                </div>
-                <div *ngIf="isAdmin">
-                    <mat-form-field appearance="fill">
-                        <b>Choose a new genre: </b>
-                        <mat-select formControlName="genre">
-                            <mat-option selected="true" value="Action">Action</mat-option>
-                            <mat-option value="Comedy">Comedy</mat-option>
-                            <mat-option value="Crime">Crime</mat-option>
-                            <mat-option value="Drama">Drama</mat-option>
-                            <mat-option value="Fantasy">Fantasy</mat-option>
-                            <mat-option value="Horror">Horror</mat-option>
-                            <mat-option value="Muzical">Muzical</mat-option>
-                            <mat-option value="Romance">Romance</mat-option>
-                            <mat-option value="ScienceFiction">ScienceFiction</mat-option>
-                            <mat-option value="Thriller">Thriller</mat-option>
-                            <mat-option value="Western">Western</mat-option>
-                        </mat-select>
+                <div>
+                    <div *ngIf="!isAdmin">
+                        <b>Release date: </b>
+                        <span *ngIf="!isAdmin">{{ fsbDetails?.relaseDate | date: 'longDate' }}</span>
+                    </div>
+                    <mat-form-field *ngIf="isAdmin">
+                        <mat-label>Release date: </mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="releaseDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                 </div>
             </div>
 
-            <div *ngIf="!isBook">
-                <div *ngIf="!isAdmin">
-                    <b>Rating: </b>
-                    <span *ngIf="!isAdmin">{{fsbDetails?.rating}}</span>
+            <div class="second-column">
+                <div>
+                    <div *ngIf="!isAdmin">
+                        <b>Prequel title: </b>
+                        <a
+                            [routerLink]="'/details/' + type + '/' + fsbDetails?.prequelID">{{fsbDetails?.prequelTitle}}</a>
+                    </div>
+                    <mat-form-field *ngIf="isAdmin">
+                        <mat-label><b>Prequel title</b> </mat-label>
+
+                        <mat-autocomplete #autoPrequel="matAutocomplete" [displayWith]="fsbDisplayFunction">
+                            <mat-option *ngFor="let fsb of entity" [value]="fsb">{{fsb.title}}</mat-option>
+                        </mat-autocomplete>
+                        <input matInput formControlName="prequelId" type="text" [matAutocomplete]="autoPrequel">
+                    </mat-form-field>
                 </div>
-                <mat-form-field *ngIf="isAdmin" appearance="fill">
-                    <b>Rating: </b>
-                    <input matInput formControlName="rating" type="text">
-                </mat-form-field>
+
+                <div>
+                    <div *ngIf="!isAdmin">
+                        <b>Sequel title: </b>
+                        <a [routerLink]="'/details/' + type +'/' + fsbDetails?.sequelID">{{fsbDetails?.sequelTitle}}</a>
+                    </div>
+                    <mat-form-field *ngIf="isAdmin">
+                        <mat-label><b>Sequel title</b> </mat-label>
+                        <mat-autocomplete #autoSequel="matAutocomplete" [displayWith]="fsbDisplayFunction">
+                            <mat-option *ngFor="let fsb of entity" [value]="fsb">{{fsb.title}}</mat-option>
+                        </mat-autocomplete>
+                        <input matInput formControlName="sequelId" type="text" [matAutocomplete]="autoSequel">
+                    </mat-form-field>
+                </div>
             </div>
 
-            <div *ngIf="isFilm">
-                <div *ngIf="!isAdmin">
-                    <b>Length: </b>
-                    <span>{{fsbDetails?.length}}</span>
+            <div class="third-column">
+                <div>
+                    <div *ngIf="!isAdmin">
+                        <b>Genre: </b>
+                        <span>{{fsbDetails?.genre}}</span>
+                    </div>
+                    <div *ngIf="isAdmin">
+                        <mat-form-field>
+                            <mat-label>Choose a new genre</mat-label>
+                            <mat-select formControlName="genre">
+                                <mat-option selected="true" value="Action">Action</mat-option>
+                                <mat-option value="Comedy">Comedy</mat-option>
+                                <mat-option value="Crime">Crime</mat-option>
+                                <mat-option value="Drama">Drama</mat-option>
+                                <mat-option value="Fantasy">Fantasy</mat-option>
+                                <mat-option value="Horror">Horror</mat-option>
+                                <mat-option *ngIf="!isBook" value="Muzical">Musical</mat-option>
+                                <mat-option value="Romance">Romance</mat-option>
+                                <mat-option value="ScienceFiction">Science Fiction</mat-option>
+                                <mat-option value="Thriller">Thriller</mat-option>
+                                <mat-option value="Western">Western</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                 </div>
-                <mat-form-field *ngIf="isAdmin">
-                    <b>Length:</b>
-                    <input matInput formControlName="length" type="text">
-                </mat-form-field>
+
+                <div *ngIf="isFilm">
+                    <div *ngIf="!isAdmin">
+                        <b>Length (minutes): </b>
+                        <span>{{fsbDetails?.length}}</span>
+                    </div>
+                    <mat-form-field *ngIf="isAdmin">
+                        <mat-label>Length (minutes)</mat-label>
+                        <input matInput formControlName="length" type="number">
+                    </mat-form-field>
+                </div>
+
+                <div *ngIf="isSeries">
+                    <div *ngIf="!isAdmin">
+                        <b>Number of episodes:</b>
+                        <span>{{fsbDetails?.nrEps}}</span>
+                    </div>
+                    <mat-form-field *ngIf="isAdmin">
+                        <mat-label>Number of episodes</mat-label>
+                        <input matInput formControlName="nrEps" type="number">
+                    </mat-form-field>
+                </div>
             </div>
 
-            <div *ngIf="isSeries">
-                <div *ngIf="!isAdmin">
-                    <b>Number of episodes: </b>
-                    <span>{{fsbDetails?.nrEps}}</span>
+            <div class="forth-column">
+                <div *ngIf="!isBook">
+                    <div *ngIf="!isAdmin">
+                        <b>Rating: </b>
+                        <span>{{fsbDetails?.rating}}</span>
+                    </div>
+                    <mat-form-field *ngIf="isAdmin">
+                        <mat-label>Rating</mat-label>
+                        <mat-select formControlName="rating">
+                            <mat-option value="G">G</mat-option>
+                            <mat-option value="PG">PG</mat-option>
+                            <mat-option value="PG13">PG13</mat-option>
+                            <mat-option value="R">R</mat-option>
+                            <mat-option value="NR17">NR17</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
-                <mat-form-field *ngIf="isAdmin">
-                    <b>Number of episodes:</b>
-                    <input matInput formControlName="nrEps" type="text">
-                </mat-form-field>
+                <div *ngIf="isAdmin">
+                    <button mat-raised-button color="primary" class="update" (click)="updateFSB()">Update</button>
+                </div>
             </div>
         </div>
 
-        <div *ngIf="isAdmin" class="updateFSB">
-            <button mat-raised-button color="primary" id="update" (click)="updateFSB()">Update</button>
-        </div>
+        <form [formGroup]="userReviewForm" *ngIf="!isAdmin" class="user-review">
+            <div class="first-column">
+                <mat-form-field [hideRequiredMarker]="true">
+                    <mat-label>Grade</mat-label>
+                    <input matInput formControlName="grade" type="number" step="1" min="0" max="10">
+                </mat-form-field>
 
+                <mat-form-field [hideRequiredMarker]="true">
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option value="">Select status</mat-option>
+                        <mat-option value="Planning">Planning</mat-option>
+                        <mat-option value="Completed">Completed</mat-option>
+                        <mat-option value="Ongoing">Ongoing</mat-option>
+                        <mat-option value="OnHold">OnHold</mat-option>
+                        <mat-option value="Dropped">Dropped</mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-        <form [formGroup]="userReviewForm" *ngIf="!isAdmin" id="user-review">
-            <span><b>Your grades is: </b></span>
-            <br>
-            <input formControlName="grade" id="search-text" type="number" step="1" min="0" max="10">
+                <div>
+                    <button mat-raised-button color="primary" (click)="saveReview()">Save review</button>
+                </div>
+            </div>
 
-            <span><b>Your review is:</b></span>
-            <br>
-            <textarea formControlName="review"></textarea>
-            <br>
-
-            <span>Your status for {{fsbDetails?.title}}:</span>
-            <mat-form-field appearance="fill">
-                <mat-label>Status</mat-label>
-                <mat-select formControlName="status">
-                    <mat-option value="">Select status</mat-option>
-                    <mat-option value="Planning">Planning</mat-option>
-                    <mat-option value="Completed">Completed</mat-option>
-                    <mat-option value="Ongoing">Ongoing</mat-option>
-                    <mat-option value="OnHold">OnHold</mat-option>
-                    <mat-option value="Dropped">Dropped</mat-option>
-                </mat-select>
+            <mat-form-field class="review" [hideRequiredMarker]="true">
+                <mat-label>Review</mat-label>
+                <textarea matInput formControlName="review"></textarea>
             </mat-form-field>
-            <button mat-raised-button color="primary" (click)="saveReview()">Save review</button>
         </form>
 
-        <table id="reviews">
-            <thead>
-                <tr>
-                    <th>User</th>
-                    <th *ngIf="isBook">Graded this book with</th>
-                    <th *ngIf="isFilm">Graded this film with</th>
-                    <th *ngIf="isSeries">Graded this series with</th>
-                    <th>And their impression is</th>
-                    <th *ngIf="isAdmin">Delete review</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let review of reviews">
-                    <td><a [routerLink]="'/profile/'+review.idUser">{{review.username}}</a></td>
-                    <td>{{review.grade}}</td>
-                    <td>{{review.review}}</td>
-                    <td>
-                        <button mat-raised-button color="primary" (click)="deleteReview(review.idReview)">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <table mat-table [dataSource]="reviews" class="reviews">
+            <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef>Username</th>
+                <td mat-cell *matCellDef="let review">
+                    <a [routerLink]="'/profile/'+review.idUser">{{review.username}}</a>
+                </td>
+            </ng-container>
 
+            <ng-container matColumnDef="grade">
+                <th mat-header-cell *matHeaderCellDef>Grade</th>
+                <td mat-cell *matCellDef="let review">{{review.grade}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="review">
+                <th mat-header-cell *matHeaderCellDef>Review</th>
+                <td mat-cell *matCellDef="let review">{{review.review}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef>Delete review</th>
+                <td mat-cell *matCellDef="let review">
+                    <button mat-raised-button color="primary" (click)="deleteReview(review.idReview)">Delete</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
     </div>
 </form>

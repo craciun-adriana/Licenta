@@ -24,6 +24,8 @@ namespace LicentaAPI.Infrastructure.Migrations
                 "FK_Messages_IdSender_AspNetUsers", "Messages", "IdSender", "AspNetUsers", onDelete: ReferentialAction.Cascade);
             migrationBuilder.AddForeignKey(
                 "FK_Messages_IdReceiver_AspNetUsers", "Messages", "IdReceiver", "AspNetUsers", onDelete: ReferentialAction.Cascade);
+            migrationBuilder.AddForeignKey(
+                "FK_GroupMembers_IdGroup_Groups", "GroupMembers", "IdGroup", "Groups", onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -37,6 +39,7 @@ namespace LicentaAPI.Infrastructure.Migrations
             migrationBuilder.DropForeignKey("FK_GroupMembers_IdUser_AspNetUsers", "GroupMembers");
             migrationBuilder.DropForeignKey("FK_Messages_IdSender_AspNetUsers", "Messages");
             migrationBuilder.DropForeignKey("FK_Messages_IdReceiver_AspNetUsers", "Messages");
+            migrationBuilder.DropForeignKey("FK_GroupMembers_IdGroup_Groups", "GroupMembers");
         }
     }
 }

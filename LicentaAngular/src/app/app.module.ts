@@ -9,6 +9,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 
 import {
     NgxMatDatetimePickerModule,
@@ -44,6 +45,7 @@ import { CreateGroupDialog } from './components/dialogs/create-group/create-grou
 import { DetailsGroupDialog } from './components/dialogs/details-group/details-group.component';
 import { UsersGroupsSearchDialog } from './components/dialogs/users-groups-search/users-groups-search.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MessageComponent } from './components/message/message.component';
 
 @NgModule({
     declarations: [
@@ -67,7 +69,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         UsersComponent,
         CreateGroupDialog,
         DetailsGroupDialog,
-        UsersGroupsSearchDialog
+        UsersGroupsSearchDialog,
+        MessageComponent
     ],
     imports: [
         BrowserModule,
@@ -89,7 +92,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatSelectModule,
         MatCheckboxModule,
         MatIconModule,
-        MatDialogModule
+        MatDialogModule,
+        MatTableModule
     ],
     providers: [
         LicentaService,

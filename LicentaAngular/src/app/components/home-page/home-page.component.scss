@@ -1,40 +1,66 @@
-.tables table {
-    margin-right: 20px;
-    margin-left: 20px;
-    display: inline;
+.title {
+    display: flex;
+    justify-content: center;
 }
 
-#formAppointment {
+.appointments {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+
+    .container {
+        display: flex;
+        justify-content: center;
+
+        table {
+            width: 90vw;
+        }
+    }
+}
+
+.tables {
+    .container {
+        display: flex;
+        justify-content: space-evenly;
+
+        table {
+            width: 30vw;
+        }
+    }
+}
+
+.formAppointment {
     margin: 4vh 15vw;
     display: flex;
     justify-content: center;
     flex-direction: column;
 
-    background-color: #7A7A7A;
+    background-color: #7a7a7a;
     box-shadow: 1px 1px 2px black, 0 0 15px black, 0 0 10px gray;
 
     span {
         color: aliceblue;
     }
-}
 
-.content {
-    display: flex;
-    justify-content: center;
+    .content {
+        display: flex;
+        justify-content: center;
 
-    span {
-        display: inline-block;
-        text-align: right;
-        width: 140px;
-        margin: 10px;
+        span {
+            display: inline-block;
+            text-align: right;
+            width: 140px;
+            margin: 10px;
+        }
+
+        input {
+            width: 190px;
+        }
     }
 
-    input {
-        width: 190px;
+    #add-apppointment {
+        padding-bottom: 10vh;
     }
-
-}
-
-#add-apppointment {
-    padding-bottom: 10vh;
 }

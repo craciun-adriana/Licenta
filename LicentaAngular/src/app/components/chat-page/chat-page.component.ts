@@ -3,7 +3,7 @@ import { CreateMessageModel, MessagesModel } from 'src/app/models/messages-model
 import { UserDetails } from 'src/app/models/user-details';
 import { LicentaService } from 'src/app/services/licenta-service.service';
 import { CreateGroupModel, GroupModel } from 'src/app/models/group-model';
-import { forkJoin, Subscription, timer } from 'rxjs';
+import { elementAt, forkJoin, Subscription, timer } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateGroupDialog } from '../dialogs/create-group/create-group.component';
 import { UsersGroupsSearchDialog } from '../dialogs/users-groups-search/users-groups-search.component';
@@ -141,6 +141,7 @@ export class ChatPageComponent implements OnInit {
 
     openChatWithGroup(groupId: string): void {
         this.isGroup = true;
+        this.firstTimeChat = true;
         this.chatSubscription.unsubscribe();
         this.chatSubscription = new Subscription();
 
@@ -215,5 +216,12 @@ export class ChatPageComponent implements OnInit {
 
     openCreateGroupDialog(): void {
         this.dialog.open(CreateGroupDialog, {})
+    }
+
+    scrollContainer(element: any): void {
+        if (this.firstTimeChat) {
+            element.scrollTop = element.scrollHeight;
+            this.firstTimeChat = false;
+        }
     }
 }

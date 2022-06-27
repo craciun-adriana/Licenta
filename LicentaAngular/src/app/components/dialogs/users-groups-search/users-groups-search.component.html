@@ -1,5 +1,6 @@
 <div class="container">
-    <div class="found" *ngFor="let foundUser of users" [mat-dialog-close]="{isGroup: false, id: foundUser.id}">
+    <div (click)="redirectToUser(foundUser.id)" class="found" *ngFor="let foundUser of users"
+        [mat-dialog-close]="{isGroup: false, id: foundUser.id}">
         <img alt="Profile picture"
             [src]="isValidUrl(foundUser.profilePicture) ? foundUser.profilePicture : '/assets/img/default-user-image.png'">
         <span>{{foundUser.userName}}</span>

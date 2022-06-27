@@ -1,77 +1,98 @@
-img {
-    height: 210px;
-    width: 210px;
-    object-fit: cover;
-}
-
-#user-name {
-    grid-area: UserName;
-    border: 1px solid black;
-    margin-top: 80px;
-    font-size: 130%;
-}
-
-#picture {
-    grid-area: Picture;
-    border: 1px solid black;
-    text-align: center;
-    height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#rank {
-    grid-area: Rank;
-    border: 1px solid black;
-    text-align: center;
-}
-
-#user-details {
-    grid-area: UserDetails;
-    border: 1px solid black;
-    margin-left: 10px
-}
-
-#friendship {
-    grid-area: Friendship;
-    border: 1px solid black;
-
-}
-
-#books-read {
-    grid-area: BooksRead;
-    border: 1px solid black;
-}
-
-#films-viewed {
-    grid-area: FilmsViewed;
-    border: 1px solid black;
-}
-
-#series-viewed {
-    grid-area: SeriesViewed;
-    border: 1px solid black;
-}
-
 .grid-container {
     display: grid;
     grid-template-areas:
-        'Picture UserName Friendship'
-        'Rank Rank Rank'
-        'UserDetails UserDetails UserDetails '
-        'BooksRead FilmsViewed SeriesViewed';
+        "Picture UserName Friendship"
+        "Rank Rank Rank"
+        "UserDetails UserDetails UserDetails";
     gap: 5px;
     padding: 10px;
     font-family: Arial, Helvetica, sans-serif;
+
+    .picture {
+        grid-area: Picture;
+        text-align: center;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            height: 210px;
+            width: 210px;
+            object-fit: cover;
+        }
+    }
+
+    .user-name {
+        grid-area: UserName;
+        font-size: 130%;
+
+        .details {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1em;
+        }
+    }
+
+    .rank {
+        margin: 1em;
+        grid-area: Rank;
+        text-align: center;
+    }
+
+    .user-details {
+        grid-area: UserDetails;
+        display: flex;
+        align-items: center;
+        margin-left: 5vw;
+        gap: 2em;
+
+        .container {
+            mat-form-field {
+                width: 15vw;
+            }
+        }
+
+        .button-update-info {
+            float: right;
+            margin-left: 3em;
+        }
+    }
+
+    .friendship {
+        grid-area: Friendship;
+
+        .sent {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5em;
+        }
+    }
 }
 
-.tables {
-    display: flex;
-    gap: 2em;
+.reviews {
+    padding: 2em;
 
-}
+    .select {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-.button-update-info {
-    margin-left: 3em;
+        mat-form-field {
+            margin-left: 2em;
+        }
+    }
+
+    .tables {
+        display: flex;
+        justify-content: space-evenly;
+
+        table {
+            width: 30vw;
+        }
+    }
 }

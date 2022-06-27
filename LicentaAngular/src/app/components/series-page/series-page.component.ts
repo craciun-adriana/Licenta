@@ -37,8 +37,8 @@ export class SeriesPageComponent implements OnInit {
         }
     }
 
-    getSeriesByGenre(genre: Genre): void {
-        if (genre) {
+    getSeriesByGenre(genre: Genre | 'Select'): void {
+        if (genre !== 'Select') {
             this.licentaService.findSeriesByGenre(genre).subscribe((response: SeriesModel[]) => {
                 this.series = response;
             });

@@ -37,8 +37,8 @@ export class FilmsPageComponent implements OnInit {
         }
     }
 
-    getFilmByGenre(genre: Genre): void {
-        if (genre) {
+    getFilmByGenre(genre: Genre | 'Select'): void {
+        if (genre !== 'Select') {
             this.licentaService.findFilmsByGenre(genre).subscribe((response: FilmModel[]) => {
                 this.films = response;
             });

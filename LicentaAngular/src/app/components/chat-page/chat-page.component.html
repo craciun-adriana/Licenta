@@ -1,5 +1,3 @@
-<h1 class="title">Chat</h1>
-
 <div class="search-container">
     <div>
         <mat-form-field>
@@ -19,10 +17,10 @@
 <div class="message-grid-container">
     <div class="conversation-name">
         <span class="name">
-            <span *ngIf="!isGroup">{{chatUser?.userName ?? 'Messages'}}</span>
+            <a [routerLink]="'/profile/'+chatUser?.id" *ngIf="!isGroup">{{chatUser?.userName ?? 'Messages'}} </a>
             <span *ngIf="isGroup">{{chatGroup?.name ?? 'Messages'}}</span>
         </span>
-        <button *ngIf="isGroup" class="more-menu" mat-icon-button  (click)="openGroupDetails()">
+        <button *ngIf="isGroup" class="more-menu" mat-icon-button (click)="openGroupDetails()">
             <mat-icon>more_vert</mat-icon>
         </button>
     </div>
@@ -44,25 +42,19 @@
         </div>
     </div>
 
-    <div class="messages">
+    <div #messagesContainer class="messages">
         <ul>
-            <li *ngFor="let message of messages" [ngClass]="getMessageClass(message.idSender)"
+            <li *ngFor="let message of messages; let i = index" [ngClass]="getMessageClass(message.idSender)"
                 class="message-container">
-                <div #chatDiv tabindex="1">
-                    <img *ngIf="message.idSender !== userId"
-                        [src]="isValidUrl(chatUser?.profilePicture) ? chatUser?.profilePicture : '/assets/img/default-user-image.png'">
-                    <span>
-                        <i *ngIf="isGroup && message.idSender !== userId">{{message.nameSender}}</i>
-                        <br *ngIf="isGroup && message.idSender !== userId">
-                        <span matTooltip="{{message.sendTime | date : 'short'}}">{{message.text}}</span>
-                    </span>
-                </div>
+                <app-message [chatUser]="chatUser" [message]="message" [isGroup]="isGroup" [userId]="userId"
+                    [isLast]="i===messages.length-1" (onIsLastItem)="scrollContainer(messagesContainer)">
+                </app-message>
             </li>
         </ul>
     </div>
 
     <div class="create-messages">
-        <textarea #userMessageInput class="message-input"
+        <textarea #userMessageInput class="message-input" matInput
             (keyup.enter)="isGroup? sendMessageToGroup(userMessageInput.value) : sendMessageToUser(userMessageInput.value); userMessageInput.value=''"></textarea>
         <button mat-raised-button color="primary"
             (click)="isGroup? sendMessageToGroup(userMessageInput.value) : sendMessageToUser(userMessageInput.value); userMessageInput.value=''">Send</button>

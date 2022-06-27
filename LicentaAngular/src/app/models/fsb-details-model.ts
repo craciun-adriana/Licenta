@@ -7,8 +7,8 @@ export interface FsbDetailsModel {
     author: string;
     description: string;
     relaseDate: Date;
-    prequelId?: string;
-    sequelId?: string;
+    prequelID?: string;
+    sequelID?: string;
     genre: Genre;
     picture: string;
     prequelTitle?: string;

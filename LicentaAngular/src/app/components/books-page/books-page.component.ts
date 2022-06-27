@@ -37,8 +37,8 @@ export class BooksPageComponent implements OnInit {
         }
     }
 
-    getBookByGenre(genre: Genre): void {
-        if (genre) {
+    getBookByGenre(genre: Genre | 'Select'): void {
+        if (genre !== 'Select') {
             this.licentaService.findBooksByGenre(genre).subscribe((response: BookModel[]) => {
                 this.books = response;
             });

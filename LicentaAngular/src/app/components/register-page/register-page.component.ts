@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { RegisterDetails } from 'src/app/models/register-details';
-import { Sex } from 'src/app/models/sex';
 import { LicentaService } from 'src/app/services/licenta-service.service';
 
 @Component({
@@ -11,7 +11,6 @@ import { LicentaService } from 'src/app/services/licenta-service.service';
     styleUrls: ['./register-page.component.scss']
 })
 export class RegisterPageComponent {
-
     registerForm = new FormGroup({
         firstName: new FormControl('', Validators.required),
         lastName: new FormControl('', Validators.required),
@@ -40,6 +39,7 @@ export class RegisterPageComponent {
             sex: this.registerForm.get('sex')?.value,
 
         };
+
         this.licentaService.registerUser(registerDetails).subscribe(response => {
             if (response === false) {
                 this.showErrorMessage = true;

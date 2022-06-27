@@ -1,0 +1,9 @@
+<div>
+    <img *ngIf="message?.idSender !== userId"
+        [src]="isValidUrl(chatUser?.profilePicture) ? chatUser?.profilePicture : '/assets/img/default-user-image.png'">
+    <span>
+        <i *ngIf="isGroup && message?.idSender !== userId">{{message?.nameSender}}</i>
+        <br *ngIf="isGroup && message?.idSender !== userId">
+        <span matTooltip="{{message?.sendTime | date : 'short'}}">{{message?.text}}</span>
+    </span>
+</div>

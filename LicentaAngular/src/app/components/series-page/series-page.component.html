@@ -10,7 +10,7 @@
             <input matInput #seriesSearchByTitleInput type="text" />
         </mat-form-field>
         <button mat-raised-button color="primary"
-            (click)="getSeriesByTitle(seriesSearchByTitleInput.value); selectGenre.value=''">
+            (click)="getSeriesByTitle(seriesSearchByTitleInput.value); selectGenre.value='Select'">
             Search
         </button>
     </div>
@@ -18,8 +18,9 @@
     <br>
 
     <mat-form-field>
-        <mat-select #selectGenre (valueChange)="getSeriesByGenre($event); seriesSearchByTitleInput.value=''">
-            <mat-option selected="true" value="">Select genre</mat-option>
+        <mat-select #selectGenre (valueChange)="getSeriesByGenre($event); seriesSearchByTitleInput.value=''"
+            value="Select">
+            <mat-option value="Select">Select genre</mat-option>
             <mat-option value="Action">Action</mat-option>
             <mat-option value="Comedy">Comedy</mat-option>
             <mat-option value="Crime">Crime</mat-option>

@@ -2,53 +2,60 @@ img {
     object-fit: cover;
 }
 
-#friendship-req {
-    grid-area: FriendshipReq;
-    border: 1px solid black;
-}
-
-#request {
-    display: inline;
-}
-
-#search-user {
-    grid-area: UserSearch;
-    border: 1px solid black;
-}
-
-#grid-container {
-    display: grid;
-    grid-template-areas:
-        ' FriendshipReq '
-        ' UserSearch ';
-    gap: 5px;
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
     padding: 10px;
+    margin: 1em 3em;
     font-family: Arial, Helvetica, sans-serif;
 
+    .search-user mat-form-field {
+        margin-right: 1em;
+    }
+
+    .requests-container,
+    .friends,
+    .groups {
+        font-size: larger;
+
+        .info {
+            margin-left: 2em;
+        }
+
+        .friendship-req,
+        .friend-item,
+        .group-item {
+            margin: 2em;
+            display: flex;
+            gap: 1em;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+
+            .first-column {
+                display: flex;
+                align-items: center;
+
+                img {
+                    width: 150px;
+                    height: 150px;
+                    object-fit: cover;
+                }
+            }
+
+            .second-column {
+                display: flex;
+                gap: 1em;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+            }
+
+            .third-column {
+                margin-left: auto;
+                margin-right: 1em;
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
 }
-
-// .book-item {
-//     margin: 2em;
-//     display: flex;
-//     gap: 1em;
-//     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
-    // .first-column {
-    //     display: flex;
-    //     align-items: center;
-
-    //     img {
-    //         width: 100px;
-    //         height: 150px;
-    //         object-fit: cover;
-    //     }
-    // }
-
-    // .second-column {
-    //     display: flex;
-    //     gap: 1em;
-    //     flex-direction: column;
-    //     align-items: flex-start;
-    //     justify-content: center;
-    // }
-// }

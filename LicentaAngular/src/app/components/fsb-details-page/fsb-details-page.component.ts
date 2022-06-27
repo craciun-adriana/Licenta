@@ -23,8 +23,9 @@ export class FsbDetailsPageComponent implements OnInit {
     isSeries: Boolean = false;
     entity: FsbDetailsModel[] = [];
 
-    reviews?: ReviewFsbModel[] = [];
+    reviews: ReviewFsbModel[] = [];
     userReview?: ReviewFsbModel;
+    displayedColumns: string[] = ['username', 'grade', 'review'];
 
     isAdmin: boolean = false;
     errormessage: string = '';
@@ -60,7 +61,9 @@ export class FsbDetailsPageComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private datePipe: DatePipe
-    ) { }
+    ) {
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    }
 
     ngOnInit(): void {
         this.type = this.activatedRoute.snapshot.paramMap.get('type') ?? '';
@@ -78,6 +81,9 @@ export class FsbDetailsPageComponent implements OnInit {
         };
         this.licentaService.isUserLoggedIn().subscribe(response => {
             this.isAdmin = response.isAdmin;
+            if (this.isAdmin) {
+                this.displayedColumns.push('delete');
+            }
             this.initializeDetailsPage();
         })
     }
@@ -151,11 +157,11 @@ export class FsbDetailsPageComponent implements OnInit {
             description: this.fsbDetails?.description,
             releaseDate: this.datePipe.transform(this.fsbDetails?.relaseDate, 'yyyy-MM-dd'),
             prequelId: {
-                id: this.fsbDetails?.prequelId,
+                id: this.fsbDetails?.prequelID,
                 title: this.fsbDetails?.prequelTitle
             },
             sequelId: {
-                id: this.fsbDetails?.sequelId,
+                id: this.fsbDetails?.sequelID,
                 title: this.fsbDetails?.sequelTitle
             },
             picture: this.fsbDetails?.picture,
@@ -202,8 +208,8 @@ export class FsbDetailsPageComponent implements OnInit {
             director: this.updateForm.get('director')?.value,
             description: this.updateForm.get('description')?.value,
             relaseDate: this.updateForm.get('releaseDate')?.value,
-            prequelId: this.updateForm.get('prequelId')?.value?.id,
-            sequelId: this.updateForm.get('sequelId')?.value?.id,
+            prequelID: this.updateForm.get('prequelId')?.value?.id,
+            sequelID: this.updateForm.get('sequelId')?.value?.id,
             picture: this.updateForm.get('picture')?.value,
             genre: this.updateForm.get('genre')?.value,
             rating: this.updateForm.get('rating')?.value,
@@ -229,16 +235,8 @@ export class FsbDetailsPageComponent implements OnInit {
         }
     }
 
-    bookDisplayFunction(book: BookModel): string {
-        return book?.title;
-    }
-
-    filmDisplayFunction(film: FilmModel): string {
-        return film?.title;
-    }
-
-    seriesDisplayFunction(series: SeriesModel): string {
-        return series?.title;
+    fsbDisplayFunction(fsb: any): string {
+        return fsb?.title;
     }
 
     saveReview(): void {
@@ -261,5 +259,17 @@ export class FsbDetailsPageComponent implements OnInit {
         this.licentaService.deleteReview(idReview, type).subscribe(_ => {
             this.initializeDetailsPage();
         });
+    }
+
+    isValidUrl(urlToCheck: string): boolean {
+        let url;
+
+        try {
+            url = new URL(urlToCheck);
+        } catch (_) {
+            return false;
+        }
+
+        return url.protocol === "http:" || url.protocol === "https:";
     }
 }

@@ -10,7 +10,7 @@ namespace LicentaAPI.Persistence.Repositories
     /// </summary>
     public class EFReviewBookRepository : IReviewBookRepo
     {
-        private AppDbContext _dbContext;
+        private readonly AppDbContext _dbContext;
 
         public EFReviewBookRepository(AppDbContext dbContext)
         {
@@ -72,7 +72,7 @@ namespace LicentaAPI.Persistence.Repositories
 
         public IEnumerable<ReviewBook> GetByStatus(Status status, string idUser)
         {
-            return _dbContext.ReviewBooks.Where(reviewBook => (reviewBook.Status.Equals(status)) && (reviewBook.IdUser.Equals(idUser))).ToList();
+            return _dbContext.ReviewBooks.Where(reviewBook => reviewBook.Status.Equals(status) && reviewBook.IdUser.Equals(idUser)).ToList();
         }
 
         /// <inheritdoc/>

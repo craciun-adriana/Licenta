@@ -1,228 +1,205 @@
-<!-- <h1>List of what we have to offer you :)</h1> -->
+<div class="appointments">
+    <h1 class="title">Your appointments!</h1>
 
-<!-- <div class="tables">
-    <table>
-        <thead>
-            <tr>
-                <th>Book Titles</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let book of books">
-                <td>{{book.title}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <table mat-table [dataSource]="appointments">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let appointment">{{appointment.name}}</td>
+            </ng-container>
 
+            <ng-container matColumnDef="book">
+                <th mat-header-cell *matHeaderCellDef>Book</th>
+                <td mat-cell *matCellDef="let appointment">{{appointment.titleBook}}</td>
+            </ng-container>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Film Titles</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let film of films">
-                <td>{{film.title}}</td>
-            </tr>
-        </tbody>
-    </table>
+            <ng-container matColumnDef="film">
+                <th mat-header-cell *matHeaderCellDef>Film</th>
+                <td mat-cell *matCellDef="let appointment">{{appointment.titleFilm}}</td>
+            </ng-container>
 
+            <ng-container matColumnDef="series">
+                <th mat-header-cell *matHeaderCellDef>Series</th>
+                <td mat-cell *matCellDef="let appointment">{{appointment.titleSeries}}</td>
+            </ng-container>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Series Titles</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let series of serieses">
-                <td>{{series.title}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div> -->
+            <ng-container matColumnDef="group">
+                <th mat-header-cell *matHeaderCellDef>Group</th>
+                <td mat-cell *matCellDef="let appointment">{{appointment.groupName}}</td>
+            </ng-container>
 
-<div>
-    <h1>Your appointments!</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Title Book</th>
-                <th>Title Film</th>
-                <th>Title Series</th>
-                <th>Group Name</th>
-                <th>Location</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let appointment of appointments">
-                <td>{{appointment.name}}</td>
-                <td>{{appointment.titleBook}}</td>
-                <td>{{appointment.titleFilm}}</td>
-                <td>{{appointment.titleSeries}}</td>
-                <td>{{appointment.groupName}}</td>
-                <td>{{appointment.location}}</td>
-                <td>{{appointment.timeAppointment | stringToDate | date:'short'}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+            <ng-container matColumnDef="location">
+                <th mat-header-cell *matHeaderCellDef>Location</th>
+                <td mat-cell *matCellDef="let appointment">{{appointment.location}}</td>
+            </ng-container>
 
-<div class="tables">
-    <h1>You want to see or read this: </h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Books</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let reviewBook of reviewBooks">
-                <td>{{reviewBook.book.title}}</td>
-            </tr>
-        </tbody>
-    </table>
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>Date</th>
+                <td mat-cell *matCellDef="let appointment">
+                    {{appointment.timeAppointment | stringToDate | date:'medium'}}
+                </td>
+            </ng-container>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Films</th>
+            <tr mat-header-row *matHeaderRowDef="['name', 'book', 'film', 'series', 'group', 'location', 'date']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['name', 'book', 'film', 'series', 'group', 'location', 'date'];">
             </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let reviewFilm of reviewFilms">
-                <td>{{reviewFilm.film.title}}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Series</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let reviewSerie of reviewSeries">
-                <td>{{reviewSerie.series.title}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<div class="tables">
-    <h1>But you have to finish these first: </h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Books</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let reviewBookO of reviewBooksO">
-                <td>{{reviewBookO.book.title}}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Films</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let reviewFilmO of reviewFilmsO">
-                <td>{{reviewFilmO.film.title}}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Series</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let reviewSerieO of reviewSeriesO">
-                <td>{{reviewSerieO.series.title}}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <button *ngIf="!createNewAppoint" mat-raised-button color="primary" (click)="createNewAppointment()">Create a new
-        appointment</button>
-    <div *ngIf="createNewAppoint">
-        <form [formGroup]="createAppointForm" id="formAppointment">
-            <div class="content">
-                <span>Appointment name:</span>
-                <mat-form-field appearance="fill">
-                    <mat-label>Choose a name</mat-label>
-                    <input matInput type="text" formControlName="name">
-                </mat-form-field>
-            </div>
-            <div class="content">
-                <span>Date and time:</span>
-                <mat-form-field appearance="fill">
-                    <mat-label>Choose a date</mat-label>
-                    <input matInput [ngxMatDatetimePicker]="picker" formControlName="timeAppointment">
-                    <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
-                    <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
-                </mat-form-field>
-            </div>
-
-            <div class="content">
-                <span>Name of book:</span>
-                <mat-form-field appearance="fill">
-                    <mat-label>Choose a book</mat-label>
-                    <mat-autocomplete #autoBook="matAutocomplete" [displayWith]="bookDisplayFunction">
-                        <mat-option *ngFor="let book of books" [value]="book">{{book.title}}</mat-option>
-                    </mat-autocomplete>
-                    <input matInput type="text" formControlName="idBook" [matAutocomplete]="autoBook">
-                </mat-form-field>
-            </div>
-            <div class="content">
-                <span>Name of film:</span>
-                <mat-form-field appearance="fill">
-                    <mat-label>Choose a film</mat-label>
-                    <mat-autocomplete #autoFilm="matAutocomplete" [displayWith]="filmDisplayFunction">
-                        <mat-option *ngFor="let film of films" [value]="film">{{film.title}}</mat-option>
-                    </mat-autocomplete>
-                    <input matInput type="text" formControlName="idFilm" [matAutocomplete]="autoFilm">
-                </mat-form-field>
-            </div>
-            <div class="content">
-                <span>Name of series:</span>
-                <mat-form-field appearance="fill">
-                    <mat-label>Choose a series</mat-label>
-                    <mat-autocomplete #autoSeries="matAutocomplete" [displayWith]="seriesDisplayFunction">
-                        <mat-option *ngFor="let series of serieses" [value]="series">{{series.title}}</mat-option>
-                    </mat-autocomplete>
-                    <input matInput type="text" formControlName="idSeries" [matAutocomplete]="autoSeries">
-                </mat-form-field>
-            </div>
-            <div class="content">
-                <span>Group:</span>
-                <mat-form-field appearance="fill">
-                    <mat-label>Choose a group</mat-label>
-                    <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="groupDisplayFunction">
-                        <mat-option *ngFor="let group of groupUser" [value]="group">{{group.name}}</mat-option>
-                    </mat-autocomplete>
-                    <input matInput type="text" formControlName="idGroup" [matAutocomplete]="autoGroup">
-                </mat-form-field>
-            </div>
-            <div class="content">
-                <span>Location:</span>
-                <mat-form-field appearance="fill">
-                    <mat-label>Choose a location</mat-label>
-                    <input matInput type="text" formControlName="location">
-                </mat-form-field>
-            </div>
-            <button class="add-appointment" mat-raised-button color="primary" (click)="appointmentCreate()">Create appointment</button>
-        </form>
+        </table>
     </div>
+
+    <button *ngIf="!createNewAppoint" mat-raised-button color="primary" (click)="createNewAppointment()">
+        Create a new appointment
+    </button>
+</div>
+
+<div class="tables">
+    <h1 class="title">Items you plan to watch or read</h1>
+    <div class="container">
+        <div>
+            <table mat-table [dataSource]="reviewBooks">
+                <ng-container matColumnDef="book">
+                    <th mat-header-cell *matHeaderCellDef>Book name</th>
+                    <td mat-cell *matCellDef="let reviewb">{{reviewb.book?.title}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="['book']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['book'];"></tr>
+            </table>
+
+        </div>
+        <div>
+            <table mat-table [dataSource]="reviewFilms">
+                <ng-container matColumnDef="film">
+                    <th mat-header-cell *matHeaderCellDef>Film name</th>
+                    <td mat-cell *matCellDef="let reviewf">{{reviewf.film?.title}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="['film']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['film'];"></tr>
+            </table>
+        </div>
+        <div>
+            <table mat-table [dataSource]="reviewSeries">
+                <ng-container matColumnDef="series">
+                    <th mat-header-cell *matHeaderCellDef>Series name</th>
+                    <td mat-cell *matCellDef="let reviews">{{reviews.series?.title}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="['series']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['series'];"></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="tables">
+    <h1 class="title">But you have to finish these first: </h1>
+
+    <div class="container">
+        <div>
+            <table mat-table [dataSource]="reviewBooksO">
+                <ng-container matColumnDef="book">
+                    <th mat-header-cell *matHeaderCellDef>Book name</th>
+                    <td mat-cell *matCellDef="let reviewb">{{reviewb.book?.title}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="['book']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['book'];"></tr>
+            </table>
+
+        </div>
+        <div>
+            <table mat-table [dataSource]="reviewFilmsO">
+                <ng-container matColumnDef="film">
+                    <th mat-header-cell *matHeaderCellDef>Film name</th>
+                    <td mat-cell *matCellDef="let reviewf">{{reviewf.film?.title}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="['film']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['film'];"></tr>
+            </table>
+        </div>
+        <div>
+            <table mat-table [dataSource]="reviewSeriesO">
+                <ng-container matColumnDef="series">
+                    <th mat-header-cell *matHeaderCellDef>Series name</th>
+                    <td mat-cell *matCellDef="let reviews">{{reviews.series?.title}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="['series']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['series'];"></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="createNewAppoint">
+    <form [formGroup]="createAppointForm" class="formAppointment">
+        <div class="content">
+            <span>Appointment name:</span>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose a name</mat-label>
+                <input matInput type="text" formControlName="name">
+            </mat-form-field>
+        </div>
+        <div class="content">
+            <span>Date and time:</span>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [ngxMatDatetimePicker]="picker" formControlName="timeAppointment">
+                <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+            </mat-form-field>
+        </div>
+
+        <div class="content">
+            <span>Name of book:</span>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose a book</mat-label>
+                <mat-autocomplete #autoBook="matAutocomplete" [displayWith]="bookDisplayFunction">
+                    <mat-option *ngFor="let book of books" [value]="book">{{book.title}}</mat-option>
+                </mat-autocomplete>
+                <input matInput type="text" formControlName="idBook" [matAutocomplete]="autoBook">
+            </mat-form-field>
+        </div>
+        <div class="content">
+            <span>Name of film:</span>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose a film</mat-label>
+                <mat-autocomplete #autoFilm="matAutocomplete" [displayWith]="filmDisplayFunction">
+                    <mat-option *ngFor="let film of films" [value]="film">{{film.title}}</mat-option>
+                </mat-autocomplete>
+                <input matInput type="text" formControlName="idFilm" [matAutocomplete]="autoFilm">
+            </mat-form-field>
+        </div>
+        <div class="content">
+            <span>Name of series:</span>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose a series</mat-label>
+                <mat-autocomplete #autoSeries="matAutocomplete" [displayWith]="seriesDisplayFunction">
+                    <mat-option *ngFor="let series of serieses" [value]="series">{{series.title}}</mat-option>
+                </mat-autocomplete>
+                <input matInput type="text" formControlName="idSeries" [matAutocomplete]="autoSeries">
+            </mat-form-field>
+        </div>
+        <div class="content">
+            <span>Group:</span>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose a group</mat-label>
+                <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="groupDisplayFunction">
+                    <mat-option *ngFor="let group of groupUser" [value]="group">{{group.name}}</mat-option>
+                </mat-autocomplete>
+                <input matInput type="text" formControlName="idGroup" [matAutocomplete]="autoGroup">
+            </mat-form-field>
+        </div>
+        <div class="content">
+            <span>Location:</span>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose a location</mat-label>
+                <input matInput type="text" formControlName="location">
+            </mat-form-field>
+        </div>
+        <button class="add-appointment" mat-raised-button color="primary" (click)="appointmentCreate()">Create
+            appointment</button>
+    </form>
 </div>
