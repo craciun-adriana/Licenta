@@ -39,18 +39,23 @@ namespace LicentaAPI.AppServices.Appointments
         /// <inheritdoc/>
         public Appointment CreateAppointment(AppointmentCreate appointmentCreate)
         {
-            var appointment = _mapper.Map<AppointmentCreate, Appointment>(appointmentCreate);
-            appointment.ID = Guid.NewGuid().ToString();
+            if (appointmentCreate == null)
+            {
+                return null;
+            }
+
             try
             {
+                var appointment = _mapper.Map<AppointmentCreate, Appointment>(appointmentCreate);
+                appointment.ID = Guid.NewGuid().ToString();
+
                 _appointmentRepo.Add(appointment);
+                return appointment;
             }
             catch (ArgumentNullException)
             {
                 return null;
             }
-
-            return appointment;
         }
 
         public IEnumerable<AppointmentDTO> GetAllAppointmentsForUser(string idMember)
