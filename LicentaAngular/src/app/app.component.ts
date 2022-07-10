@@ -16,7 +16,7 @@ export class AppComponent {
         router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
                 let title = this.getTitle(router.routerState, router.routerState.root).join('-');
-                title = title ? 'To ReWatch - ' + title : 'To ReWatch';
+                title = title ? 'To REWatch - ' + title : 'To REWatch';
                 titleService.setTitle(title);
             }
         });
