@@ -1,13 +1,13 @@
 ﻿using LicentaAPI.AppServices.Appointments;
 using LicentaAPI.AppServices.Appointments.Model;
 using LicentaAPI.Infrastructure.Mapper;
+using LicentaAPI.Persistence.Models;
 using LicentaAPI.Persistence.Repositories;
-using LitentaAPI.Unit.Tests.Fakes.Repo;
+using Moq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace LitentaAPI.Unit.Tests.AppServices
@@ -15,12 +15,12 @@ namespace LitentaAPI.Unit.Tests.AppServices
     public class AppointmentServiceTest
     {
         private AppointmentService service;
-        private IAppointmentRepo appointmentRepo;
+        private Mock<IAppointmentRepo> appointmentRepo;
 
         public AppointmentServiceTest()
         {
-            appointmentRepo = new FakeAppointmentRepo();
-            service = new AppointmentService(appointmentRepo, null, null, null, null, new MappingCoordinator());
+            appointmentRepo = new Mock<IAppointmentRepo>();
+            service = new AppointmentService(appointmentRepo.Object, null, null, null, null, new MappingCoordinator());
         }
 
         [Fact]
@@ -34,6 +34,9 @@ namespace LitentaAPI.Unit.Tests.AppServices
                 TimeAppointment = DateTime.UtcNow,
                 IdGroup = "idGroup"
             };
+            appointmentRepo.Setup(x => x.Add(It.IsAny<Appointment>())).Verifiable();
+            appointmentRepo.Setup(x => x.FindAppointmentByDate(DateTime.UtcNow)).Returns(Enumerable.Empty<Appointment>());
+            appointmentRepo.Setup(x => x.FindAppointmentByDate(DateTime.UtcNow.AddDays(1))).Returns(Enumerable.Empty<Appointment>());
 
             var createdAppointment = service.CreateAppointment(appointmentCreate);
 
@@ -45,6 +48,7 @@ namespace LitentaAPI.Unit.Tests.AppServices
             Assert.Equal(appointmentCreate.IdGroup, createdAppointment.IdGroup);
             Assert.Equal(appointmentCreate.Name, createdAppointment.Name);
             Assert.Equal(appointmentCreate.TimeAppointment, createdAppointment.TimeAppointment);
+            appointmentRepo.Verify(x => x.Add(createdAppointment), Times.Once);
         }
 
         [Fact]

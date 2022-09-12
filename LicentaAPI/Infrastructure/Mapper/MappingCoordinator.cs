@@ -45,7 +45,9 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<BookCreateRequest, BookCreate>();
                 cfg.CreateMap<BookCreate, Book>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
-                cfg.CreateMap<Book, BookDTO>();
+                cfg.CreateMap<Book, BookDTO>()
+                    .ForMember(dest => dest.PrequelTitle, opt => opt.Ignore())
+                    .ForMember(dest => dest.SequelTitle, opt => opt.Ignore());
                 cfg.CreateMap<BookDTO, Book>();
                 cfg.CreateMap<UpdateBookRequest, BookUpdate>();
                 cfg.CreateMap<BookUpdate, Book>();
@@ -53,7 +55,9 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<FilmCreateRequest, FilmCreate>();
                 cfg.CreateMap<FilmCreate, Film>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
-                cfg.CreateMap<Film, FilmDTO>();
+                cfg.CreateMap<Film, FilmDTO>()
+                    .ForMember(dest => dest.PrequelTitle, opt => opt.Ignore())
+                    .ForMember(dest => dest.SequelTitle, opt => opt.Ignore());
                 cfg.CreateMap<FilmDTO, Film>();
                 cfg.CreateMap<UpdateFilmRequest, FilmUpdate>();
                 cfg.CreateMap<FilmUpdate, Film>();
@@ -64,7 +68,10 @@ namespace LicentaAPI.Infrastructure.Mapper
                     .ForMember(dest => dest.Status, opt => opt.Ignore())
                     .ForMember(dest => dest.LastUpdate, opt => opt.Ignore())
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
-                cfg.CreateMap<Friendship, FriendshipDTO>();
+                cfg.CreateMap<Friendship, FriendshipDTO>()
+                    .ForMember(dest => dest.NameSender, opt => opt.Ignore())
+                    .ForMember(dest => dest.PictureSender, opt => opt.Ignore())
+                    .ForMember(dest => dest.NameReceiver, opt => opt.Ignore());
 
                 cfg.CreateMap<GroupCreateRequest, GroupCreate>();
                 cfg.CreateMap<GroupCreate, Group>()
@@ -80,7 +87,9 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<MessageCreate, Message>()
                     .ForMember(dest => dest.SendTime, opt => opt.Ignore())
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
-                cfg.CreateMap<Message, MessageDTO>();
+                cfg.CreateMap<Message, MessageDTO>()
+                    .ForMember(dest => dest.NameSender, opt => opt.Ignore())
+                    .ForMember(dest => dest.NameReceiver, opt => opt.Ignore());
 
                 cfg.CreateMap<ReviewCreateRequest, ReviewBookCreate>()
                     .ForMember(dest => dest.IdUser, opt => opt.Ignore())
@@ -88,7 +97,9 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<ReviewBookCreate, ReviewBook>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
                 cfg.CreateMap<ReviewBook, ReviewBookDTO>()
-                .ForMember(dest => dest.Book, opt => opt.Ignore());
+                    .ForMember(dest => dest.Book, opt => opt.Ignore())
+                    .ForMember(dest => dest.IdReview, opt => opt.Ignore())
+                    .ForMember(dest => dest.Username, opt => opt.Ignore());
 
                 cfg.CreateMap<ReviewCreateRequest, ReviewFilmCreate>()
                     .ForMember(dest => dest.IdUser, opt => opt.Ignore())
@@ -96,7 +107,9 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<ReviewFilmCreate, ReviewFilm>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
                 cfg.CreateMap<ReviewFilm, ReviewFilmDTO>()
-                .ForMember(dest => dest.Film, opt => opt.Ignore());
+                    .ForMember(dest => dest.Film, opt => opt.Ignore())
+                    .ForMember(dest => dest.IdReview, opt => opt.Ignore())
+                    .ForMember(dest => dest.Username, opt => opt.Ignore());
 
                 cfg.CreateMap<ReviewCreateRequest, ReviewSeriesCreate>()
                     .ForMember(dest => dest.IdUser, opt => opt.Ignore())
@@ -104,19 +117,40 @@ namespace LicentaAPI.Infrastructure.Mapper
                 cfg.CreateMap<ReviewSeriesCreate, ReviewSeries>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
                 cfg.CreateMap<ReviewSeries, ReviewSeriesDTO>()
-                .ForMember(dest => dest.Series, opt => opt.Ignore());
+                    .ForMember(dest => dest.Series, opt => opt.Ignore())
+                    .ForMember(dest => dest.IdReview, opt => opt.Ignore())
+                    .ForMember(dest => dest.Username, opt => opt.Ignore());
 
                 cfg.CreateMap<SeriesCreateRequest, SeriesCreate>();
                 cfg.CreateMap<SeriesCreate, Series>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
-                cfg.CreateMap<Series, SeriesDTO>();
+                cfg.CreateMap<Series, SeriesDTO>()
+                    .ForMember(dest => dest.PrequelTitle, opt => opt.Ignore())
+                    .ForMember(dest => dest.SequelTitle, opt => opt.Ignore());
                 cfg.CreateMap<SeriesDTO, Series>();
                 cfg.CreateMap<UpdateSeriesRequest, SeriesUpdate>();
                 cfg.CreateMap<SeriesUpdate, Series>();
 
                 cfg.CreateMap<UpdateUserRequest, UserUpdate>()
                     .ForMember(dest => dest.ID, opt => opt.Ignore());
-                cfg.CreateMap<UserUpdate, AppUser>();
+                cfg.CreateMap<UserUpdate, AppUser>()
+                    .ForMember(dest => dest.LastOnline, opt => opt.Ignore())
+                    .ForMember(dest => dest.IsAdmin, opt => opt.Ignore())
+                    .ForMember(dest => dest.Rank, opt => opt.Ignore())
+                    .ForMember(dest => dest.UserName, opt => opt.Ignore())
+                    .ForMember(dest => dest.NormalizedUserName, opt => opt.Ignore())
+                    .ForMember(dest => dest.Email, opt => opt.Ignore())
+                    .ForMember(dest => dest.NormalizedEmail, opt => opt.Ignore())
+                    .ForMember(dest => dest.EmailConfirmed, opt => opt.Ignore())
+                    .ForMember(dest => dest.PasswordHash, opt => opt.Ignore())
+                    .ForMember(dest => dest.SecurityStamp, opt => opt.Ignore())
+                    .ForMember(dest => dest.ConcurrencyStamp, opt => opt.Ignore())
+                    .ForMember(dest => dest.PhoneNumber, opt => opt.Ignore())
+                    .ForMember(dest => dest.PhoneNumberConfirmed, opt => opt.Ignore())
+                    .ForMember(dest => dest.TwoFactorEnabled, opt => opt.Ignore())
+                    .ForMember(dest => dest.LockoutEnabled, opt => opt.Ignore())
+                    .ForMember(dest => dest.LockoutEnd, opt => opt.Ignore())
+                    .ForMember(dest => dest.AccessFailedCount, opt => opt.Ignore());
             });
         }
 
