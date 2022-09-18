@@ -17,4 +17,4 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: log
-        run: echo da
+        run: echo nu
