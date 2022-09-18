@@ -1,0 +1,20 @@
+name: 'Build and tests API'
+
+on: 
+  push:
+    branches: [ master ]
+    paths:
+    - 'LicentaAPI/**'
+    - '.github/workflows/BuildAndTestAPI.yml'
+  pull_request:
+    branches: [ master ]
+    paths:
+    - 'LicentaAPI/**'
+    - '.github/workflows/BuildAndTestAPI.yml'
+
+jobs:
+  build: 
+    runs-on: windows-latest
+    steps:
+      - name: log
+        run: echo da
